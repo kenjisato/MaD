@@ -1,0 +1,10 @@
+.Rhistory
+.RData
+.Rproj.user
+
+/Private
+
+\#*#
+.ipynb_checkpoints
+__pycache__
+
