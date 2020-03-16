@@ -1,10 +1,18 @@
+# R
 .Rhistory
 .RData
 .Rproj.user
 
+# Python
+.ipynb_checkpoints
+.python-version
+__pycache__
+
+# LyX
+\#*#
+.lyx~
+
+# Other
 /Private
 
-\#*#
-.ipynb_checkpoints
-__pycache__
 
