@@ -40,7 +40,7 @@ LyX ファイルに以下の TeX Code を挿入すると，`print('come code')` 
 前述の通り，章ごとに Python スクリプトが生成されている。対応関係は次の通り。
 
 - Jupyter/ch01.ipynb → Lecture Note/Python/ch01.py → Lecture Note/ch01.lyx
-- Jupyter/ch02.ipynb → Lecture Note/Python/ch02.py ↔ Lecture Note/ch02.lyx
+- Jupyter/ch02.ipynb → Lecture Note/Python/ch02.py → Lecture Note/ch02.lyx
 - etc.
 
 各 chXX.py （つまるところ，生成元となる chXX.ipynb）には次の形式で**チャンクラベルの原型**を付与している。
