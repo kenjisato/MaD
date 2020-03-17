@@ -1,0 +1,5500 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass scrbook
+\begin_preamble
+\usepackage{Styles/common}
+\usepackage{Styles/code}
+\usepackage{Styles/problem}
+
+\usepackage{url}
+
+% Knitr Setup 
+<<setup, include=FALSE>>=
+source('Knitr/setup.R')
+knitr::read_chunk('Knitr/setup.py')
+@
+% Python Setup 
+<<python-setup, include=FALSE>>=
+@ 
+\end_preamble
+\options dvipdfmx,a5paper,9pt
+\use_default_options true
+\master _main.lyx
+\begin_modules
+knitr
+theorems-ams-chap-bytype
+theorems-ams-extended-chap-bytype
+logicalmkup
+\end_modules
+\maintain_unincluded_children false
+\language japanese
+\language_package default
+\inputencoding utf8-platex
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\float_placement th
+\paperfontsize default
+\spacing onehalf
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine natbib
+\cite_engine_type authoryear
+\biblio_style plainnat
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date true
+\justification true
+\use_refstyle 1
+\use_minted 0
+\branch childonly
+\selected 1
+\filename_suffix 0
+\color #faf0e6
+\end_branch
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style plain
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 2
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<engine='R', echo=FALSE>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+knitr::read_chunk('Python/ch02.py')
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+setcounter{chapter}{1}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Branch childonly
+inverted 0
+status open
+
+\begin_layout Standard
+\begin_inset CommandInset toc
+LatexCommand tableofcontents
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Chapter
+物価指数とインフレーション 
+\begin_inset CommandInset label
+LatexCommand label
+name "chap:物価指数とインフレーション"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+概要
+\end_layout
+
+\begin_layout Standard
+この講義では以下のことを学ぶ。
+\end_layout
+
+\begin_layout Itemize
+理論
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+ベクトルの復習
+\end_layout
+
+\begin_layout Itemize
+価格指数の定義
+\end_layout
+
+\begin_layout Itemize
+連鎖指数の計算方法
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+プログラミング
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+リスト，タプル
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+NumPy
+\series default
+ の配列
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+NumPy
+\series default
+ の関数
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Matplotlib
+\series default
+ を用いた可視化
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+実質GDPの定義は次章を参照のこと。
+\end_layout
+
+\begin_layout Section
+理論：ベクトル
+\end_layout
+
+\begin_layout Standard
+数の集合として実数全体の集合 
+\begin_inset Formula $\mathbb{R}$
+\end_inset
+
+ を考える。ひとまず，ベクトルとは一定の個数分だけ数字を並べたものと考えておこう。
+\begin_inset Formula 
+\[
+\begin{bmatrix}x_{1}\\
+x_{2}\\
+\vdots\\
+x_{d}
+\end{bmatrix},\qquad x_{1},x_{2},\dots,x_{d}\in\mathbb{R}
+\]
+
+\end_inset
+
+自然数 
+\begin_inset Formula $d$
+\end_inset
+
+ は並べた数字の個数を表す。これは状況に応じて必要な数を固定する。縦に並べると余白が増えてしまうので，横に並べて省スペース化できる方が便利である。
+\begin_inset Formula 
+\[
+\boldsymbol{x}=(x_{1},x_{2},\dots,x_{d}).
+\]
+
+\end_inset
+
+縦に数字を並べると要素ごとの足し算が見やすくなったり，サイズが 
+\begin_inset Formula $n\times1$
+\end_inset
+
+ である行列と同一視できるので行列との積の計算に大変都合がよかったりといった利点がある。本書では，状況に応じて都合のよい方を使う。どうしても「数を横に並べたベク
+トル（サイズが 
+\begin_inset Formula $1\times n$
+\end_inset
+
+ の行列）」を書く必要があるときには，
+\begin_inset Formula 
+\[
+\begin{bmatrix}x_{1} & x_{2} & \cdots & x_{n}\end{bmatrix}
+\]
+
+\end_inset
+
+のように，角括弧でコンマを付けずに書くことにしよう。なお，ベクトルを表す記号には太字を用いることが多いが，これも絶対に必要という訳ではない。
+\end_layout
+
+\begin_layout Standard
+固定した 
+\begin_inset Formula $d$
+\end_inset
+
+ について，ベクトルの成分
+\begin_inset Formula $x_{1},\dots,x_{d}$
+\end_inset
+
+ の組み合わせは無数に存在する。これらのベクトルを全部を集めた集合をベクトル空間と呼ぶ。
+\begin_inset Formula $\mathbb{R}$
+\end_inset
+
+ に含まれる数字が 
+\begin_inset Formula $d$
+\end_inset
+
+ 個並んでいるので，
+\begin_inset Formula $\boldsymbol{x}$
+\end_inset
+
+ を
+\begin_inset Formula $d$
+\end_inset
+
+次元ベクトル，
+\begin_inset Formula $\mathbb{R}^{d}$
+\end_inset
+
+ を
+\begin_inset Formula $d$
+\end_inset
+
+次元ベクトル空間という。
+\begin_inset Formula $d$
+\end_inset
+
+ は次元（dimension）に由来する。
+\end_layout
+
+\begin_layout Subsubsection*
+ベクトルの演算
+\end_layout
+
+\begin_layout Standard
+ベクトル空間においては，和（足し算）とスカラー倍（定数倍）の２つの演算が基本的である。
+\begin_inset Formula $\boldsymbol{x}$
+\end_inset
+
+, 
+\begin_inset Formula $\boldsymbol{y}\in\mathbb{R}^{d}$
+\end_inset
+
+，
+\begin_inset Formula $\alpha,\beta\in\mathbb{R}$
+\end_inset
+
+ に対して，
+\begin_inset Formula 
+\[
+\alpha\boldsymbol{x}+\beta\boldsymbol{y}=\alpha\begin{bmatrix}x_{1}\\
+x_{2}\\
+\vdots\\
+x_{d}
+\end{bmatrix}+\beta\begin{bmatrix}y_{1}\\
+y_{2}\\
+\vdots\\
+y_{d}
+\end{bmatrix}=\begin{bmatrix}\alpha x_{1}+\beta y_{1}\\
+\alpha x_{2}+\beta y_{2}\\
+\vdots\\
+\alpha x_{d}+\beta y_{d}
+\end{bmatrix}
+\]
+
+\end_inset
+
+と定義する。最右辺も数字を 
+\begin_inset Formula $d$
+\end_inset
+
+ 個並べたベクトルであることに注意しよう。したがって，
+\begin_inset Formula $\alpha\boldsymbol{x}+\beta\boldsymbol{y}$
+\end_inset
+
+ も
+\begin_inset Formula $\mathbb{R}^{d}$
+\end_inset
+
+ の元である。
+\end_layout
+
+\begin_layout Example
+\begin_inset Formula $d=3$
+\end_inset
+
+ としよう。
+\begin_inset Formula 
+\[
+\boldsymbol{x}=\begin{bmatrix}1\\
+3\\
+-3
+\end{bmatrix},\quad\boldsymbol{y}=\begin{bmatrix}2\\
+0\\
+1
+\end{bmatrix}
+\]
+
+\end_inset
+
+に対して，
+\begin_inset Formula 
+\[
+\boldsymbol{x}+\boldsymbol{y}=\begin{bmatrix}3\\
+3\\
+-2
+\end{bmatrix}
+\]
+
+\end_inset
+
+
+\begin_inset Formula $\alpha=-1$
+\end_inset
+
+ であれば，
+\begin_inset Formula 
+\[
+\alpha\boldsymbol{x}=\begin{bmatrix}-1\\
+-3\\
+3
+\end{bmatrix}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+ベクトル同士の引き算は，和とスカラー倍を組み合わせて，
+\begin_inset Formula 
+\[
+\boldsymbol{x}-\boldsymbol{y}=\boldsymbol{x}+(-1)\boldsymbol{y}
+\]
+
+\end_inset
+
+とできる。これは成分ごとに引き算をしているだけである。
+\end_layout
+
+\begin_layout Subsubsection*
+内積
+\end_layout
+
+\begin_layout Standard
+ベクトル
+\begin_inset Formula $\boldsymbol{x}$
+\end_inset
+
+, 
+\begin_inset Formula $\boldsymbol{y}\in\mathbb{R}^{d}$
+\end_inset
+
+ に対して，
+\begin_inset Formula 
+\[
+\boldsymbol{x}\cdot\boldsymbol{y}=x_{1}y_{1}+x_{2}y_{2}+\cdots+x_{d}y_{d}=\sum_{i=1}^{d}x_{i}y_{i}
+\]
+
+\end_inset
+
+で定義される 
+\begin_inset Formula $\boldsymbol{x}\cdot\boldsymbol{y}\in\mathbb{R}$
+\end_inset
+
+ を内積という
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+分野によって，
+\begin_inset Formula $(\boldsymbol{x},\boldsymbol{y})$
+\end_inset
+
+, 
+\begin_inset Formula $\langle\boldsymbol{x},\boldsymbol{y}\rangle$
+\end_inset
+
+, あるいは 
+\begin_inset Formula $\langle\boldsymbol{x}|\boldsymbol{y}\rangle$
+\end_inset
+
+ などと書く。
+\end_layout
+
+\end_inset
+
+。経済学の文脈では，価値を計算する場合に内積が使われる。
+\end_layout
+
+\begin_layout Example
+経済に存在する財を3タイプに分類したとしよう。財1，財2，財3 の価格を
+\begin_inset Formula $\boldsymbol{p}=(p_{1},p_{2},p_{3})$
+\end_inset
+
+，取引量を 
+\begin_inset Formula $\boldsymbol{x}=(x_{1},x_{2},x_{3})$
+\end_inset
+
+ とする。このとき，取引総額は
+\begin_inset Formula 
+\[
+\boldsymbol{p}\cdot\boldsymbol{x}=p_{1}x_{1}+p_{2}x_{2}+p_{3}x_{3}
+\]
+
+\end_inset
+
+である。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+内積はベクトル同士の角度を表すのに使うことを覚えているかもしれない。内積はベクトルの直交関係を規定する重要な概念だが，そのような解釈は必要になったら説明すること
+にしよう
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+今後，直交行列に関する議論が必要になるので，そのときに説明する。
+\end_layout
+
+\end_inset
+
+。
+\end_layout
+
+\begin_layout Subsubsection*
+注意
+\end_layout
+
+\begin_layout Standard
+成分ごとの掛け算や割り算が使われることは少ないので，ここでも特別な記号は用意しない。しかし，
+\series bold
+NumPy
+\series default
+ のベクトル（後述）同士では乗算・除算が定義されていて，通常の乗算記号 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+*
+\end_layout
+
+\end_inset
+
+ や除算記号 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+/
+\end_layout
+
+\end_inset
+
+ を用いる。これらは成分ごとの演算であることに注意しておこう。
+\end_layout
+
+\begin_layout Section
+理論：価格指数
+\end_layout
+
+\begin_layout Subsection
+パーシェ指数とラスパイレス指数
+\end_layout
+
+\begin_layout Standard
+物価指数計算の基本は，各財の価格変化率の加重平均である。パーシェ式とラスパイレス式という計算方法が代表的である。
+\end_layout
+
+\begin_layout Standard
+財・サービスの種類を 
+\begin_inset Formula $i=1,2,\dots,N$
+\end_inset
+
+ の 
+\begin_inset Formula $N$
+\end_inset
+
+ 個の財グループに分類する。個々の財グループについては代表的な価格が定まっていると考える
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+実務上は各品目について平均価格を計算するというステップと，全品目を総合してマクロ経済全体の価格指数を計算するというステップが必要である。ここでは，2つ目のステッ
+プについての議論であると考えればよい。
+\end_layout
+
+\end_inset
+
+。
+\begin_inset Formula $t$
+\end_inset
+
+ 期の財グループ 
+\begin_inset Formula $i$
+\end_inset
+
+ の価格を 
+\begin_inset Formula $p_{t,i}$
+\end_inset
+
+ と書く。1つのグループについて，
+\begin_inset Formula $t=0$
+\end_inset
+
+ 時点からの価格の粗変化率は
+\begin_inset Formula 
+\[
+\frac{p_{t,i}}{p_{0,i}}
+\]
+
+\end_inset
+
+と書ける。
+\end_layout
+
+\begin_layout Standard
+複数の財が存在する経済で，マクロ経済の価格を代表する「物価」，あるいはその変化，をどのように定義すればよいだろうか。ベクトルとベクトルの割り算は定義していないの
+で，
+\begin_inset Formula 
+\begin{align*}
+ & \frac{\boldsymbol{p}_{t}}{\boldsymbol{p}_{0}} & (\text{誤り！})
+\end{align*}
+
+\end_inset
+
+とする訳にはいかないし，単純に算術平均
+\begin_inset Formula 
+\begin{align*}
+ & \frac{1}{N}\sum_{i=1}^{N}\frac{p_{t,i}}{p_{0,i}} & (\text{一般的には正しくない！})
+\end{align*}
+
+\end_inset
+
+を取ることでは平均的な物価の変化を捉えることもできない。マーケットの小さい財の価格が大幅に変化することを想像すれば問題点が明確になるだろう。マクロの経済活動にほ
+とんど影響していない（マーケットが小さいから）にも関わらず，算術平均に大きな影響を与えてしまうからだ。
+\end_layout
+
+\begin_layout Standard
+すべての財に共通の重み 
+\begin_inset Formula $1/N$
+\end_inset
+
+ をかけていることが問題なので，マーケットの大きさに応じた重みを掛ければよい。つまり，
+\begin_inset Formula 
+\[
+\sum_{i=1}^{N}w_{i}\frac{p_{t,i}}{p_{0,i}}
+\]
+
+\end_inset
+
+のように計算すればよい。なお，重み 
+\begin_inset Formula $w_{i}$
+\end_inset
+
+, 
+\begin_inset Formula $i=1,\dots,N$
+\end_inset
+
+, は次の性質を満たす。
+\begin_inset Formula 
+\[
+\sum_{i=1}^{N}w_{i}=1.
+\]
+
+\end_inset
+
+パーシェ式とラスパイレス式の指数には重みの定義において違いがある。
+\end_layout
+
+\begin_layout Subsubsection*
+ラスパイレス指数
+\end_layout
+
+\begin_layout Standard
+財 
+\begin_inset Formula $i$
+\end_inset
+
+ の 
+\begin_inset Formula $t=0$
+\end_inset
+
+ 時点における取引量を 
+\begin_inset Formula $x_{0,i}$
+\end_inset
+
+，
+\begin_inset Formula $i=1,\dots,N$
+\end_inset
+
+ についてベクトルにまとめて 
+\begin_inset Formula $\boldsymbol{x}_{0}=(x_{0,1},\dots,x_{0,N})$
+\end_inset
+
+ と書く。この当時の 財 
+\begin_inset Formula $i$
+\end_inset
+
+ の市場価値（取引額）は 
+\begin_inset Formula $p_{0,i}x_{0,i}$
+\end_inset
+
+ だった。すべての財について価値を合計したものは，内積を用いて次のように書くことができる。
+\begin_inset Formula 
+\[
+\sum_{j=1}^{N}p_{0,j}x_{0,j}=\boldsymbol{p}_{0}\cdot\boldsymbol{x}_{0}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+これは，分析対象とするすべての財について 
+\begin_inset Formula $t=0$
+\end_inset
+
+ 期の総取引額を計算したものである。この総取引額に占める財 
+\begin_inset Formula $i$
+\end_inset
+
+ のシェアを 
+\begin_inset Formula $w_{i}^{L}$
+\end_inset
+
+ としよう。すなわち，
+\begin_inset Formula 
+\[
+w_{i}^{L}=\frac{p_{0,i}x_{0,i}}{\sum_{j=1}^{N}p_{0,j}x_{0,j}}=\frac{p_{0,i}x_{0,i}}{\boldsymbol{p}_{0}\cdot\boldsymbol{x}_{0}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+この 
+\begin_inset Formula $w_{i}^{L}$
+\end_inset
+
+ は「重み」が持つべき性質を持っている。なぜなら，
+\begin_inset Formula 
+\[
+\sum_{i=1}^{N}w_{i}^{L}=\sum_{i=1}^{N}\left(\frac{p_{0,i}x_{0,i}}{\boldsymbol{p}_{0}\cdot\boldsymbol{x}_{0}}\right)=\frac{\boldsymbol{p}_{0}\cdot\boldsymbol{x}_{0}}{\boldsymbol{p}_{0}\cdot\boldsymbol{x}_{0}}=1.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+このように定義される重み 
+\begin_inset Formula $\boldsymbol{w}^{L}=(w_{1}^{L},\dots,w_{N}^{L})$
+\end_inset
+
+ を用いて計算する加重平均を
+\series bold
+ラスパイレス指数
+\series default
+
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+らすぱいれすしすう@ラスパイレス指数
+\end_layout
+
+\end_inset
+
+ (Laspeyres index) と呼ぶ。
+\begin_inset Formula 
+\begin{align}
+(\text{ラスパイレス指数}) & =\sum_{i=1}^{N}w_{i}^{L}\frac{p_{t,i}}{p_{0,i}}\nonumber \\
+ & =\sum_{i=1}^{N}\left(\frac{p_{0,i}x_{0,i}}{\boldsymbol{p}_{0}\cdot\boldsymbol{x}_{0}}\right)\frac{p_{t,i}}{p_{0,i}}\nonumber \\
+ & =\frac{\sum_{i=1}^{N}p_{t,i}x_{0,i}}{\boldsymbol{p}_{0}\cdot\boldsymbol{x}_{0}}\nonumber \\
+ & =\frac{\boldsymbol{p}_{t}\cdot\boldsymbol{x}_{0}}{\boldsymbol{p}_{0}\cdot\boldsymbol{x}_{0}}.\label{eq:laspeyres}
+\end{align}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+通常，このようにして得られた数に100を掛けて，基準化する。
+\end_layout
+
+\begin_layout Subsubsection*
+パーシェ指数
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset label
+LatexCommand label
+name "subsec:パーシェ指数"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+財 
+\begin_inset Formula $i$
+\end_inset
+
+ の 
+\begin_inset Formula $t$
+\end_inset
+
+ 期における取引量を 
+\begin_inset Formula $x_{t,i}$
+\end_inset
+
+と書くことにする。ベクトルにまとめて，
+\begin_inset Formula $\boldsymbol{x}_{t}=(x_{t,1},\dots,x_{t,N})$
+\end_inset
+
+ とする。 次に考える重みは次のようなものである。
+\begin_inset Formula 
+\[
+w_{i}^{P}=\frac{p_{0,i}x_{t,i}}{\sum_{j=1}^{N}p_{0,j}x_{t,j}}=\frac{p_{0,i}x_{t,i}}{\boldsymbol{p}_{0}\cdot\boldsymbol{x}_{t}}.
+\]
+
+\end_inset
+
+これは 
+\begin_inset Formula $t$
+\end_inset
+
+ 期における市場の規模を，0 期の価格で評価したものになっている。この 
+\begin_inset Formula $w_{i}^{P}$
+\end_inset
+
+ は「重み」が持つべき性質を持っている。すなわち，
+\begin_inset Formula 
+\[
+\sum_{i=1}^{N}w_{i}^{P}=\sum_{i=1}^{N}\left(\frac{p_{0,i}x_{t,i}}{\boldsymbol{p}_{0}\cdot\boldsymbol{x}_{t}}\right)=\frac{\boldsymbol{p}_{0}\cdot\boldsymbol{x}_{t}}{\boldsymbol{p}_{0}\cdot\boldsymbol{x}_{t}}=1.
+\]
+
+\end_inset
+
+このように定義される重み 
+\begin_inset Formula $\boldsymbol{w}^{P}=(w_{1}^{P},\dots,w_{N}^{P})$
+\end_inset
+
+ を用いて計算する加重平均を
+\series bold
+パーシェ指数
+\series default
+
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+ぱーしぇしすう@パーシェ指数
+\end_layout
+
+\end_inset
+
+ (Paasche index) と呼ぶ。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align}
+(\text{パーシェ指数}) & =\sum_{i=1}^{N}w_{i}^{P}\frac{p_{t,i}}{p_{0,i}}\nonumber \\
+ & =\sum_{i=1}^{N}\left(\frac{p_{0,i}x_{t,i}}{\boldsymbol{p}_{0}\cdot\boldsymbol{x}_{t}}\right)\frac{p_{t,i}}{p_{0,i}}\nonumber \\
+ & =\frac{\boldsymbol{p}_{t}\cdot\boldsymbol{x}_{t}}{\boldsymbol{p}_{0}\cdot\boldsymbol{x}_{t}}\label{eq:paasche}
+\end{align}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+通常，このようにして得られた数に100を掛けて，基準化する。
+\end_layout
+
+\begin_layout Subsubsection*
+ラスパイレス指数とパーシェ指数の共通点と相違点
+\end_layout
+
+\begin_layout Standard
+ラスパイレス指数とパーシェ指数ともに次のような形式をもつ物価変化の指標である。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\text{物価変化率}=\frac{\boldsymbol{p}_{t}\cdot\text{\fbox{\ensuremath{\phantom{\boldsymbol{x}_{t}}}}}}{\boldsymbol{p}_{0}\cdot\fbox{\ensuremath{\phantom{\boldsymbol{x}_{t}}}}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+パーシェ式の物価指数は 
+\begin_inset Formula $\fbox{\ensuremath{\phantom{\boldsymbol{x}_{t}}}}$
+\end_inset
+
+ の中に比較年（
+\begin_inset Formula $t$
+\end_inset
+
+）の数量を用いる。一方，ラスパイレス式の物価指数は 
+\begin_inset Formula $\fbox{\ensuremath{\phantom{\boldsymbol{x}_{t}}}}$
+\end_inset
+
+ の中に基準年（
+\begin_inset Formula $0$
+\end_inset
+
+）の数量を用いる。パーシェとラスパイレスは次のようなニモニックで覚えるとよい
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+E.
+ Wayne Nafziger, 
+\emph on
+Economic Development
+\end_layout
+
+\end_inset
+
+。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+centering
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+renewcommand{
+\backslash
+arraystretch}{1.3}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Tabular
+<lyxtabular version="3" rows="2" columns="3">
+<features tabularvalignment="middle">
+<column alignment="left" valignment="top">
+<column alignment="left" valignment="top">
+<column alignment="left" valignment="top">
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+パーシェ式
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\bar under
+P
+\bar default
+aasche
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\bar under
+P
+\bar default
+resent （今）の数量を使う
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+ラスパイレス式
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\bar under
+L
+\bar default
+aspeyres
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\bar under
+L
+\bar default
+ong time ago （昔）の数量を使う
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+価格を評価するために補助的に用いる数量データの違いによって，2つの指数には情報収集コストに違いが生じる。
+\end_layout
+
+\begin_layout Problem
+ラスパイレス式の物価指数はパーシェ式の物価指数よりも物価の変化を迅速に捉えることができる。これは，なぜか。情報収集のコストの観点から説明しなさい。
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+answerbox{5
+\backslash
+baselineskip}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+バイアス
+\end_layout
+
+\begin_layout Standard
+ラスパイレス式であってもパーシェ式であっても，特定の一時点の数量を用いて物価比較をする限り，価格の変化に対する消費の変化を完全に捉えることは容易ではない。なぜな
+ら，価格が上昇した財の需要は減少して相対的に値下がりした別の財の需要が増加するのが通常の消費行動であるにも関わらず，上記の2つの物価指数はこのような代替効果を無
+視しているからだ。実際，ラスパイレス式の指数には物価の上昇を過大評価する傾向があり，パーシェ式の指数には過小評価する傾向があると言われている。
+\end_layout
+
+\begin_layout Standard
+ある財 
+\begin_inset Formula $i$
+\end_inset
+
+ が急激に値上がりしたとして，その財から別の財への代替が進んだとする。ラスパイレス指数の重み
+\begin_inset Formula 
+\[
+w_{i}^{L}=\frac{p_{0,i}x_{0,i}}{\boldsymbol{p}_{0}\cdot\boldsymbol{x}_{0}}
+\]
+
+\end_inset
+
+には代替による効果は反映されないので，
+\begin_inset Formula $p_{t,i}/p_{0,i}$
+\end_inset
+
+ の影響が大きく残る。一方，パーシェ指数の重み
+\begin_inset Formula 
+\[
+w_{i}^{P}=\frac{p_{0,i}x_{t,i}}{\boldsymbol{p}_{0}\cdot\boldsymbol{x}_{t}}
+\]
+
+\end_inset
+
+は，財 
+\begin_inset Formula $i$
+\end_inset
+
+ の価格 
+\begin_inset Formula $p_{t,i}$
+\end_inset
+
+ が上昇したことで起こる需要減で 
+\begin_inset Formula $x_{t,i}$
+\end_inset
+
+ が減少する効果は反映するものの，重みを計算する価格は 
+\begin_inset Formula $p_{0,i}$
+\end_inset
+
+ という小さい数字のままである。したがって，
+\begin_inset Formula $p_{t,i}/p_{0,i}$
+\end_inset
+
+ に対する重みが小さくなってしまう。
+\end_layout
+
+\begin_layout Subsubsection*
+フィッシャー指数
+\end_layout
+
+\begin_layout Standard
+ラスパイレス指数の上方バイアス，パーシェ指数の下方バイアスという欠点を補うために，これらの平均を取った物価指数が考案されている。
+\series bold
+フィッシャー指数
+\series default
+
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+ふぃっしゃーしすう@フィッシャー指数
+\end_layout
+
+\end_inset
+
+はパーシェ式とラスパイレス式の相乗平均を用いて，次のように定義される。
+\begin_inset Formula 
+\[
+(\text{フィッシャー指数})=\sqrt{\underbrace{\frac{\boldsymbol{p}_{t}\cdot\boldsymbol{x}_{t}}{\boldsymbol{p}_{0}\cdot\boldsymbol{x}_{t}}}_{\text{パーシェ}}\times\underbrace{\frac{\boldsymbol{p}_{t}\cdot\boldsymbol{x}_{0}}{\boldsymbol{p}_{0}\cdot\boldsymbol{x}_{0}}}_{\text{ラスパイレス}}}.
+\]
+
+\end_inset
+
+通常，このようにして得られた数に100を掛けて，基準化する。
+\end_layout
+
+\begin_layout Subsection
+インフレーションとデフレーション
+\end_layout
+
+\begin_layout Standard
+ここまでに計算した物価指数，時点 
+\begin_inset Formula $0$
+\end_inset
+
+ を基準にして，時点 
+\begin_inset Formula $t$
+\end_inset
+
+ の物価がどれくらい高いかを示す指標である。
+\begin_inset Formula $\boldsymbol{x}_{*}=\boldsymbol{x}_{0}$
+\end_inset
+
+ or 
+\begin_inset Formula $\boldsymbol{x}_{t}$
+\end_inset
+
+ として，価格指数を 
+\begin_inset Formula $P_{t}$
+\end_inset
+
+ と書こう。
+\begin_inset Formula 
+\[
+P_{t}=\frac{\boldsymbol{p}_{t}\cdot\boldsymbol{x}_{*}}{\boldsymbol{p}_{0}\cdot\boldsymbol{x}_{*}}
+\]
+
+\end_inset
+
+このようにすれば，平均物価の変遷を表す時系列を作ることが出来る。
+\begin_inset Formula 
+\[
+P_{0}=1,\quad P_{1},\quad P_{2},\quad\cdots,\quad P_{t},\quad\cdots
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $P_{t}$
+\end_inset
+
+ が継続的に上昇し続ける状況を
+\series bold
+インフレーション
+\series default
+
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+いんふれーしょん@インフレーション
+\end_layout
+
+\end_inset
+
+，継続的に下落し続ける状況を
+\series bold
+デフレーション
+\series default
+
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+でふれーしょん@デフレーション
+\end_layout
+
+\end_inset
+
+と呼んでいる。マクロ経済に多数ある財が総じて値上げする状況でインフレーションが起こり，総じて値下げされる状況でデフレーションが起こる。「物価の安定」といったとき
+には，インフレーションのスピード（
+\series bold
+インフレ率
+\series default
+
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+いんふれりつ@インフレ率
+\end_layout
+
+\end_inset
+
+）
+\begin_inset Formula 
+\[
+\frac{\Delta P_{t}}{P_{t-1}}=\frac{P_{t}-P_{t-1}}{P_{t-1}}=\frac{P_{t}}{P_{t-1}}-1
+\]
+
+\end_inset
+
+がゼロに近い正の値になるような政策的な取り組みを表すことが多い
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+インフレ率がゼロになってしまうと外的なショックの影響で不況になったときに金融緩和余地がなく苦境に立たされてしまう。
+\end_layout
+
+\end_inset
+
+。
+\end_layout
+
+\begin_layout Subsection
+固定基準年方式と連鎖方式
+\end_layout
+
+\begin_layout Standard
+上のように定義した 
+\begin_inset Formula $P_{t}$
+\end_inset
+
+ は 
+\begin_inset Formula $t$
+\end_inset
+
+ が大きくなるにつれて，経済活動の実態に合わなくなってくる。例えば，ラスパイレス指数の場合，
+\begin_inset Formula 
+\[
+P_{t}^{\text{Laspeyres}}=\frac{\boldsymbol{p}_{t}\cdot\boldsymbol{x}_{0}}{\boldsymbol{p}_{0}\cdot\boldsymbol{x}_{0}}
+\]
+
+\end_inset
+
+の分子にある 
+\begin_inset Formula $\boldsymbol{p}_{t}\cdot\boldsymbol{x}_{0}$
+\end_inset
+
+ は価格 
+\begin_inset Formula $\boldsymbol{p}_{t}$
+\end_inset
+
+ のもとでは全く現実味のない数量ベクトル 
+\begin_inset Formula $\boldsymbol{x}_{0}$
+\end_inset
+
+ を使ってしまっているかもしれない。パーシェ指数の場合にも，
+\begin_inset Formula 
+\[
+P_{t}^{\text{Paasche}}=\frac{\boldsymbol{p}_{t}\cdot\boldsymbol{x}_{t}}{\boldsymbol{p}_{0}\cdot\boldsymbol{x}_{t}}
+\]
+
+\end_inset
+
+の分母にある 
+\begin_inset Formula $\boldsymbol{p}_{0}\cdot\boldsymbol{x}_{t}$
+\end_inset
+
+ が価格 
+\begin_inset Formula $\boldsymbol{p}_{0}$
+\end_inset
+
+ のもとでの経済活動では起こりそうにもない水準になるかもしれない。経済に新しい財がどんどん追加されたり，財の質的な向上と価格下落が著しい時代にあっては，このよう
+な問題が深刻になる。基準数量 
+\begin_inset Formula $\boldsymbol{x}_{0}$
+\end_inset
+
+ や基準価格 
+\begin_inset Formula $\boldsymbol{p}_{0}$
+\end_inset
+
+ を固定した前述のような計算方式を
+\series bold
+固定基準年方式
+\series default
+
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+こていきじゅんねんほうしき@固定基準年方式
+\end_layout
+
+\end_inset
+
+と呼ぶ。このような問題に対処する1つの方法は，数量ベクトル 
+\begin_inset Formula $\boldsymbol{x}_{0}$
+\end_inset
+
+ を頻繁に改定することである。例えば，代表的な物価指数である消費者物価指数では，マクロ経済における標準的な購入量を5年ごと見直して，ラスパイレス指数を計算してい
+る。基準年を変更することを，基準改定という。改定前と改定後の数値は直接接続しないことに注意をしなければならない。
+\end_layout
+
+\begin_layout Standard
+固定基準年方式に代わる方式として，連鎖方式
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+れんさほうしき@連鎖方式
+\end_layout
+
+\end_inset
+
+と呼ばれる算式が用いられることもある。連鎖方式の指数は，前年度の連鎖指数に前年度基準の価格指数を掛けることで計算される。つまり，
+\begin_inset Formula 
+\begin{align*}
+\text{ラスパイレス式連鎖指数}_{t} & =\text{ラスパイレス式連鎖指数}_{t-1}\times\frac{\boldsymbol{p}_{t}\cdot\boldsymbol{x}_{t-1}}{\boldsymbol{p}_{t-1}\cdot\boldsymbol{x}_{t-1}}\\
+\text{パーシェ式連鎖指数}_{t} & =\text{パーシェ式連鎖指数}_{t-1}\times\frac{\boldsymbol{p}_{t}\cdot\boldsymbol{x}_{t}}{\boldsymbol{p}_{t-1}\cdot\boldsymbol{x}_{t}}\\
+\text{フィッシャー式連鎖指数}_{t} & =\text{フィッシャー式連鎖指数}_{t}\times\sqrt{\frac{\boldsymbol{p}_{t}\cdot\boldsymbol{x}_{t-1}}{\boldsymbol{p}_{t-1}\cdot\boldsymbol{x}_{t-1}}\times\frac{\boldsymbol{p}_{t}\cdot\boldsymbol{x}_{t}}{\boldsymbol{p}_{t-1}\cdot\boldsymbol{x}_{t}}}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+GDPデフレーターはパーシェ式の連鎖指数である。なお，連鎖指数の初期値（
+\begin_inset Formula $t=0$
+\end_inset
+
+ の値）は 1 と設定する（指数を100で基準化する場合は 100）。
+\begin_inset Formula 
+\[
+\text{連鎖指数}_{0}=1
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+関連する言葉の整理をしておこう。
+\end_layout
+
+\begin_layout Description
+比較年 物価の水準を観察したい年のこと。上の式では 
+\begin_inset Formula $t$
+\end_inset
+
+ に相当する。
+\end_layout
+
+\begin_layout Description
+参照年 指数を 1 （または 100）に基準化する時点のこと。上の例では，
+\begin_inset Formula $0$
+\end_inset
+
+ 期に相当する。
+\end_layout
+
+\begin_layout Description
+基準年 比較年の物価上昇率を計算するための基準となる年のこと。固定基準年方式の場合は参照年と同じで，0期を指す。連鎖方式の場合は比較年の前年，つまり
+ 
+\begin_inset Formula $t-1$
+\end_inset
+
+ が基準年である。
+\end_layout
+
+\begin_layout Standard
+GDP 統計には，さらに，体系基準年という概念がある。GDP 統計を作成するための基礎統計（産業連関表，国勢統計など）の更新に合わせて GDP
+ 統計も基準数量が変更される。基礎統計が作成された年が体系基準年である。
+\end_layout
+
+\begin_layout Section
+プログラミング: NumPy 入門
+\end_layout
+
+\begin_layout Standard
+この章では，複数の数字をまとめたオブジェクトである，リストとタプルを導入し，その後 
+\series bold
+NumPy
+\series default
+ の 
+\series bold
+ndarray
+\series default
+ オブジェクトを説明する。数学的なベクトルや行列を 
+\series bold
+ndarray
+\series default
+ で表現できるので，Python を用いた数値計算では必須の話題である。
+\end_layout
+
+\begin_layout Subsection
+リストとタプル
+\end_layout
+
+\begin_layout Standard
+Python でベクトルや時系列を表現するための基礎となるデータ形式はリストやタプルと呼ばれるオブジェクトである。「基礎となる」と言ったのは，これらをそのまま使
+う訳ではないからだ。しかし，リストやタプルをすっ飛ばしてベクトルの表現を説明することはできないので，しばらく辛抱してほしい。
+\end_layout
+
+\begin_layout Subsubsection*
+リスト
+\end_layout
+
+\begin_layout Standard
+リストは複数の種類のデータをひとまとめにしたデータ形式である。コンマでつないで角括弧で括る。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch02/list-define-x>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+和やスカラー倍は期待通りに動かないので，これはベクトルのようには使えない。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch02/list-is-not-vector>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Problem
+リスト同士の和，リストと自然数の積は Python ではどのように定義されているか。色々な入力を試して実験し，自分の言葉で説明しなさい。
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+answerbox{4
+\backslash
+baselineskip}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Problem
+リストと小数の積を実行しようとするとどのような結果になるだろうか。結果を予想して，実行し，結果を記録しなさい
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+面倒かもしれないが，「結果を予想」するというステップを飛ばさないでほしい。あなた自身が自分のためのコードを書くときに予想する能力が必要になる。
+\end_layout
+
+\end_inset
+
+。
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch02/list-times-float-error, eval=FALSE>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+answerbox{4
+\backslash
+baselineskip}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Python のリストを数学的なベクトルを表現するために使いにくい理由は，リストはベクトルよりも遥かに柔軟なデータ構造だからだ。数学的なベクトルは同種の数字しか
+並べることができないが
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+前節の解説では「同種」の部分は完全に割愛している。具体的には実数，複素数，有理数などである。気になった読者は線形代数学の教科書を参照せよ。
+\end_layout
+
+\end_inset
+
+，Python のリストは様々な種類のオブジェクトを並べることができる。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch02/list-not-number>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+上で定義したリスト 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+y
+\end_layout
+
+\end_inset
+
+ は次のような要素を持つ。
+\end_layout
+
+\begin_layout Itemize
+左から1つ目の要素は，整数 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+10
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+2つ目の要素は小数 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+4.3
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+3つ目の要素はテキスト 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+"Hello"
+\end_layout
+
+\end_inset
+
+ （1重引用符や2重引用符で囲ったテキストは「文字列」と呼ばれる種類のオブジェクトになる）
+\end_layout
+
+\begin_layout Itemize
+4つ目の要素はリスト 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+[1, 2, 3]
+\end_layout
+
+\end_inset
+
+。そのリストには整数が3つ並んでいる。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+要素に何が入るのかが分からないのであれば，要素ごとの加算や乗算を定義できないことは容易に想像が付くだろう。リストは意味のあるひとまとまりのデータを「記録」するた
+めに使うことができる。しかし，同種の数字だけ並べて「計算」したいならもっとよい方法がある。
+\end_layout
+
+\begin_layout Standard
+個別のデータを取得する方法が気になることだろう。角括弧を使って，インデックス（データにおける要素の位置）を次のように指定すればよい。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch02/list-get-item>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+次のことを覚えておこう。インデックスと中身を見比べてみよう。
+\end_layout
+
+\begin_layout Itemize
+インデックスは 0 から始まる整数である。
+\end_layout
+
+\begin_layout Itemize
+リストの最後の要素から数える場合には，
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+-1
+\end_layout
+
+\end_inset
+
+, 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+-2
+\end_layout
+
+\end_inset
+
+, ...
+ という負のインデックスを使うことができる。
+\end_layout
+
+\begin_layout Itemize
+リストの長さは 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+len()
+\end_layout
+
+\end_inset
+
+ で取得できる。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch02/list-len>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+リストの内容を変更するときには要素取得と同じ記法を用いる。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch02/list-modify>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+オブジェクトに対応付けられた
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+x
+\end_layout
+
+\end_inset
+
+ や 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+y
+\end_layout
+
+\end_inset
+
+という記号は，オブジェクトそのものではなくオブジェクトを呼びだすための名前に過ぎない。これは次のような実験からよく分かる。オリジナルの 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+x
+\end_layout
+
+\end_inset
+
+ には手を触れずにコピーした 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+z
+\end_layout
+
+\end_inset
+
+ だけを編集しようとしたのだけど，
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+x
+\end_layout
+
+\end_inset
+
+ にまで修正が及んでしまっている。このコードは失敗だ。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch02/list-names>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+正しくは，次のように書かなければいけない。コロンは「スライス」と呼ばれる操作に関連している。いずれ詳しく説明することになるだろう。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch02/list-copy>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+なお，要素のないリストや，単一要素のリストも作ることができる。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch02/list-empty>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+タプル
+\end_layout
+
+\begin_layout Standard
+タプルとリストの違いとして次の2点を押さえておけばよい。
+\end_layout
+
+\begin_layout Itemize
+丸括弧で括る。
+\end_layout
+
+\begin_layout Itemize
+あとから要素を変更できない。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch02/tuple-define>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+丸括弧は計算順序の変更という他の意味があるので，単一の要素を持つタプルを作成するときには注意が必要である。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch02/tuple-tuple>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Problem
+タプルの要素を変更しようとするとどのような結果になるだろうか。下のコードを実行し，結果を記録しなさい。
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch02/tuple-assign-error/dnr>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+answerbox{4
+\backslash
+baselineskip}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+数値計算だけに限定すれば，タプルを自分で作らなければならない状況というのは少ないかもしれない
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+多くの場合はリストで置き換えられる。リストでなく必ずタプルを使わないといけないケースには，辞書と呼ばれるデータ形式のキーにしたい場合などがある。本書では，このよ
+うなケースは（多分）出てこないと思う。
+\end_layout
+
+\end_inset
+
+。しかし，出力結果がタプルとなるケースは非常に多いので出力には慣れておこう。
+\end_layout
+
+\begin_layout Subsection
+NumPy の配列
+\end_layout
+
+\begin_layout Standard
+さて，準備が整ったので本題に入ろう。
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+配列
+\series default
+（array）というのは，同じ種類の要素（通常は，数字）を並べたリスト様のオブジェクトである。難しいことを特に意識する必要もないが，要素がすべて同じ種類でなけれ
+ばならないという制約があるおかげで要素の取得や要素に対する演算を効率的に実行できるということだけ覚えておこう。
+\end_layout
+
+\begin_layout Standard
+Python で数値計算をするときには 
+\series bold
+NumPy
+\series default
+ の 
+\series bold
+ndarray
+\series default
+ という形式の配列を用いる。前章で紹介したとおり，
+\series bold
+NumPy
+\series default
+ を使えるようにするにはいつものインポート文を実行する必要がある。繰り返し書いているうちに無意識に打てるようになる。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch02/numpy-import>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+ベクトルを表現する配列を作るには，
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+np.array()
+\end_layout
+
+\end_inset
+
+ をという関数をリストに適用すればよい。すべての要素に小数点がついていることに注意しよう。配列は同じ種類の数字が並んだものなので，整数と小数が混ざっている場合に
+は小数に変換される。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch02/numpy-array-x>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+ndarray
+\series default
+ の nd は N-dimensional （N次元）の略である。数学的なベクトル空間の次元と，配列の次元は意味合いが異なるので注意が必要である。例えば，
+\end_layout
+
+\begin_layout Itemize
+0 次元配列はスカラー
+\end_layout
+
+\begin_layout Itemize
+1 次元配列はベクトル
+\end_layout
+
+\begin_layout Itemize
+2 次元配列は行列
+\end_layout
+
+\begin_layout Standard
+のようになる。数学的に 
+\begin_inset Formula $N$
+\end_inset
+
+ 次元ベクトルと呼ばれるものは，
+\series bold
+NumPy
+\series default
+ では要素数 
+\begin_inset Formula $N$
+\end_inset
+
+ の1次元配列を用いて表現できる。配列の次元は 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+ndim
+\end_layout
+
+\end_inset
+
+, 数学的な次元（サイズ）は 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+shape
+\end_layout
+
+\end_inset
+
+ で調べることができる。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch02/numpy-shape>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+ドットの後に
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+ndim
+\end_layout
+
+\end_inset
+
+や
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+shape
+\end_layout
+
+\end_inset
+
+ と書いて呼び出している変数は
+\series bold
+属性
+\series default
+
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+ぞくせい@属性
+\end_layout
+
+\end_inset
+
+（attribute
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+attribute
+\end_layout
+
+\end_inset
+
+）と呼ばれるオブジェクトの追加情報である。
+\series bold
+ndarray
+\series default
+ の 
+\series bold
+shape
+\series default
+ 属性がタプルになっていることに注意しよう。
+\end_layout
+
+\begin_layout Subsubsection*
+配列の演算
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+NumPy
+\series default
+ 配列同士の演算はおおむね普通の算術演算と同様に実行できるので，混乱はほとんどないだろう。原則的に要素ごとに計算される。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch02/numpy-calc>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+スカラーとの演算もうまく定義されている。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch02/numpy-scalor>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+低次元配列と高次元配列の演算にはブロードキャスティングという処理が実行されて shape が揃えられる。例えば，1次元配列（ベクトル）と2次元配列（行列）の足し
+算は次のように振る舞う。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch02/numpy-broadcasting>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+低次元配列がスカラー以外の場合には最新の注意が必要であるが，ここで詳しく扱うには複雑すぎるので省略する（行列の定義の仕方を見ておけばよい。）。演算を行う前に十分
+テストをしたほうがよい。はじめから次元を合わせておくともっと安全だろう。
+\end_layout
+
+\begin_layout Standard
+なお，ブロードキャスティングが適用できる場合を除いて，サイズの異なる配列同士の計算はできない。
+\end_layout
+
+\begin_layout Problem
+次の計算を実行しようとするとどのような結果になるだろうか。下のコードを実行し，結果を記録しなさい。
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch02/numpy-addition-error/dnr>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+answerbox{4
+\backslash
+baselineskip}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+数学的には定義されていないベクトル間の演算も NumPy 配列に対して使用できる場合がある。例えば，乗算や除算などが要素ごとの演算として定義されている。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch02/numpy-multiplication>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+配列に作用する関数
+\end_layout
+
+\begin_layout Standard
+配列を入力に取る数学関数には，次のようなタイプのものがある。
+\end_layout
+
+\begin_layout Itemize
+入力配列の要素ごとに関数値を計算し，入力と同じサイズの配列を出力するもの。
+\end_layout
+
+\begin_layout Itemize
+入力配列全体をひとまとめにして関数値を計算し，単一の数を出力するもの。
+\end_layout
+
+\begin_layout Itemize
+入力配列全体をひとまとめにして関数値を計算し，入力と同じサイズの配列を出力するもの。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+1つ目のタイプの関数には 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+np.log()
+\end_layout
+
+\end_inset
+
+ や 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+np.exp()
+\end_layout
+
+\end_inset
+
+などがある。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch02/numpy-ufun>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+2つ目のタイプの関数の代表例は 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+np.sum()
+\end_layout
+
+\end_inset
+
+ や 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+np.max()
+\end_layout
+
+\end_inset
+
+などである。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch02/numpy-reduce>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+このタイプの関数は，（すべてかどうかは分からないが）同名のメソッドを持っているので，次のように呼び出すこともできる。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch02/numpy-reduce-method>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+2次元以上の配列にこのタイプの関数を適用すれば，特定の次元にだけ適用して情報を集約するために使うことができる。例えば，次の2次元配列が 3人の学生の英語と数学の
+試験の成績と解釈しよう。行方向（横方向）に見れば，各学生の英語・数学の2つの数字が並んでいる。列方向（縦方向）に見れば，各科目の3人の成績が並んでいる。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch02/numpy-reduce-axis1>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+次のコードは各科目の平均得点（
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+axis=0
+\end_layout
+
+\end_inset
+
+ と書くと，列（第0次元）の平均を計算する）と各学生の平均得点（
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+axis=1
+\end_layout
+
+\end_inset
+
+ と書くと，行（第1次元）の平均を計算する）を計算している。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch02/numpy-reduce-axis2>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+3つ目のタイプの関数には，累積和 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+cumsum()
+\end_layout
+
+\end_inset
+
+，累積積 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+cumprod()
+\end_layout
+
+\end_inset
+
+ などがある。このタイプの関数も配列に付随するメソッドとして呼び出せる場合がある。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch02/numpy-cumsum>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+2つの配列に作用する数学関数
+\end_layout
+
+\begin_layout Standard
+ここまでは単一の配列に対する操作を紹介した。ベクトルの内積やデータの共分散など，複数の配列（ベクトル）に対して関数を適用したいケースもある。出力は単一の数字，入
+力と同じサイズのベクトル，1つ次元の高い配列（行列）になる場合がある。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch02/numpy-two-vectors>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+なお，
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+dot()
+\end_layout
+
+\end_inset
+
+ を用いた計算はここではうまく内積を計算できたが，これはどちらも1次元の配列だからだ。
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+x
+\end_layout
+
+\end_inset
+
+, 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+y
+\end_layout
+
+\end_inset
+
+ が同じシェイプを持つ 2次元配列（ベクトル）になっている場合には，行列の積を計算しようとして失敗する。私はこのような振る舞いに使いにくさを感じているし，行列積
+を計算するだけなら 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+@
+\end_layout
+
+\end_inset
+
+ 演算子を使う方が美しく書ける。今後本書で 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+dot()
+\end_layout
+
+\end_inset
+
+に出会うことはもうないだろう。さようなら。
+\end_layout
+
+\begin_layout Problem
+\begin_inset CommandInset label
+LatexCommand label
+name "prob:内積計算"
+
+\end_inset
+
+
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+dot()
+\end_layout
+
+\end_inset
+
+ を使わずに内積を計算する方法を説明しなさい。
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+answerbox{4
+\backslash
+baselineskip}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Subsubsection*
+配列を生成する関数
+\end_layout
+
+\begin_layout Paragraph
+基本の関数
+\end_layout
+
+\begin_layout Standard
+配列を作成するために毎回リストを書かなければいけないのは手間が大きいので，よく使う配列を生成する関数が用意されている。以下の関数はタプルまたは単一の数を入力とし
+て受け取って配列のサイズとして用いる。それぞれどのような配列が出力されるかを確認しよう。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch02/numpy-create-array>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+シミュレーション分析では配列の値を特に設定せずに，サイズだけ指定したい場合がある。
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+empty()
+\end_layout
+
+\end_inset
+
+という関数を使う。値は適当に決まる
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+このような関数はシミュレーション結果を保存する配列を作るために用いる。結局はすべての値が上書きされることになるので，最初に初期化する（例えばゼロを代入する）作業
+を省いても問題にならない。
+\end_layout
+
+\end_inset
+
+。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch02/numpy-create-empty>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Problem
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+np.one_like()
+\end_layout
+
+\end_inset
+
+, 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+np.zeros_like()
+\end_layout
+
+\end_inset
+
+, 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+np.empty_like()
+\end_layout
+
+\end_inset
+
+はどのように使用するか。使用方法を調べて使ってみなさい。そして，それぞれの用途，使用方法を自分の言葉で説明しなさい。ヒント： IPython では関数名の前か後
+に 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+?
+\end_layout
+
+\end_inset
+
+ をつければ関数のドキュメントを読むことができる。例えば，
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+np.empty_like()
+\end_layout
+
+\end_inset
+
+は次のようにして表示できる。ドキュメントから抜けるにはキーボードの「q」を押下する。
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<eval=FALSE>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+np.empty_like?
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+answerbox{8
+\backslash
+baselineskip}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Paragraph
+乱数の生成
+\end_layout
+
+\begin_layout Standard
+ランダムに数字を生成して配列を生成したい場合がある。
+\series bold
+numpy.random
+\series default
+ というモジュールで定義された関数を使うことができる。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch02/numpy-fix-seed/noinc>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $[0,1)$
+\end_inset
+
+ の一様乱数を生成するには，
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+np.random.random()
+\end_layout
+
+\end_inset
+
+ を用いる
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+「乱数」というのは，コンピュータ上で確率変数の実現値を擬似的に計算したものである。あたかもランダムに見える数列というくらいに考えておけばよい。なお，プログラムの
+開発中にはランダムさが邪魔になる場合がある。
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+np.random.seed()
+\end_layout
+
+\end_inset
+
+ という関数を呼び出せば乱数の種（数列の初期値，パラメータ）が固定される。本書では，
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+np.random.seed(1000)
+\end_layout
+
+\end_inset
+
+ を実行した後に，続く乱数生成のコードが順次実行されている。
+\end_layout
+
+\end_inset
+
+。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch02/numpy-random>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+標準正規分布に従う乱数を生成する方法はいくつかある。上で紹介した関数は，入力としてタプルを渡す使い方をしているので，これと同じ使用法である
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+np.random.standard_normal()
+\end_layout
+
+\end_inset
+
+ を紹介しよう。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch02/numpy-random-normal>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Paragraph
+特別な行列の生成
+\end_layout
+
+\begin_layout Standard
+特別な行列を生成するときも，いくつかの便利な関数がある。対角成分に1が並ぶ単位行列を作るときは
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+eye()
+\end_layout
+
+\end_inset
+
+ を使う。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch02/numpy-create-eye>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+対角成分だけを指定して対角行列を作るには 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+diag()
+\end_layout
+
+\end_inset
+
+ を使う。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch02/numpy-create-diag>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Paragraph
+連続する数ベクトルの生成
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+linspace()
+\end_layout
+
+\end_inset
+
+ は連続的な区間を出力サイズを指定して等間隔に離散化する際に用いる。非常によく使うので覚えておこう。入力に与えた数字は，左端・右端・出力サイズの順に並んでいる。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch02/numpy-linspace>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+出力サイズではなく，隣り合う数の間の距離を指定したい場合には，
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+arange()
+\end_layout
+
+\end_inset
+
+ を用いる。右端の点が含まれないことには十分注意しよう。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch02/numpy-arange>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Paragraph
+配列の連結
+\end_layout
+
+\begin_layout Standard
+2つ以上の配列を連結して1つの配列を生成する方法を紹介しよう。
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+np.c_[]
+\end_layout
+
+\end_inset
+
+ は列（column）の方向に配列を拡張する。
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+np.r_[]
+\end_layout
+
+\end_inset
+
+ は行（row）方向に配列を拡張する。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+丸括弧ではなく各括弧で呼び出すことに注意しよう
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+関数でなければ気持ち悪いという場合は，
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+hstack()
+\end_layout
+
+\end_inset
+
+, 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+vstack()
+\end_layout
+
+\end_inset
+
+, 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+concatenate()
+\end_layout
+
+\end_inset
+
+ の使い方を調べてみよう。
+\end_layout
+
+\end_inset
+
+。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch02/numpy-vector-concat>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+シェイプの変更
+\end_layout
+
+\begin_layout Standard
+配列の変形を自由自在に行えると，後々都合がよいので，ここで説明しておこう。次のベクトル（1次元配列） 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+a
+\end_layout
+
+\end_inset
+
+ を 
+\begin_inset Formula $2\times4$
+\end_inset
+
+ 行列（2次元配列）に変換したいとする。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch02/numpy-vector-to-be-reshaped>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+2 つの方法がある。
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+reshape()
+\end_layout
+
+\end_inset
+
+ メソッドを使って変換後のオブジェクトを生成する。この場合，元のオブジェクトは変更されない。
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+resize()
+\end_layout
+
+\end_inset
+
+ メソッドを使って変換前のオブジェクトを書き換える。このように，元のオブジェクトが変更される操作を「in-place」な操作とか，破壊的な操作と呼ぶ。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch02/numpy-vector-reshape>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+行列に変換されるときには行方向に数字が埋められていくことに注意しよう
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Python と同じくデータ分析でよく用いられる R言語は列方向に数字を埋めていく。すでに R に慣れている人にとってはしばらく混乱するかもしれない。3次元配列
+の作り方にも微妙が違いがあるので，色々と比較をしてみてほしい。
+\end_layout
+
+\end_inset
+
+。
+\end_layout
+
+\begin_layout Standard
+転置行列を作るには，
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+transpose()
+\end_layout
+
+\end_inset
+
+ あるいは 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+T
+\end_layout
+
+\end_inset
+
+ 属性を用いる。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch02/numpy-transpose>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+サイズが1の次元を除去するメソッド 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+squeeze()
+\end_layout
+
+\end_inset
+
+ は多用される（私が多用する）ので，覚えておいてほしい。以下の例は，3つのベクトル時系列
+\begin_inset Formula 
+\[
+b_{1}=\begin{bmatrix}0\\
+1
+\end{bmatrix},\quad b_{2}=\begin{bmatrix}2\\
+3
+\end{bmatrix},\quad b_{3}=\begin{bmatrix}4\\
+5
+\end{bmatrix}
+\]
+
+\end_inset
+
+をシェイプが 
+\begin_inset Formula $(3,2,1)$
+\end_inset
+
+ であるような3次元配列として表現した 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+b
+\end_layout
+
+\end_inset
+
+ と，それを表形式で表現し直すために最後の次元を落としたものである。ベクトル時系列は3次元配列として表現する方がシミュレーション・コードを簡潔に保ちやすい。しか
+し，2次元配列（行列）として表現しておく方が可視化や統計処理には便利である。一長一短があるので，どちらの表現も使えるようにしておこう
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+表形式から3次元配列にするには，
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+np.expand_dims(a, 2)
+\end_layout
+
+\end_inset
+
+ のようにすればよい。
+\end_layout
+
+\end_inset
+
+。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch02/numpy-squeeze>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+可視化
+\end_layout
+
+\begin_layout Standard
+ここまで分かれば，簡単な可視化を実行することができる。ちょっと脱線して，作図の方法を紹介しよう。
+\end_layout
+
+\begin_layout Standard
+可視化にも様々な方法があるが，もっともよく用いられるのは 
+\series bold
+Matplotlib
+\series default
+ というライブラリだろう。次のインポート文はイディオム的に覚えてしまおう。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch02/matplotlib-import>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+関数（
+\begin_inset Formula $y=f(x)$
+\end_inset
+
+）を描くには，次の3ステップが基本である。
+\end_layout
+
+\begin_layout Enumerate
+関数値を計算したい横軸の値を決める。
+\end_layout
+
+\begin_layout Enumerate
+指定した横軸すべてについて関数値を計算する。
+\end_layout
+
+\begin_layout Enumerate
+プロット関数を呼び出す。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Matplotlib
+\series default
+ のもっとも初歩的な使い方を用いれば，次のようになる（図 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Maplotlib-の使用例"
+
+\end_inset
+
+）。なお，井桁記号（#）に続くテキストは人間のためのコメント
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+こめんと@コメント
+\end_layout
+
+\end_inset
+
+であり，Python は無視する。ここでのコメントは私が読者のために書いたものなので，読者は入力する必要がない。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch02/matplotlib-exp/plot>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+centering
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+includegraphics[trim = 0mm 10mm 0mm 22mm, clip, height=0.25
+\backslash
+textheight]{Figure/ch02/matplotlib-exp-1}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\series bold
+Maplotlib
+\series default
+ の使用例 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Maplotlib-の使用例"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+最後のコマンド 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+plt.show()
+\end_layout
+
+\end_inset
+
+ は描画したグラフを画面に表示するためのものである
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+IPython で
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+%matplotlib
+\end_layout
+
+\end_inset
+
+ マジックコマンドを実行している場合には
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+plt.show()
+\end_layout
+
+\end_inset
+
+ は不要になる。Jupyter Notebook を用いている場合も，
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+plt.show()
+\end_layout
+
+\end_inset
+
+ を忘れても図が表示されるかもしれない。表示されない場合は，
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+%matplotlib inline
+\end_layout
+
+\end_inset
+
+ というマジックコマンドを実行して，作図のコードを再実行してみよう。
+\end_layout
+
+\end_inset
+
+。
+\end_layout
+
+\begin_layout Standard
+ランダム・ウォーク
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+\begin_inset Formula $\varepsilon_{t+1}\stackrel{{\scriptscriptstyle \text{i.i.d}}}{\sim}\mathcal{N}(0,1)$
+\end_inset
+
+ は，ランダムな撹乱項 
+\begin_inset Formula $\varepsilon_{1},\varepsilon_{2},\dots$
+\end_inset
+
+ が
+\end_layout
+
+\begin_layout Itemize
+互いに独立で同じ確率分布に従っている（i.i.d = independent and identically distributed）
+\end_layout
+
+\begin_layout Itemize
+確率分布は標準正規分布 
+\begin_inset Formula $\mathcal{N}(0,1)$
+\end_inset
+
+ である
+\end_layout
+
+\begin_layout Plain Layout
+という2つの性質を表現している。なお，「ランダム・ウォーク」と言った場合には普通は 
+\begin_inset Formula $\mathcal{N}(0,1)$
+\end_inset
+
+ に限定する必要はないので，ここでは通常の定義よりも強い仮定を置いている。
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula 
+\begin{align*}
+x_{t+1} & =x_{t}+\varepsilon_{t+1},\qquad\varepsilon_{t+1}\stackrel{{\scriptscriptstyle \text{i.i.d}}}{\sim}\mathcal{N}(0,1),\quad t=0,1,\dots\\
+x_{0} & =0
+\end{align*}
+
+\end_inset
+
+をシミュレーションするには次のコードを実行するとよい（図
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Maplotlib-の使用例-2"
+
+\end_inset
+
+）。1つだけだと簡単過ぎて拍子抜けしてしまうかもしれないので，2つの経路を描いておこう。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch02/matplotlib-random-walk/plot>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+centering
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+includegraphics[trim = 0mm 10mm 0mm 22mm, clip, height=0.25
+\backslash
+textheight]{Figure/ch02/matplotlib-random-walk-1}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+ランダム・ウォークのシミュレーション 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Maplotlib-の使用例-2"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+cumsum()
+\end_layout
+
+\end_inset
+
+ の使い方も分かっていただけただろうか。
+\end_layout
+
+\begin_layout Section
+プログラミング: 価格指数の計算
+\end_layout
+
+\begin_layout Standard
+乱暴な言い方をしてしまえば，価格指数の計算は
+\end_layout
+
+\begin_layout Itemize
+ベクトルの内積
+\end_layout
+
+\begin_layout Itemize
+2つの数の割算
+\end_layout
+
+\begin_layout Standard
+の 2つの計算をしているだけである。
+\series bold
+NumPy
+\series default
+ の内積を計算する方法は分かったので（問題
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "prob:内積計算"
+
+\end_inset
+
+），指数計算の準備は整っている。
+\end_layout
+
+\begin_layout Standard
+公務員試験などでも出題される問題に次のようなものがある。
+\end_layout
+
+\begin_layout Problem*
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+市役所・平成21年度
+\end_layout
+
+\end_inset
+
+下の表はある国におけるA財とB財の価格と数量について，2000年と2001年とで比較したものである。（以下略）
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+vspace{-1
+\backslash
+baselineskip}
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float table
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+centering
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+renewcommand{
+\backslash
+arraystretch}{1.3}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Tabular
+<lyxtabular version="3" rows="4" columns="5">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell multirow="3" alignment="center" valignment="middle" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="1" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+A財
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="1" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+B財
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+価格
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+数量
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+価格
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+数量
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2000年
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+40
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+80
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+6
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2001年
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+80
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+5
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+30
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+7
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+vspace{-1
+\backslash
+baselineskip}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+次のようなコードを書けばラスパイレス指数，パーシェ指数（の100を掛ける前の数字）が得られる。式 (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:laspeyres"
+
+\end_inset
+
+), (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:paasche"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+) とコードをよく見比べてほしい。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch02/priceindex-problem-laspeyres>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch02/priceindex-problem-paasche>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+データ保存形式を工夫する
+\end_layout
+
+\begin_layout Standard
+上のようなコードを書くときに，頭の中で元の表を次の形式に置き換えるという操作を実行している。太字にした部分が 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+quantity00
+\end_layout
+
+\end_inset
+
+ に対応する。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+vspace{-1
+\backslash
+baselineskip}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+centering
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+renewcommand{
+\backslash
+arraystretch}{1.3}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Tabular
+<lyxtabular version="3" rows="3" columns="3">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+価格
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+A財
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+B財
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2000年
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+40
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+80
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2001年
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+80
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+30
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+quad
+\end_layout
+
+\end_inset
+
+
+\begin_inset Tabular
+<lyxtabular version="3" rows="3" columns="3">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+数量
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+A財
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+B財
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2000年
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+3
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+6
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2001年
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+5
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+7
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+vspace{-1
+\backslash
+baselineskip}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+上のコードを書いたときの気持ちは，各表の行（年）ごとに変数を作れば内積計算ができるだろうというものだった。非常に愚直に考えてコードを書いた訳だが，これではデータ
+の年数が増えたときに大変困ったことになる。10年分のデータがあると変数が20個になる。これでは管理が大変だ。そこで，この2つの表をそのままコードに変換してみよう
+。表形式のデータを行列と見なして，次のように書ける。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch02/priceindex-problem-matrix>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+NumPy
+\series default
+ の2次元配列から一部分を取り出すには，
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+配列名[行インデックス, 列インデックス]
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+の形式を用いる
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+多次元配列の場合は，第1次元のインデックス，第2次元のインデックス，第3次元のインデックス・・・とコンマでつないでいけばよい。なお，このような記法は
+ 
+\series bold
+ndarray
+\series default
+ でないただのリストのリストには使えないことに注意しよう。
+\end_layout
+
+\end_inset
+
+。特定の次元からすべての要素を抜き出すためにはコロン（
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+:
+\end_layout
+
+\end_inset
+
+）をインデックスに指定する。したがって，
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+quantity00
+\end_layout
+
+\end_inset
+
+ に相当する部分を配列 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+quantity
+\end_layout
+
+\end_inset
+
+ から抜き出すためには，「0行目のすべての列」を指定すればよい。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch02/priceindex-problem-matrix-index>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+このようにデータを保存した場合には，ラスパイレス指数の計算は次のようになる。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch02/priceindex-problem-matrix-laspeyres>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+さらに言えば，比較年を表す
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+
+ という数字は新しいデータが来れば変わるので，これは変数に保存しておくだけの価値がある。次のコードと式 (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:paasche"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+) がかなり近い表現になっていることを確認してほしい。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch02/priceindex-problem-matrix-paasche>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+データの保存形式を工夫することで，次のようなご利益がある。
+\end_layout
+
+\begin_layout Itemize
+数式とコードの対応関係をわかりやすくできるので，他の人に説明しやすくなる。
+\end_layout
+
+\begin_layout Itemize
+結果的にコードの保守が容易になる。
+\end_layout
+
+\begin_layout Standard
+1ヶ月後の自分の理解力を決して過信してはいけない。読みやすいコードを書くように心がけよう。
+\end_layout
+
+\begin_layout Subsubsection*
+連鎖指数の計算
+\end_layout
+
+\begin_layout Standard
+連鎖指数が意味を持つには3年以上の期間が必要なので，さきほどのデータを次のように拡張する。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+vspace{-1
+\backslash
+baselineskip}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+centering
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+renewcommand{
+\backslash
+arraystretch}{1.3}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Tabular
+<lyxtabular version="3" rows="5" columns="3">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+価格
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+A財
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+B財
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2000年
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+40
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+80
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2001年
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+80
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+30
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2002年
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+70
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+40
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2003年
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+60
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+55
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+quad
+\end_layout
+
+\end_inset
+
+
+\begin_inset Tabular
+<lyxtabular version="3" rows="5" columns="3">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+数量
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+A財
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+B財
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2000年
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+6
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2001年
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+5
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+7
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2002年
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+6
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+8
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2003年
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+8
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+10
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+vspace{-1
+\backslash
+baselineskip}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+ラスパイレス式の連鎖指数（参照年 = 2000年）を計算するには次のようにすればよい。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch02/priceindex-chained-laspeyres>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+上のコードには
+\end_layout
+
+\begin_layout Verbatim
+laspeyres[t] = laspeyres[t-1] * (sum(price[t, :] * quantity[t-1, :])
+\end_layout
+
+\begin_layout Verbatim
+                                 / sum(price[t-1, :] * quantity[t-1, :]))
+\end_layout
+
+\begin_layout Standard
+という同じコードが繰り返されていることに注目しよう。このような冗長なコードは本来は避けるべきだが，連鎖指数が同じ計算の繰り返しで計算されている感じを十分に理解し
+ていただきたい。さらに，1つ前のステップの計算結果を使って次の計算が実行されるような構造になっている点も重要である。これは，「漸化式」とか「再帰方程式」と呼ばれ
+るものの一種である。動学モデルでは基本的なパターンなので，何度も練習して自力で書けるようになってほしい。おおよそ次のようなステップに分解される。
+\end_layout
+
+\begin_layout Enumerate
+結果を保存する配列を用意する。
+\end_layout
+
+\begin_layout Enumerate
+初期値を設定する。
+\end_layout
+
+\begin_layout Enumerate
+再帰方程式に基づいて順番に値を埋めていく。
+\end_layout
+
+\begin_layout Standard
+繰り返し処理のための 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+for
+\end_layout
+
+\end_inset
+
+ ループは次章で学ぶ。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Problem
+上の表に対して，パーシェ式の連鎖指数とフィッシャーの連鎖指数を計算しなさい。（ヒント: 平方根は 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+x ** 0.5
+\end_layout
+
+\end_inset
+
+ または 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+np.sqrt(x)
+\end_layout
+
+\end_inset
+
+ で計算できる。）
+\end_layout
+
+\begin_layout Standard
+\begin_inset Branch childonly
+inverted 0
+status open
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset bibtex
+LatexCommand bibtex
+btprint "btPrintCited"
+bibfiles "../Bibliography/ref,../Bibliography/software"
+options "Styles/jecon"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset index_print
+LatexCommand printindex
+type "idx"
+name "Index"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document

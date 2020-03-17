@@ -1,0 +1,7523 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass scrbook
+\begin_preamble
+\usepackage{Styles/common}
+\usepackage{Styles/code}
+\usepackage{Styles/problem}
+
+\usepackage{url}
+
+% Knitr Setup 
+<<setup, include=FALSE>>=
+source('Knitr/setup.R')
+knitr::read_chunk('Knitr/setup.py')
+@
+% Python Setup 
+<<python-setup, include=FALSE>>=
+@ 
+\end_preamble
+\options dvipdfmx,a5paper,9pt
+\use_default_options true
+\master _main.lyx
+\begin_modules
+knitr
+theorems-ams-chap-bytype
+theorems-ams-extended-chap-bytype
+logicalmkup
+\end_modules
+\maintain_unincluded_children false
+\language japanese
+\language_package default
+\inputencoding utf8-platex
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\float_placement th
+\paperfontsize default
+\spacing onehalf
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine natbib
+\cite_engine_type authoryear
+\biblio_style plainnat
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date true
+\justification true
+\use_refstyle 1
+\use_minted 0
+\branch childonly
+\selected 1
+\filename_suffix 0
+\color #faf0e6
+\end_branch
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style plain
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 2
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<engine='R', echo=FALSE>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+knitr::read_chunk('Python/ch03.py')
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+setcounter{chapter}{2}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Branch childonly
+inverted 0
+status open
+
+\begin_layout Standard
+\begin_inset CommandInset toc
+LatexCommand tableofcontents
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Chapter
+GDP の成長と格差
+\begin_inset CommandInset label
+LatexCommand label
+name "chap:名目GDPと実質GDP"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+概要
+\end_layout
+
+\begin_layout Standard
+あなたは次のような記述をどのように理解するだろうか。
+\end_layout
+
+\begin_layout Quote
+「GDP が伸び悩む中で，X 産業の付加価値生産額は年率 10% で成長している。国際競争力を高めつつある X 産業に重点的に補助金を配分することで，GDP
+ 低迷を脱却することができるだろう」
+\end_layout
+
+\begin_layout Standard
+日本経済の救世主とみなすべきか，あるいは業界団体による陳腐なポジショントークと見るか
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+「ポジショントーク」という言葉は否定的に響いてしまうかもしれないが，批判する意図はまったくない。嘘をついてはいけないが，自らのポジションが有利になるような事実を
+強調することは誰もが日常的に行っている。結局は，情報の受け手のリテラシーが重要だ。
+\end_layout
+
+\end_inset
+
+。おそらく唯一の正しい理解は，「情報が不足しているので判断できない」というものだ。この章で学ぶのはそういう話だ。
+\end_layout
+
+\begin_layout Standard
+マクロ経済学は一国や地域の経済を総体として扱う経済分析である。分析対象の性質上，分析の中心的なターゲットは「合計」や「平均」といった集計量になる。マクロ経済学が
+分析対象とする集計量の中で，現在のところもっとも重要な概念は GDP であろう。GDP（国内総生産）は企業や政府によって生産された財・サービスを重複なく合算した
+ものである。GDP は経済全体の生産能力を表すとともに居住者の総所得を表しており，居住者の平均的な厚生（暮らし向き）と強い相関を持っている
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+生産と所得の関係については，ひとまずのところは，生産された財・サービスを販売することで得た売上から給料が支払われるから，と考えておくとよい。
+\end_layout
+
+\end_inset
+
+。
+\end_layout
+
+\begin_layout Standard
+GDP は生産された価値の合計であるから，合計する前の GDP を構成する細部のデータ，例えば産業ごとに計算した付加価値生産額など，も利用することができるという
+ことに注意しておこう。年率 10% で成長中の前述の X 産業は，GDP に対するシェアが 0.2% であるとしよう。GDP を 500兆円とすれば，この産業は付
+加価値生産額 1兆円の小さな産業である。補助金の投入によって産業の成長率を 10% → 11% に加速することができたとして，GDP 全体の成長に対する貢献がど
+の程度になるかを計算してみよう。補助金を投入しなければ 1.1兆円を次年度に生産していたところ，補助金の投入によって 1.11兆円に生産額が増える。増分は
+ 0.01 兆円であるから，現在の GDP 全体に占める増分の比率は
+\begin_inset Formula 
+\[
+0.01\text{兆円}/500\text{兆円}=0.002\%
+\]
+
+\end_inset
+
+となる。この数字を大きいと見るか，小さいと見るかは意見の分かれるところだろう。しかし，短期的に（例えば，1年とか2年で）GDPを拡大することに大きく貢献してくれ
+るかといえば，答えはノーである。この産業は有望な成長産業であるかもしれないが，今はまだ小さすぎる。
+\end_layout
+
+\begin_layout Standard
+とは言え，もし私が X 産業に従事していて，政府の補助金を獲得するための資料を作るように命じられたら，産業の成長力を強調する前述のようなレポートを書くだろう。た
+だし，それだけでは経済産業省の審査官や諮問委員は納得させられないだろうとも思う。短期的な GDP への貢献だけを見れば，全体から見て小さすぎるからだ。長期的なス
+パンで見たときに GDP の構成をどのように塗り替えていくかとか，あるいは関連産業に視野を広げて当該産業の影響の大きさをアピールするといった踏み込んだ分析をしな
+ければ，魅力的な申請書にはならない。
+\end_layout
+
+\begin_layout Standard
+私たちの多くは特定の産業を代弁する立場にもないし，申請書を審査する立場にもないが，このような話を理解しておく必要がある。政府の資源は有限であるし，財源は税金であ
+る。明らかに有効でない政策を実施する政府に対しては，投票行動やデモなどを通じて反対意見を表明しなければならない。しかし，そのためにはまず数字を読めるようになるこ
+とが大切だ。
+\end_layout
+
+\begin_layout Standard
+理論パートの後半では，近年注目を集めている格差の指標について簡単に紹介する。GDP の成長は国民の平均的な暮らし向きを向上させるが，増えた所得がすべての国民に均
+等に行き渡る訳ではない。全体の拡大とともに個々の暮らし向きの変化を捉える指標を押さえておこう。
+\end_layout
+
+\begin_layout Standard
+この講義では以下のことを学ぶ。
+\end_layout
+
+\begin_layout Itemize
+理論
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+名目 GDP と実質 GDP，GDPデフレータ
+\end_layout
+
+\begin_layout Itemize
+寄与度と寄与率
+\end_layout
+
+\begin_layout Itemize
+格差の指標: 相対的貧困率，ジニ係数，トップ1% の所得シェア
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+プログラミング
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+繰り返し計算（
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+for
+\end_layout
+
+\end_inset
+
+ ループ，
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+while
+\end_layout
+
+\end_inset
+
+ ループ）
+\end_layout
+
+\begin_layout Itemize
+条件分岐（
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+if-elif-else
+\end_layout
+
+\end_inset
+
+）
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+理論: GDP
+\end_layout
+
+\begin_layout Subsection
+名目 GDP
+\end_layout
+
+\begin_layout Standard
+GDP（Gross Domestic Product, 国内総生産）は，ある期間において（通常は，1年または四半期），各生産者が生産した付加価値をすべて合計した
+ものである。付加価値とは，
+\begin_inset Formula 
+\[
+\text{付加価値}=\text{生産物の価値}-\text{投入中間財の価値}
+\]
+
+\end_inset
+
+によって定義される。中間財というのは他の企業から購入した財・サービスであって，固定資本（資産）に分類されないものである。原料や材料のことと考えておけばよい。
+\end_layout
+
+\begin_layout Standard
+生産された付加価値がどのように使われたかによって，
+\end_layout
+
+\begin_layout Itemize
+消費（Consumption）
+\begin_inset Formula $=$
+\end_inset
+
+ 民間消費
+\end_layout
+
+\begin_layout Itemize
+投資（Investment）
+\begin_inset Formula $=$
+\end_inset
+
+ 民間投資
+\end_layout
+
+\begin_layout Itemize
+政府購入（Government Purchases）
+\end_layout
+
+\begin_layout Itemize
+純輸出（Net Export）
+\end_layout
+
+\begin_layout Standard
+に分類する。これはマクロ経済学や理論分析上の慣例であって，国民経済計算では通常，
+\end_layout
+
+\begin_layout Itemize
+消費 
+\begin_inset Formula $=$
+\end_inset
+
+ 民間消費 
+\begin_inset Formula $+$
+\end_inset
+
+ 政府消費
+\end_layout
+
+\begin_layout Itemize
+投資 
+\begin_inset Formula $=$
+\end_inset
+
+ 民間投資 
+\begin_inset Formula $+$
+\end_inset
+
+ 政府投資
+\end_layout
+
+\begin_layout Itemize
+純輸出
+\end_layout
+
+\begin_layout Standard
+のように切り分けている。政府消費と政府投資を合算したものが政府購入である。数字を見るときには定義に注意しよう。
+\end_layout
+
+\begin_layout Standard
+消費というのは，各期の経済厚生を表す概念である。家計部門の消費（民間消費）がその経済の構成員の厚生をもっともよく表すと考える場合には政府消費を切り離して民間消費
+を消費とみなす。政府から受けたサービス（役所が提供する無料または非常に低廉なサービス）も国民が享受していると考えれば，政府消費を含めて消費と扱う方が望ましい場合
+もある。
+\end_layout
+
+\begin_layout Standard
+投資というのは，生産設備を拡大する経済活動である。民間企業の生産設備を拡充したり，家計部門が持ち家（住宅サービスを供給する）を新築したりすることが含まれる。政府
+部門の投資には，道路や治水工事，庁舎の整備などが含まれる。いずれも，長期に渡って価値を生産する財・サービスの購入である。経済の生産キャパシティの拡大という意味で
+は，政府投資を投資に含める方が理にかなっている。一方，民間部門の投資は経済の不沈を示す重要な指標であり，民間投資の変化は独立した重要性を持っている。
+\end_layout
+
+\begin_layout Standard
+純輸出は
+\begin_inset Formula 
+\[
+\text{純輸出}=\text{輸出（Export）}-\text{輸入（Import）}
+\]
+
+\end_inset
+
+によって定義される。自国で生産した財やサービスを輸出した場合には，輸出額は GDP に含まれている。生産活動に輸入した価値が投入されている場合は，これを控除しな
+ければならない。自国で生産された価値ではないものが含まれないようにするためだ。
+\end_layout
+
+\begin_layout Standard
+マクロ経済学の標準的な教科書では，「
+\begin_inset Formula $\text{生産}=\text{民間消費}+\text{民間投資}+\text{政府購入}+\text{純輸出}$
+\end_inset
+
+」という分解が用いられている。これは政府部門が民間部門と異なる役割を担うからである。不況時には民間消費・民間投資は減少するが，政府は政府購入を拡大することで景気
+の大幅な後退を避けようとする。逆に好況で民間消費・民間投資が拡大する際には，政府購入を維持するか減少させることで，不況時にできた負債の解消を目指す。民間部門の経
+済活動と政府部門の経済活動は，通常，反対方向に動くのでこれらを単純に合算してしまうと分析上都合が悪い。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $Y$
+\end_inset
+
+ を GDP，
+\begin_inset Formula $C$
+\end_inset
+
+ を（民間）消費，
+\begin_inset Formula $I$
+\end_inset
+
+ を（民間）投資，
+\begin_inset Formula $G$
+\end_inset
+
+ を政府購入，
+\begin_inset Formula $NX$
+\end_inset
+
+ を純輸出とすると，次の関係式が成り立っている。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+Y=C+I+G+NX
+\]
+
+\end_inset
+
+輸出を 
+\begin_inset Formula $EX$
+\end_inset
+
+，輸入を 
+\begin_inset Formula $IM$
+\end_inset
+
+ と書くと，
+\begin_inset Formula $NX=EX-IM$
+\end_inset
+
+ であり，
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+Y=C+I+G+EX-IM
+\]
+
+\end_inset
+
+が成り立つ。これらは教科書的なマクロ経済分析においてもっともよく使われる GDP の加法分解であり，もっとも荒い分解である。
+\end_layout
+
+\begin_layout Itemize
+消費 
+\begin_inset Formula $C$
+\end_inset
+
+ は一国の経済活動において通常もっとも大きな項目である。消費は個人の厚生（幸福度）を決定する重要な要因であるので，マクロ経済理論においても最重要の項目である。
+\end_layout
+
+\begin_layout Itemize
+投資 
+\begin_inset Formula $I$
+\end_inset
+
+（設備投資，在庫投資，住宅投資）は一国経済における生産のキャパシティを左右する項目である。
+\end_layout
+
+\begin_layout Itemize
+政府購入 
+\begin_inset Formula $G$
+\end_inset
+
+ は政府の規模を表す項目である。政府購入の調整によって短期的な経済変動をコントロールすることができると考えられており，学部標準レベルのマクロ経済学では重要な項目
+になる。
+\end_layout
+
+\begin_layout Itemize
+純輸出 
+\begin_inset Formula $NX$
+\end_inset
+
+ は外国経済との関わりを表す部分である。輸出 
+\begin_inset Formula $EX$
+\end_inset
+
+ から輸入 
+\begin_inset Formula $IM$
+\end_inset
+
+ を控除したものである。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+経済の生産規模を測る GDP ではあるが，米 800万トンと自動車 70万台を単純に足すことはできないので，貨幣の単位で測った価値を用いて生産規模を計算する。
+\begin_inset Formula 
+\[
+\text{価値}=\text{価格}\times\text{数量}
+\]
+
+\end_inset
+
+なので，これをすべての最終財（国内生産物であって，民間・政府に消費または投資されるか，外国に輸出される財のこと）について合計し，輸入品の価値を控除したものが
+ GDP になっている。価格として当期の価格を用いる GDP を
+\series bold
+名目GDP
+\series default
+
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+めいもくGDP@名目GDP
+\end_layout
+
+\end_inset
+
+（nominal GDP
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+nominal GDP
+\end_layout
+
+\end_inset
+
+）という。
+\end_layout
+
+\begin_layout Subsection
+実質 GDP
+\end_layout
+
+\begin_layout Standard
+名目 GDP の計算の基礎となる価値の式に，時間のインデックスを付記しておこう。
+\begin_inset Formula 
+\begin{align*}
+\text{価値}_{t} & =\text{価格}_{t}\times\text{数量}_{t}\\
+\text{価値}_{t+1} & =\text{価格}_{t+1}\times\text{数量}_{t+1}
+\end{align*}
+
+\end_inset
+
+特定の財について，生産物の価値の上昇は 2つの原因によって起こる。つまり，価格が上昇するか，生産数量が拡大するかだ。
+\begin_inset Formula 
+\begin{align*}
+(\text{価値の粗変化率}) & =\frac{\text{価値}_{t+1}}{\text{価値}_{t}}=\frac{\text{価格}_{t+1}}{\text{価格}_{t}}\times\frac{\text{数量}_{t+1}}{\text{数量}_{t}}\\
+ & =(\text{価格の粗変化率})\times(\text{数量の粗変化率})
+\end{align*}
+
+\end_inset
+
+私たちの豊かさ（より正確には，物質的な豊かさ material wealth）は，財やサービスをどれだけ消費・利用できるかによって決まる。その財をいくらで買った
+かとは関係ないはずである
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+個別の財や特別な消費行動を説明する文脈では，価格が上がることで消費の効用が高まるような財（ヴェブレン財）が存在することは否定しない。しかし，そのような財は多くは
+ないだろうし，経済全体で見れば小さな市場規模だろう。マクロ経済学はあくまでも総体的・平均的な行動を分析することが目標なので，ひとまず素朴な消費行動のみを考えてお
+けばよい。
+\end_layout
+
+\end_inset
+
+。
+\end_layout
+
+\begin_layout Standard
+そこで，豊かさを測る指標として，成長率
+\begin_inset Formula 
+\[
+\frac{\text{数量}_{t+1}}{\text{数量}_{t}}=\frac{\text{価値}_{t+1}/\text{価値}_{t}}{\text{価格}_{t+1}/\text{価格}_{t}}
+\]
+
+\end_inset
+
+ を用いようというのが実質 GDP の考え方である。この数値が 1 より大きければ経済活動は拡大していて，1より小さければ縮小している。1 であれば現状維持とな
+る。多種多様な財・サービスが生産される経済において，数量変化率を計算するためには 第
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "chap:物価指数とインフレーション"
+
+\end_inset
+
+章で扱ったような工夫が必要になる。
+\end_layout
+
+\begin_layout Standard
+各最終財（
+\begin_inset Formula $i=1,\dots,N$
+\end_inset
+
+）について，
+\begin_inset Formula $t$
+\end_inset
+
+ 期における生産量を並べたベクトルを 
+\begin_inset Formula $\boldsymbol{x}_{t}$
+\end_inset
+
+ ，価格ベクトルを 
+\begin_inset Formula $\boldsymbol{p}_{t}$
+\end_inset
+
+ とする。
+\begin_inset Formula $\boldsymbol{x}_{t}$
+\end_inset
+
+ の第 
+\begin_inset Formula $i$
+\end_inset
+
+ 要素 
+\begin_inset Formula $x_{t,i}$
+\end_inset
+
+ は財 
+\begin_inset Formula $i$
+\end_inset
+
+ の生産量，
+\begin_inset Formula $\boldsymbol{p}_{t}$
+\end_inset
+
+ の対応する要素 
+\begin_inset Formula $p_{t,i}$
+\end_inset
+
+ が財 
+\begin_inset Formula $i$
+\end_inset
+
+ の当該期の平均価格を表している。
+\begin_inset Formula $t$
+\end_inset
+
+ 期の名目GDP, 
+\begin_inset Formula $Y_{t}$
+\end_inset
+
+, は
+\begin_inset Formula 
+\[
+Y_{t}=\text{名目GDP}_{t}=\boldsymbol{p}_{t}\cdot\boldsymbol{x}_{t}
+\]
+
+\end_inset
+
+ と書ける。
+\begin_inset Formula $t-1$
+\end_inset
+
+ 期から 
+\begin_inset Formula $t$
+\end_inset
+
+ 期にかけての経済成長率 
+\begin_inset Formula $g_{t}$
+\end_inset
+
+ は
+\begin_inset Formula 
+\[
+\text{（粗）経済成長率}_{t}=1+g_{t}=\frac{\boldsymbol{p}_{t-1}\cdot\boldsymbol{x}_{t}}{\boldsymbol{p}_{t-1}\cdot\boldsymbol{x}_{t-1}}
+\]
+
+\end_inset
+
+と定義する。ベクトルを数値化するベクトルとして過去の情報 
+\begin_inset Formula $\boldsymbol{p}_{t-1}$
+\end_inset
+
+ を用いているので，ラスパイレス指数（あるいは
+\series bold
+ラスパイレス数量指数
+\series default
+）である。
+\end_layout
+
+\begin_layout Standard
+参照年を 0期とする。0 期においては
+\begin_inset Formula 
+\[
+\text{実質GDP}_{0}=\text{名目GDP}_{0}\qquad\text{あるいは}\qquad y_{0}=Y_{0}
+\]
+
+\end_inset
+
+が成り立つとする。比較年 
+\begin_inset Formula $t$
+\end_inset
+
+ 期の
+\series bold
+実質GDP
+\series default
+（連鎖方式）は次のように定義される。
+\begin_inset Formula 
+\begin{align}
+y_{t} & =\prod_{i=1}^{t}\left(1+g_{i}\right)\times y_{0}\nonumber \\
+ & =\left(1+g_{t}\right)\left(1+g_{t-1}\right)\times\cdots\times\left(1+g_{1}\right)\times y_{0}\nonumber \\
+ & =\frac{\boldsymbol{p}_{t-1}\cdot\boldsymbol{x}_{t}}{\boldsymbol{p}_{t-1}\cdot\boldsymbol{x}_{t-1}}\times\frac{\boldsymbol{p}_{t-2}\cdot\boldsymbol{x}_{t-1}}{\boldsymbol{p}_{t-2}\cdot\boldsymbol{x}_{t-2}}\times\cdots\times\frac{\boldsymbol{p}_{0}\cdot\boldsymbol{x}_{1}}{\boldsymbol{p}_{0}\cdot\boldsymbol{x}_{0}}\times y_{0}\label{eq:laspeyres-quantity-gdp}
+\end{align}
+
+\end_inset
+
+すなわち，連続する2期の経済成長率をラスパイレス数量指数で計算し，参照年から累積的に積算したものが実質GDPである。
+\end_layout
+
+\begin_layout Standard
+式 (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:laspeyres-quantity-gdp"
+
+\end_inset
+
+) において，0 期の実質GDP が 
+\begin_inset Formula $y_{0}=\boldsymbol{p}_{0}\cdot\boldsymbol{x}_{0}$
+\end_inset
+
+ であることに注意すれば，異なる表現が得られる。
+\begin_inset Formula 
+\begin{align*}
+y_{t} & =\frac{\boldsymbol{p}_{t-1}\cdot\boldsymbol{x}_{t}}{\boldsymbol{p}_{t-1}\cdot\boldsymbol{x}_{t-1}}\times\frac{\boldsymbol{p}_{t-2}\cdot\boldsymbol{x}_{t-1}}{\boldsymbol{p}_{t-2}\cdot\boldsymbol{x}_{t-2}}\times\cdots\times\frac{\boldsymbol{p}_{0}\cdot\boldsymbol{x}_{1}}{\boldsymbol{p}_{0}\cdot\boldsymbol{x}_{0}}\times\boldsymbol{p}_{0}\cdot\boldsymbol{x}_{0}\\
+ & =\boldsymbol{p}_{t}\cdot\boldsymbol{x}_{t}\times\frac{\boldsymbol{p}_{t-1}\cdot\boldsymbol{x}_{t}}{\boldsymbol{p}_{t}\cdot\boldsymbol{x}_{t}}\times\frac{\boldsymbol{p}_{t-2}\cdot\boldsymbol{x}_{t-1}}{\boldsymbol{p}_{t-1}\cdot\boldsymbol{x}_{t-1}}\times\cdots\times\frac{\boldsymbol{p}_{0}\cdot\boldsymbol{x}_{1}}{\boldsymbol{p}_{1}\cdot\boldsymbol{x}_{1}}
+\end{align*}
+
+\end_inset
+
+右辺の最初の項に余分な項 
+\begin_inset Formula $\boldsymbol{p}_{t}\cdot\boldsymbol{x}_{t}/\boldsymbol{p}_{t}\cdot\boldsymbol{x}_{t}$
+\end_inset
+
+ を追加して，
+\begin_inset Formula $\boldsymbol{p}_{0}\cdot\boldsymbol{x}_{0}/\boldsymbol{p}_{0}\cdot\boldsymbol{x}_{0}$
+\end_inset
+
+ を消去した。分母を1つずつずらしていることにも注意しよう。これは，さらに
+\begin_inset Formula 
+\[
+y_{t}=\frac{\boldsymbol{p}_{t}\cdot\boldsymbol{x}_{t}}{\frac{\boldsymbol{p}_{t}\cdot\boldsymbol{x}_{t}}{\boldsymbol{p}_{t-1}\cdot\boldsymbol{x}_{t}}\times\frac{\boldsymbol{p}_{t-1}\cdot\boldsymbol{x}_{t-1}}{\boldsymbol{p}_{t-2}\cdot\boldsymbol{x}_{t-1}}\times\cdots\times\frac{\boldsymbol{p}_{1}\cdot\boldsymbol{x}_{1}}{\boldsymbol{p}_{0}\cdot\boldsymbol{x}_{1}}}
+\]
+
+\end_inset
+
+と書き直すことができる。分母がパーシェ式連鎖指数となっていることに注意する。すなわち，
+\begin_inset Formula 
+\begin{align}
+\text{DFL}_{0} & =1\nonumber \\
+\text{DFL}_{i} & =\frac{\boldsymbol{p}_{i}\cdot\boldsymbol{x}_{i}}{\boldsymbol{p}_{i-1}\cdot\boldsymbol{x}_{i}}\times\text{DFL}_{i-1},\quad i=1,2,\dots,t\label{eq:ch03-dfl}
+\end{align}
+
+\end_inset
+
+と定義すれば，
+\begin_inset Formula 
+\[
+y_{t}=\frac{\boldsymbol{p}_{t}\cdot\boldsymbol{x}_{t}}{\text{DFL}_{t}}
+\]
+
+\end_inset
+
+とできる。もちろん，
+\begin_inset Formula $\text{DFL}_{t}$
+\end_inset
+
+ は当期の価格指数として用いることができる。このように定義される価格指数 
+\begin_inset Formula $\text{DFL}$
+\end_inset
+
+ が連鎖方式の 
+\series bold
+GDPデフレータ
+\series default
+
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+GDPデフレータ
+\end_layout
+
+\end_inset
+
+である。次のおなじみの公式が成り立っている。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\text{実質GDP}=\frac{\text{名目GDP}}{\text{GDP デフレータ}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Problem
+名目GDP の変化率が 2%，実質GDPの変化率（経済成長率）が 1.5% であったとする。このとき，GDP デフレータで測った物価変化率（インフレ率）はいくらか
+。計算しなさい。
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+answerbox{4
+\backslash
+baselineskip}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Subsection
+寄与度と寄与率
+\end_layout
+
+\begin_layout Standard
+政府発表やそれに基づいた新聞記事では，経済成長が加速したり減速したりする現象の要因を説明するための記述として，「個人消費が順調だった」とか「設備投資が伸び悩んだ
+」といった記述をよく見かける。この手の分析では
+\series bold
+寄与度
+\series default
+
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+きよど@寄与度
+\end_layout
+
+\end_inset
+
+（contribution
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+contribution
+\end_layout
+
+\end_inset
+
+）や寄与率という概念が用いられている。
+\end_layout
+
+\begin_layout Standard
+成長率 
+\begin_inset Formula $t$
+\end_inset
+
+ 期の GDP を 
+\begin_inset Formula $Y_{t}$
+\end_inset
+
+，その次の期（
+\begin_inset Formula $t+1$
+\end_inset
+
+ 期）の GDP を 
+\begin_inset Formula $Y_{t+1}$
+\end_inset
+
+ とする
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+ここでは慣例に従って大文字を利用しているが，実質変数（名目変数をデフレータで除した変数）であると考えてよい。
+\end_layout
+
+\end_inset
+
+。経済成長率は GDP の変化率
+\begin_inset Formula 
+\[
+\frac{\Delta Y_{t+1}}{Y_{t}}=\frac{Y_{t+1}-Y_{t}}{Y_{t}}=\frac{Y_{t+1}}{Y_{t}}-1
+\]
+
+\end_inset
+
+によって定義される。
+\begin_inset Formula $Y_{t}$
+\end_inset
+
+, 
+\begin_inset Formula $Y_{t+1}$
+\end_inset
+
+ の分解を次のように書こう。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+Y_{t} & =C_{t}+I_{t}+G_{t}+NX_{t}\\
+Y_{t+1} & =C_{t+1}+I_{t+1}+G_{t+1}+NX_{t+1}
+\end{align*}
+
+\end_inset
+
+GDP が成長するためには 
+\begin_inset Formula $C$
+\end_inset
+
+, 
+\begin_inset Formula $I$
+\end_inset
+
+, 
+\begin_inset Formula $G$
+\end_inset
+
+, 
+\begin_inset Formula $NX$
+\end_inset
+
+ のうち少なくとも1つは 大きくなっているはずだ。GDP 成長率を項目ごとに分解するのが寄与度である。
+\end_layout
+
+\begin_layout Subsubsection*
+寄与度
+\end_layout
+
+\begin_layout Standard
+項目ごとの寄与に分解するためには，GDP 成長率の定義に加法分解の公式を代入すればよい。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+\frac{\Delta Y_{t+1}}{Y_{t}} & =\frac{Y_{t+1}-Y_{t}}{Y_{t}}\\
+ & =\frac{\left(C_{t+1}+I_{t+1}+G_{t+1}+NX_{t+1}\right)-\left(C_{t}+I_{t}+G_{t}+NX_{t}\right)}{Y_{t}}\\
+ & =\frac{\left(C_{t+1}-C_{t}\right)+\left(I_{t+1}-I_{t}\right)+\left(G_{t+1}-G_{t}\right)+\left(NX_{t+1}-NX_{t}\right)}{Y_{t}}\\
+ & =\frac{\Delta C_{t+1}+\Delta I_{t+1}+\Delta G_{t+1}+\Delta NX_{t+1}}{Y_{t}}\\
+ & =\frac{\Delta C_{t+1}}{Y_{t}}+\frac{\Delta I_{t+1}}{Y_{t}}+\frac{\Delta G_{t+1}}{Y_{t}}+\frac{\Delta NX_{t+1}}{Y_{t}}
+\end{align*}
+
+\end_inset
+
+ここで，例えば 
+\begin_inset Formula $\Delta I_{t+1}/Y_{t}$
+\end_inset
+
+ が ，GDP 成長における投資の寄与度である。通常，100倍して % 表記する。
+\end_layout
+
+\begin_layout Standard
+GDP に限らず加法的に分解できる指標であれば同様の公式で寄与度を計算出来る。例えば，
+\begin_inset Formula 
+\[
+X_{t}=X_{t,1}+X_{t,2}+\cdots+X_{t,N-1}+X_{t,N}=\sum_{n=1}^{N}X_{t,n}
+\]
+
+\end_inset
+
+とすれば，
+\begin_inset Formula 
+\[
+\frac{\Delta X_{t+1}}{X_{t}}=\sum_{n=1}^{N}\frac{\Delta X_{t+1,n}}{X_{t}}\Longrightarrow\text{項目}n\text{ の寄与度}=\frac{\Delta X_{t+1,n}}{X_{t}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Problem
+\begin_inset CommandInset label
+LatexCommand label
+name "prob:寄与度1"
+
+\end_inset
+
+
+\begin_inset Formula $X_{t}$
+\end_inset
+
+, 
+\begin_inset Formula $t=2000,2001$
+\end_inset
+
+, の加法分解 
+\begin_inset Formula $X_{t}=X_{t,1}+X_{t,2}+X_{t,3}$
+\end_inset
+
+ が下の表で与えられている。2000年から2001年にかける 
+\begin_inset Formula $X$
+\end_inset
+
+ の成長について，項目1, 2, 3 の寄与度を計算しなさい。
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Float table
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+vspace{-1
+\backslash
+baselineskip}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+centering
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+renewcommand{
+\backslash
+arraystretch}{1.3}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Tabular
+<lyxtabular version="3" rows="3" columns="4">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $X_{t,1}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $X_{t,2}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $X_{t,2}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2000年
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+100
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+300
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+150
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2001年
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+120
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+330
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+140
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+vspace{
+\backslash
+baselineskip}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+answerbox{4
+\backslash
+baselineskip}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+加法分解に控除項目が入る場合には，控除項目を負数として扱えばよい。
+\begin_inset Formula 
+\begin{align*}
+Y_{t} & =C_{t}+I_{t}+G_{t}+EX_{t}-IM_{t}\\
+ & =C_{t}+I_{t}+G_{t}+EX_{t}+\left(-IM_{t}\right)
+\end{align*}
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\frac{\Delta Y_{t+1}}{Y_{t}}=\frac{\Delta C_{t+1}}{Y_{t}}+\frac{\Delta I_{t+1}}{Y_{t}}+\frac{\Delta G_{t+1}}{Y_{t}}+\frac{\Delta EX_{t+1}}{Y_{t}}+\frac{\Delta\left(-IM_{t+1}\right)}{Y_{t}}.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Problem
+\begin_inset CommandInset label
+LatexCommand label
+name "prob:寄与度2"
+
+\end_inset
+
+2017年度と2018年度の実質GDP（支出側）の構成は下表の通りであった。単位は兆円。このとき，経済成長率と，各項目の寄与度を計算しなさい。
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Float table
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+vspace{-1
+\backslash
+baselineskip}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+centering
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+renewcommand{
+\backslash
+arraystretch}{1.3}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Tabular
+<lyxtabular version="3" rows="3" columns="6">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $C$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $I$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $G$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $EX$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $IM$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2017年度
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+298.88
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+101.56
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+132.33
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+91.43
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+92.62
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2018年度
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+299.05
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+102.28
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+139.39
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+92.87
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+94.62
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+vspace{
+\backslash
+baselineskip}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+answerbox{4
+\backslash
+baselineskip}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Subsubsection*
+寄与率
+\end_layout
+
+\begin_layout Standard
+GDP 成長率を 1 （100%）に基準化したときの寄与度の大きさが寄与率である。例えば，GDP の支出面の分解であれば，寄与度の計算式
+\begin_inset Formula 
+\[
+\frac{\Delta Y_{t+1}}{Y_{t}}=\frac{\Delta C_{t+1}}{Y_{t}}+\frac{\Delta I_{t+1}}{Y_{t}}+\frac{\Delta G_{t+1}}{Y_{t}}+\frac{\Delta NX_{t+1}}{Y_{t}}
+\]
+
+\end_inset
+
+の両辺を全体の成長率 
+\begin_inset Formula $\Delta Y_{t+1}/Y_{t}$
+\end_inset
+
+ で割ってやればよい。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+1 & =\frac{\left(\Delta C_{t+1}/Y_{t}\right)+\left(\Delta I_{t+1}/Y_{t}\right)+\left(\Delta G_{t+1}/Y_{t}\right)+\left(\Delta NX_{t+1}/Y_{t}\right)}{\left(\Delta Y_{t+1}/Y_{t}\right)}\\
+ & =\frac{\Delta C_{t+1}}{\Delta Y_{t+1}}+\frac{\Delta I_{t+1}}{\Delta Y_{t+1}}+\frac{\Delta G_{t+1}}{\Delta Y_{t+1}}+\frac{\Delta NX_{t+1}}{\Delta Y_{t+1}}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Problem
+問題
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "prob:寄与度1"
+
+\end_inset
+
+, 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "prob:寄与度2"
+
+\end_inset
+
+について，各項目の寄与率を計算しなさい。
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+answerbox{6
+\backslash
+baselineskip}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+理論: 格差の指標
+\end_layout
+
+\begin_layout Standard
+前節までは GDP の拡大と，その評価方法について説明してきた。「GDP の拡大は善である」という立場を暗黙のうちに取っていた。GDP は一国経済の居住者の平均
+的な暮らし向きを表す重要な指標であるので，多くの経済分析ではこの前提を置いている。しかし近年では，環境への影響や所得不平等の広がりを背景として，GDP
+ の拡大だけを目標とする政策に対する批判が強くなってきている
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+参考文献
+\end_layout
+
+\end_inset
+
+。ここでは，所得の不平等や格差を測る指標について，その一端を紹介する。
+\end_layout
+
+\begin_layout Subsection
+順序統計量
+\end_layout
+
+\begin_layout Standard
+概念の理解に必要な順序統計量について説明する。
+\end_layout
+
+\begin_layout Standard
+順序に意味のない 
+\begin_inset Formula $n$
+\end_inset
+
+ 個の数値データ
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+x_{1},x_{2},x_{3},\dots,x_{n}
+\]
+
+\end_inset
+
+を小さい順に並べ替える。新しい記号を導入したくないので，下付き添字に括弧を付けて順位を表すものとする。すなわち，
+\begin_inset Formula 
+\begin{align*}
+x_{(1)} & =\text{1番目に小さいデータ}\text{　}\\
+x_{(2)} & =\text{2番目に小さいデータ}\\
+ & \vdots\\
+x_{(n)} & =n\text{番目に小さいデータ}
+\end{align*}
+
+\end_inset
+
+
+\begin_inset Formula $x_{i}$
+\end_inset
+
+ と書いたときの 
+\begin_inset Formula $i$
+\end_inset
+
+ はデータに付けた単なる ID で特に意味のないものである。
+\begin_inset Formula $x_{(j)}$
+\end_inset
+
+ と書いたときの 
+\begin_inset Formula $j$
+\end_inset
+
+ はデータを小さい順に並べて 
+\begin_inset Formula $j$
+\end_inset
+
+ 番目のデータである。
+\begin_inset Formula $x_{(j)}$
+\end_inset
+
+, 
+\begin_inset Formula $j=1,\dots,n$
+\end_inset
+
+, の作り方から，次の不等式が成り立つ。
+\begin_inset Formula 
+\[
+x_{(1)}\le x_{(2)}\le\cdots\le x_{(n-1)}\le x_{(n)}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+最小値・最大値
+\end_layout
+
+\begin_layout Standard
+データ 
+\begin_inset Formula $\{x_{1},\dots,x_{n}\}$
+\end_inset
+
+ に対して，
+\begin_inset Formula $x_{(1)}$
+\end_inset
+
+ を
+\series bold
+最小値
+\series default
+，
+\begin_inset Formula $x_{(n)}$
+\end_inset
+
+ を
+\series bold
+最大値
+\series default
+という。
+\end_layout
+
+\begin_layout Subsubsection*
+中央値
+\end_layout
+
+\begin_layout Standard
+データ 
+\begin_inset Formula $\{x_{1},\dots,x_{n}\}$
+\end_inset
+
+ に対して，
+\series bold
+中央値
+\series default
+（
+\series bold
+median
+\series default
+） を次のように定義する。
+\begin_inset Formula 
+\[
+\mathop{\text{med}}(\{x_{1},\dots,x_{n}\})=\begin{cases}
+x_{(\frac{n+1}{2})} & n\text{ が奇数のとき}\\
+\frac{x_{(\frac{n}{2})}+x_{(\frac{n}{2}+1)}}{2} & n\text{ が偶数のとき}
+\end{cases}
+\]
+
+\end_inset
+
+中央値は昇順で並べたデータを半々に分ける数のことである。
+\end_layout
+
+\begin_layout Subsubsection*
+分位数
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $q\in[0,1]$
+\end_inset
+
+ に対して
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+\begin_inset Formula $a\in[0,1]$
+\end_inset
+
+ は 
+\begin_inset Formula $0\le a\le1$
+\end_inset
+
+, 
+\begin_inset Formula $a\in(0,1)$
+\end_inset
+
+ は 
+\begin_inset Formula $0<a<1$
+\end_inset
+
+ という意味である。丸括弧と角括弧を組み合わせて 
+\begin_inset Formula $a\in[0,1)\Leftrightarrow0\le a<1$
+\end_inset
+
+ などとも書く。
+\end_layout
+
+\end_inset
+
+，
+\begin_inset Formula $q$
+\end_inset
+
+
+\series bold
+-分位数
+\series default
+と呼ばれる統計量 
+\begin_inset Formula $Q_{q}$
+\end_inset
+
+ は次のように定義される。
+\begin_inset Formula 
+\[
+\frac{x_{(i)}\le Q_{q}\text{ を満たす }i\text{ の数}}{n}=q
+\]
+
+\end_inset
+
+中央値は 
+\begin_inset Formula $Q_{1/2}$
+\end_inset
+
+ である。厳密な定義は難しいので省略する。詳細は 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "KawakuboKunitomo2016"
+literal "false"
+
+\end_inset
+
+を参照。
+\end_layout
+
+\begin_layout Subsection
+相対的貧困率
+\begin_inset CommandInset label
+LatexCommand label
+name "subsec:相対的貧困率"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+相対的貧困率
+\series default
+
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+そうたいてきひんこんりつ@相対的貧困率
+\end_layout
+
+\end_inset
+
+（relative poverty rate
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+relative poverty rate
+\end_layout
+
+\end_inset
+
+）の計算には可処分所得（所得から税・社会保険料等を引いた額）を用いる。所得を得ていない個人もいるので，世帯人員数も考慮した
+\series bold
+等価可処分所得
+\series default
+
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+とうかかしょぶんしょとく@等価可処分所得
+\end_layout
+
+\end_inset
+
+を以下のように計算する。
+\begin_inset Formula 
+\[
+\text{個人の等価可処分所得}=\frac{\text{属する世帯の可処分所得の総額}}{\sqrt{\text{属する世帯の人員数}}}
+\]
+
+\end_inset
+
+属する世帯の人員数の平方根を用いるのは，世帯人員数が多いほうが1人あたりの生活コストが下がることを考慮したものである。例えば，3人世帯の家賃は1人暮らしの人の家
+賃の3倍にはならない。例えば下表左のような可処分所得の分布であれば，等価可処分所得は下表右のように計算できる。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+centering
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+renewcommand{
+\backslash
+arraystretch}{1.3}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Tabular
+<lyxtabular version="3" rows="8" columns="3">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+個人
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+世帯
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+可処分所得
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+A
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+400
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+A
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+300
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+A
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+4
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+B
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1,000
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+5
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+B
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+6
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+C
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+250
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+7
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+D
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+150
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\begin_inset Formula $\quad\Longrightarrow\quad$
+\end_inset
+
+
+\begin_inset Tabular
+<lyxtabular version="3" rows="8" columns="3">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+個人
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+世帯人員数
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+等価可処分所得
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+404.1452
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+404.1452
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+404.1452
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+4
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+707.17
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+5
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+707.17
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+6
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+250
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+7
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+150
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+等価可処分所得の中央値（中位点所得）を半分にした数値を
+\series bold
+相対的貧困線
+\series default
+
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+そうたいてきひんこんせん@相対的貧困線
+\end_layout
+
+\end_inset
+
+と定義する。上の例には7人の個人がいるので，大きい順にならべて4番目にあたる所得が中央値である。
+\begin_inset Formula 
+\[
+\text{上の例の中央値}=404.1452
+\]
+
+\end_inset
+
+さらにこれを半分にしたものが相対的貧困線である。
+\begin_inset Formula 
+\[
+\text{相対的貧困線 }\text{RPL}=\frac{404.1452}{2}=202.0726
+\]
+
+\end_inset
+
+相対的貧困とは，この相対的貧困線未満の所得しかない状態である。上の例で，相対的貧困の状態にある個人について True，そうでない個人について False
+ を付したものが下の表である。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+centering
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+renewcommand{
+\backslash
+arraystretch}{1.3}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Tabular
+<lyxtabular version="3" rows="8" columns="4">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+個人
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+世帯人員数
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+等価可処分所得
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+相対的貧困
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $404.1452\not<\text{RPL}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+False
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $404.1452\not<\text{RPL}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+False
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $404.1452\not<\text{RPL}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+False
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+4
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $707.17\not<\text{RPL}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+False
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+5
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $707.17\not<\text{RPL}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+False
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+6
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $250\not<\text{RPL}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+False
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+7
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $150<\text{RPL}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+True
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+True となる個人の割合が相対的貧困率である。
+\begin_inset Formula 
+\[
+\text{相対的貧困率}=\frac{\text{等価可処分所得が中位点所得の半分未満である人の数}}{\text{総人口数}}
+\]
+
+\end_inset
+
+上の例では，
+\begin_inset Formula $1/7\fallingdotseq14$
+\end_inset
+
+% となる。
+\end_layout
+
+\begin_layout Problem
+高所得グループと低所得グループとで二極化している場合には，相対的貧困率が高くなる傾向がある。このことを適当な数値例を構築して確認しなさい。
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+answerbox{6
+\backslash
+baselineskip}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+相対的貧困の状態にあると分類される人たち全員が日々の衣食にも困るような日常的な意味での「貧困」状態にあるとは限らない。しかし，彼らの生活は，多くの世帯が享受でき
+ている標準的な生活水準に達していない可能性が高いし，教育を受けることを諦めてしまう可能性も高く，次の世代に貧困を引き継いでしまうおそれがある。したがって，政府は
+目を配る必要があるし，多くの団体がサポートしようとしている。
+\end_layout
+
+\begin_layout Standard
+相対的貧困の定義上，相対的貧困率は 50% を超えることはない。したがって，国民の多くが「貧困状態」にある経済の分析をする場合には相対的貧困を使うことができない
+。生活必需品を買うことすらままならないような極度の貧困状態を測るためには
+\series bold
+絶対的貧困
+\series default
+という指標を用いる。発展途上国の支援の文脈では絶対的貧困が使われる。
+\end_layout
+
+\begin_layout Problem
+絶対的貧困の定義を調べて，調べたことを簡潔にまとめなさい。
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+answerbox{4
+\backslash
+baselineskip}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Subsection
+ジニ係数
+\end_layout
+
+\begin_layout Standard
+所得分布の不平等を測る指標の1つとして
+\series bold
+ジニ係数
+\series default
+（Gini coefficient）
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+じにけいすう@ジニ係数
+\end_layout
+
+\end_inset
+
+がよく使われている。データ 
+\begin_inset Formula $\{y_{1},y_{2},\dots,y_{n}\}$
+\end_inset
+
+ を個人の所得（等価可処分所得）であるとしよう。各個人の所得を小さい順に並び替えた
+\begin_inset Formula 
+\[
+y_{(1)},y_{(2)},\dots,y_{(n-1)},y_{(n)}
+\]
+
+\end_inset
+
+をもとに次のようなデータを構築する。所得順位が下から 
+\begin_inset Formula $i$
+\end_inset
+
+ 番目の個人までの所得の合計を
+\begin_inset Formula 
+\[
+\hat{y}_{i}=y_{(1)}+y_{(2)}+\cdots+y_{(i)}
+\]
+
+\end_inset
+
+と定義する。便宜上，
+\begin_inset Formula $\hat{y}_{0}=0$
+\end_inset
+
+とする。国民の総所得は 
+\begin_inset Formula 
+\[
+\hat{y}=\hat{y}_{n}=y_{(1)}+y_{(2)}+\cdots+y_{(n)}
+\]
+
+\end_inset
+
+第 
+\begin_inset Formula $i$
+\end_inset
+
+ 番目の個人までの所得 
+\begin_inset Formula $\hat{y}_{i}$
+\end_inset
+
+ が総所得 
+\begin_inset Formula $\hat{y}$
+\end_inset
+
+ にしめる割合 
+\begin_inset Formula $Y_{i}=\hat{y}_{i}/\hat{y}$
+\end_inset
+
+ のベクトル
+\begin_inset Formula 
+\begin{align*}
+\boldsymbol{Y} & =\left(Y_{0},Y_{1},\dots,Y_{n-1},Y_{n}\right)\\
+ & =\left(\frac{\hat{y}_{0}}{\hat{y}},\frac{\hat{y}_{1}}{\hat{y}},\dots,\frac{\hat{y}_{n-1}}{\hat{y}},\frac{\hat{y}_{n}}{\hat{y}}\right)\\
+ & =\left(0,\frac{y_{(1)}}{y_{(1)}+\cdots+y_{(n)}},\dots,\frac{y_{(1)}+\cdots+y_{(n-1)}}{y_{(1)}+\cdots+y_{(n)}},1\right)
+\end{align*}
+
+\end_inset
+
+を作る。さらに，
+\begin_inset Formula $i$
+\end_inset
+
+ 番目までの個人の全体の総人口 
+\begin_inset Formula $n$
+\end_inset
+
+ に占める割合 
+\begin_inset Formula $i/n$
+\end_inset
+
+ を並べたベクトルも構築する。
+\begin_inset Formula 
+\[
+\boldsymbol{X}=\left(0,\frac{1}{n},\frac{2}{n},\frac{3}{n},\dots,\frac{n-1}{n},1\right).
+\]
+
+\end_inset
+
+このようにして構築した 
+\begin_inset Formula $\boldsymbol{X}$
+\end_inset
+
+, 
+\begin_inset Formula $\boldsymbol{Y}$
+\end_inset
+
+をプロットした点を結んだ線を
+\series bold
+ローレンツ曲線
+\series default
+
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+ろーれんつきょくせん@ローレンツ曲線
+\end_layout
+
+\end_inset
+
+という。
+\end_layout
+
+\begin_layout Problem
+\begin_inset CommandInset label
+LatexCommand label
+name "prob:lorenz-equality"
+
+\end_inset
+
+すべての個人が同じ所得を受け取っているとき，すなわち完全な平等が達成されているとき，ローレンツ曲線は 
+\begin_inset Formula $Y=X$
+\end_inset
+
+ で示される直線になる。この事実を示しなさい。
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+answerbox{4
+\backslash
+baselineskip}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+完全な平等が達成されているときのローレンツ曲線を
+\series bold
+完全平等線
+\series default
+と呼ぶ。図
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:ローレンツ曲線"
+
+\end_inset
+
+の実線がローレンツ曲線の一例である。完全平等線と実際のローレンツ曲線に囲まれる領域（図
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:ローレンツ曲線"
+
+\end_inset
+
+の影をつ付けた部分）の面積を2倍にした値がジニ係数である
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+完全平等線について対称にローレンツ曲線をもう1つ描くと，ジニ係数はこれら2つのローレンツ曲線で囲まれる部分の面積になる。
+\end_layout
+
+\end_inset
+
+。
+\begin_inset Formula 
+\[
+G=\text{ジニ係数}=2\times\left(\text{ローレンツ曲線と完全平等線を囲む領域の面積}\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch03/plot-lorenz/graphics>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+centering
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+includegraphics[height=0.3
+\backslash
+textheight]{Figure/ch03/plot-lorenz-1}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+ローレンツ曲線
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:ローレンツ曲線"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+定義より次の関係が成り立つ。
+\begin_inset Formula 
+\[
+0\le G<1
+\]
+
+\end_inset
+
+
+\begin_inset Formula $G=0$
+\end_inset
+
+ はすべての個人が同じ所得を得ているときに限って成り立つ。
+\begin_inset Formula $G=1$
+\end_inset
+
+ にもっとも近づくのは一人の個人が全所得を独占している場合である。完全な不平等を保った状態で総人口について 
+\begin_inset Formula $n\to\infty$
+\end_inset
+
+ の極限を取れば，ジニ係数は 1 に収束する。この「完全な不平等」のケースについて次の問題を考えてみよう。
+\end_layout
+
+\begin_layout Problem
+\begin_inset CommandInset label
+LatexCommand label
+name "prob:lorenz-inequality"
+
+\end_inset
+
+
+\begin_inset Formula $y_{(n)}$
+\end_inset
+
+ を稼ぐ個人を除いて所得がゼロであるとする。すなわち，
+\begin_inset Formula 
+\[
+0=y_{(1)}=y_{(2)}=\cdots=y_{(n-1)}<y_{(n)}
+\]
+
+\end_inset
+
+が成り立つとする。この場合のローレンツ曲線を描きなさい。また，
+\begin_inset Formula $n\to\infty$
+\end_inset
+
+ の極限でジニ係数が 1 となることを示しなさい。
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+answerbox{6
+\backslash
+baselineskip}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+ジニ係数は 0 に近いほど不平等が小さく，1 に近ければ近いほど不平等が大きいものとみなせる。ジニ係数の国際比較や経年変化を見ることによって，各国の不平等を評価
+することができる。
+\end_layout
+
+\begin_layout Remark
+個人の所得データからではなく，集計データ（例えば，所得階級ごと相対度数）からジニ係数を計算することも多い。詳細は 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "KawakuboKunitomo2016"
+literal "false"
+
+\end_inset
+
+ を参照。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Remark
+政府には，税や社会保障を通じて，所得の格差を縮小する役割がある。これを所得再分配という。再分配前のジニ係数と再分配後のジニ係数を比較することで，所得再分配政策の
+効果を測ることができる。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+便宜上 
+\begin_inset Formula $y_{(0)}=0$
+\end_inset
+
+ とする。
+\begin_inset Formula $n$
+\end_inset
+
+ 個の台形の面積を足し上げればよいので，
+\begin_inset Formula 
+\[
+\text{ローレンツ曲線の下側の面積}=\sum_{i=1}^{n}\left[\sum_{j=1}^{i}\frac{Y_{j-1}+Y_{j}}{2n}\right]
+\]
+
+\end_inset
+
+となる。したがって，ジニ係数は
+\begin_inset Formula 
+\begin{align}
+G & =1-\sum_{i=1}^{n}\sum_{j=1}^{i}\frac{Y_{j-1}+Y_{j}}{n}\nonumber \\
+ & =1-\frac{\sum_{i=1}^{n}Y_{j-1}+\sum_{j=1}Y_{j}}{n}\nonumber \\
+ & =1-\frac{2\left(\sum_{j=1}^{n}Y_{j}\right)-Y_{n}}{n}\nonumber \\
+ & =1-\frac{2\left(\sum_{j=1}^{n}Y_{j}\right)-1}{n}\label{eq:gini}
+\end{align}
+
+\end_inset
+
+とできる。総和記号 
+\begin_inset Formula $\sum$
+\end_inset
+
+ の部分は
+\begin_inset Formula 
+\[
+\sum_{j=1}^{n}Y_{j}=\sum_{j=1}^{n}\left(\frac{y_{(1)}+y_{(2)}+\cdots+y_{(j)}}{y_{(1)}+y_{(2)}+\cdots+y_{(j)}+y_{(j+1)}+\cdots+y_{(n)}}\right)
+\]
+
+\end_inset
+
+とできることを思い出そう。データを小さい順に並べ替えて，累積和の和を計算している。
+\end_layout
+
+\begin_layout Subsection
+トップ 1% の所得シェア
+\end_layout
+
+\begin_layout Standard
+超富裕層に富が集中している傾向について，近年大きな社会問題になっている。（ピケティ『21世紀の資本』を参照する）
+\end_layout
+
+\begin_layout Standard
+所得上位 1% の人々の所得が全所得に占める割合（top percentile income share
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+top percentile income share
+\end_layout
+
+\end_inset
+
+）が，近年大幅に上昇しているというのだ。
+\end_layout
+
+\begin_layout Standard
+上位 1% は下位 99% と同じなので，0.99-分位点以上の所得を合計すればよい。すなわち，
+\begin_inset Formula 
+\[
+(\text{Top percentile income share})=\frac{\sum_{i:y_{i}\ge Q_{0.99}}y_{i}}{\sum_{i}y_{i}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Problem
+それぞれの定義に基づいて，ジニ係数とトップ 1% 所得シェアの類似性と相違点を説明しなさい。
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+answerbox{6
+\backslash
+baselineskip}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Section
+プログラミング: 基礎
+\end_layout
+
+\begin_layout Standard
+テキストファイルに書き込んだプログラムは基本的には上から順に実行される。例えば，次のコードは (1) 関数 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+f()
+\end_layout
+
+\end_inset
+
+ を呼び出す，(2) 関数 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+g()
+\end_layout
+
+\end_inset
+
+ を呼び出す，(3) 関数 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+h()
+\end_layout
+
+\end_inset
+
+ を呼び出す，という順に実行される。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch03/sequential/dnr>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Remark
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+f()
+\end_layout
+
+\end_inset
+
+, 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+g()
+\end_layout
+
+\end_inset
+
+, 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+h()
+\end_layout
+
+\end_inset
+
+を定義していないので，このコードは実行できない。実行できないコードは理解しにくいという方は，次のように打ち込んでおくとよい。
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch03/def-functions/dnr>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+qed
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+改めて言うまでもない当たり前のことと感じるかもしれないが，これは非常に重要なことなので忘れないでほしい
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+特に，Jupyter Notebook などの環境でコードを書いているときには，コードの見かけ上の前後関係と実行順が異なる場合があるので混乱が生じやすい。気をつ
+けよう。
+\end_layout
+
+\end_inset
+
+。
+\end_layout
+
+\begin_layout Standard
+線形の処理の流れを変更するための構文を
+\series bold
+制御フロー構文
+\series default
+という。この節では，
+\end_layout
+
+\begin_layout Itemize
+ループ
+\end_layout
+
+\begin_layout Itemize
+条件分岐
+\end_layout
+
+\begin_layout Standard
+について説明する。
+\end_layout
+
+\begin_layout Standard
+Python ではループの使用はできる限り避けるべきであるとされる。
+\series bold
+NumPy
+\series default
+ を用いてベクトル化することでループを回避する方法，さらにはベクトル化によって避けることのできないループについても説明する。
+\end_layout
+
+\begin_layout Subsection
+ループ
+\end_layout
+
+\begin_layout Standard
+ループは同じような処理を繰り返し実行するための構文である。
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+for
+\end_layout
+
+\end_inset
+
+ ループと 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+while
+\end_layout
+
+\end_inset
+
+ ループがある。
+\end_layout
+
+\begin_layout Standard
+次のコードは同じコマンド 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+f()
+\end_layout
+
+\end_inset
+
+ を3回実行するためのコードである。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch03/no-loop/dnr, caption='実行したい処理', fig.lp='code:'>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+3回くらいであればこのままでもいいかもしれないが，100回，1000回，あるいは 100万回繰り返す必要がある場合はどうすればよいだろう。
+\end_layout
+
+\begin_layout Subsubsection*
+for ループ
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+for
+\end_layout
+
+\end_inset
+
+ ループは繰り返しの実行回数が事前に分かっているときに使う構文である。次のように書く（ただし，これはまだ最善ではない）。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch03/for-loop/dnr, caption='for ループ', fig.lp='code:'>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+図 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:forループの文法"
+
+\end_inset
+
+ に 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+for
+\end_layout
+
+\end_inset
+
+ ループの書き方を解説しているので確認してほしい。いちばん重要なポイントは，
+\series bold
+実行される処理の本体にあたるコードは半角スペース4つ分のインデントで明示する
+\series default
+，ということである。実際には，コード全体で統一された数でありさえすれば 4つでなくてもよいが，4つ使うのが慣例である。したがって，Python
+ でプログラミングをするときは Tab キーを押したときにスペース 4 つが入力されるように設定できるテキストエディタを使うべきである。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+centering
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+includegraphics[height=0.25
+\backslash
+textheight]{images/03-for-loop}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+for
+\end_layout
+
+\end_inset
+
+ ループの文法
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:forループの文法"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+上の Code 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+ref{code:ch03/for-loop}
+\end_layout
+
+\end_inset
+
+ は 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+for
+\end_layout
+
+\end_inset
+
+ ループ を使わない次のコードと同等である。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch03/for-loop-equiv/dnr>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+使用されないカウンター 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+i
+\end_layout
+
+\end_inset
+
+ に代入する処理が増えたせいで，元のコード（Code 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+ref{code:ch03/no-loop}
+\end_layout
+
+\end_inset
+
+ ）よりも長くなってしまった。しかし，
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+for
+\end_layout
+
+\end_inset
+
+ ループとはこういうものだ。実際には一時的に代入されるオブジェクトも使用できる
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+print()
+\end_layout
+
+\end_inset
+
+ 関数はオブジェクトの情報を画面に表示する関数である。IPython や Jupyter を使っている場合に 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+print()
+\end_layout
+
+\end_inset
+
+ を使用する必要はないが，いずれ必要になる場面が出てくるので覚えておこう。
+\end_layout
+
+\end_inset
+
+。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch03/for-loop-print, caption='カウンターを使う for ループ', fig.lp='code:'>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Problem
+Code 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+ref{code:ch03/for-loop-print}
+\end_layout
+
+\end_inset
+
+ を 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+for
+\end_layout
+
+\end_inset
+
+ ループを使わないコードに書き換えなさい。
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+answerbox{6
+\backslash
+baselineskip}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+range()
+\end_layout
+
+\begin_layout Standard
+上のコードには問題がある。 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+[0, 1, 2]
+\end_layout
+
+\end_inset
+
+ と書くのが面倒くさいということだ
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+面倒なことを繰り返しやらされると人間は必ず間違える。そういう仕事はプログラミングを使ってなくさなければならない。
+\end_layout
+
+\end_inset
+
+。3回繰り返しではなく 1000回繰り返しだったらどうするのか。この問題は，
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+range()
+\end_layout
+
+\end_inset
+
+ 関数を使って解決できる。繰り返し回数が 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+n
+\end_layout
+
+\end_inset
+
+ であれば， 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+in
+\end_layout
+
+\end_inset
+
+ の後ろに 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+range(n)
+\end_layout
+
+\end_inset
+
+と書けばよい。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch03/for-with-range>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+range(n)
+\end_layout
+
+\end_inset
+
+は 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+[0, 1, ..., n-1]
+\end_layout
+
+\end_inset
+
+ と同じような意味である 。
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+[0, 1, ..., n-1]
+\end_layout
+
+\end_inset
+
+ と書くと整数 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+n
+\end_layout
+
+\end_inset
+
+ 個分のメモリが消費されるが，
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+range(n)
+\end_layout
+
+\end_inset
+
+ にはそのようなムダがないようにできている
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+list(range(n))
+\end_layout
+
+\end_inset
+
+ とすれば
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+range
+\end_layout
+
+\end_inset
+
+オブジェクトが リストに変換される。
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+for
+\end_layout
+
+\end_inset
+
+ ループで使うときはリストに変換してはいけない。
+\end_layout
+
+\end_inset
+
+。
+\end_layout
+
+\begin_layout Problem
+整数 
+\begin_inset Formula $i=0,1,\dots,9,10$
+\end_inset
+
+ について 
+\begin_inset Formula $i^{3}$
+\end_inset
+
+ を表示するコードを書きなさい。
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+answerbox{6
+\backslash
+baselineskip}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Problem
+\begin_inset Formula $m<n$
+\end_inset
+
+ なる整数 
+\begin_inset Formula $m,n$
+\end_inset
+
+ に対して，
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+range(m,n)
+\end_layout
+
+\end_inset
+
+はどのような数列を表しているか。
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+answerbox{4
+\backslash
+baselineskip}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+真偽値と while ループ
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+while
+\end_layout
+
+\end_inset
+
+ ループは 繰り返しの実行回数が事前に分かっていなくても使える構文である
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+for
+\end_layout
+
+\end_inset
+
+ と 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+while
+\end_layout
+
+\end_inset
+
+ に関するこのような切り分けは プログラミング言語一般に成り立つものではない。Python の 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+for
+\end_layout
+
+\end_inset
+
+ループは range-based for loop と呼ばれる処理である。
+\end_layout
+
+\end_inset
+
+。
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+while
+\end_layout
+
+\end_inset
+
+ ループを理解するためには真偽値を理解する必要がある。
+\end_layout
+
+\begin_layout Subsubsection*
+真偽値
+\end_layout
+
+\begin_layout Standard
+Python では 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+True
+\end_layout
+
+\end_inset
+
+, 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+False
+\end_layout
+
+\end_inset
+
+ という名前に特別な意味がある。次のコードを IPython で実行してみよう。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch03/boolean/dnr>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+入力した結果がそのまま表示されるだけだが，それでよい。これらの名前と値が事前に定義されている証拠だ。
+\end_layout
+
+\begin_layout Problem
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+true
+\end_layout
+
+\end_inset
+
+, 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+false
+\end_layout
+
+\end_inset
+
+, 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+TRUE
+\end_layout
+
+\end_inset
+
+, 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+FALSE
+\end_layout
+
+\end_inset
+
+ と入力するとどのような結果になるか。また，それは何故か。
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+answerbox{4
+\backslash
+baselineskip}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+True
+\end_layout
+
+\end_inset
+
+は「条件が成り立つ（真である）」ことを意味する値， 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+False
+\end_layout
+
+\end_inset
+
+は「条件が成り立たない（偽である）」ことを意味する値である。
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+and
+\end_layout
+
+\end_inset
+
+（かつ）, 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+or
+\end_layout
+
+\end_inset
+
+（または），
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+not
+\end_layout
+
+\end_inset
+
+ （否定）の演算がある。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch03/boolean-and>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch03/boolean-or>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch03/boolean-not>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+条件式
+\end_layout
+
+\begin_layout Standard
+結果が真偽値となる式を条件式という。数値比較のための以下の演算子が基本的である。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+centering
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+renewcommand{
+\backslash
+arraystretch}{1.3}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+数値比較の演算子
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Tabular
+<lyxtabular version="3" rows="5" columns="2">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+x == y
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+x
+\end_layout
+
+\end_inset
+
+ と 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+y
+\end_layout
+
+\end_inset
+
+ は等しい
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+x < y
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+x
+\end_layout
+
+\end_inset
+
+ は 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+y
+\end_layout
+
+\end_inset
+
+ より小さい
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+x <= y
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+x
+\end_layout
+
+\end_inset
+
+ は 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+y
+\end_layout
+
+\end_inset
+
+ より小さいか等しい
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+x > y
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+x
+\end_layout
+
+\end_inset
+
+ は 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+y
+\end_layout
+
+\end_inset
+
+ より大きい
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+x >= y
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+x
+\end_layout
+
+\end_inset
+
+ は 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+y
+\end_layout
+
+\end_inset
+
+ より大きいか等しい
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch03/boolean-inequality>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Problem
+次の各条件を表す Python の条件式を書きなさい。
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Formula $x\ge y$
+\end_inset
+
+ または 
+\begin_inset Formula $x\ge z$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $x<y<z$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+answerbox{4
+\backslash
+baselineskip}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+真偽値の足し算
+\end_layout
+
+\begin_layout Standard
+真偽値に対して四則演算を実行しようとすると，
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+True
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Formula $\longrightarrow1$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+False
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Formula $\longrightarrow0$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+に勝手に変換される。この性質を使うと，リストや配列の中の 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+True
+\end_layout
+
+\end_inset
+
+ の数を数えるのに役立つ。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch03/boolean-addition>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+浮動小数点数に関する注意
+\end_layout
+
+\begin_layout Standard
+コンピュータで実数を扱う場合，
+\series bold
+浮動小数点数
+\series default
+と呼ばれる近似を用いる。あくまで近似なので，厳密な等式で比較することは避けた方がよい。私たちが有限小数と認識している普通の小数であっても，コンピュータは正確に表
+現できないものがある。次の2つのコードを比較してみよう。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch03/compare-real-numbers>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+浮動小数点数が計算に現れる場合，数値が近似的に等しいことを 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+np.allclose()
+\end_layout
+
+\end_inset
+
+ といった関数を用いて評価する。浮動小数点数の厳密な等号比較が必要になるような処理は不可能である。この話は行列の標準化を扱う際に重要になる。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch03/compare-real-numbers2>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+rtol=1e-15
+\end_layout
+
+\end_inset
+
+ とあるのは，この基準よりも小さい誤差はゼロとみなすということ。
+\begin_inset Formula $\mathtt{1e-15}=1\times10^{-15}$
+\end_inset
+
+ という意味である。
+\end_layout
+
+\begin_layout Subsubsection*
+while ループ
+\end_layout
+
+\begin_layout Standard
+繰り返し処理の継続条件が条件式で表されているときには 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+while
+\end_layout
+
+\end_inset
+
+ ループを使う。基本は次のような形式になる。処理の本体にあたる部分をスペース 4つ分のインデントで区別する点などは 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+for
+\end_layout
+
+\end_inset
+
+ ループと同じである。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch03/while-loop-equiv/dnr>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+ここで 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+condition
+\end_layout
+
+\end_inset
+
+ の部分に条件式が入る。
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+condition
+\end_layout
+
+\end_inset
+
+ が 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+True
+\end_layout
+
+\end_inset
+
+ であればループの本体を実行し，次のループに進む。
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+condition
+\end_layout
+
+\end_inset
+
+が 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+False
+\end_layout
+
+\end_inset
+
+ であれば ループを抜ける。
+\end_layout
+
+\begin_layout Standard
+もちろん，
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+while
+\end_layout
+
+\end_inset
+
+ループが正しく終了するためには，各回の処理のたびに条件式が変わっていく必要がある。例えば次のコードは，Code 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+ref{code:ch03/for-loop}
+\end_layout
+
+\end_inset
+
+ を 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+while
+\end_layout
+
+\end_inset
+
+ループを使って書き直したものだ。ただし，
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+i += 1
+\end_layout
+
+\end_inset
+
+ は 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+i = i + 1
+\end_layout
+
+\end_inset
+
+ と同じ意味である。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch03/while-loop/dnr>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Problem
+次のコードを IPython で実行すると何が起こるか。現象と理由を説明しなさい。（実行を終了するときはキーボードで Ctrl + C を押す）
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch03/inf-loop/dnr>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+answerbox{4
+\backslash
+baselineskip}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+while
+\end_layout
+
+\end_inset
+
+ループは非常に複雑なループ処理もできるが，本章では使わないので，紹介はこれくらいにしておく。もっと実用的な 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+while
+\end_layout
+
+\end_inset
+
+ ループについては必要になったときに説明する。
+\end_layout
+
+\begin_layout Subsection
+条件分岐
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+if
+\end_layout
+
+\end_inset
+
+ 文を使うと，指定した条件が成り立つときにだけ実行される処理を指定することができる。条件が成り立たない場合の処理は 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+else
+\end_layout
+
+\end_inset
+
+ ブロックで指定する。実行条件が 2つ以上ある場合には 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+elif
+\end_layout
+
+\end_inset
+
+ ブロックを用いる。
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+elif
+\end_layout
+
+\end_inset
+
+ ブロックは複数書くことができる。処理の本体にあたる部分をスペース 4つ分のインデントで区別する点などは 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+for
+\end_layout
+
+\end_inset
+
+，
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+while
+\end_layout
+
+\end_inset
+
+ の構文と同じである。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch03/if/dnr>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch03/if-else/dnr>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch03/if-elif-else/dnr>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+ループと組み合わせると面白いことができる。
+\end_layout
+
+\begin_layout Example
+1 から 100 の間に含まれる奇数の合計は次のように計算できる。
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch03/if-odds-total, caption='奇数の合計', fig.lp='code:'>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+if
+\end_layout
+
+\end_inset
+
+ の本体ブロック（
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+total += i
+\end_layout
+
+\end_inset
+
+）の先頭に 8個分のスペースが挿入されている。
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+for
+\end_layout
+
+\end_inset
+
+ のために4つ，
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+if
+\end_layout
+
+\end_inset
+
+ のために 4 つである。
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+qed
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Problem
+1 から 1000 の間に含まれる偶数の合計を計算するコードを書きなさい。
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+answerbox{5
+\backslash
+baselineskip}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+ジェネレータ内包表記
+\end_layout
+
+\begin_layout Standard
+Code 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+ref{code:ch03/if-odds-total}
+\end_layout
+
+\end_inset
+
+ は実際には次のように書かれることが多い。ここでは詳しい説明は省くが，ジェネレータ内包表記と呼ばれる書き方である。英文と思って読めば，なんとなく使い方が分かるは
+ずだ。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch03/if-odds-total-comprehension>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+もちろん， 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+sum()
+\end_layout
+
+\end_inset
+
+ という関数がこのような書き方を許しているというだけであって，あらゆる関数に使える訳ではない。
+\end_layout
+
+\begin_layout Subsection
+真偽値の配列
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+NumPy
+\series default
+ 配列を比較演算子で比較した結果は真偽値の
+\series bold
+NumPy
+\series default
+ 配列になる。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch03/boolean-array>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+要素取得の角括弧の中に真偽値の配列を入れる。結果は 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+True
+\end_layout
+
+\end_inset
+
+ の位置にあたる要素である。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch03/boolean-array2>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+True
+\end_layout
+
+\end_inset
+
+ が 1，
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+False
+\end_layout
+
+\end_inset
+
+ が 0 であることを思い出そう。0 と 1 からなるデータの総和を取ると1の個数，平均を取ると1 の割合が計算できる。したがって，次のコードは
+ 0.05に近い値になると期待される。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch03/set-random-hide/noinc>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch03/boolean-random>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+プログラミング: 実践
+\end_layout
+
+\begin_layout Standard
+前置きが長くなった。数値例を使って理論パートで学んだ計算方法を確認しよう。
+\end_layout
+
+\begin_layout Subsection
+連鎖方式の実質GDPとGDPデフレータ
+\end_layout
+
+\begin_layout Standard
+前章で用いた簡単な数値例を用いよう。A，B，C の財グループがあるとして，2000年を基準に価格指数を計算したものが下表左であり，生産数量が下表右であるとする。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+centering
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+renewcommand{
+\backslash
+arraystretch}{1.3}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Above
+
+\begin_layout Plain Layout
+実質GDPの計算例
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:実質GDPの計算例"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Tabular
+<lyxtabular version="3" rows="5" columns="4">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+価格
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+A
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+B
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+C
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2000年
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+100
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+100
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+100
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2001年
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+101
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+99
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+103
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2002年
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+100
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+98
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+104
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2003年
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+99
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+99
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+106
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+quad
+\end_layout
+
+\end_inset
+
+
+\begin_inset Tabular
+<lyxtabular version="3" rows="5" columns="4">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+数量
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+A
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+B
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+C
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2000年
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1000
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2000
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+500
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2001年
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+980
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1980
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+510
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2002年
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1010
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1990
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+520
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2003年
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1005
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2005
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+530
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+実際の価格ではなく価格指数を使うことで一般性が失われるということはない。実質GDP にせよ価格指数にせよ，価格上昇率のみに意味があり，水準には意味がないからだ。
+理由が分からない場合は理論パートの式を丁寧に検証し直すとよい。
+\end_layout
+
+\begin_layout Standard
+名目 GDP，GDP デフレータ，実質GDP の順に計算しよう。3群 
+\begin_inset Formula $\times$
+\end_inset
+
+ 4年分の人工的なデータを用いたが，適切な形式でデータを格納していれば 
+\begin_inset Formula $3$
+\end_inset
+
+ とか 
+\begin_inset Formula $4$
+\end_inset
+
+ とかいう数字はコードには出てこない。したがって，ここで紹介するコードは，何千もの商品群を考慮している実際の計算でも同じように使えるはずだ。心してかかろう。
+\end_layout
+
+\begin_layout Standard
+まずは表を配列形式で格納する。データの格納形式とその後のコードには密接に関連している。行が伸びる方向に時間が進んでいくものとしよう。配列全体が実数のデータである
+ことを Python に知らせるためには，少なくとも 1 つの数字に小数点をつければよい
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+NumPy の配列には同じ種類のデータが並ぶことを思い出そう。1つが浮動小数点数なら全部が浮動小数点数になる。
+\end_layout
+
+\end_inset
+
+。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch03/gdp-data>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+名目GDPを計算するためには，この表を成分ごとにかけてから（演算子は 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+*
+\end_layout
+
+\end_inset
+
+ だ），結果の配列の各行について，全列の和を取る。これは，
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+np.sum(x, axis=1)
+\end_layout
+
+\end_inset
+
+ でできる。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch03/gdp-nominal>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+式 (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:ch03-dfl"
+
+\end_inset
+
+) に基づいてデフレータを計算するのが次のコードだ。前章で学んだコード（連鎖方式のラスパイレス指数を計算したことを思い出そう）とこの章で学んだ
+ 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+for
+\end_layout
+
+\end_inset
+
+ の構文を組み合わせればよい。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch03/gdp-deflator>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+実質GDP は名目GDPをデフレータで除すことで計算できる。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch03/gdp-real>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+寄与率と寄与度
+\end_layout
+
+\begin_layout Subsection*
+複数年にわたる計算
+\end_layout
+
+\begin_layout Standard
+表
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:実質GDPの計算例"
+
+\end_inset
+
+の例を使って計算しよう。ここでは，名目価値の成長要因を分析する。実質変数の場合も，各項目の実質値の推計が手に入れば同じように実行できる。使うデータは
+ 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+price * value
+\end_layout
+
+\end_inset
+
+ を計算した次のデータである。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch03/contribution-data>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+centering
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+renewcommand{
+\backslash
+arraystretch}{1.3}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Tabular
+<lyxtabular version="3" rows="5" columns="6">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+価格
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+A
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+B
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+C
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+GDP
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+成長率
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2000年
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\phantom{1000000}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\phantom{1000000}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\phantom{1000000}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\phantom{1000000}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\phantom{1000000}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2001年
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2002年
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2003年
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+各行の総和はすでに計算した 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+nominal_gdp
+\end_layout
+
+\end_inset
+
+ に一致する。これは計算の方法から当たり前である。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch03/contribution-nominal-gdp>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+名目GDP の成長率は次のように計算できる。
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+np.diff()
+\end_layout
+
+\end_inset
+
+ は隣接する要素の差を計算する関数である。デフォルトでは元の変数よりも1つ長さが短いベクトルが出力される。この振る舞いを 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+prepend=np.nan
+\end_layout
+
+\end_inset
+
+ を付けることで変えることができる。これは，出力の先頭要素に「存在しない値」を意味する NaN (Not a Number) を追加する設定である
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+本来，NaN は 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+0.0/0.0
+\end_layout
+
+\end_inset
+
+ のように答えが定められない計算の結果を示す値である。Python には「欠損」（Not Available, missing）を表すための専用の値がなく，
+\series bold
+NumPy
+\series default
+ や 
+\series bold
+math
+\series default
+ ライブラリがサポートする NaN を欠損に転用している。しかし，R や Julia のように言語レベルで欠損をサポートするプログラミング言語と違って，欠損値と
+して一貫性のある振る舞いは期待できない。Python 用のデータ分析ライブラリである 
+\series bold
+pandas
+\series default
+ には 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+pandas.NA
+\end_layout
+
+\end_inset
+
+ という欠損を表すための値が最近になって追加されたので，この状況は少しずつ改善されるだろう。
+\end_layout
+
+\end_inset
+
+。NaN を付加すれば，名目GDP の成長率は次のように簡単に計算できる。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch03/nominal-growth>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+寄与度を計算するためには，まず各項目の増分を計算しないといけない。これにはデータ行列 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+value
+\end_layout
+
+\end_inset
+
+ に対して 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+np.diff()
+\end_layout
+
+\end_inset
+
+を取ればよい。ただし，
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+axis=0
+\end_layout
+
+\end_inset
+
+ を付けて行が伸びる方向に差分を取ることを指定する。まとめると，
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+np.diff(value, prepend=np.nan, axis=0)
+\end_layout
+
+\end_inset
+
+ が各項目の差分時系列を表している。これを名目GDP で除したものが寄与度である。単純に 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+nominal_gdp
+\end_layout
+
+\end_inset
+
+ で割るとサイズが合わないというエラーになるので，
+\begin_inset Formula $4\times1$
+\end_inset
+
+ 配列であることを明示するために 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+nominal_gdp.reshape(4, 1)
+\end_layout
+
+\end_inset
+
+ で割るとよい。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch03/nominal-contribution>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+最後に，寄与度の合計を計算すると成長率になることを確認しておこう。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch03/contribution-sum>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+不平等指数
+\end_layout
+
+\begin_layout Subsubsection*
+相対的貧困率
+\end_layout
+
+\begin_layout Standard
+相対的貧困線の計算に必要な中央値は 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+np.median()
+\end_layout
+
+\end_inset
+
+ を用いる。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch03/median>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+相対的貧困に該当するデータを発見するには次のようにする。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch03/relative-poverty>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+このデータのうち 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+True
+\end_layout
+
+\end_inset
+
+ の割合を計算したものが相対的貧困率である。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch03/relative-poverty-rate>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Problem
+節
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:相対的貧困率"
+
+\end_inset
+
+ の例に対して相対的貧困率を計算するプログラムを書きなさい。
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+answerbox{5
+\backslash
+baselineskip}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Subsubsection*
+ジニ係数
+\end_layout
+
+\begin_layout Standard
+次の人工的なデータに対してジニ係数を計算しよう。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch03/gini-random-data>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+ジニ係数を計算するためには，まずデータを小さい順に並べ替える必要がある
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+中央値の計算のためにも並べ替えは必要だが 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+np.median()
+\end_layout
+
+\end_inset
+
+ がその工程を隠蔽している
+\end_layout
+
+\end_inset
+
+。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch03/gini-sorted-data>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+式 (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:gini"
+
+\end_inset
+
+) に基づいて計算する。
+\begin_inset Formula $Y_{i}$
+\end_inset
+
+ は累積和を総和で割ったものだから，次のように計算すればよい。データの先頭にゼロを付加していることに注意。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch03/gini-cum-income>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+最後に式 (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:gini"
+
+\end_inset
+
+) の公式に当てはめればよい。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch03/gini-formula>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+トップ 1% 所得シェア
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $Q_{q}$
+\end_inset
+
+ 統計量は 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+np.quantile(a, q)
+\end_layout
+
+\end_inset
+
+ で求められる。ここで，
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+a
+\end_layout
+
+\end_inset
+
+ が配列形式のデータで，
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+q
+\end_layout
+
+\end_inset
+
+ は下側 
+\begin_inset Formula $100q$
+\end_inset
+
+ % を表す 
+\begin_inset Formula $[0,1]$
+\end_inset
+
+の数字である。トップ 1% の所得水準以上の所得というのは，
+\begin_inset Formula 
+\[
+\text{所得}\ge Q_{0.99}
+\]
+
+\end_inset
+
+と書けるので，次のように書けばトップ 1% のデータを判別できる。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch03/top-1percent>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+この総和を計算して，全体に占める割合を計算しよう。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch03/top-1percent-share>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Branch childonly
+inverted 0
+status open
+
+\begin_layout Standard
+\begin_inset CommandInset bibtex
+LatexCommand bibtex
+btprint "btPrintCited"
+bibfiles "../Bibliography/ref,../Bibliography/software,../Bibliography/bib"
+options "Styles/jecon"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document

@@ -1,0 +1,4711 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass scrbook
+\begin_preamble
+\usepackage{Styles/common}
+\usepackage{Styles/code}
+\usepackage{Styles/problem}
+
+\usepackage{url}
+
+% Knitr Setup 
+<<setup, include=FALSE>>=
+source('Knitr/setup.R')
+knitr::read_chunk('Knitr/setup.py')
+@
+% Python Setup 
+<<python-setup, include=FALSE>>=
+@ 
+\end_preamble
+\options dvipdfmx,twoside,paper=a5,fontsize=9pt
+\use_default_options true
+\master _main.lyx
+\begin_modules
+knitr
+theorems-ams-chap-bytype
+theorems-ams-extended-chap-bytype
+logicalmkup
+\end_modules
+\maintain_unincluded_children false
+\language japanese
+\language_package default
+\inputencoding utf8-platex
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\float_placement th
+\paperfontsize default
+\spacing onehalf
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine natbib
+\cite_engine_type authoryear
+\biblio_style plainnat
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date true
+\justification true
+\use_refstyle 1
+\use_minted 0
+\branch childonly
+\selected 1
+\filename_suffix 0
+\color #faf0e6
+\end_branch
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style cjk
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+mainmatter
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<engine='R', echo=FALSE>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+knitr::read_chunk('Python/ch01.py')
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Branch childonly
+inverted 0
+status open
+
+\begin_layout Standard
+\begin_inset CommandInset toc
+LatexCommand tableofcontents
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Chapter
+変化率と複利計算
+\end_layout
+
+\begin_layout Standard
+本講義のタイトルは「動態マクロ経済学」である。時間を通じて変化するマクロ経済の分析ということだ。この章では，変化量を記述する数学について基本的な部分を整理する。
+\end_layout
+
+\begin_layout Section
+概要
+\end_layout
+
+\begin_layout Standard
+経済学に限らず時間を通じて変化する対象を分析するには，変化の相対的な大きさを分析の対象にすると便利なことが多い。例えば，「5年で年収を500万円増やす」という目
+標の達成難易度は当初年収によって異なる。計画時点の年収が 500万円の人が年収 1000万円になるには並々ならぬ努力と転職を伴うかもしれない。しかし，初めから
+ 5000万円の年収を受け取っている人が年収5500万円になることは，（これは私の想像に過ぎないけれども）現在の仕事の延長線上として達成できそうな気がする。同じ
+500万円増であっても，前者は 100% の年収アップ，後者は 10% アップであるから，変化率を見れば大きな違いがあることが分かるだろう。
+\end_layout
+
+\begin_layout Standard
+現在の年収が 500万円であるとしよう。もう少し現実的な目標として次のような2つの計画を立てて，比較する。
+\end_layout
+
+\begin_layout Enumerate
+毎年 10万円ずつの年収増
+\end_layout
+
+\begin_layout Enumerate
+毎年 2% ずつの年収増
+\end_layout
+
+\begin_layout Standard
+年収が倍の1000万円になるには何年かかるだろうか。1つ目のプランは年収の増分が加法的に作用する一方で，2つ目のプランは乗法的に作用する。最初のうちは大きな違い
+はないが，時間が経過するにつれて差が大きくなっていく。
+\end_layout
+
+\begin_layout Standard
+以下では，簡単な数値例を用いて計算方法に習熟するとともに，数式や記号を用いた抽象的な思考に慣れよう。この章では，次のことを学ぶ。
+\end_layout
+
+\begin_layout Itemize
+時間を表す変数
+\end_layout
+
+\begin_layout Itemize
+時間変化の表示方法
+\end_layout
+
+\begin_layout Itemize
+平均変化率
+\end_layout
+
+\begin_layout Itemize
+複利計算
+\end_layout
+
+\begin_layout Section
+理論
+\end_layout
+
+\begin_layout Subsection
+時間を表す変数と時間変化する変数
+\end_layout
+
+\begin_layout Standard
+2017年の GDP が 500 兆円，2018年の GDP が 510 兆円だったとしよう
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+GDP とは Gross Domestic Product の略で，日本語では国内総生産と訳される。ある一定期間に国内で行われた生産活動の規模を測る指標である。
+詳しくは第
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "chap:名目GDPと実質GDP"
+
+\end_inset
+
+章で詳しく説明する。
+\end_layout
+
+\end_inset
+
+。2017年から2018年にかけての GDP の成長は
+\begin_inset Formula 
+\[
+\frac{510-500}{500}=\frac{10}{500}=0.02
+\]
+
+\end_inset
+
+によって計算できる。少し視点を変えてみよう。2017年の 500兆円と，2018年の前年度からの成長率が 2% であることが分かっていれば，2018年のGDPは
+次のようにして計算できる。
+\begin_inset Formula 
+\[
+500\times(1+0.02)=510
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+ここでちょっとした記号を導入する。少しずつ抽象化していくので，まずは腕試しだ。2017年のGDPを 
+\begin_inset Formula $\text{GDP}_{17}$
+\end_inset
+
+, 2018年のGDP を 
+\begin_inset Formula $\text{GDP}_{18}$
+\end_inset
+
+ と書くことにする。
+\begin_inset Formula 
+\begin{align*}
+\text{GDP}_{17} & =500,\qquad\text{GDP}_{18}=510
+\end{align*}
+
+\end_inset
+
+また，2017年から2018年にかけての
+\series bold
+成長率
+\series default
+
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+せいちょうりつ@成長率
+\end_layout
+
+\end_inset
+
+を 
+\begin_inset Formula $g_{18/17}$
+\end_inset
+
+ と書くと，
+\begin_inset Formula 
+\[
+g_{18/17}=\frac{\text{GDP}_{18}-\text{GDP}_{17}}{\text{GDP}_{17}}=\frac{\text{GDP}_{18}}{\text{GDP}_{17}}-1
+\]
+
+\end_inset
+
+および
+\begin_inset Formula 
+\[
+\text{GDP}_{18}=\left(1+g_{18/17}\right)\text{GDP}_{17}
+\]
+
+\end_inset
+
+と書ける。言語的な表現に近い記法を用いると読みやすい式が書ける。一方で，少し煩わしさを感じる読者もいるかもしれない。次に進もう。なお，GDP については成長率と
+いう言葉を用いることが多いが，より一般的な
+\series bold
+増減率
+\series default
+とか
+\series bold
+変化率
+\series default
+と同じものである。
+\end_layout
+
+\begin_layout Standard
+数学モデルを構築するときにはさらに簡略化した表記が便利である。言語的な表現から離れるので，記号が何を意味しているかを常に意識しながら読む必要が生じるものの，コン
+パクトな表現が数式の操作を容易にしてくれるというご利益がある。時間を表現する変数には 
+\begin_inset Formula $t$
+\end_inset
+
+ を用いるのが慣例である。
+\begin_inset Formula $t=0$
+\end_inset
+
+ が分析の起点で，
+\begin_inset Formula $t=1,2,3,\dots$
+\end_inset
+
+ と数字が増えるにつれて特定の定まった間隔で時間が進行する。例えば，2010年を分析の起点として，1年毎の観測をもとに分析を進めるとすれば，
+\begin_inset Formula 
+\[
+t=0\Leftrightarrow\text{2010年},\quad t=1\Leftrightarrow\text{2011年},\quad\cdots
+\]
+
+\end_inset
+
+のような対応関係を作ることができる。なお，整数値を取る時間軸上に構築された数理モデルを「
+\series bold
+離散時間モデル
+\series default
+
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+りさんじかんもでる@離散時間モデル
+\end_layout
+
+\end_inset
+
+」と呼ぶ。
+\end_layout
+
+\begin_layout Standard
+GDP に対して記号 
+\begin_inset Formula $y$
+\end_inset
+
+ を使うとしよう。すると，
+\begin_inset Formula $y_{0}$
+\end_inset
+
+ は 2010年のGDP，
+\begin_inset Formula $y_{1}$
+\end_inset
+
+は 2011年の GDP のように理解される。この記法を用いれば，前述の数値例は
+\begin_inset Formula 
+\begin{align*}
+y_{7} & =500,\qquad y_{8}=510
+\end{align*}
+
+\end_inset
+
+と書ける。「2017年の GDP は 500」というかわりに，「
+\begin_inset Formula $7$
+\end_inset
+
+期のGDPは 500」という。特定の期を固定することなく，一般の 
+\begin_inset Formula $t$
+\end_inset
+
+ のままで議論を進められる方が数学的には何かと都合がよいことが多い。 単に，「
+\begin_inset Formula $t$
+\end_inset
+
+ 期の GDP は 
+\begin_inset Formula $y_{t}$
+\end_inset
+
+，
+\begin_inset Formula $(t+1)$
+\end_inset
+
+ 期の GDP は 
+\begin_inset Formula $y_{t+1}$
+\end_inset
+
+ である」のように言ったときには，
+\begin_inset Formula $t=10$
+\end_inset
+
+ でも 
+\begin_inset Formula $t=208$
+\end_inset
+
+ でも何でもよいと考えているのである。普通は 
+\begin_inset Formula $t$
+\end_inset
+
+ が取る値の範囲まで示して，「
+\begin_inset Formula $y_{t}$
+\end_inset
+
+, 
+\begin_inset Formula $t=0,1,2,\dots,$
+\end_inset
+
+ は 
+\begin_inset Formula $t$
+\end_inset
+
+期の GDP である」のように書く
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+ここで，
+\begin_inset Formula $t=0,1,2,\dots$
+\end_inset
+
+ のようにピリオドを3つ並べた記法は以下略という意味である，省略されている内容が文脈から読み取れるとき以外には使わない。ある特定の 
+\begin_inset Formula $T$
+\end_inset
+
+ が 
+\begin_inset Formula $t$
+\end_inset
+
+ の最大値であると考えている場合には，
+\begin_inset Formula $t=0,1,2,\dots,T$
+\end_inset
+
+ と書く。
+\end_layout
+
+\end_inset
+
+。
+\begin_inset Formula $y_{t}$
+\end_inset
+
+ のように，一定時間おきの観測値を表すデータを
+\series bold
+時系列
+\series default
+
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+じけいれつ@時系列
+\end_layout
+
+\end_inset
+
+とか
+\series bold
+時系列データ
+\series default
+という。
+\end_layout
+
+\begin_layout Problem
+分析の起点を 1951年 (
+\begin_inset Formula $t=0$
+\end_inset
+
+) とする。
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+第
+\begin_inset Formula $58$
+\end_inset
+
+期 (
+\begin_inset Formula $t=58$
+\end_inset
+
+) は西暦に換算すると何年か？
+\end_layout
+
+\begin_layout Enumerate
+一般の 
+\begin_inset Formula $t$
+\end_inset
+
+ 期は西暦何年か？ 
+\begin_inset Formula $t$
+\end_inset
+
+ を用いた公式を導きなさい。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+answerbox{4
+\backslash
+baselineskip}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Remark
+分析の開始期を 
+\begin_inset Formula $t=0$
+\end_inset
+
+ としたが，これを 
+\begin_inset Formula $t=1$
+\end_inset
+
+ としてもよい。
+\begin_inset Formula $t=3$
+\end_inset
+
+ とか 
+\begin_inset Formula $t=2000$
+\end_inset
+
+ を起点としてもあまり嬉しいことはない。本書では配列のインデックスがゼロから始まる Python を用いたので，
+\begin_inset Formula $t=0$
+\end_inset
+
+ を起点とする方が使いやすい。
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+qed
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Remark
+Python で表形式データを扱うためのライブラリ Pandas を用いると，実際の西暦や日付等をインデックスとして利用することができるので，実データ分析に限っ
+て言えば前述のような抽象化を使わずに済む場合も多い。しかし，数理モデルを使ったシミュレーションや高度な分析を行う場合にはNumPyの配列を直接操作する方が都合が
+よいこともあるので，ゼロから始まる整数のインデックスを使う考え方に習熟しておこう。
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+qed
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Problem
+\begin_inset CommandInset label
+LatexCommand label
+name "prob:quarter-gdp"
+
+\end_inset
+
+1年間のGDPではなく四半期GDPを分析したいとしよう。2000年の第1四半期（1
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+--
+\end_layout
+
+\end_inset
+
+3 月期）を分析の起点 
+\begin_inset Formula $t=0$
+\end_inset
+
+ とする。
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Formula $t=1,2,\dots$
+\end_inset
+
+ と四半期GDP 
+\begin_inset Formula $y_{1},y_{2},\dots$
+\end_inset
+
+ が表す内容を下表に書き下しなさい。
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Float table
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+centering
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Tabular
+<lyxtabular version="3" rows="7" columns="2">
+<features booktabs="true" tabularvalignment="middle">
+<column alignment="left" valignment="top">
+<column alignment="left" valignment="top">
+<row>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+記号
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+意味
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $t=0$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2000年の第1四半期（1
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+--
+\end_layout
+
+\end_inset
+
+3 月期）
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $y_{0}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2000年の第1四半期の四半期GDP
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $t=1$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $y_{1}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $t=2$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $y_{2}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+\begin_inset Formula $t=10$
+\end_inset
+
+, 
+\begin_inset Formula $t=35$
+\end_inset
+
+ はそれぞれ何年の第何四半期にあたるか？
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+answerbox{3
+\backslash
+baselineskip}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Remark
+問題
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "prob:quarter-gdp"
+
+\end_inset
+
+では暦年について4つの四半期を考えた。1月始まりでない一般の会計年度を用いる場合には，例えば，「2019年度第3四半期」が表しているものが何かをきちんと意識する
+必要がある。会計年度の始まりが 4月であれば，日本で育った人にとっての標準的な理解は「2019年の 10
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+--
+\end_layout
+
+\end_inset
+
+12月期」ということになるだろう。しかし，2018年の 10
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+--
+\end_layout
+
+\end_inset
+
+12月期と表すということがあるらしい。というよりむしろ後者が国際的なスタンダードのようだ。つまり，「2019年度」というのは「その会計年度の終了月が
+ 2019年にある」ということになる。
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+qed
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+時間変化の大きさ
+\end_layout
+
+\begin_layout Standard
+変数 
+\begin_inset Formula $y$
+\end_inset
+
+ の， 
+\begin_inset Formula $t$
+\end_inset
+
+期から 
+\begin_inset Formula $(t+1)$
+\end_inset
+
+ 期にかけての変化を表す基本的な方法は
+\series bold
+差分
+\series default
+
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+さぶん@差分
+\end_layout
+
+\end_inset
+
+ (difference
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+difference
+\end_layout
+
+\end_inset
+
+) を取ることである。 
+\begin_inset Formula 
+\[
+\Delta y_{t+1}=y_{t+1}-y_{t}.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+しかし，冒頭で述べたように 
+\begin_inset Formula $\Delta y_{t+1}$
+\end_inset
+
+ の大きさが意味する内容（容易に起こりそうな変化か，なかなか起こりそうにない変化か）は 
+\begin_inset Formula $y_{t}$
+\end_inset
+
+ の大きさによって異なる。この問題は変化率を計算することで解決できる。
+\begin_inset Formula $t$
+\end_inset
+
+ 期から 
+\begin_inset Formula $(t+1)$
+\end_inset
+
+ 期にかけての 
+\begin_inset Formula $y$
+\end_inset
+
+ の変化率
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+へんかりつ@変化率
+\end_layout
+
+\end_inset
+
+（あるいは成長率
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+せいちょうりつ@成長率
+\end_layout
+
+\end_inset
+
+）を 
+\begin_inset Formula $g_{t+1}$
+\end_inset
+
+ と書くことにしよう。これは，
+\begin_inset Formula 
+\[
+g_{t+1}=\frac{\Delta y_{t+1}}{y_{t}}=\frac{y_{t+1}-y_{t}}{y_{t}}=\frac{y_{t+1}}{y_{t}}-1
+\]
+
+\end_inset
+
+と定義される。もちろん，
+\begin_inset Formula 
+\[
+y_{t+1}=(1+g_{t+1})y_{t}
+\]
+
+\end_inset
+
+ である。変数 
+\begin_inset Formula $y$
+\end_inset
+
+ が前節のGDPを表すとすれば，
+\begin_inset Formula 
+\[
+g_{8}=0.02
+\]
+
+\end_inset
+
+となる。 ここでは，
+\begin_inset Formula $g_{8}$
+\end_inset
+
+ は 8期のGDP の前年度からの成長率と解釈される。なお，
+\begin_inset Formula 
+\[
+1+g_{t+1}=\frac{y_{t+1}}{y_{t}}
+\]
+
+\end_inset
+
+は
+\series bold
+粗成長率
+\series default
+
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+そせいちょうりつ@粗成長率
+\end_layout
+
+\end_inset
+
+（gross growth rate
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+gross growth rate
+\end_layout
+
+\end_inset
+
+）という。
+\end_layout
+
+\begin_layout Remark
+記号の定義は毎回必ずチェックする必要があることに注意しよう。例えば，
+\begin_inset Formula 
+\[
+g_{t}=\frac{y_{t+1}-y_{t}}{y_{t}}
+\]
+
+\end_inset
+
+と成長率を定義する人がいても不思議ではない。逆に言えば，
+\series bold
+数式を使った分析を実行するのであれば，すべての記号の定義を述べるのが読者に対する最低限の礼儀である
+\series default
+
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+私が未定義の記号を無断で使ってしまっている場合には教えて下さい。訂正します。
+\end_layout
+
+\end_inset
+
+。
+\begin_inset Formula $y$
+\end_inset
+
+ だから GDP とか，
+\begin_inset Formula $t$
+\end_inset
+
+ だから時間だといった思い込みでさえ邪魔である。排除しよう。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Remark
+ただし，定義しさえすればどんな記号を使ってもよいという訳ではない。慣例的に使われている記号から逸脱することは避けたほうがよい。例えば，GDP を
+ 
+\begin_inset Formula $g$
+\end_inset
+
+ として，GDP 成長率を 
+\begin_inset Formula $r$
+\end_inset
+
+ にするような選択をしたら大混乱を招くだろう。
+\end_layout
+
+\begin_layout Problem
+ある連続する2期の四半期GDPの原系列 
+\begin_inset Formula $y_{t}$
+\end_inset
+
+, 
+\begin_inset Formula $y_{t+1}$
+\end_inset
+
+ が与えられているとする
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+原系列というのは変換操作を施していない生の時系列データのこと。
+\end_layout
+
+\end_inset
+
+。この2期間に渡って「成長率」
+\begin_inset Formula 
+\[
+\frac{y_{t+1}-y_{t}}{y_{t}}
+\]
+
+\end_inset
+
+を計算することの問題点を指摘しなさい。（ヒント：購買行動の季節変化を考える）
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+answerbox{4
+\backslash
+baselineskip}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+隣接するデータ同士で成長率を計算するにはデータから季節変動を除去しなければならない（
+\series bold
+季節調整
+\series default
+
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+きせつちょうせい@季節調整
+\end_layout
+
+\end_inset
+
+という）。本講義では，季節調整済みのデータのみを扱い，この問題は解決しているものとする。季節調整法の詳細に関心のある読者は
+\begin_inset CommandInset citation
+LatexCommand citet
+key "Kitagawa2005"
+literal "false"
+
+\end_inset
+
+を参照せよ。
+\end_layout
+
+\begin_layout Subsection
+累積成長と平均成長率
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $t=0,1,2,\dots$
+\end_inset
+
+ を期を表す変数，
+\begin_inset Formula $y_{t}$
+\end_inset
+
+ を 
+\begin_inset Formula $t$
+\end_inset
+
+期の GDP とする。
+\begin_inset Formula $n=1,2,\dots$
+\end_inset
+
+ に対して，
+\begin_inset Formula $n$
+\end_inset
+
+ 期間の成長は次のように計算される。
+\begin_inset Formula 
+\[
+\frac{y_{t+n}-y_{t}}{y_{t}}=\frac{y_{t+n}}{y_{t}}-1
+\]
+
+\end_inset
+
+これは 
+\begin_inset Formula $n$
+\end_inset
+
+ 期間で起こる成長の大きさを測る指標だから，
+\begin_inset Formula $1$
+\end_inset
+
+期分の成長とはスケールが異なることに注意しよう。1期が1年の場合の変化率には「年率」などの便利な表現があるが，期間の長さが一般の場合にも使える一般的な日本語表現
+が定まっていないようなので，本書では「期間変化率
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+きかんへんかりつ@期間変化率
+\end_layout
+
+\end_inset
+
+」とか「期間成長率
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+きかんせいちょうりつ@期間成長率
+\end_layout
+
+\end_inset
+
+」という言葉を用いることにしよう。
+\end_layout
+
+\begin_layout Example
+ある 
+\begin_inset Formula $y_{t}$
+\end_inset
+
+ の水準から，年率 2% の成長が3年間続いたとすれば（1年を1期としている），3年後のGDP, 
+\begin_inset Formula $y_{t+3}$
+\end_inset
+
+, は次のように計算できる。
+\begin_inset Formula 
+\[
+y_{t+1}=1.02y_{t},\quad y_{t+2}=1.02y_{t+1},\quad y_{t+3}=1.02y_{t+2}
+\]
+
+\end_inset
+
+だから，
+\begin_inset Formula 
+\[
+y_{t+3}=1.02^{3}y_{t}\approx1.061y_{t}
+\]
+
+\end_inset
+
+である。1年間の成長が 2% のとき，3年間の成長は 6.1% と，およそ 3倍の大きさになる。
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+qed
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Example
+国民経済計算（GDP統計）の四半期GDP速報では季節調整済み前期比が公開される。前期比の成長率が 
+\begin_inset Formula $g$
+\end_inset
+
+ （例えば，
+\begin_inset Formula $g=0.01$
+\end_inset
+
+ とか 
+\begin_inset Formula $g=0.005$
+\end_inset
+
+）のとき，年率換算した GDP 成長率は次のように計算される。
+\begin_inset Formula 
+\[
+\text{四半期GDP成長率（季節調整済み前期比）の年率換算値}=(1+g)^{4}-1
+\]
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+qed
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Remark
+「1期」が表す期間が1年なのか四半期なのか，あるいは1ヶ月なのかといった違いは数理モデルの記述には現れない。それではモデルと現実をどうやって接続するのかというと
+，成長率や利子率の大きさと期間の長さの関係を用いることが多い。例えば，現実のGDP成長率が年率にして 2% であるとしよう。このとき，期間成長率が
+ 6% であるとしてモデルをセットアップするなら，
+\begin_inset Formula $\text{1期}\approx\text{3年}$
+\end_inset
+
+であると考えるのが自然だろう。
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+qed
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+粗成長率 
+\begin_inset Formula $y_{t+n}/y_{t}$
+\end_inset
+
+ を次のように書き換える。
+\begin_inset Formula 
+\begin{align*}
+\frac{y_{t+n}}{y_{t}} & =\frac{y_{t+n}}{y_{t+n-1}}\times\frac{y_{t+n-1}}{y_{t+n-2}}\times\cdots\times\frac{y_{t+2}}{y_{t+1}}\times\frac{y_{t+1}}{y_{t}}\\
+ & =\underbrace{\left(1+g_{t+n}\right)\times\left(1+g_{t+n-1}\right)\times\cdots\times\left(1+g_{t+2}\right)\times\left(1+g_{t+1}\right)}_{n\text{ 個}}.
+\end{align*}
+
+\end_inset
+
+
+\begin_inset Formula $t$
+\end_inset
+
+ 期と 
+\begin_inset Formula $t+n$
+\end_inset
+
+ 期の間の 
+\begin_inset Formula $y$
+\end_inset
+
+ の
+\series bold
+平均成長率
+\series default
+
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+へいきんせいちょうりつ@平均成長率
+\end_layout
+
+\end_inset
+
+あるいは
+\series bold
+平均変化率
+\series default
+
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+へいきんへんかりつ@平均変化率
+\end_layout
+
+\end_inset
+
+とは，当該期間で一定の期間変化率を保って 
+\begin_inset Formula $y_{t}$
+\end_inset
+
+ から
+\begin_inset Formula $y_{t+n}$
+\end_inset
+
+ に変化するとしたときの，その一定の期間変化率のことである。平均成長率 
+\begin_inset Formula $\bar{g}$
+\end_inset
+
+ は次の性質を持つ。
+\begin_inset Formula 
+\[
+\frac{y_{t+n}}{y_{t}}=\underbrace{\left(1+\bar{g}\right)\times\left(1+\bar{g}\right)\times\cdots\times\left(1+\bar{g}\right)\times\left(1+\bar{g}\right)}_{n\text{ 個}}=\left(1+\bar{g}\right)^{n}.
+\]
+
+\end_inset
+
+したがって，
+\begin_inset Formula $\bar{g}$
+\end_inset
+
+ は次のように計算できる。
+\begin_inset Formula 
+\begin{align*}
+\bar{g} & =\left(\frac{y_{t+n}}{y_{t}}\right)^{\frac{1}{n}}-1
+\end{align*}
+
+\end_inset
+
+あるいは，隣接する2期の間の成長率 
+\begin_inset Formula $g_{t+1},g_{t+2},\dots,g_{t+n}$
+\end_inset
+
+を用いると，
+\begin_inset Formula 
+\begin{equation}
+\bar{g}=\left\{ \left(1+g_{t+n}\right)\left(1+g_{t+n-1}\right)\cdots\left(1+g_{t+2}\right)\left(1+g_{t+1}\right)\right\} ^{\frac{1}{n}}-1.\label{eq:avg-growth-rate}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Problem
+\begin_inset Formula $n$
+\end_inset
+
+ 個の実数を適当に選び，
+\begin_inset Formula $i=1,2,\dots,n$
+\end_inset
+
+ でインデックス付けしたものを 
+\begin_inset Formula $x_{1},x_{2},\dots,x_{n}$
+\end_inset
+
+ と書こう。これらの数をすべて足した値は，
+\begin_inset Formula $\sum$
+\end_inset
+
+ を使って次のように書く。
+\begin_inset Formula 
+\[
+\sum_{i=1}^{n}x_{i}=x_{1}+x_{2}+\cdots+x_{n}.
+\]
+
+\end_inset
+
+この記法を使った次の等式を示しなさい。
+\begin_inset Formula 
+\[
+y_{t+n}-y_{n}=\sum_{i=1}^{n}\Delta y_{t+i}.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+answerbox{3
+\backslash
+baselineskip}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Problem
+加算記号 
+\begin_inset Formula $\sum$
+\end_inset
+
+ の乗算バージョンは 
+\begin_inset Formula $\prod$
+\end_inset
+
+ である。この記号は指定されたすべての数の積を表す。
+\begin_inset Formula 
+\[
+\prod_{i=1}^{n}x_{i}=x_{1}x_{2}\times\cdots\times x_{n}.
+\]
+
+\end_inset
+
+この記法を用いて，(
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:avg-growth-rate"
+
+\end_inset
+
+) の公式を書き直しなさい。
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+answerbox{3
+\backslash
+baselineskip}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Subsection
+成長率と対数関数
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $b>0$
+\end_inset
+
+ かつ 
+\begin_inset Formula $b\neq1$
+\end_inset
+
+ とする。
+\begin_inset Formula $b$
+\end_inset
+
+ を底とする対数関数 
+\begin_inset Formula $\log_{b}(\cdot)$
+\end_inset
+
+ は次の性質を持つ
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+関数の独立変数を囲むカッコは省略することが多い。
+\end_layout
+
+\end_inset
+
+。
+\end_layout
+
+\begin_layout Enumerate
+任意の 
+\begin_inset Formula $x,y>0$
+\end_inset
+
+ について，
+\begin_inset Formula 
+\[
+\log_{b}xy=\log_{b}x+\log_{b}y,\qquad\log_{b}\frac{x}{y}=\log_{b}x-\log_{b}y
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+任意の 
+\begin_inset Formula $x>0$
+\end_inset
+
+ と任意の実数 
+\begin_inset Formula $z$
+\end_inset
+
+ について，
+\begin_inset Formula $\log_{b}x^{z}=z\log_{b}x.$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+任意の 
+\begin_inset Formula $x>0$
+\end_inset
+
+ について，
+\begin_inset Formula $b^{\log_{b}x}=x.$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $\log_{b}1=0$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $\log_{b}b=1$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+底 
+\begin_inset Formula $b$
+\end_inset
+
+ を変えることで生じるのは，対数関数の定数倍の違いである。
+\end_layout
+
+\begin_layout Proposition
+\begin_inset Formula $b,c>0$
+\end_inset
+
+, 
+\begin_inset Formula $b\neq1\neq c$
+\end_inset
+
+ とする。任意の 
+\begin_inset Formula $x>0$
+\end_inset
+
+ に対して，
+\begin_inset Formula 
+\[
+\log_{b}x=\log_{b}c\times\log_{c}x.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Proof
+これを示すには，
+\begin_inset Formula 
+\[
+b^{\log_{b}x}=b^{\log_{b}c\times\log_{c}x}
+\]
+
+\end_inset
+
+を示せばよい。対数関数の性質から左辺は 
+\begin_inset Formula $x$
+\end_inset
+
+ である。右辺の方も 
+\begin_inset Formula $x$
+\end_inset
+
+ と一致することを次のようにして確認できる。
+\begin_inset Formula 
+\[
+b^{\log_{b}c\times\log_{c}x}=\left(b^{\log_{b}c}\right)^{\log_{c}x}=c^{\log_{c}x}=x.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+底としてよく使われるのは， 
+\begin_inset Formula $b=2$
+\end_inset
+
+ や 
+\begin_inset Formula $10$
+\end_inset
+
+ である。
+\begin_inset Formula $\log_{10}(\cdot)$
+\end_inset
+
+ を
+\series bold
+常用対数
+\series default
+
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+じょうようたいすう@常用対数
+\end_layout
+
+\end_inset
+
+という。
+\end_layout
+
+\begin_layout Example
+変数を2倍にすると 
+\begin_inset Formula $\log_{2}(\cdot)$
+\end_inset
+
+ を取った値は 1だけ大きくなる。なぜなら，
+\begin_inset Formula 
+\[
+\log_{2}2x=\log_{2}2+\log_{2}x=1+\log_{2}x.
+\]
+
+\end_inset
+
+同様の方法で，変数を 10倍にすると
+\begin_inset Formula $\log_{10}(\cdot)$
+\end_inset
+
+ は1だけ大きくなることを示せる。
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+qed
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\log_{2}(\cdot)$
+\end_inset
+
+ や 
+\begin_inset Formula $\log(\cdot)$
+\end_inset
+
+ は人間が数字を評価するときには使いやすいが，数学的に最も便利という訳ではない。微分積分と最も親和性が高いのが
+\series bold
+自然対数
+\series default
+
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+しぜんたいすう@自然対数
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Formula $\log_{e}(\cdot)$
+\end_inset
+
+ である。底 
+\begin_inset Formula $e$
+\end_inset
+
+ は
+\series bold
+ネイピア数
+\series default
+
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+ねいぴあすう@ネイピア数
+\end_layout
+
+\end_inset
+
+や
+\series bold
+自然対数の底
+\series default
+
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+しぜんたいすうのてい@自然対数の底
+\end_layout
+
+\end_inset
+
+と呼ばれ，次のように定義される。
+\begin_inset Formula 
+\begin{equation}
+e=\lim_{n\to+\infty}\left(1+\frac{1}{n}\right)^{n}.\label{eq:napier}
+\end{equation}
+
+\end_inset
+
+自然対数 
+\begin_inset Formula $\log_{e}(\cdot)$
+\end_inset
+
+ は通常，
+\begin_inset Formula $\log(\cdot)$
+\end_inset
+
+ のように 
+\begin_inset Formula $e$
+\end_inset
+
+ を省略して書くか，
+\begin_inset Formula $\ln(\cdot)$
+\end_inset
+
+ という特別な記号を用いて表現する。この講義では 
+\begin_inset Formula $\log(\cdot)$
+\end_inset
+
+ という記法を採用する。
+\end_layout
+
+\begin_layout Standard
+自然対数の微分
+\begin_inset Formula 
+\[
+\left(\log x\right)'=\frac{1}{x}
+\]
+
+\end_inset
+
+は証明なしで認めておこう
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+指数関数や対数関数をどのように定義するかによって議論が変わってくる。大学初年次で使った微分積分学の教科書を参考にせよ。
+\end_layout
+
+\end_inset
+
+。正値関数 
+\begin_inset Formula $f(\cdot)$
+\end_inset
+
+ の自然対数の微分もよく使われるので，覚えておこう。
+\begin_inset Formula 
+\[
+\left(\log f(x)\right)'=\frac{f'(x)}{f(x)}.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+次の性質はよく使われる。
+\end_layout
+
+\begin_layout Proposition
+\begin_inset CommandInset label
+LatexCommand label
+name "prop:log(1+x)-approx"
+
+\end_inset
+
+
+\begin_inset Formula $x$
+\end_inset
+
+ がゼロに十分近いとき，次の近似式が成り立つ
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+「十分近い」とか「十分大きい」という数学的な表現はよく使うので意味するところを覚えておこう。ここでは 
+\begin_inset Formula $|x|\to0$
+\end_inset
+
+ の極限で
+\begin_inset Formula $|\log\left(1+x\right)-x|\to0$
+\end_inset
+
+ が成り立つという意味である。
+\end_layout
+
+\end_inset
+
+。
+\begin_inset Formula 
+\[
+\log\left(1+x\right)\approx x
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Proof
+テイラー展開を使って証明してみよう。
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+answerbox{10
+\backslash
+baselineskip}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+図
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:対数関数の近似"
+
+\end_inset
+
+ には 
+\begin_inset Formula $y=x$
+\end_inset
+
+ と 
+\begin_inset Formula $y=\log\left(1+x\right)$
+\end_inset
+
+ のグラフが描かれている。
+\begin_inset Formula $x=0$
+\end_inset
+
+ の周りで2つの関数が近接していることを確認してほしい。
+\begin_inset Formula $|x|$
+\end_inset
+
+ が大きくなるとグラフは次第に離れていく。つまり，
+\begin_inset Formula $|x|$
+\end_inset
+
+ が大きいときには命題
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "prop:log(1+x)-approx"
+
+\end_inset
+
+ の近似は使えなくなるなる。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch01/plot-log-approx/graphics>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+centering
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+includegraphics[height=0.4
+\backslash
+textheight]{Figure/ch01/plot-log-approx-1}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+対数関数の近似
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:対数関数の近似"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+この命題を用いると「
+\series bold
+対数差分は変化率を近似する
+\series default
+」ことが分かる。すなわち，
+\end_layout
+
+\begin_layout Proposition
+\begin_inset CommandInset label
+LatexCommand label
+name "prop:log-approx"
+
+\end_inset
+
+
+\begin_inset Formula $y_{t}>0$
+\end_inset
+
+ と 
+\begin_inset Formula $y_{t+1}>0$
+\end_inset
+
+ が十分近ければ，次の近似公式が成り立つ。
+\begin_inset Formula 
+\[
+\Delta\log y_{t+1}=\log y_{t+1}-\log y_{t}\approx\frac{\Delta y_{t+1}}{y_{t}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Proof
+対数の差が商の対数になることに注意すると，
+\begin_inset Formula 
+\begin{align*}
+\Delta\log y_{t+1} & =\log y_{t+1}-\log y_{t}\\
+ & =\log\frac{y_{t+1}}{y_{t}}\\
+ & =\log\left(1+\frac{y_{t+1}-y_{t}}{y_{t}}\right)\\
+ & =\log\left(1+\frac{\Delta y_{t+1}}{y_{t}}\right)\\
+ & \approx\frac{\Delta y_{t+1}}{y_{t}}.
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Example
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+Rule of 70
+\end_layout
+
+\end_inset
+
+年率 
+\begin_inset Formula $x$
+\end_inset
+
+ %で成長している変数が 2倍になるために必要な年数はおよそ 
+\begin_inset Formula $70/x$
+\end_inset
+
+ 年である。これは 「Rule of 70」 と呼ばれる近似公式である。例えば，年率 2% で成長している変数は，35年で2倍になる。証明を与えておこう。当初
+ 
+\begin_inset Formula $y$
+\end_inset
+
+ である変数が年率
+\begin_inset Formula $x$
+\end_inset
+
+% で成長して 
+\begin_inset Formula $T$
+\end_inset
+
+ 年で2倍になるとすれば，
+\begin_inset Formula $y,x,T$
+\end_inset
+
+ について次の式が成り立つ。
+\begin_inset Formula 
+\[
+\left(1+\frac{x}{100}\right)^{T}y=2y
+\]
+
+\end_inset
+
+両辺の対数を取ると，
+\begin_inset Formula 
+\[
+T\log\left(1+\frac{x}{100}\right)+\log y=\log2+\log y
+\]
+
+\end_inset
+
+したがって，
+\begin_inset Formula 
+\[
+T=\frac{\log2}{\log\left(1+\frac{x}{100}\right)}\approx\frac{\log2}{x/100},
+\]
+
+\end_inset
+
+最後の近似には命題
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "prop:log-approx"
+
+\end_inset
+
+を使っている。
+\begin_inset Formula $\log2=0.693147\cdots$
+\end_inset
+
+ なので，
+\begin_inset Formula 
+\[
+T\approx\frac{69.3}{x}
+\]
+
+\end_inset
+
+という近似が成り立つ。計算が容易になるように，
+\begin_inset Formula $T\approx70/x$
+\end_inset
+
+ という公式がよく使われている。
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+qed
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+複利計算と指数関数
+\end_layout
+
+\begin_layout Subsubsection*
+指数的成長
+\end_layout
+
+\begin_layout Standard
+銀行に 100万円を預けているとする。利息の年率を 6% とする。もちろん，計算を簡単にするために選んだ数字だ。追加の預け入れも引き出しもしなければ，1年後には
+ 106万円になっている（諸々の税・手数料等を支払った後の利率が 6% としている）。さらに1年間預金に手を付けなければ預金残高は 112.36万円となる。前節ま
+でで扱った成長の公式と同じ計算方式なので，すでに予想はついていると思うが，
+\begin_inset Formula $t$
+\end_inset
+
+ 年後 (
+\begin_inset Formula $t=1,2,3,\dots$
+\end_inset
+
+) の預金残高は 
+\begin_inset Formula $1.06^{t}\times100$
+\end_inset
+
+ 万円である。受け取った利息にも利息が付くので， 
+\begin_inset Formula $t$
+\end_inset
+
+ が増えるたび資産の増え方が早くなっていく。金融資産の評価の文脈では，このような計算方式を
+\series bold
+複利計算
+\series default
+
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+ふくりけいさん@複利計算
+\end_layout
+
+\end_inset
+
+（compounding
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+compounding
+\end_layout
+
+\end_inset
+
+）と呼ぶ。
+\end_layout
+
+\begin_layout Standard
+複利計算と似て非なるものとして単利計算
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+たんりけいさん@単利計算
+\end_layout
+
+\end_inset
+
+という計算方式がある。これは，利息には利息がつかないという契約である。上記の例で利息を毎回引き出してタンス貯金すれば，
+\begin_inset Formula $t$
+\end_inset
+
+ 年後の資産残高（銀行 
+\begin_inset Formula $+$
+\end_inset
+
+ タンス）は 
+\begin_inset Formula $(100+6t)$
+\end_inset
+
+万円になる
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+タンス預金にしなくても，このような状況を作ることができる。例えば，平均リターン 6% の投資信託を100万円分購入し，配当を再投資しないように設定すればよい。
+\end_layout
+
+\end_inset
+
+。複利計算と単利計算は短期的には大きな違いはないが，運用期間が長くなるにつれて差がどんどん大きくなる。図
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:複利計算と単利計算"
+
+\end_inset
+
+で確認してほしい。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch01/plot-compounding/graphics>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+centering
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+includegraphics[height=0.4
+\backslash
+textheight]{Figure/ch01/plot-compounding-1}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+複利計算と単利計算
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:複利計算と単利計算"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+GDP 成長率の国際比較をするときに見かけ上は小さな差（例えば，1% か 2% か）を無視できないのは，小さな成長率の格差が長期的に大きな GDP
+ の差につながることがあるからだ。複利計算のときのようにどんどん増えていくような状況を「指数的に増える」とか「幾何級数的に増える」などと表現する。
+\end_layout
+
+\begin_layout Subsubsection*
+ネイピア数再び
+\end_layout
+
+\begin_layout Standard
+さて，ここまでは利息が毎年一回受け取れるものとして計算を進めてきた。もっと頻繁に利息を受け取れるとすればどうなるだろう。例えば，毎月1回あるいは毎日1回利息が支
+払われるとすれば1年後の預金残高はいくらになっているだろうか。
+\end_layout
+
+\begin_layout Standard
+各回の利息を計算するための基本の計算式は
+\begin_inset Formula 
+\[
+\text{各回の利率}=\text{年率}\div\text{年間の受取回数}
+\]
+
+\end_inset
+
+となる。つまり，年率 
+\begin_inset Formula $6\%$
+\end_inset
+
+ の預金で毎月1回利息を受け取れるとすれば，月率は 
+\begin_inset Formula $6\%\div12=0.5\%$
+\end_inset
+
+ となる。初期預金残高を 100万円とすれば，1年後， 12回目の利息を受け取った後には 
+\begin_inset Formula $1.005^{12}\times100=106.1677\cdots$
+\end_inset
+
+ 万円になっている。年率 6% の預金で毎日1回利息を受け取る場合1年後には， 
+\begin_inset Formula $(1+6\%\div365)^{365}\times100=1.06183\cdots$
+\end_inset
+
+ 万円になる。当初資産額を 
+\begin_inset Formula $S_{0}$
+\end_inset
+
+，利子率の年率を 
+\begin_inset Formula $r$
+\end_inset
+
+，受け取り回数を 
+\begin_inset Formula $N$
+\end_inset
+
+ とすれば 1年後の資産残高は
+\begin_inset Formula 
+\[
+\left(1+\frac{r}{N}\right)^{N}S_{0}
+\]
+
+\end_inset
+
+ となる。
+\begin_inset Formula $S_{0}$
+\end_inset
+
+ にかかる式を次のように変形する。
+\begin_inset Formula 
+\[
+\left(1+\frac{r}{N}\right)^{N}=\left(1+\frac{1}{N/r}\right)^{N}=\left[\left(1+\frac{1}{N/r}\right)^{N/r}\right]^{r}
+\]
+
+\end_inset
+
+最右辺で 
+\begin_inset Formula $r$
+\end_inset
+
+ 乗される数が (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:napier"
+
+\end_inset
+
+) と同じ形であることに注意してほしい：
+\begin_inset Formula 
+\begin{align*}
+n & \longleftrightarrow\frac{N}{r}\\
+\left(1+\frac{1}{n}\right)^{n} & \longleftrightarrow\left(1+\frac{1}{N/r}\right)^{N/r}
+\end{align*}
+
+\end_inset
+
+
+\begin_inset Formula $N\to\infty\Leftrightarrow N/r\to\infty$
+\end_inset
+
+ だから，
+\begin_inset Formula 
+\[
+\lim_{N\to\infty}\left(1+\frac{r}{N}\right)^{N}=\lim_{N/r\to\infty}\left[\left(1+\frac{1}{N/r}\right)^{N/r}\right]^{r}=e^{r}
+\]
+
+\end_inset
+
+となる。
+\begin_inset Formula $N\to\infty$
+\end_inset
+
+ というのは，すべての瞬間瞬間で利息を受け取れる仮想的な状況を表している。利息受け取りが時間的に連続した状況を考えているので，
+\series bold
+連続複利計算
+\series default
+と呼ぶ。1年後の資産残高は無限に大きくなる訳ではなく 
+\begin_inset Formula $e^{r}$
+\end_inset
+
+ 倍になることに注意しよう。なお，この1年間の変化
+\begin_inset Formula 
+\[
+S_{0}\longrightarrow S_{0}e^{r}
+\]
+
+\end_inset
+
+について，対数差分を用いて変化率を求めると，
+\begin_inset Formula 
+\begin{align*}
+\log\left(S_{0}e^{r}\right)-\log S_{0} & =\log S_{0}+\log e^{r}-\log S_{0}\\
+ & =\log e^{r}\\
+ & =r
+\end{align*}
+
+\end_inset
+
+となって利子率と一致する。瞬時的に受け取る利子率が（年率換算で）
+\begin_inset Formula $r$
+\end_inset
+
+ であるとき（この利子率を「瞬時変化率」と呼んでおこう），1年毎に資産は 
+\begin_inset Formula $e^{r}$
+\end_inset
+
+倍になる。対数差分は瞬時変化率 
+\begin_inset Formula $r$
+\end_inset
+
+ に正確に一致する。
+\end_layout
+
+\begin_layout Standard
+時間軸が飛び飛びの値を取る離散時間モデルに対して，時間軸が連続した値（つまり，実数値）を取るようモデル化の方法もある。そのようなモデルを「
+\series bold
+連続時間モデル
+\series default
+
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+れんぞくじかんもでる@連続時間モデル
+\end_layout
+
+\end_inset
+
+」という。本書は主に離散時間モデルを扱うが，連続時間モデルの方が数学的な扱いが容易になることも多いため，離散時間・連続時間が状況に応じて使い分けられている。例え
+ば，とある離散時間データの 
+\begin_inset Formula $y_{t}$
+\end_inset
+
+ から 
+\begin_inset Formula $y_{t+1}$
+\end_inset
+
+ への変化率を
+\begin_inset Formula 
+\[
+\log y_{t+1}-\log y_{t}
+\]
+
+\end_inset
+
+で近似するのは，あたかも連続の時間軸上で成長したものと近似的に解釈して，瞬時変化率を計算していることになる。なお，瞬時変化率 
+\begin_inset Formula $r$
+\end_inset
+
+， あるいは同じことだが，離散時間の変化率 
+\begin_inset Formula $e^{r}$
+\end_inset
+
+ が十分小さいときには，連続時間モデルと離散時間モデルの違いは無視できるほどに小さくなる。なぜなら，
+\begin_inset Formula 
+\[
+e^{r}=\sum_{n=0}^{\infty}\frac{r^{n}}{n!}=1+r+\frac{r^{2}}{2!}+\frac{r^{3}}{3!}+\cdots\approx1+r
+\]
+
+\end_inset
+
+が成り立つからである。
+\end_layout
+
+\begin_layout Standard
+瞬時変化率を使うのが便利なのは，瞬時変化率に次のような性質があるからだ。
+\end_layout
+
+\begin_layout Fact
+変数 
+\begin_inset Formula $x$
+\end_inset
+
+ と 
+\begin_inset Formula $y$
+\end_inset
+
+ はそれぞれ瞬時的に 
+\begin_inset Formula $g_{x}$
+\end_inset
+
+, 
+\begin_inset Formula $g_{y}$
+\end_inset
+
+ で変化している。このとき，
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+積 
+\begin_inset Formula $xy$
+\end_inset
+
+ の瞬時変化率は 
+\begin_inset Formula $g_{x}+g_{y}$
+\end_inset
+
+，
+\end_layout
+
+\begin_layout Enumerate
+商 
+\begin_inset Formula $x/y$
+\end_inset
+
+ の瞬時変化率は 
+\begin_inset Formula $g_{x}-g_{y}$
+\end_inset
+
+，
+\end_layout
+
+\begin_layout Enumerate
+任意の実数 
+\begin_inset Formula $\alpha$
+\end_inset
+
+ に対して，べき 
+\begin_inset Formula $x^{\alpha}$
+\end_inset
+
+ の瞬時変化率は 
+\begin_inset Formula $\alpha g_{x}$
+\end_inset
+
+ 。
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+離散時間モデルではこのようなきれいな性質は成り立たない。例えば，
+\begin_inset Formula $x_{t+1}=(1+r_{x})x_{t}$
+\end_inset
+
+, 
+\begin_inset Formula $y_{t+1}=(1+r_{y})y_{t}$
+\end_inset
+
+ とすると，
+\begin_inset Formula 
+\[
+\frac{x_{t+1}y_{t+1}-x_{t}y_{t}}{x_{t}y_{t}}=r_{x}+r_{y}+r_{x}r_{y}
+\]
+
+\end_inset
+
+となり，余分な項 
+\begin_inset Formula $r_{x}r_{y}$
+\end_inset
+
+ が現れる。この余分な項は 
+\begin_inset Formula $r_{x}$
+\end_inset
+
+, 
+\begin_inset Formula $r_{y}$
+\end_inset
+
+ がともに十分小さければ，無視できるほどに小さくなる。
+\end_layout
+
+\begin_layout Remark
+離散時間的にしか観測されない経済現象を分析するにあたっては，次のような近似的なアプローチがよく使われる。
+\end_layout
+
+\begin_layout Itemize
+離散時間的に観測される現象を連続時間的に観測されるものと見做して連続時間モデルを構築する。数学的に使いやすいモデルが得られる。
+\end_layout
+
+\begin_layout Itemize
+離散時間モデルを構築した上で，成長率に関して連続時間モデルに類似した公式が成り立つものと近似して，数学的な議論を簡略化する。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+qed
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+プログラミング
+\end_layout
+
+\begin_layout Standard
+この章ではPython を関数電卓として使う方法を学ぶ。まだプログラミングと呼ぶほどのものでもないが，単一の式の計算が次章以降の基本になる。
+\end_layout
+
+\begin_layout Standard
+Anaconda Prompt を開いて次のコマンドを入力しよう。なお，コマンドの最初に書かれた 「
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+>
+\end_layout
+
+\end_inset
+
+」 は「プロンプト」と呼ばれる入力待ち状態を意味する記号である。読者はその後から入力すればよい。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<bash, eval=FALSE>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+ipython
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+次のような表示が見えれば成功だ。IPython のプロンプトは 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+In [n]:
+\end_layout
+
+\end_inset
+
+ という形式になっている。本書ではIPython のプロンプトを省略している。 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+In [n]:
+\end_layout
+
+\end_inset
+
+ の後にコードを入力して，「Enter」あるいは「Return」と書かれたキーを押せばコードが実行される。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<eval=FALSE>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+Python 3.7.5 (default, Nov  1 2019, 02:16:23)  Type 'copyright', 
+\end_layout
+
+\begin_layout Plain Layout
+
+'credits' or 'license' for more information IPython 7.11.0 -- 
+\end_layout
+
+\begin_layout Plain Layout
+
+An enhanced Interactive Python.
+ Type '?' for help.
+\end_layout
+
+\begin_layout Plain Layout
+
+In [1]:
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+基本の計算
+\end_layout
+
+\begin_layout Standard
+加算
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+かさん@加算
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
++
+\end_layout
+
+\end_inset
+
+, 減算
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+げんさん@減算
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+-
+\end_layout
+
+\end_inset
+
+, 乗算
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+じょうさん@乗算
+\end_layout
+
+\end_inset
+
+
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+*
+\end_layout
+
+\end_inset
+
+, 除算
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+じょさん@除算
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+/
+\end_layout
+
+\end_inset
+
+ の記号は使ったことがあるだろう。これらは 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+n + m
+\end_layout
+
+\end_inset
+
+ のように，数を2つ指定して使うので
+\series bold
+二項演算子
+\series default
+
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+にこうえんざんし@二項演算子
+\end_layout
+
+\end_inset
+
+（binary operator）と呼ばれる。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch01/simple-math>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+商
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+しょう@商
+\end_layout
+
+\end_inset
+
+（整数商）や剰余
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+じょうよ@剰余
+\end_layout
+
+\end_inset
+
+はそれぞれ二項演算子 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+//
+\end_layout
+
+\end_inset
+
+, 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+%
+\end_layout
+
+\end_inset
+
+ を使う。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch01/division-math>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+数2つで挟む二項演算子に対して，
+\series bold
+単項演算子
+\series default
+
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+たんこうえんざんし@単項演算子
+\end_layout
+
+\end_inset
+
+（unary operator）は1つの数の前に置く。代表的なものには，負数を作る 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+-
+\end_layout
+
+\end_inset
+
+ がある。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch01/unary-operator>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+2つ目のコードは，括弧を付けることで読みやすくできる。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch01/paren1>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+優先順位と丸括弧
+\end_layout
+
+\begin_layout Standard
+1つの式の中に複数の演算子が使われているときは優先順位の高い順に計算が実行される。優先順位が同じ演算子が並んでいるときは左から順番に実行される。優先順位の詳細は
+，Python 公式ドキュメント「演算子の優先順位
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+https://docs.python.org/ja/3/reference/expressions.html#operator-precedence
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+」の項を見てほしい。計算順序を変えたいときは丸括弧 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+( )
+\end_layout
+
+\end_inset
+
+ で囲む（波括弧や角括弧は，この目的では使えない）。 ほとんどは数学の慣習と同じなので，特に迷うこともないだろうと思う。例えば，次のような計算はすんなり理解でき
+るだろう。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch01/operator-precedence1>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+べき乗 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+**
+\end_layout
+
+\end_inset
+
+，負符号 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+-
+\end_layout
+
+\end_inset
+
+，積 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+*
+\end_layout
+
+\end_inset
+
+，和
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
++
+\end_layout
+
+\end_inset
+
+ は，優先順位が高い順に並んでいる。したがって，次の2つのコードは同じ意味である。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch01/operator-precedence2>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+前者よりも後者のコードの方が読みやすいと感じる人が多いだろうと思う。優先順位表を知らなくても計算できるからだ。多少ムダであっても，適切に括弧を付けて人間が読みや
+すいコードを書くことを心がけてほしい。
+\end_layout
+
+\begin_layout Standard
+なお，丸括弧にはもう1つ，長い計算の途中で改行を入れて可読性を高める，という使い方があることを覚えておいてほしい。次のような使用法である。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch01/long-expression>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+同じ目的を達成するために括弧を使わず，バックスラッシュ 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+
+\backslash
+
+\end_layout
+
+\end_inset
+
+ （日本語の環境では円マーク 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+￥
+\end_layout
+
+\end_inset
+
+）を使うこともできる。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+下のコードは，nbconvert がバックスラッシュをストリップしてしまうので，直接入力している。回避方法が分かったら修正する。
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+1 + 2 + 3 + 4 + 5 
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+  + 6 + 7 + 8 + 9 + 10
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+変数
+\end_layout
+
+\begin_layout Standard
+長い計算を実行するときには，重要な数字や計算途中の結果で意味があるものには名前を付けておくのが便利である。名前によって指し示そうとする対象（ここでは数字）をオブ
+ジェクト
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+オブジェクト
+\end_layout
+
+\end_inset
+
+（object）と呼ぶ。オブジェクトに付けようとする名前のことを慣例的に
+\series bold
+オブジェクト名
+\series default
+とか
+\series bold
+変数
+\series default
+
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+へんすう@変数
+\end_layout
+
+\end_inset
+
+（variable
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+variable
+\end_layout
+
+\end_inset
+
+）と呼ぶ
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+ここに書いている定義はかなりいい加減なので，真に受けないように。
+\end_layout
+
+\end_inset
+
+。Python リファレンスにおける正式名称は
+\series bold
+識別子
+\series default
+（identifier）あるいは
+\series bold
+名前
+\series default
+（name）である。しばしば「変数に値を代入する」と表現される操作には 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+=
+\end_layout
+
+\end_inset
+
+ という二項演算子を使う。
+\series bold
+右辺のオブジェクトに左辺の名前を付ける
+\series default
+，という操作である。
+\end_layout
+
+\begin_layout Standard
+下の2行のコードが実行していることは，次の2つのことである。
+\end_layout
+
+\begin_layout Enumerate
+「10」という数字（整数）に 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+x
+\end_layout
+
+\end_inset
+
+ という名前をつける。
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+x
+\end_layout
+
+\end_inset
+
+ という名前が指し示すものを参照する。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch01/assignment>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+今，私たちは IPython のコンソールで作業をしているので，
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+x
+\end_layout
+
+\end_inset
+
+ の中身である 10 が表示された。Python を実行している環境によっては，明示的に 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+print()
+\end_layout
+
+\end_inset
+
+ 関数を呼び出さないといけないかもしれない。 
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch01/print>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+変数は計算に使用することができる。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch01/var-calc>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+成長の計算例
+\end_layout
+
+\begin_layout Standard
+分析開始時点の GDP が500で，毎年 2% ずつ成長する経済を考えよう。3年後のGDPを計算したい。
+\begin_inset Formula 
+\[
+g=0.02,\quad y_{0}=500,\quad t=3
+\]
+
+\end_inset
+
+として，
+\begin_inset Formula 
+\[
+y_{t}=(1+g)^{t}y_{0}
+\]
+
+\end_inset
+
+である。素直に，数式をコードに置き換えて次のように書けばよい。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch01/variables1>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+数式の表示ではわかりにくいという場合には，数字の意味を意識して次のようにしてもよい。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch01/variables2>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+どちらのコードがよりよいか，というのは一概には言えないのだが，数学的なモデルを数値的に分析するような状況では，数式との対応関係がはっきりと分かる前者のコードの方
+が保守がしやすい。一方，より汎用的なコードの開発という状況では，意味に応じた名前を付ける方が望ましいというケースもあるだろう。状況に応じた命名を心がけてほしい。
+\end_layout
+
+\begin_layout Standard
+Python のオブジェクト名には次のルールがある。
+\end_layout
+
+\begin_layout Itemize
+大文字と小文字は区別する。
+\end_layout
+
+\begin_layout Itemize
+最初の文字として数字を使えない。
+\end_layout
+
+\begin_layout Itemize
+使える記号はアンダースコア 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+_
+\end_layout
+
+\end_inset
+
+ だけ。
+\end_layout
+
+\begin_layout Itemize
+Python のキーワード
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+キーワード
+\end_layout
+
+\end_inset
+
+は変数名として使えない
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+True
+\end_layout
+
+\end_inset
+
+ , 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+False
+\end_layout
+
+\end_inset
+
+, 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+import
+\end_layout
+
+\end_inset
+
+, 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+from
+\end_layout
+
+\end_inset
+
+, 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+as
+\end_layout
+
+\end_inset
+
+, 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+if
+\end_layout
+
+\end_inset
+
+, 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+else
+\end_layout
+
+\end_inset
+
+, 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+for
+\end_layout
+
+\end_inset
+
+, 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+in
+\end_layout
+
+\end_inset
+
+ など。全キーワードはPython の公式ドキュメンを参照のこと。 
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+https://docs.python.org/ja/3/reference/lexical_analysis.html#keywords
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Problem
+ネイピア数の定義
+\begin_inset Formula 
+\[
+e=\lim_{n\to\infty}\left(1+\frac{1}{n}\right)^{n}
+\]
+
+\end_inset
+
+に基づいて，近似的に 
+\begin_inset Formula $e$
+\end_inset
+
+ を計算してみよう。大きい 
+\begin_inset Formula $n=100,1000,10000$
+\end_inset
+
+ と大きくしていったとき，
+\begin_inset Formula $\left(1+\frac{1}{n}\right)^{n}$
+\end_inset
+
+ はどのような数字に近づいていくか。
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+answerbox{4
+\backslash
+baselineskip}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Subsection
+エラー
+\end_layout
+
+\begin_layout Standard
+Python はエラーが発生するとコードの実行を停止し，
+\end_layout
+
+\begin_layout Verbatim
+　　　
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+〇〇Error: エラーの理由
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+のような形式でユーザーにエラーに関する情報提供をするようになっている。「〇〇Error」 はエラーの種類ごとに付けられた名前である。例えば，未定義の名前を参照し
+ようとすると，
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+NameError
+\end_layout
+
+\end_inset
+
+ が発生する。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{knitrout}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+color{fgcolor}
+\backslash
+begin{kframe}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{lstlisting}[style=Source]
+\end_layout
+
+\begin_layout Plain Layout
+
+print(abcde) 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{lstlisting} 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{lstlisting}[style=Result] 
+\end_layout
+
+\begin_layout Plain Layout
+
+------------------------------------------------------
+\end_layout
+
+\begin_layout Plain Layout
+
+NameError                                 
+\end_layout
+
+\begin_layout Plain Layout
+
+Traceback (most recent call last)
+\end_layout
+
+\begin_layout Plain Layout
+
+<ipython-input-17-e8409d1cf4b6> in <module> 
+\end_layout
+
+\begin_layout Plain Layout
+
+----> 1 print(abcde)
+\end_layout
+
+\begin_layout Plain Layout
+
+NameError: name 'abcde' is not defined
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{lstlisting} 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{kframe}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{knitrout}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+「
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+NameError: name 'abcde' is not defined
+\end_layout
+
+\end_inset
+
+」というところを読めば，
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+abcde
+\end_layout
+
+\end_inset
+
+ というありもしない名前にアクセスしようとしていることが原因と分かる。このように，エラーメッセージをきちんと読めば自力で問題解決できることが多い。
+\end_layout
+
+\begin_layout Standard
+あなたが Python の初心者であれば，まずは次の2つのエラーに慣れてしまおう。
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+NameError
+\end_layout
+
+\end_inset
+
+: 存在しない名前を参照するエラー
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+名前は定義されているか？
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+名前の定義の問題は Jupyter Notebook （後で紹介します）のような環境を使用する初心者を当惑させる原因になる。Jupyter Notebook
+ を再起動して，途中からコードの実行を再開しようとするとこのエラーが出るのだ。確かに定義するコードはそこにあるのだけど，Python は知らないと言ってくる。再
+起動前に動いていたのであれば，コードを上から順番に実行し直させば解決するはずだ。
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+スペルミスはないか？
+\end_layout
+
+\begin_layout Itemize
+大文字・小文字の区別はできているか？
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+SyntaxError
+\end_layout
+
+\end_inset
+
+: 書いたコードがPython の文法に則っていないというエラー
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+名前のルールは守っているか？
+\end_layout
+
+\begin_layout Itemize
+キーワードを名前として使っていないか？
+\end_layout
+
+\begin_layout Itemize
+開く括弧と閉じる括弧は正しく対応しているか？
+\end_layout
+
+\begin_layout Itemize
+その他，文法ルールは適切に守られているか？
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+これから多くのエラーに出会うことになるので，エラーメッセージを読む習慣を身につけよう。
+\end_layout
+
+\begin_layout Problem
+次の 1〜5 のコードを実行したときに表示されるエラーメッセージに目を通し，「エラー名：エラーの理由」を書き取りなさい。エラーの原因について，自分の言葉で説明し
+なさい。
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+3x = 10
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+True = 0
+\end_layout
+
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+a-b = 0
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+print(abcde)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+{3 * (2 + 4)} * 3 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+answerbox{10
+\backslash
+baselineskip}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Subsection
+関数
+\end_layout
+
+\begin_layout Subsubsection*
+脱線：関数とメソッド
+\end_layout
+
+\begin_layout Standard
+複数の操作をまとめたり複雑な計算をするために「関数」を使うことができる。ユーザー（あなた）が関数を作ることもできる。複雑な計算を意味のある単位に分割して名前を付
+けておくことで，コードをクリーンに保つことができる。関数に定義された処理を実行することを「関数を呼び出す」とがある。2つの関数呼び出しの方法があるので，一応ここ
+で言及しておく。
+\end_layout
+
+\begin_layout Itemize
+オブジェクトの外側から関数を作用させる方法。次の形式で呼び出す（
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+obj
+\end_layout
+
+\end_inset
+
+ はゼロ個でも，2個以上でもよい。）
+\end_layout
+
+\begin_deeper
+\begin_layout Verbatim
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+function_name(obj)
+\end_layout
+
+\end_inset
+
+ 
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+オブジェクトの内側から関数を呼び出す方法。ドットを使った次の形式で呼び出す。（
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+other_obj
+\end_layout
+
+\end_inset
+
+ はゼロ個でも，2個以上でもよい。）
+\end_layout
+
+\begin_deeper
+\begin_layout Verbatim
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+obj.function_name(other_obj)
+\end_layout
+
+\end_inset
+
+ 
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+「オブジェクトとは何か」というような質問に対する正確な回答を本書には期待しないでほしいのだけれど，おおざっぱに言えば
+\begin_inset Formula 
+\[
+\text{「オブジェクト」}=\text{「データ」}+\text{「データに定義された動作」}
+\]
+
+\end_inset
+
+というイメージを持っておけばよい。
+\end_layout
+
+\begin_layout Standard
+オブジェクトが持つ「動作」はもちろん関数の一種であるが，これを特に，
+\series bold
+メソッド
+\series default
+
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+メソッド
+\end_layout
+
+\end_inset
+
+と呼ぶことが多い
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+なお，ドットが付けば必ずメソッドかというとそうでもない。オブジェクトの中にさらに変数（
+\series bold
+属性
+\series default
+
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+ぞくせい@属性
+\end_layout
+
+\end_inset
+
+という）が格納されている場合もある。説明が必要になったときに紹介しよう。
+\end_layout
+
+\end_inset
+
+。次のような例がある（何をやっているかはメソッドの名前を読めば分かる）。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch01/float-method>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+NumPy の関数
+\end_layout
+
+\begin_layout Standard
+これ以上の例は今後のお楽しみということにしよう。Python は言語のコアの部分が非常に小さく，様々な興味のある処理を実行するためにライブラリと呼ばれる拡張機能
+を呼び出すことになる。ここで使うのは，
+\series bold
+NumPy
+\series default
+ という数値計算用のライブラリが持っている関数だ。Python の標準ライブラリ（必ずインストールされているライブラリ）には含まれていないが，数値計算を行うとき
+の事実上の標準になっている
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+Python をインストールすると必ずインストールされる標準ライブラリにも 
+\series bold
+math
+\series default
+ や 
+\series bold
+statistics
+\series default
+ という数値計算目的のライブラリがある。
+\series bold
+NumPy
+\series default
+ を使えない環境で仕事をしなければならなくなったときに使い方を調べればよい。
+\end_layout
+
+\end_inset
+
+。Anaconda を利用しているなら，
+\series bold
+NumPy
+\series default
+ はインストールされているはずだ。
+\end_layout
+
+\begin_layout Standard
+ライブラリの拡張機能を呼び出すには，
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+import
+\end_layout
+
+\end_inset
+
+文を書く。いくつかの書き方があるが，多くの人は 
+\series bold
+NumPy
+\series default
+ を次のようにロードする。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch01/load-numpy>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+このコードを実行しても見かけ上は何も起こらないが，
+\series bold
+NumPy
+\series default
+ の関数を 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+np.function_name()
+\end_layout
+
+\end_inset
+
+ の形式で呼び出すことができるようになる。例えば，自然対数は 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+np.log()
+\end_layout
+
+\end_inset
+
+ ，指数関数は 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+np.exp()
+\end_layout
+
+\end_inset
+
+ である。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch01/numpy-log>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+ここで 
+\series bold
+NumPy
+\series default
+ の数学関数を網羅することはできないので，必要に応じて公式リファレンスを調べてほしい
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+https://docs.scipy.org/doc/numpy/reference/routines.math.html
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+。種々の数学関数以外にも，重要な定数が定義されている。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch01/numpy-constants>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Example
+\begin_inset CommandInset label
+LatexCommand label
+name "exa:growth-rate-log"
+
+\end_inset
+
+成長率の近似公式（命題 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "prop:log-approx"
+
+\end_inset
+
+）を確認してみよう。ここでは，
+\begin_inset Formula 
+\[
+y_{0}=300,\quad y_{1}=306
+\]
+
+\end_inset
+
+という数値例を使う。対数差分と通常の変化率の定義とが近い値を取ることを確認できる。
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch01/growth-rate>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Problem
+他の数値例を用いて例
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exa:growth-rate-log"
+
+\end_inset
+
+と同様のことを確かめなさい。
+\begin_inset Formula $y_{0}$
+\end_inset
+
+ から 
+\begin_inset Formula $y_{1}$
+\end_inset
+
+ への変化率がどの程度の大きさであれば，命題 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "prop:log-approx"
+
+\end_inset
+
+の近似公式は実用上使えそうか。
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+answerbox{5
+\backslash
+baselineskip}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Branch childonly
+inverted 0
+status open
+
+\begin_layout Standard
+\begin_inset CommandInset bibtex
+LatexCommand bibtex
+btprint "btPrintCited"
+bibfiles "../Bibliography/ref,../Bibliography/software,../Bibliography/bib"
+options "Styles/jecon"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset index_print
+LatexCommand printindex
+type "idx"
+name "Index"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document
