@@ -1,6 +1,9 @@
 #!/usr/bin/env python
 # coding: utf-8
 
+get_ipython().run_line_magic('matplotlib', 'inline')
+
+
 #---- ch03/plot-lorenz/graphics
 import numpy as np
 import matplotlib.pyplot as plt
@@ -23,16 +26,16 @@ ax.set_aspect('equal')
 plt.show()
 
 
-#---- ch03/sequential/dnr
-f()
-g()
-h()
-
-
 #---- ch03/def-functions/dnr
 def f(): print("f is called.")
 def g(): print("g is called.")
 def h(): print("h is called.")
+
+
+#---- ch03/sequential/dnr
+f()
+g()
+h()
 
 
 #---- ch03/no-loop/dnr
@@ -72,8 +75,10 @@ for i in range(3):
     print(i)
 
 
-#---- ch03/boolean/dnr
+#---- ch03/boolean
 True
+
+
 False
 
 
@@ -99,12 +104,20 @@ True + True + False
 
 #---- ch03/compare-real-numbers
 0.1 + 0.3 + 0.6 == 1.0
+
+
 0.3 + 0.6 + 0.1 == 1.0
 
 
 #---- ch03/compare-real-numbers2
 import numpy
 np.allclose(0.1 + 0.3 + 0.6, 1.0, rtol=1e-15)
+
+
+#---- ch03/condition/noinc
+condition = False
+condition1 = True
+condition2 = False
 
 
 #---- ch03/while-loop-equiv/dnr
@@ -120,6 +133,9 @@ while i < 3:
     
 g()
 
+
+#---- ch03/inf-loop/error
+raise(BaseException('Comment out before executing this cell.'))
 
 #---- ch03/inf-loop/dnr
 while True:
