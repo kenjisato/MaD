@@ -6961,9 +6961,47 @@ prepend=np.nan
 
 \end_inset
 
- を付けることで変えることができる。これは，出力の先頭要素に「存在しない値」を意味する NaN (Not a Number) を追加する設定である
+ を付けることで変えることができる
 \begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+
+\series bold
+NumPy 
+\series default
+のバージョンが v1.16.0 よりも古い場合，
+\begin_inset Flex Code
 status open
+
+\begin_layout Plain Layout
+prepend=np.nan
+\end_layout
+
+\end_inset
+
+ が使えない。この場合は 
+\series bold
+NumPy
+\series default
+ のアップデートをお勧めする。その権限がない場合には，
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+np.r_[[np.nan], np.diff(nominal_gdp)] / nominal_gdp
+\end_layout
+
+\end_inset
+
+ などとする。
+\end_layout
+
+\end_inset
+
+。これは，出力の先頭要素に「存在しない値」を意味する NaN (Not a Number) を追加する設定である
+\begin_inset Foot
+status collapsed
 
 \begin_layout Plain Layout
 本来，NaN は 
@@ -7067,7 +7105,55 @@ np.diff(value, prepend=np.nan, axis=0)
 
 \end_inset
 
- が各項目の差分時系列を表している。これを名目GDP で除したものが寄与度である。単純に 
+ が各項目の差分時系列を表している
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+NumPy 
+\series default
+のバージョンが v1.16.0 よりも古い場合，
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+prepend=np.nan
+\end_layout
+
+\end_inset
+
+ が使えない。この場合は 
+\series bold
+NumPy
+\series default
+ のアップデートを改めてお勧めする。どうしても認めてもらえない場合には，
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+np.diff(..., prepend=np.nan)
+\end_layout
+
+\end_inset
+
+ の部分を 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+np.r_[[[np.nan] * value.shape[1]], np.diff(value, axis=0)]
+\end_layout
+
+\end_inset
+
+ などと置き換えればよい。
+\end_layout
+
+\end_inset
+
+。これを名目GDP で除したものが寄与度である。単純に 
 \begin_inset Flex Code
 status open
 
@@ -7506,7 +7592,7 @@ status open
 \begin_inset CommandInset bibtex
 LatexCommand bibtex
 btprint "btPrintCited"
-bibfiles "../Bibliography/ref,../Bibliography/software,../Bibliography/bib"
+bibfiles "../Bibliography/ref,../Bibliography/software"
 options "Styles/jecon"
 
 \end_inset
