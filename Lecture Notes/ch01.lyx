@@ -4683,7 +4683,7 @@ status open
 \begin_inset CommandInset bibtex
 LatexCommand bibtex
 btprint "btPrintCited"
-bibfiles "../Bibliography/ref,../Bibliography/software,../Bibliography/bib"
+bibfiles "../Bibliography/ref,../Bibliography/software"
 options "Styles/jecon"
 
 \end_inset
