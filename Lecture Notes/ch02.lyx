@@ -2430,7 +2430,7 @@ status open
 \end_layout
 
 \begin_layout Standard
-低次元配列がスカラー以外の場合には最新の注意が必要であるが，ここで詳しく扱うには複雑すぎるので省略する（行列の定義の仕方を見ておけばよい。）。演算を行う前に十分
+低次元配列がスカラー以外の場合には最細の注意が必要であるが，ここで詳しく扱うには複雑すぎるので省略する（行列の定義の仕方を見ておけばよい。）。演算を行う前に十分
 テストをしたほうがよい。はじめから次元を合わせておくともっと安全だろう。
 \end_layout
 
@@ -2961,7 +2961,7 @@ status open
 status open
 
 \begin_layout Plain Layout
-np.one_like()
+np.ones_like()
 \end_layout
 
 \end_inset
