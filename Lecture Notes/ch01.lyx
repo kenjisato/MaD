@@ -1562,7 +1562,7 @@ status open
 この記法を使った次の等式を示しなさい。
 \begin_inset Formula 
 \[
-y_{t+n}-y_{n}=\sum_{i=1}^{n}\Delta y_{t+i}.
+y_{t+n}-y_{t}=\sum_{i=1}^{n}\Delta y_{t+i}.
 \]
 
 \end_inset
@@ -3834,7 +3834,7 @@ in
 
 \end_inset
 
- など。全キーワードはPython の公式ドキュメンを参照のこと。 
+ など。全キーワードはPython の公式ドキュメントを参照のこと。 
 \begin_inset Flex URL
 status open
 
