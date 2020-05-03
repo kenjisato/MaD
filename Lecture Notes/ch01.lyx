@@ -3873,7 +3873,11 @@ e=\lim_{n\to\infty}\left(1+\frac{1}{n}\right)^{n}
 \begin_inset Formula $e$
 \end_inset
 
- を計算してみよう。大きい 
+ を計算してみよう。
+\begin_inset Formula $n$
+\end_inset
+
+ を 
 \begin_inset Formula $n=100,1000,10000$
 \end_inset
 
