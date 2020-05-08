@@ -10,7 +10,8 @@ __pycache__
 
 # LyX
 \#*#
-.lyx~
+*.lyx~
+*.tex
 
 # Other
 /Private
