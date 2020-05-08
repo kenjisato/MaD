@@ -17,7 +17,7 @@ knitr_config <- list(
 ## Specific for Mac ----
 if (Sys.info()["sysname"] %in% c("Darwin")) {
 	knitr_config['engine.path'] = 
-	    list(python = system2("which", "python3", stdout = TRUE))
+	    list(python = "/usr/local/var/pyenv/shims/python3")
 }
 
 ## Set printer-friendly knitr theme, run only when called from LyX ----
