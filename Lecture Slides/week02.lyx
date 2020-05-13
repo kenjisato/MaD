@@ -1,0 +1,1910 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass beamer
+\begin_preamble
+\usepackage{Styles/beamer}
+\usepackage{Styles/code}
+
+
+% Knitr Setup 
+<<setup, include=FALSE>>=
+source('Knitr/setup.R')
+knitr::read_chunk('Knitr/setup.py')
+@
+% Python Setup 
+<<python-setup, include=FALSE>>=
+@ 
+\end_preamble
+\options 13pt,xcolor=dvipsnames,table,dvipdfmx,aspectratio=169,handout
+\use_default_options true
+\begin_modules
+knitr
+logicalmkup
+\end_modules
+\maintain_unincluded_children false
+\language japanese
+\language_package default
+\inputencoding utf8-platex
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics dvipdfm
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize 11
+\spacing other 1.2
+\use_hyperref false
+\pdf_title "マルコフスイッチング合理的期待モデル"
+\pdf_author "佐藤 健治 / Kenji Sato"
+\pdf_subject "経済動学"
+\pdf_bookmarks true
+\pdf_bookmarksnumbered false
+\pdf_bookmarksopen false
+\pdf_bookmarksopenlevel 1
+\pdf_breaklinks false
+\pdf_pdfborder false
+\pdf_colorlinks false
+\pdf_backref false
+\pdf_pdfusetitle true
+\papersize default
+\use_geometry true
+\use_package amsmath 2
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine natbib
+\cite_engine_type authoryear
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+動態マクロ経済学
+\begin_inset Newline newline
+\end_inset
+
+Week 2
+\end_layout
+
+\begin_layout Author
+佐藤健治
+\begin_inset Newline newline
+\end_inset
+
+sato@eco.osakafu-u.ac.jp
+\end_layout
+
+\begin_layout Date
+2020/5/15
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<engine='R', echo=FALSE>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+knitr::read_chunk('Python/week02.py')
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+本日の目標
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+変化率について学ぶ
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+定義
+\end_layout
+
+\begin_layout Itemize
+平均
+\end_layout
+
+\begin_layout Itemize
+近似計算
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+IPython を（関数）電卓として使う
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+変化率の計算
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+今週の練習問題
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+変化率
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+どっちが嬉しい？
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+年収が50万円増えた。
+\end_layout
+
+\begin_layout Enumerate
+年収が100万円増えた。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Pause
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+vspace{
+\backslash
+baselineskip}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+同一人物，同時点の2つのシナリオとしては 2 の方がよいだろう。
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+どっちが嬉しい？
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+年収が 300万円から 50万円増えた。
+\end_layout
+
+\begin_layout Enumerate
+年収が 1億円から100万円増えた。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Pause
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+vspace{
+\backslash
+baselineskip}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+1 の方がインパクトが大きい。
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+比較が大事，比較には基準が必要
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+マクロ経済学の分析では国際比較，経年変化の追跡が重要
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+これら
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+bou{
+\end_layout
+
+\end_inset
+
+だけ
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+が重要
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+比較には対象または基準が必要
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+例えば，「実質GDP 600兆円」という数値目標は基準となる GDP の水準が分からなければほとんど意味をなさない。
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+この数字に意味を見出だせてしまった人は，最近の日本のGDP の水準をおおよそ把握しているに違いない。
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Itemize
+この授業ではマクロ経済の時間変化を扱う。
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+判断の難しい情報
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<week02/point/graphics>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+includegraphics[height=0.8
+\backslash
+textheight]{Figure/week02/point-1.pdf}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+異なる時間を比較するための時系列プロット
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<week02/line/graphics>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+includegraphics[height=0.8
+\backslash
+textheight]{Figure/week02/line-1.pdf}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+相対的な変化を調べるとより評価しやすくなる
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<week02/growth/graphics>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+includegraphics[height=0.8
+\backslash
+textheight]{Figure/week02/growth-1.pdf}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+時間の表現
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+分析の起点を 
+\begin_inset Formula $t=0$
+\end_inset
+
+ とし，
+\begin_inset Formula $t=0,1,2,\dots$
+\end_inset
+
+ のようにその後のデータを整数値で表現する。
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+離散時間モデル。モデルの時間単位を「期」とか「時点」と呼ぶ。
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Solow モデルの話をするときにもう少し詳しく掘り下げる。
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+1つの期が表す，現実の時間的な広がりは分析によって異なる。
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+年次データの場合は 1期 
+\begin_inset Formula $=$
+\end_inset
+
+ 1年，
+\end_layout
+
+\begin_layout Itemize
+四半期データの場合は1期 
+\begin_inset Formula $=$
+\end_inset
+
+ 3ヶ月など。
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+統計上の基準時点 
+\begin_inset Formula $\neq$
+\end_inset
+
+ データ分析の起点（
+\begin_inset Formula $t=0$
+\end_inset
+
+）
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+統計上の基準は 2005年かもしれないし，2010年かもしれない。その時点を 
+\begin_inset Formula $t=0$
+\end_inset
+
+ とするなら，（例えば 1990年から分析したいなら）時間インデックスに負数も認める必要がある。これはプログラミングの観点からは若干面倒である。
+\end_layout
+
+\end_deeper
+\end_deeper
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+時間変化の表現
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+変数 
+\begin_inset Formula $y$
+\end_inset
+
+ （これは物価かもしれないし，GDP かもしれない）の時間変化を次のように表す
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Formula $y_{0}$
+\end_inset
+
+, 
+\begin_inset Formula $y_{1}$
+\end_inset
+
+, 
+\begin_inset Formula $y_{2}$
+\end_inset
+
+, 
+\begin_inset Formula $\dots$
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+下付きの数字は「期」を表す
+\end_layout
+
+\begin_layout Itemize
+各 
+\begin_inset Formula $y_{0}$
+\end_inset
+
+, 
+\begin_inset Formula $y_{1}$
+\end_inset
+
+ などに具体的な数字が代入されていると考えてほしい。
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Itemize
+絶対的な変化量は差分で測る。
+\begin_inset Formula 
+\[
+\Delta y_{t+1}=y_{t+1}-y_{t}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+最初の例から分かるように，多くの場合に適切な変化の指標ではない。
+\end_layout
+
+\begin_layout Itemize
+この指標で確実に判断できることは変数の
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+bou{
+\end_layout
+
+\end_inset
+
+増減
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+のみ。
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+相対的な変化の指標
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+通常，変化の大きさは
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+bou{
+\end_layout
+
+\end_inset
+
+相対的な変化
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+で測る。
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+例）「5% 増加した」，「2% 減少した」
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+定義は次の通り：
+\begin_inset Formula 
+\[
+\frac{\Delta y_{t+1}}{y_{t}}=\frac{y_{t+1}-y_{t}}{y_{t}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Formula $g_{t+1}=\Delta y_{t+1}/y_{t}$
+\end_inset
+
+ と定義したものは，「変化率」「成長率」
+\begin_inset Formula 
+\[
+y_{t+1}=(1+g_{t+1})y_{t}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $1+g$
+\end_inset
+
+ は「粗成長率」
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+余談：率の変化率
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+もともと「率」であるようなデータに関心があることも多い。
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+政策金利
+\end_layout
+
+\begin_layout Itemize
+失業率，有効求人倍率
+\end_layout
+
+\begin_layout Itemize
+インフレ率
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+例）4% から 5%に増えることをどう表現するか？
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Formula $5\%-4\%=1\%$
+\end_inset
+
+ 増える。（曖昧，よく使われるけど，避けるべし）
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+この表現は回帰分析の解釈で躓く危険性あり！
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+\begin_inset Formula $(5-4)/4=0.25=25$
+\end_inset
+
+% 増える。（曖昧，あまり使わないけど使ってもいい）
+\end_layout
+
+\begin_layout Enumerate
+上はどちらも曖昧なので，「1 % ポイント増える」とか「1 ポイント増える」というのがよい。
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+FRB の政策金利は 0.25% 刻みで，25 basis point (= 0.01% point, bp) 上がった，下がったと報道されます。
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+複利計算
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+変化率が小さくても，長い期間持続すれば大きな変化が起こる。
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+利息にも利息がつく「複利計算」
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+\begin_inset Formula $g_{t}\equiv g>0$
+\end_inset
+
+ （
+\begin_inset Formula $g_{t}\equiv g$
+\end_inset
+
+ は 
+\begin_inset Formula $t$
+\end_inset
+
+ に関わらず
+\begin_inset Formula $g_{t}=g$
+\end_inset
+
+ という意味）としよう。すると，
+\begin_inset Formula 
+\begin{align*}
+y_{t+n} & =\prod_{k=1}^{n}(1+g_{t+k})y_{t}\\
+ & =(1+g)^{n}y_{t}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $g=0.01=1\%$
+\end_inset
+
+ でも
+\begin_inset Formula 
+\[
+(1+0.01)^{5}\approx1.051,\qquad(1+0.01)^{20}\approx1.220
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Rule of 70
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+例）年率 
+\color red
+3%
+\color inherit
+ 増加する変数が2倍になるのにかかる年数はおよそ 
+\begin_inset Formula $70/3\approx23.3$
+\end_inset
+
+年である。
+\begin_inset Formula 
+\[
+\left(1+\frac{r}{100}\right)^{x}=2
+\]
+
+\end_inset
+
+を 
+\begin_inset Formula $x$
+\end_inset
+
+ について解けばよい（対数の計算をする）。
+\end_layout
+
+\begin_layout Example
+年率 5% で成長する国のGDPが2倍になるのにかかる年数は何年か？年率1% 成長の国がGDPを2倍にするには何年かかるか？
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+10倍になる期間は？
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Block
+\begin_inset Argument 2
+status open
+
+\begin_layout Plain Layout
+問題
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+Rule of 70 は定率で成長する変数が 2倍になる期間の近似公式を与えてくれる。同様にして，「定率で成長する変数が10倍になる期間」を計算する近似公式を作
+りなさい。
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+対数差分
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+自然対数関数は変化率の計算をする際に非常に重要。
+\begin_inset Formula 
+\[
+g_{t}=\frac{y_{t+1}-y_{t}}{y_{t}}\approx\log y_{t+1}-\log y_{t}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+定率 
+\begin_inset Formula $g_{t}\equiv g$
+\end_inset
+
+ で成長する場合，
+\begin_inset Formula 
+\begin{align*}
+\log y_{t+1} & =g+\log y_{t}\\
+ & =2g+\log y_{t-1}\\
+ & =\cdots\\
+ & =gt+\log y_{0}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+時系列図の縦軸を対数値にすると直線になる。（片対数プロット）
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+平均変化率
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Formula $t$
+\end_inset
+
+ 期の変数 
+\begin_inset Formula $y_{t}$
+\end_inset
+
+ から，
+\begin_inset Formula $t+n$
+\end_inset
+
+ 期の変数 
+\begin_inset Formula $y_{t+n}$
+\end_inset
+
+ の変化率は
+\begin_inset Formula 
+\[
+\frac{y_{t+n}-y_{t}}{y_{t}}
+\]
+
+\end_inset
+
+には 
+\begin_inset Formula $n$
+\end_inset
+
+ 年分の変化が蓄積している（→ 1年分より振れ幅が大きい）
+\end_layout
+
+\begin_layout Itemize
+1年分に換算した
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+bou{
+\end_layout
+
+\end_inset
+
+平均
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+変化率を 
+\begin_inset Formula $\bar{g}$
+\end_inset
+
+ とすると
+\begin_inset Formula 
+\[
+y_{t+n}=\left(1+\bar{g}\right)^{n}y_{t}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\bar{g}$
+\end_inset
+
+ について解くと
+\begin_inset Formula 
+\[
+\bar{g}=\left(\frac{y_{t+n}}{y_{t}}\right)^{1/n}-1
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+平均変化率（対数近似）
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+自然対数の近似公式
+\begin_inset Formula 
+\[
+\log(1+\bar{g})\approx\bar{g}
+\]
+
+\end_inset
+
+に当てはめると，
+\begin_inset Formula 
+\[
+\bar{g}\approx\frac{\log y_{t+n}-\log y_{t}}{n}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+平均変化率（変化率がわかっている場合）
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+ある期間の最初と最後の値がわかっている場合には上のように変化率を計算できる。
+\end_layout
+
+\begin_layout Itemize
+その期間の変化率がわかっている場合には，どのように平均を取ればよいだろうか？
+\end_layout
+
+\begin_layout Itemize
+例）平均成長率を計算しなさい。
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+4年間の成長率が，2%, 3%, 5%, 1% 
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+平均変化率（変化率がわかっている場合）
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Formula 
+\[
+(1+\bar{g})^{4}=1.02\times1.03\times1.05\times1.01
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+すなわち，前期比成長率が 
+\begin_inset Formula $g_{1},g_{2},g_{3},\dots,g_{n}$
+\end_inset
+
+ である連続する 
+\begin_inset Formula $(n+1)$
+\end_inset
+
+ 期間の平均成長率 
+\begin_inset Formula $\bar{g}$
+\end_inset
+
+ は
+\begin_inset Formula 
+\[
+\bar{g}=\left((1+g_{1})\times(1+g_{2})\times\cdots(1+g_{n})\right)^{1/n}-1
+\]
+
+\end_inset
+
+で計算できる（幾何平均）
+\end_layout
+
+\begin_layout Itemize
+単年度では，外的な要因で起こる変化を受けて大きく変動しやすい。数年ごとに平均を取ると，分析対象に関するより正確な理解が得られることがある。
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+平均変化率（対数近似）
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+変化率がわかっている場合にも対数近似を使った便利な公式がある。
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\bar{g},g_{1},g_{2},\dots,g_{n}$
+\end_inset
+
+ が小さいときには，概算のために普通の算術平均を使っても大きな問題にはならない。
+\begin_inset Formula 
+\[
+\bar{g}\approx\log(1+\bar{g})=\frac{\log(1+g_{1})+\cdots+\log(1+g_{n})}{n}\approx\frac{g_{1}+\cdots+g_{n}}{n}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+幾何平均はいつでも算術平均より小さいので，この概算は過大評価の傾向がある。
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Section
+Python で変化率の計算
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+準備
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Notebook (kenjisato/MaD/Jupyter/ch01.ipynb) を開く
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+https://git.io/Jf89s
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+IPython を立ち上げる
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Anaconda Prompt を起動 → コマンド ipython を実行
+\end_layout
+
+\begin_layout Itemize
+Google Colaboratory 利用の人は Colab のノートでも OK。ただし・・・・
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout FragileFrame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Notebook でコードを実行するときの注意
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Jupyter Notebook, Google Colaboratory の「セル」の特徴
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+セル単位でコードを実行
+\end_layout
+
+\begin_layout Itemize
+単一セルに複数行のコードを書ける
+\begin_inset Newline newline
+\end_inset
+
+→ 最後に実行したコードの出力のみ表示される
+\end_layout
+
+\begin_layout Itemize
+たとえば，以下のコードを1つのブロックに書いて実行すると
+\begin_inset Newline newline
+\end_inset
+
+ 1 + 1 の結果は表示されない。
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<eval=FALSE>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+1 + 1
+\end_layout
+
+\begin_layout Plain Layout
+
+2 + 5
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Notebook はセルを自由に動かせるので
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+セルの実行順と見た目の順番が一致しない可能性あり
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+使いはじめの頃は，これを理解せずに困ってしまう人も多い
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+正しくコードが書けているのに，動きがおかしいと思ったら，
+\begin_inset Newline newline
+\end_inset
+
+不平不満を言う前に「Kernel -> Restart and Run All Cells...」を実行
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+準備運動
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+いまから 10分間，「挿入用のコード」のセクションにあるコードを
+\color red
+1行ずつ
+\color inherit
+入力＆実行してみてください。　（もう終わったという人は Exercises）
+\end_layout
+
+\begin_layout Standard
+注意：ハッシュタグ # の後ろの内容（コメント）は編集用のコードなので入力不要です。
+\end_layout
+
+\begin_layout Standard
+　　
+\end_layout
+
+\begin_layout Quotation
+写す
+\end_layout
+
+\begin_layout Quotation
+↓
+\end_layout
+
+\begin_layout Quotation
+Enter/Return を押す
+\end_layout
+
+\begin_layout Quotation
+↓
+\end_layout
+
+\begin_layout Quotation
+実行結果を確認する
+\end_layout
+
+\begin_layout Standard
+　
+\end_layout
+
+\begin_layout Standard
+この筋トレを省いてプログラミングは習得できません。Jupyter は筋トレには不向きです（個人の感想です）
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+ここまでで確認すること
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+コマンドは上から順に実行・評価されていく
+\end_layout
+
+\begin_layout Itemize
+四則演算
+\end_layout
+
+\begin_layout Itemize
+カッコの使い方
+\end_layout
+
+\begin_layout Itemize
+エラーの対処法
+\end_layout
+
+\begin_layout Itemize
+関数呼び出し（
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+print()
+\end_layout
+
+\end_inset
+
+）
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+練習
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+次の計算をしなさい。
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\sqrt{1000}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $500^{1/3}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $3+3(3-8)$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout FragileFrame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+問題
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Formula $y_{0}=500$
+\end_inset
+
+, 
+\begin_inset Formula $y_{1}=550$
+\end_inset
+
+, 
+\begin_inset Formula $y_{2}=600$
+\end_inset
+
+, 
+\begin_inset Formula $y_{3}=650$
+\end_inset
+
+ とする。この期間の平均成長率を計算しなさい。
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<week02/exa1>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+ある連続する期間の前期比成長率が 
+\begin_inset Formula $g_{1}=0.02$
+\end_inset
+
+, 
+\begin_inset Formula $g_{2}=0.05$
+\end_inset
+
+, 
+\begin_inset Formula $g_{3}=0.01$
+\end_inset
+
+, 
+\begin_inset Formula $g_{4}=0.04$
+\end_inset
+
+, 
+\begin_inset Formula $g_{5}=0.03$
+\end_inset
+
+ だったとする。この期間の平均成長率を計算しなさい。また，近似公式を用いたときの結果と比較して，誤差を評価しなさい（
+\begin_inset Formula $\text{誤差}/\text{正確に計算した平均成長率}$
+\end_inset
+
+ のパーセント値を答えるとよい）。
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<week02/exa1>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\end_deeper
+\end_body
+\end_document

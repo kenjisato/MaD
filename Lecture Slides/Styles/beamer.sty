@@ -1,0 +1,100 @@
+\usetheme{Boadilla}
+\setbeamersize{text margin left=10mm, text margin right=30mm}
+
+%Beamerフォント設定
+\usepackage[deluxe]{otf} 
+\renewcommand{\familydefault}{\sfdefault}  
+\renewcommand{\kanjifamilydefault}{\gtdefault}  
+\usefonttheme{structurebold}
+\setbeamerfont{alerted text}{series=\bfseries} 
+\setbeamerfont{section in toc}{series=\mdseries}
+\setbeamerfont{frametitle}{size=\Large} 
+\setbeamerfont{title}{size=\LARGE} 
+\setbeamerfont{date}{size=\small}  
+
+%Beamer色設定
+\definecolor{UniBlue}{RGB}{0,150,200} 
+\definecolor{AlertOrange}{RGB}{255,76,0}
+\definecolor{AlmostBlack}{RGB}{38,38,38}
+\setbeamercolor{normal text}{fg=AlmostBlack}  % 本文カラー
+\setbeamercolor{structure}{fg=UniBlue} % 見出しカラー
+\setbeamercolor{block title}{fg=UniBlue!50!black} % ブロック部分タイトルカラー
+\setbeamercolor{alerted text}{fg=AlertOrange} % \alert 文字カラー
+\mode<beamer>{
+    \definecolor{BackGroundGray}{RGB}{254,254,254}
+    \setbeamercolor{background canvas}{bg=BackGroundGray} % スライドモードのみ背景をわずかにグレーにする
+}
+
+%フラットデザイン化
+\setbeamertemplate{blocks}[rounded] % Blockの影を消す
+%\useinnertheme{circles} % 箇条書きをシンプルに
+%Beamer List Styles
+\setbeamertemplate{items}[default]
+
+\setbeamertemplate{navigation symbols}{} % ナビゲーションシンボルを消す
+\setbeamertemplate{footline}[frame number] % フッターはスライド番号のみ
+
+
+
+\AtBeginSection[]{
+  \begin{frame}
+  \vfill
+  \centering
+  \begin{beamercolorbox}[sep=8pt,center,shadow=true,rounded=true]{title}
+    \usebeamerfont{title}\insertsectionhead\par%
+  \end{beamercolorbox}
+  \vfill
+  \end{frame}
+}
+
+
+\usepackage{bbm}
+\newcommand{\1}{\mathbbm{1}}
+
+
+\setbeamercovered{transparent=10} % uncover に影響, visible には関係ない
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Macro Definitions Here
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{ifthen}
+
+\newlength{\fboxsepbak}
+\setlength{\fboxsepbak}{\the\fboxsep}
+
+\newcommand{\fusenbgcolor}{white} % 表示前の背景. ここが付箋の黄色とかだともんたっぽくなるが, handout でもその色が背景になるので, 書き込みにくい場合がある
+\newcommand{\daishibgcolor}{yellow} % 表示後の背景. 後から追ってノートする人のためにはスクリーン上で見つけやすい色にしたほうがいいかも.
+\newcommand{\framelinecolor}{black} % 枠の線の色
+
+\newcommand<>{\hiddenbox}[1]{
+  \ifthenelse{\equal{#2}{}}{%
+    {\setlength{\fboxsep}{0pt}\fcolorbox{\framelinecolor}{\fusenbgcolor}{\visible<+- | alert@+ | handout:0>{\setlength{\fboxsep}{\fboxsepbak}\colorbox{\daishibgcolor}{#1}}}}%
+  }{%
+{\setlength{\fboxsep}{0pt}\fcolorbox{\framelinecolor}{\fusenbgcolor}{\visible#2{\setlength{\fboxsep}{\fboxsepbak}\colorbox{\daishibgcolor}{#1}}}}}}
+
+\newcommand<>{\hiddenboxm}[1]{%
+  \ifthenelse{\equal{#2}{}}{%
+    {\setlength{\fboxsep}{0pt}\fcolorbox{\framelinecolor}{\fusenbgcolor}{\visible<+- | alert@+ | handout:0>{\setlength{\fboxsep}{\fboxsepbak}\colorbox{\daishibgcolor}{$#1$}}}}%
+  }{%
+{\setlength{\fboxsep}{0pt}\fcolorbox{\framelinecolor}{\fusenbgcolor}{\visible#2{\setlength{\fboxsep}{\fboxsepbak}\colorbox{\daishibgcolor}{$#1$}}}}%
+  }%
+}
+
+\newcommand<>{\hiddenpar}[1]{
+\noindent
+\hiddenbox#2{
+\noindent
+  \begin{minipage}{0.92\linewidth}
+    #1
+  \end{minipage}
+}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\expandafter\def\expandafter\quote\expandafter{\quote\small\upshape}
+\newcommand{\mathcolor}[2]{\textcolor{#1}{#2}}
+\usepackage{pgfpages}
+\usepackage{ifdraft}
+\usepackage{plext}
