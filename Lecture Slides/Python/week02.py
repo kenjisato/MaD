@@ -35,6 +35,30 @@ _ = ax.set_ylabel("Real GDP growth (%)")
 plt.show()
 
 
+#---- week02/var
+x = 10
+y = x
+a, b = 1, 2.3
+hello = "Good bye"
+
+
+#---- week02/use-var
+x * b
+print(hello)
+
+
+#---- week02/hidden-name/dnr
+x y = 5      # 空白を含む
+4a = 10      # 数字から始まる
+x-y = 0      # ハイフンを使っている
+u*z = x      # 記号はほとんど使えない
+
+
+#---- week02/usable-name/dnr
+my_name = "ドラえもん"    # アンダースコアは使える
+点数 = 100                # ユニコード文字も一部使える 
+
+
 #---- week02/exa1
 y0, y1, y2, y3 = 500, 550, 600, 650
 
