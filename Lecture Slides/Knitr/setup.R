@@ -1,7 +1,7 @@
-## load packages
-rstudio <- "http://cran.rstudio.com"
-if (!require("reticulate")) install.packages("reticulate", repos = rstudio)
-if (!require("pkgload")) install.packages("pkgload", repos = rstudio)
+library(reticulate)
+
+python3 <- "/usr/local/var/pyenv/versions/anaconda3-2019.10/bin/python3"
+use_python(python3, required = TRUE)
 
 ## Default Configurations ----
 knitr_config <- list(
@@ -16,8 +16,7 @@ knitr_config <- list(
 
 ## Specific for Mac ----
 if (Sys.info()["sysname"] %in% c("Darwin")) {
-	knitr_config['engine.path'] = 
-	    list(python = "/usr/local/var/pyenv/shims/python3")
+  knitr_config[['engine.path']] <- list(python = python3)
 }
 
 ## Set printer-friendly knitr theme, run only when called from LyX ----
