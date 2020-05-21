@@ -15,11 +15,8 @@
 % Knitr Setup 
 <<setup, include=FALSE>>=
 source('Knitr/setup.R')
-knitr::read_chunk('Knitr/setup.py')
+source_python('Knitr/setup.py')
 @
-% Python Setup 
-<<python-setup, include=FALSE>>=
-@ 
 \end_preamble
 \options dvipdfmx,a5paper,9pt
 \use_default_options true

@@ -13,13 +13,10 @@
 % Knitr Setup 
 <<setup, include=FALSE>>=
 source('Knitr/setup.R')
-knitr::read_chunk('Knitr/setup.py')
+source_python('Knitr/setup.py')
 @
-% Python Setup 
-<<python-setup, include=FALSE>>=
-@ 
 \end_preamble
-\options 13pt,xcolor=dvipsnames,table,dvipdfmx,aspectratio=169,handout
+\options 13pt,xcolor=dvipsnames,dvipdfmx,aspectratio=169,handout
 \use_default_options true
 \begin_modules
 knitr
@@ -1144,7 +1141,7 @@ status open
 自然対数関数は変化率の計算をする際に非常に重要。
 \begin_inset Formula 
 \[
-g_{t}=\frac{y_{t+1}-y_{t}}{y_{t}}\approx\log y_{t+1}-\log y_{t}
+g_{t+1}=\frac{y_{t+1}-y_{t}}{y_{t}}\approx\log y_{t+1}-\log y_{t}
 \]
 
 \end_inset
@@ -1416,7 +1413,7 @@ status open
  は
 \begin_inset Formula 
 \[
-\bar{g}=\left((1+g_{1})\times(1+g_{2})\times\cdots(1+g_{n})\right)^{1/n}-1
+\bar{g}=\left((1+g_{1})\times(1+g_{2})\times\cdots\times(1+g_{n})\right)^{1/n}-1
 \]
 
 \end_inset
@@ -2050,7 +2047,7 @@ status open
 
 \begin_layout Plain Layout
 
-<<week02/exa1>>=
+<<week02/exa2>>=
 \end_layout
 
 \begin_layout Plain Layout

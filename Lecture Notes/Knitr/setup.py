@@ -8,3 +8,4 @@ matplotlib.rcParams.update({'font.size': 16})
 
 import numpy 
 numpy.set_printoptions(suppress=True,linewidth=65,threshold=30)
+numpy.random.seed(139)
