@@ -1,0 +1,28 @@
+```{r}
+gx <- sample(1:5, 1)
+gy <- sample(1:5, 1)
+gz <- gx + gy
+```
+
+Question
+========
+
+変数 $x$ の成長率が `r gx` % で，変数 $y$ の成長率が `r gy` % とする。このとき，$z = xy$ 
+の成長率はおよそいくらになるか。整数値で答えなさい。
+
+
+Solution
+========
+
+積の成長率は成長率の和になる。（瞬時成長率としては正確な値，離散時間の成長率としては近似値）
+
+$$
+`r gx`\% + `r gy`\% = `r gx + gy` \%
+$$
+
+
+Meta-information
+================
+exname: week1-growth
+extype: num
+exsolution: `r gz`
