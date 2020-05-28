@@ -110,7 +110,7 @@ True + True + False
 
 
 #---- ch03/compare-real-numbers2
-import numpy
+import numpy as np
 np.allclose(0.1 + 0.3 + 0.6, 1.0, rtol=1e-15)
 
 
@@ -216,8 +216,8 @@ nominal_gdp
 dfl = np.empty_like(nominal_gdp)
 dfl[0] = 1.
 for t in range(1, len(dfl)):
-    dfl[t] = dfl[t-1] * (sum(price[t, :] * quantity[t, :]) 
-                            / sum(price[t-1, :] * quantity[t, :]))
+    dfl[t] = dfl[t-1] * (np.sum(price[t, :] * quantity[t, :]) 
+                            / np.sum(price[t-1, :] * quantity[t, :]))
     
 dfl * 100
 

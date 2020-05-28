@@ -15,11 +15,8 @@
 % Knitr Setup 
 <<setup, include=FALSE>>=
 source('Knitr/setup.R')
-knitr::read_chunk('Knitr/setup.py')
+source_python('Knitr/setup.py')
 @
-% Python Setup 
-<<python-setup, include=FALSE>>=
-@ 
 \end_preamble
 \options dvipdfmx,a5paper,9pt
 \use_default_options true
@@ -417,7 +414,17 @@ GDP（Gross Domestic Product, 国内総生産）は，ある期間において�
 \begin_layout Standard
 消費というのは，各期の経済厚生を表す概念である。家計部門の消費（民間消費）がその経済の構成員の厚生をもっともよく表すと考える場合には政府消費を切り離して民間消費
 を消費とみなす。政府から受けたサービス（役所が提供する無料または非常に低廉なサービス）も国民が享受していると考えれば，政府消費を含めて消費と扱う方が望ましい場合
-もある。
+もある
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+例えば，とあるサービスに対して政府が7割の補助金を出したとしよう。これは，
+\end_layout
+
+\end_inset
+
+。GDP 上は民間現実最終消費として記録されている。
 \end_layout
 
 \begin_layout Standard
@@ -848,7 +855,39 @@ GDPデフレータ
 
 \end_inset
 
-である。次のおなじみの公式が成り立っている。
+である。次のおなじみの公式が成り立っている
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+理論上は，(
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:ch03-dfl"
+
+\end_inset
+
+) のようにデフレーターを計算してから実質GDP を計算しても， (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:laspeyres-quantity-gdp"
+
+\end_inset
+
+) で実質GDPを計算してからデフレーターを計算することもできる。実務上は，実質GDP を先に計算しているようだ。
+\begin_inset Formula 
+\[
+\text{デフレーター}=\frac{\text{名目値}}{\text{実質値}}
+\]
+
+\end_inset
+
+のように計測されるデフレーターを「インプリシット・デフレーター」という。
+\end_layout
+
+\end_inset
+
+。
 \end_layout
 
 \begin_layout Standard
@@ -3234,7 +3273,7 @@ status open
 
 \begin_layout Plain Layout
 
-<<ch03/plot-lorenz/graphics>>=
+<<ch03/plot-lorenz/graphics, cache=TRUE>>=
 \end_layout
 
 \begin_layout Plain Layout
@@ -5722,7 +5761,17 @@ sum()
 
 \end_inset
 
- という関数がこのような書き方を許しているというだけであって，あらゆる関数に使える訳ではない。
+ という関数（
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+np.sum()
+\end_layout
+
+\end_inset
+
+ではない！）がこのような書き方を許しているというだけであって，あらゆる関数に使える訳ではない。
 \end_layout
 
 \begin_layout Subsection
