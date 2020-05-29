@@ -244,12 +244,12 @@ np.allclose(nominal_gdp, np.sum(value, axis=1), rtol=1e-15)
 
 
 #---- ch03/nominal-growth
-np.diff(nominal_gdp, prepend=np.nan) / nominal_gdp
+np.diff(nominal_gdp, prepend=np.nan) / np.roll(nominal_gdp, shift=1)
 
 
 #---- ch03/nominal-contribution
 contribution = (np.diff(value, prepend=np.nan, axis=0) 
-                / nominal_gdp.reshape(4, 1)) * 100
+                / np.roll(nominal_gdp, shift=1).reshape(4, 1)) * 100
 contribution
 
 

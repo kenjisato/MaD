@@ -8,6 +8,9 @@
 .python-version
 __pycache__
 
+*sol.ipynb
+*sol.py
+
 # LyX
 \#*#
 *.lyx~

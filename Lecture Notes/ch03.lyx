@@ -7226,7 +7226,21 @@ nominal_gdp.reshape(4, 1)
 
 \end_inset
 
- で割るとよい。
+ で割るとよさそうだ。しかし，これでは 
+\begin_inset Formula $\Delta X_{t+1}/Y_{t+1}$
+\end_inset
+
+ を計算してしまうので，
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+np.roll(nominal_gdp, shift=1)
+\end_layout
+
+\end_inset
+
+ を先に 
 \end_layout
 
 \begin_layout Standard
