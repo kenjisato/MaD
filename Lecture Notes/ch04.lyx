@@ -1,0 +1,3690 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass scrbook
+\begin_preamble
+\usepackage{Styles/common}
+\usepackage{Styles/code}
+\usepackage{Styles/problem}
+
+\usepackage{url}
+
+% Knitr Setup 
+<<setup, include=FALSE>>=
+source('Knitr/setup.R')
+knitr::read_chunk('Knitr/setup.py')
+@
+% Python Setup 
+<<python-setup, include=FALSE>>=
+@ 
+\end_preamble
+\options dvipdfmx,a5paper,9pt
+\use_default_options true
+\master _main.lyx
+\begin_modules
+knitr
+theorems-ams-chap-bytype
+theorems-ams-extended-chap-bytype
+logicalmkup
+\end_modules
+\maintain_unincluded_children false
+\language japanese
+\language_package default
+\inputencoding utf8-platex
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\float_placement th
+\paperfontsize default
+\spacing onehalf
+\use_hyperref true
+\pdf_bookmarks true
+\pdf_bookmarksnumbered false
+\pdf_bookmarksopen false
+\pdf_bookmarksopenlevel 1
+\pdf_breaklinks false
+\pdf_pdfborder true
+\pdf_colorlinks false
+\pdf_backref false
+\pdf_pdfusetitle true
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine natbib
+\cite_engine_type authoryear
+\biblio_style plainnat
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date true
+\justification true
+\use_refstyle 1
+\use_minted 0
+\branch childonly
+\selected 1
+\filename_suffix 0
+\color #faf0e6
+\end_branch
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style cjk
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<engine='R', echo=FALSE>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+knitr::read_chunk('Python/ch04.py')
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+setcounter{chapter}{3}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Branch childonly
+inverted 0
+status open
+
+\begin_layout Standard
+\begin_inset CommandInset toc
+LatexCommand tableofcontents
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Chapter
+時系列データのモデリングと行列計算
+\end_layout
+
+\begin_layout Section
+概要
+\end_layout
+
+\begin_layout Standard
+この章では時系列データ分析の入門的な話題を紹介するとともに Python で行列計算を行う方法を解説する。
+\end_layout
+
+\begin_layout Standard
+最初にお断りをしておくが，この講義では，洗練された統計学を使った高度な統計分析を行わない。データを可視化したり，データの背後にある傾向を探す作業を体験してもらう
+のが目的だ。本格的な分析を始める前にデータを眺めるプロセスだと考えてほしい。
+\end_layout
+
+\begin_layout Standard
+本章の理論パートでは，経済理論から離れて，データの見方やデータの背後にある構造を知るためのツールを学ぶ。非常に簡単なモデルだけ紹介するので，より進んだ学習をした
+い読者は「時系列分析」をキーワードに参考資料を探すとよい。高校までで学んだ数学や大学初年次の線形代数がどのように役立つかを紹介したい。すぐに何をやっているか分か
+らなくてもいいので，一通り目を通してほしい。
+\end_layout
+
+\begin_layout Standard
+プログラミング・パートでは，時系列モデルのシミュレーションについて説明する。連鎖方式の指数計算で用いたテクニックが使われていることを意識しながら手を動かしてほし
+い。最後に，データからパラメータを推測する方法を簡単に紹介する。
+\end_layout
+
+\begin_layout Section
+理論
+\end_layout
+
+\begin_layout Subsection
+簡単な時系列モデル: 高校数学の復習 
+\end_layout
+
+\begin_layout Standard
+読者が日本で高校を卒業していれば，文理問わず時系列モデルの原型を学んでいるはずだ。それは「漸化式」と呼ばれる次のような式だ。
+\begin_inset Formula 
+\begin{equation}
+a_{n+1}=pa_{n}+q\label{eq:ch04/recursive-1}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+(
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:ch04/recursive-1"
+
+\end_inset
+
+) をどのように解いたかを思い出してみよう。まず「特性方程式」という次の方程式を立てる。
+\begin_inset Formula 
+\begin{equation}
+a=pa+q\label{eq:ch04/characteristic-1}
+\end{equation}
+
+\end_inset
+
+そして 
+\begin_inset Formula $a$
+\end_inset
+
+ について解く。さしあたり 
+\begin_inset Formula $p\neq1$
+\end_inset
+
+ として，
+\begin_inset Formula 
+\[
+a=\frac{q}{1-p}
+\]
+
+\end_inset
+
+である。(
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:ch04/recursive-1"
+
+\end_inset
+
+) と (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:ch04/characteristic-1"
+
+\end_inset
+
+) の差を取ると，
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+a_{n+1}-a=p\left(a_{n}-a\right)
+\]
+
+\end_inset
+
+これは，
+\begin_inset Formula $a_{n}-a$
+\end_inset
+
+ という形が繰り返し現れることに注意すると，
+\begin_inset Formula 
+\begin{align*}
+a_{n}-a & =p\left(a_{n-1}-a\right)\\
+ & =p^{2}\left(a_{n-2}-a\right)\\
+ & =p^{3}\left(a_{n-3}-a\right)\\
+ & =\cdots\\
+ & =p^{n}\left(a_{0}-a\right)
+\end{align*}
+
+\end_inset
+
+
+\begin_inset Formula $a_{0}$
+\end_inset
+
+ が既知の情報（初期条件）とすれば，すべての 
+\begin_inset Formula $n=1,2,\dots$
+\end_inset
+
+ について
+\begin_inset Formula 
+\begin{align}
+a_{n} & =a+p^{n}\left(a_{0}-a\right)\label{eq:ch04/recursive-solution}
+\end{align}
+
+\end_inset
+
+という公式が得られる。この作業を「漸化式を解く」と学んだ。
+\end_layout
+
+\begin_layout Standard
+ここで，
+\begin_inset Formula $n\to\infty$
+\end_inset
+
+ についての極限挙動について確認しておこう。上で計算した 
+\begin_inset Formula $a$
+\end_inset
+
+ は
+\begin_inset Formula 
+\[
+a=\cdots=a_{n+1}=a_{n}=a_{n-1}=\cdots
+\]
+
+\end_inset
+
+が成り立つ数字であった。初期条件がたまたま 
+\begin_inset Formula $a_{0}=a$
+\end_inset
+
+ を満たしていれば，漸化式の解 
+\begin_inset Formula $a_{n}$
+\end_inset
+
+ はずっと 
+\begin_inset Formula $a$
+\end_inset
+
+ であり続ける。もし 
+\begin_inset Formula $a_{0}\neq a$
+\end_inset
+
+ であっても，
+\begin_inset Formula $|p|<1$
+\end_inset
+
+ であれば 
+\begin_inset Formula $\lim_{n\to\infty}p^{n}=0$
+\end_inset
+
+ すなわち 
+\begin_inset Formula $\lim_{n\to\infty}a_{n}=a$
+\end_inset
+
+ が成り立つ。
+\begin_inset Formula $a$
+\end_inset
+
+ は漸化式の長期的な挙動を代表する重要な値であり，
+\series bold
+定常状態
+\series default
+とか
+\series bold
+平衡点
+\series default
+と呼ばれる。
+\begin_inset Formula $|p|>1$
+\end_inset
+
+ であれば，例外的な 
+\begin_inset Formula $a_{0}=a$
+\end_inset
+
+ のケースを除いて，
+\begin_inset Formula $\lim_{n\to\infty}|a_{n}|=\infty$
+\end_inset
+
+ となる。
+\end_layout
+
+\begin_layout Standard
+(
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:ch04/recursive-solution"
+
+\end_inset
+
+) をもう少し変形しておこう。
+\begin_inset Formula 
+\begin{align}
+a_{n} & =a+p^{n}\left(a_{0}-a\right)\nonumber \\
+ & =p^{n}a_{0}+\left(1-p^{n}\right)a\nonumber \\
+ & =p^{n}a_{0}+\left(1-p^{n}\right)\frac{q}{1-p}\nonumber \\
+ & =p^{n}a_{0}+\left(1+p+p^{2}+\cdots+p^{n-1}\right)q\label{eq:ch04/recursive-formula}
+\end{align}
+
+\end_inset
+
+
+\begin_inset Formula $a_{n}$
+\end_inset
+
+ の決定には2つの要因が絡んでいる。
+\end_layout
+
+\begin_layout Enumerate
+1つは初期値 
+\begin_inset Formula $a_{0}$
+\end_inset
+
+ の影響である。
+\begin_inset Formula $p^{n}$
+\end_inset
+
+ は 「
+\begin_inset Formula $n$
+\end_inset
+
+ 期の過去の情報が現在に与える影響」を取り出す効果があるので，
+\begin_inset Formula $p^{n}a_{0}$
+\end_inset
+
+ は「（
+\begin_inset Formula $n$
+\end_inset
+
+ 期から見て 
+\begin_inset Formula $n$
+\end_inset
+
+期前であるところの） 0期の情報 
+\begin_inset Formula $a_{0}$
+\end_inset
+
+ が 
+\begin_inset Formula $a_{n}$
+\end_inset
+
+ に与える影響」となっている。
+\end_layout
+
+\begin_layout Enumerate
+もう1つは，毎期毎期新たに加算される 
+\begin_inset Formula $q$
+\end_inset
+
+ の影響である。こちらは 0期前（
+\begin_inset Formula $p^{0}=1$
+\end_inset
+
+），1期前（
+\begin_inset Formula $p^{1}=p$
+\end_inset
+
+），
+\begin_inset Formula $\dots$
+\end_inset
+
+，
+\begin_inset Formula $(n-1)$
+\end_inset
+
+ 期前の 
+\begin_inset Formula $q$
+\end_inset
+
+ がすべての 
+\begin_inset Formula $a_{n}$
+\end_inset
+
+ に効いている。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+なお，具体的な 
+\begin_inset Formula $a_{n}$
+\end_inset
+
+ の値を求めたいだけなら漸化式を解く必要はない。式 (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:ch04/recursive-1"
+
+\end_inset
+
+) を順番に計算していけばよいからだ。しかし，「漸化式を解く」ことで数値計算によらずとも長期的な振る舞いを理解できるようになる。収束・発散の境界は等比数列の拡大
+率 
+\begin_inset Formula $p$
+\end_inset
+
+ の絶対値が 1 のところにある。
+\end_layout
+
+\begin_layout Subsection
+AR(1) 過程
+\end_layout
+
+\begin_layout Standard
+時系列分析の文脈では，
+\begin_inset Formula 
+\[
+y_{t}=a_{0}+a_{1}y_{t-1}
+\]
+
+\end_inset
+
+という方程式をベースとしたモデルがよく用いられる。なんらかの変数（
+\begin_inset Formula $y$
+\end_inset
+
+）の時点 
+\begin_inset Formula $t$
+\end_inset
+
+ における観測値 
+\begin_inset Formula $y_{t}$
+\end_inset
+
+ が前期の観測値 
+\begin_inset Formula $y_{t-1}$
+\end_inset
+
+ に依存することを表している。
+\begin_inset Formula $a_{0}$
+\end_inset
+
+, 
+\begin_inset Formula $a_{1}$
+\end_inset
+
+ は定数，
+\begin_inset Formula $y_{1},y_{2},\dots$
+\end_inset
+
+ が分析対象である。形式的に (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:ch04/recursive-1"
+
+\end_inset
+
+) と同じであることが分かるだろう。上の方程式に，事前には予測できない不確実性（
+\begin_inset Formula $\varepsilon_{t}$
+\end_inset
+
+）を加えたものが時系列分析の基礎モデルである。
+\begin_inset Formula 
+\begin{equation}
+y_{t}=a_{0}+a_{1}y_{t-1}+\varepsilon_{t}\label{eq:ch04/ar1}
+\end{equation}
+
+\end_inset
+
+方程式 (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:ch04/ar1"
+
+\end_inset
+
+) で表現される 
+\begin_inset Formula $y$
+\end_inset
+
+ は
+\series bold
+「AR(1) 過程
+\series default
+に従う」と言われる。単に 
+\begin_inset Formula $y$
+\end_inset
+
+ は AR(1) 過程である，と言ってもよい。AR は autoregressive の略で「自己回帰」と訳す。過去の自分自身のデータ（
+\begin_inset Formula $y_{t-1}$
+\end_inset
+
+）を説明変数，今の自分（
+\begin_inset Formula $y_{t}$
+\end_inset
+
+）を被説明変数とした回帰方程式になっている。
+\end_layout
+
+\begin_layout Standard
+上で導入した 
+\begin_inset Formula $\varepsilon_{t}$
+\end_inset
+
+ について，「時点 
+\begin_inset Formula $t-1$
+\end_inset
+
+ にいる分析者は何の情報も持っていない」ことを前提とする。もし情報を持っているならそれはモデルを改善するために使っているはずだからだ。この「時点
+ 
+\begin_inset Formula $t-1$
+\end_inset
+
+ にいる分析者は何の情報も持っていない」ということを，数学的には
+\begin_inset Formula 
+\[
+\mathbb{E}_{t-1}\left[\varepsilon_{t}\right]=0
+\]
+
+\end_inset
+
+と表現する。
+\begin_inset Formula $\mathbb{E}_{t-1}\left[\cdot\right]$
+\end_inset
+
+ は条件付き期待値を表す記号である。確率論にアレルギーを持っている人もいるかも知れないが，あまり難しく考えなくてもよい。モデル外の情報（
+\begin_inset Formula $\varepsilon_{t}$
+\end_inset
+
+）は 
+\begin_inset Formula $y_{t}$
+\end_inset
+
+ を増やすのか減らすのかも分からないはずだから，ゼロにならなければならないというだけのことだ。通常 
+\begin_inset Formula $\varepsilon_{t}$
+\end_inset
+
+ は，
+\begin_inset Formula $\varepsilon_{t}$
+\end_inset
+
+ と 
+\begin_inset Formula $\varepsilon_{k}$
+\end_inset
+
+ (
+\begin_inset Formula $t\neq k)$
+\end_inset
+
+ が独立で，平均ゼロ，
+\begin_inset Formula $\text{Var}(\varepsilon_{t})=\text{一定}$
+\end_inset
+
+が仮定される（ホワイト・ノイズの仮定）。次のことに注意する。
+\begin_inset Formula 
+\[
+\mathbb{E}_{t-1}\left[y_{t-1}\right]=y_{t-1},\quad\mathbb{E}_{t-1}\left[a_{0}\right]=a_{0}
+\]
+
+\end_inset
+
+
+\begin_inset Formula $t-1$
+\end_inset
+
+ 時点にいる観測者は 
+\begin_inset Formula $y_{t-1}$
+\end_inset
+
+ をすでに観測しているし，定数 
+\begin_inset Formula $a_{0}$
+\end_inset
+
+ についてはずっと前から知っているのだ。(
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:ch04/ar1"
+
+\end_inset
+
+) の全体に 
+\begin_inset Formula $\mathbb{E}_{t-1}\left[\cdot\right]$
+\end_inset
+
+を付けると
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+期待値の線形性 
+\begin_inset Formula $\mathbb{E}_{t-1}\left[\alpha x+\beta y\right]=\alpha\mathbb{E}_{t-1}\left[x\right]+\beta\mathbb{E}_{t-1}\left[y\right]$
+\end_inset
+
+ となることは認めよう。心配な読者は適当な確率論のテキストを参照してほしい。
+\end_layout
+
+\end_inset
+
+，
+\begin_inset Formula 
+\begin{align*}
+\mathbb{E}_{t-1}\left[y_{t}\right] & =\mathbb{E}_{t-1}\left[a_{0}+a_{1}y_{t-1}+\varepsilon_{t}\right]\\
+ & =\mathbb{E}_{t-1}\left[a_{0}\right]+a_{1}\mathbb{E}_{t-1}\left[y_{t-1}\right]+\mathbb{E}_{t-1}\left[\mathbb{\varepsilon}_{t}\right]\\
+ & =a_{0}+a_{1}y_{t-1}
+\end{align*}
+
+\end_inset
+
+となる。つまり，AR(1) モデルは，今期 (
+\begin_inset Formula $t-1$
+\end_inset
+
+) の情報を用いて次期 (
+\begin_inset Formula $t$
+\end_inset
+
+) に観察されそうな値（期待値）を決定するモデルである。
+\end_layout
+
+\begin_layout Subsection
+AR(2) 過程
+\end_layout
+
+\begin_layout Standard
+AR(1) があれば AR(2) も AR(3) もある。一般に 
+\begin_inset Formula $\text{AR}(p)$
+\end_inset
+
+ モデルと呼ばれる時系列モデルは
+\begin_inset Formula 
+\begin{equation}
+y_{t}=a_{0}+a_{1}y_{t-1}+\cdots+a_{p}y_{t-p}+\varepsilon_{t}\label{eq:ch04/arp}
+\end{equation}
+
+\end_inset
+
+と書ける。以下では，
+\begin_inset Formula $\text{AR}(2)$
+\end_inset
+
+ 過程と漸化式の関係，行列形式の表現を見ていこう。
+\end_layout
+
+\begin_layout Subsubsection*
+高校時代の解きかた（線形代数を使わない）
+\end_layout
+
+\begin_layout Standard
+次の形式の漸化式を解く方法を覚えているだろうか。もう忘れてしまった人もいるかもしれないが，これも高校数学で履修済みのはずだ。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+a_{n+2}=pa_{n+1}+qa_{n}+r
+\]
+
+\end_inset
+
+定数項 
+\begin_inset Formula $r$
+\end_inset
+
+ が鬱陶しいので，最終的に定常状態に収束したらどうなるかな，と考えて次の方程式を解く。
+\begin_inset Formula 
+\[
+a=pa+qa+r\Longrightarrow a=\frac{r}{1-p-q}
+\]
+
+\end_inset
+
+である。
+\begin_inset Formula $b_{n}=a_{n}-a$
+\end_inset
+
+, 
+\begin_inset Formula $n=0,1,2,3,\dots$
+\end_inset
+
+ として，
+\begin_inset Formula 
+\[
+b_{n+2}=pb_{n+1}+qb_{n}
+\]
+
+\end_inset
+
+という定数項のない漸化式になる。これを解くときに，誰かが次のような形に変形することを閃いたらしい。
+\begin_inset Formula 
+\[
+b_{n+2}-\alpha b_{n+1}=\beta(b_{n+1}-\alpha b_{n})
+\]
+
+\end_inset
+
+これを満たす 
+\begin_inset Formula $\alpha$
+\end_inset
+
+, 
+\begin_inset Formula $\beta$
+\end_inset
+
+ を見つけ出そうという訳である。少し変形すると，
+\begin_inset Formula 
+\[
+b_{n+2}-(\alpha+\beta)b_{n+1}+\alpha\beta b_{n}=0
+\]
+
+\end_inset
+
+これは
+\begin_inset Formula 
+\[
+p=\alpha+\beta,\quad q=\alpha\beta
+\]
+
+\end_inset
+
+なのだから，2次方程式
+\begin_inset Formula 
+\[
+x^{2}-px+q=0
+\]
+
+\end_inset
+
+の解によって 
+\begin_inset Formula $\alpha$
+\end_inset
+
+, 
+\begin_inset Formula $\beta$
+\end_inset
+
+ を決定できる（俗に「解と係数の関係」と呼ばれる関係）
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+ここでは 
+\begin_inset Formula $\alpha$
+\end_inset
+
+, 
+\begin_inset Formula $\beta$
+\end_inset
+
+ が実数で 
+\begin_inset Formula $\alpha\neq\beta$
+\end_inset
+
+ を満たすことを想定している。
+\end_layout
+
+\end_inset
+
+。したがって，最初の2項 
+\begin_inset Formula $b_{0}$
+\end_inset
+
+, 
+\begin_inset Formula $b_{1}$
+\end_inset
+
+ が既知であれば，
+\begin_inset Formula 
+\[
+b_{n+1}=\alpha b_{n}+\beta^{n}(b_{1}-\alpha b_{0})
+\]
+
+\end_inset
+
+のようにして，一般の 
+\begin_inset Formula $b_{n}$
+\end_inset
+
+ あるいは 
+\begin_inset Formula $a_{n}$
+\end_inset
+
+を決定できる。
+\begin_inset Formula $\lim_{n\to\infty}|b_{n}|$
+\end_inset
+
+ が 
+\begin_inset Formula $|\beta|$
+\end_inset
+
+ に関係していることは明白だろう。しかし，右辺1項目 
+\begin_inset Formula $b_{n+1}=\alpha b_{n}+\cdots$
+\end_inset
+
+ に注目すると，
+\begin_inset Formula $|\alpha|$
+\end_inset
+
+ も無関係ではなさそうだ。実際，
+\begin_inset Formula $|\alpha|<1$
+\end_inset
+
+ かつ 
+\begin_inset Formula $|\beta|<1$
+\end_inset
+
+ が成り立っているときに，
+\begin_inset Formula $\lim_{n\to\infty}|b_{n}|=0$
+\end_inset
+
+ が成り立つ。これは線形代数学の知識を使うと明快に示すことができる。
+\end_layout
+
+\begin_layout Subsubsection*
+線形代数を使う
+\end_layout
+
+\begin_layout Standard
+上の解法は多次元に一般化することは難しい。より実用的な方法を理解するには線形代数学の知識が必要になる。
+\begin_inset Formula 
+\[
+a_{n+2}=pa_{n+1}+qa_{n}+r
+\]
+
+\end_inset
+
+次の行列型の漸化式に変形する。
+\begin_inset Formula 
+\[
+\begin{bmatrix}a_{n+2}\\
+a_{n+1}
+\end{bmatrix}=\begin{bmatrix}p & q\\
+1 & 0
+\end{bmatrix}\begin{bmatrix}a_{n+1}\\
+a_{n}
+\end{bmatrix}+\begin{bmatrix}r\\
+0
+\end{bmatrix},
+\]
+
+\end_inset
+
+ここの行列漸化式は次の連立方程式と同等である。
+\begin_inset Formula 
+\[
+\left\{ \begin{array}{l}
+a_{n+2}=pa_{n+1}+qa_{n}+r\\
+a_{n+1}=a_{n+1}
+\end{array}\right.
+\]
+
+\end_inset
+
+さらに表現を簡略化するために次のような記法を導入する。
+\begin_inset Formula 
+\[
+\boldsymbol{a}_{n}=\begin{bmatrix}a_{n+1}\\
+a_{n}
+\end{bmatrix},\boldsymbol{A}=\begin{bmatrix}p & q\\
+1 & 0
+\end{bmatrix},\quad\boldsymbol{c}=\begin{bmatrix}r\\
+0
+\end{bmatrix}
+\]
+
+\end_inset
+
+すると，
+\begin_inset Formula 
+\begin{equation}
+\boldsymbol{a}_{n+1}=\boldsymbol{A}\boldsymbol{a}_{n}+\boldsymbol{c}\label{eq:ch04/companion-form}
+\end{equation}
+
+\end_inset
+
+と書ける。自明な等式を導入することで表現をシンプルにすることができた。式 (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:ch04/recursive-formula"
+
+\end_inset
+
+) と同じスピリットで一般の 
+\begin_inset Formula $\boldsymbol{a}_{n}$
+\end_inset
+
+ を表現してみよう。
+\begin_inset Formula 
+\begin{align}
+\boldsymbol{a}_{n} & =\boldsymbol{A}\boldsymbol{a}_{n-1}+\boldsymbol{c}\nonumber \\
+ & =\boldsymbol{A}\left(\boldsymbol{A}\boldsymbol{a}_{n-2}+\boldsymbol{c}\right)+\boldsymbol{c}\nonumber \\
+ & =\boldsymbol{A}^{2}\boldsymbol{a}_{n-2}+\left(\boldsymbol{A}+\boldsymbol{I}\right)\boldsymbol{c}\nonumber \\
+ & =\cdots\nonumber \\
+ & =\boldsymbol{A}^{n}\boldsymbol{a}_{0}+\left(\boldsymbol{A}^{n-1}+\boldsymbol{A}^{n-2}+\cdots+\boldsymbol{A}+\boldsymbol{I}\right)\boldsymbol{c}\label{eq:ch04/an_expansion}
+\end{align}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+この表現は一般の 
+\begin_inset Formula $\boldsymbol{A}$
+\end_inset
+
+, 
+\begin_inset Formula $\boldsymbol{c}$
+\end_inset
+
+ に対して正しい公式になっているが，極限挙動 
+\begin_inset Formula $\lim_{n\to\infty}\boldsymbol{a}_{n}$
+\end_inset
+
+ については何も教えてくれない。
+\begin_inset Formula $\boldsymbol{A}^{n}$
+\end_inset
+
+ の極限での振る舞いについて調べる必要があるのだが，これには行列の対角化，ジョルダン標準化という考え方を使う。詳細は省略するが，
+\begin_inset Formula 
+\begin{align*}
+\boldsymbol{A} & =\boldsymbol{V}\boldsymbol{D}\boldsymbol{V}^{-1}\\
+\boldsymbol{D} & =\text{対角成分に }\boldsymbol{A}\text{ の固有値が並ぶ上三角行列}\\
+ & =\begin{bmatrix}\alpha & *\\
+0 & \beta
+\end{bmatrix}
+\end{align*}
+
+\end_inset
+
+ という形式で表現できて，
+\begin_inset Formula $\boldsymbol{D}^{n}$
+\end_inset
+
+ の成分は比較的簡単に計算できる。
+\begin_inset Formula $\alpha$
+\end_inset
+
+, 
+\begin_inset Formula $\beta$
+\end_inset
+
+ は前節のものと同じと考えてもよいが，実数に限らず複素固有値も許容される。もし 
+\begin_inset Formula $\boldsymbol{A}$
+\end_inset
+
+ のすべての固有値の絶対値が 1 未満であれば，
+\begin_inset Formula $\lim_{n\to\infty}\boldsymbol{D}^{n}=\boldsymbol{0}$
+\end_inset
+
+。さらにそこから 
+\begin_inset Formula $\lim_{n\to\infty}\boldsymbol{A}^{n}=\boldsymbol{0}$
+\end_inset
+
+ を導くことができる。固有値に絶対値が 1 より大きいものがあれば，
+\begin_inset Formula $\boldsymbol{A}^{n}$
+\end_inset
+
+ は発散する。固有値に絶対値が 1 と等しいものがある場合には少し難しいのだが，発散せずに一定の大きさを保ち続けるケースと発散するケースがある。極限での振る舞い
+に基づいて，固有値を分類しておこう。
+\end_layout
+
+\begin_layout Itemize
+絶対値が 1未満の固有値を
+\series bold
+安定固有値
+\series default
+という。
+\end_layout
+
+\begin_layout Itemize
+絶対値が 1より大きい固有値を
+\series bold
+不安定固有値
+\series default
+という。
+\end_layout
+
+\begin_layout Itemize
+絶対値が 1に等しい固有値を
+\series bold
+中心固有値
+\series default
+という。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+高校数学で 
+\begin_inset Formula $b_{n+2}-\alpha b_{n+1}=\beta\left(b_{n+1}-\alpha b_{n}\right)$
+\end_inset
+
+ を考えたのは，固有値に対応する固有空間という概念に対応している。
+\begin_inset Formula $-1<\beta<1$
+\end_inset
+
+ のときには 
+\begin_inset Formula $n\to\infty$
+\end_inset
+
+ の極限で 
+\begin_inset Formula $(b_{n},b_{n+1})$
+\end_inset
+
+ は 
+\begin_inset Formula $y=\alpha x$
+\end_inset
+
+ を満たす直線に漸近する。この直線が固有空間の1つである（固有値 
+\begin_inset Formula $\alpha$
+\end_inset
+
+ に対応する固有空間）。行列表現した上記の 
+\begin_inset Formula $\boldsymbol{V}$
+\end_inset
+
+ に関連しているのだが，きちんとした説明にはそれなりの準備が必要なので，関心のある読者は適当な線形代数学や力学系の教科書で勉強してほしい。
+\end_layout
+
+\begin_layout Standard
+重要な性質を命題の形でまとめておこう。
+\end_layout
+
+\begin_layout Proposition
+\begin_inset CommandInset label
+LatexCommand label
+name "prop: ch04/an"
+
+\end_inset
+
+行列 
+\begin_inset Formula $\boldsymbol{A}$
+\end_inset
+
+ が安定固有値のみをもつとき，
+\begin_inset Formula 
+\[
+\lim_{n\to\infty}\boldsymbol{A}^{n}=\boldsymbol{0}
+\]
+
+\end_inset
+
+が成り立つ。
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+qed
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+なお，行列の極限は成分ごとに考えればよい。
+\end_layout
+
+\begin_layout Standard
+安定固有値のみを持つ行列については，無限等比級数の公式（
+\begin_inset Formula $|\rho|<1$
+\end_inset
+
+)
+\begin_inset Formula 
+\[
+\sum_{n=0}^{\infty}\rho^{n}=1+\rho+\rho^{2}+\cdots=\frac{1}{1-\rho}
+\]
+
+\end_inset
+
+と同等の公式が成り立つ。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Proposition
+\begin_inset CommandInset label
+LatexCommand label
+name "prop: ch04/i-a"
+
+\end_inset
+
+行列 
+\begin_inset Formula $\boldsymbol{A}$
+\end_inset
+
+ が安定固有値のみをもつ場合，行列 
+\begin_inset Formula $(\boldsymbol{I}-\boldsymbol{A})$
+\end_inset
+
+ は逆行列を持ち，次の式が成り立つ。
+\begin_inset Formula 
+\[
+\sum_{n=0}^{\infty}\boldsymbol{A}^{n}=\lim_{n\to\infty}\left(\boldsymbol{A}^{n-1}+\boldsymbol{A}^{n-2}+\cdots+\boldsymbol{A}+\boldsymbol{I}\right)=\left(\boldsymbol{I}-\boldsymbol{A}\right)^{-1}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Proof
+証明するには 
+\begin_inset Formula 
+\begin{align*}
+\left(\boldsymbol{I}-\boldsymbol{A}\right)\left[\lim_{n\to\infty}\left(\boldsymbol{A}^{n-1}+\boldsymbol{A}^{n-2}+\cdots+\boldsymbol{A}+\boldsymbol{I}\right)\right] & =\boldsymbol{I}\\
+\left[\lim_{n\to\infty}\left(\boldsymbol{A}^{n-1}+\boldsymbol{A}^{n-2}+\cdots+\boldsymbol{A}+\boldsymbol{I}\right)\right]\left(\boldsymbol{I}-\boldsymbol{A}\right) & =\boldsymbol{I}
+\end{align*}
+
+\end_inset
+
+を確かめればよい。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Proposition
+行列 
+\begin_inset Formula $\boldsymbol{A}$
+\end_inset
+
+ が安定固有値のみをもつ場合，
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:ch04/companion-form"
+
+\end_inset
+
+ は定常状態に収束する。
+\end_layout
+
+\begin_layout Proof
+上の命題
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "prop: ch04/an"
+
+\end_inset
+
+, 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "prop: ch04/i-a"
+
+\end_inset
+
+, 式 (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:ch04/an_expansion"
+
+\end_inset
+
+) を用いると， 
+\begin_inset Formula 
+\begin{align*}
+\boldsymbol{a}_{n} & =\boldsymbol{A}^{n}\boldsymbol{a}_{0}+\left(\boldsymbol{A}^{n-1}+\boldsymbol{A}^{n-2}+\cdots+\boldsymbol{A}+\boldsymbol{I}\right)\boldsymbol{c}\\
+ & \xrightarrow[n\to\infty]{}\left(\boldsymbol{I}-\boldsymbol{A}\right)^{-1}\boldsymbol{c}
+\end{align*}
+
+\end_inset
+
+が分かる。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+式 (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:ch04/companion-form"
+
+\end_inset
+
+) のようにかけるモデルを線形差分方程式と呼ぶ。線形差分方程式が極限でよい振る舞いをするかどうかは，係数行列の固有値を調べればよい。これは非常に重要な性質なので
+記憶しておこう。
+\end_layout
+
+\begin_layout Problem
+3項間漸化式を 
+\begin_inset Formula $2$
+\end_inset
+
+次ベクトルの漸化式に書き換えることができたのだから，一般の 
+\begin_inset Formula $(p+1)$
+\end_inset
+
+ 項間漸化式を 
+\begin_inset Formula $p$
+\end_inset
+
+ 次ベクトルの漸化式に書き換えることができるはずだ。やってみよう。
+\begin_inset Formula 
+\begin{align*}
+b_{n} & =\alpha_{0}+\alpha_{1}b_{n-1}+\alpha_{2}b_{n-2}+\cdots+\alpha_{n-p}b_{n}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+answerbox{6
+\backslash
+baselineskip}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+線形代数を使うと，次数の大きさに関わらずに同じ表現とアルゴリズムを使うことができるという大きなメリットがある。線形代数学を学ぼう。
+\end_layout
+
+\begin_layout Subsubsection*
+AR(2) 過程
+\end_layout
+
+\begin_layout Standard
+次の形式の時系列モデルを AR(2) 過程という。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+y_{t}=a_{0}+a_{1}y_{t-1}+a_{2}y_{t-2}+\varepsilon_{t}\label{eq:ch02/ar2}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $y_{0}$
+\end_inset
+
+, 
+\begin_inset Formula $y_{1}$
+\end_inset
+
+ が観測されていれば，
+\begin_inset Formula 
+\begin{align*}
+y_{2} & =a_{0}+a_{1}y_{1}+a_{2}y_{0}+\varepsilon_{2}\\
+y_{3} & =a_{0}+a_{1}y_{2}+a_{2}y_{1}+\varepsilon_{3}\\
+ & \vdots\\
+ & \vdots
+\end{align*}
+
+\end_inset
+
+を順に計算できる。もちろん，
+\begin_inset Formula $\varepsilon_{t}$
+\end_inset
+
+ は 
+\begin_inset Formula $\mathbb{E}_{t-1}\left[\varepsilon_{t}\right]=0$
+\end_inset
+
+ （
+\begin_inset Formula $\mathbb{E}\left[\varepsilon_{t}\right]=0$
+\end_inset
+
+）, 
+\begin_inset Formula $\mathrm{Var}(\varepsilon_{t})\equiv\sigma^{2}$
+\end_inset
+
+ を満たすホワイトノイズで観察のたびにランダムに決まる。
+\end_layout
+
+\begin_layout Standard
+次の行列表現と同じであることを確かめよう。
+\begin_inset Formula 
+\begin{align*}
+\boldsymbol{x}_{t} & =\boldsymbol{A}\boldsymbol{x}_{t-1}+\boldsymbol{B}\tilde{\varepsilon}_{t}\\
+y_{t} & =\boldsymbol{C}\boldsymbol{x}_{t},
+\end{align*}
+
+\end_inset
+
+ただし，
+\begin_inset Formula 
+\[
+\boldsymbol{x}_{t}=\begin{bmatrix}y_{t}\\
+y_{t-1}
+\end{bmatrix},\quad\boldsymbol{A}=\begin{bmatrix}a_{1} & a_{2}\\
+1 & 0
+\end{bmatrix},\quad\boldsymbol{B}=\begin{bmatrix}1\\
+0
+\end{bmatrix},\quad\boldsymbol{C}=\begin{bmatrix}1 & 0\end{bmatrix},\quad\tilde{\varepsilon}_{t}=\varepsilon_{t}+a_{0}.
+\]
+
+\end_inset
+
+上で用いた行列表現とは違って，中間変数 
+\begin_inset Formula $\boldsymbol{x}_{t}$
+\end_inset
+
+ を導入した。このようなモデル表現を「状態空間表現」というが，今はあまり気にしなくてよい。係数行列の固有値は確率的な変動が入る場合にも役に立つ。行列
+ 
+\begin_inset Formula $\boldsymbol{A}$
+\end_inset
+
+ が安定固有値のみを持つことは，時系列モデルの
+\series bold
+弱定常性
+\series default
+と呼ばれる性質に関連している。弱定常性を持つ過程は
+\end_layout
+
+\begin_layout Itemize
+すべての時点の変数 
+\begin_inset Formula $y_{t}$
+\end_inset
+
+ が同じ期待値と分散を持つ。すなわち，ある定数の周りをおおよそ同じ振れ幅で振動するような挙動を示す。
+\end_layout
+
+\begin_layout Itemize
+過去のデータが現在のデータに与える影響は，現在と過去の時間差のみに依存する。例えば，3日前のデータ今日のデータに与える影響の強さは，2日前のデータが明日のデータ
+に与える影響の強さと同じである。
+\end_layout
+
+\begin_layout Standard
+AR過程が 1つ目の性質を持つことは次のようにして分かる。まず，
+\begin_inset Formula $\boldsymbol{x}_{t}$
+\end_inset
+
+ が下のように表現できることを確認する。
+\begin_inset Formula 
+\[
+\boldsymbol{x}_{t}=\boldsymbol{A}^{n}\boldsymbol{x}_{t-n}+\sum_{k=0}^{n-1}\boldsymbol{A}^{k}\boldsymbol{B}\tilde{\varepsilon}_{t-k},\quad n=1,2,\dots
+\]
+
+\end_inset
+
+であることに注意する。両辺の期待値を取ると，（
+\begin_inset Formula $\mathbb{E}\left[\tilde{\varepsilon}_{t}\right]=a_{0}$
+\end_inset
+
+ に注意）
+\begin_inset Formula 
+\begin{align*}
+\mathbb{E}\left[\boldsymbol{x}_{t}\right] & =\boldsymbol{A}^{n}\mathbb{E}\left[\boldsymbol{x}_{t-n}\right]+\sum_{k=0}^{n-1}\boldsymbol{A}^{k}\boldsymbol{B}\mathbb{E}\left[\tilde{\varepsilon}_{t-k}\right]\\
+ & \xrightarrow[n\to\infty]{}\sum_{k=0}^{\infty}\boldsymbol{A}^{k}\boldsymbol{B}a_{0}\\
+ & =\left(\boldsymbol{I}-\boldsymbol{A}\right)^{-1}\boldsymbol{B}a_{0}
+\end{align*}
+
+\end_inset
+
+したがって，
+\begin_inset Formula 
+\[
+\mathbb{E}\left[y_{t}\right]=\boldsymbol{C}\left(\boldsymbol{I}-\boldsymbol{A}\right)^{-1}\boldsymbol{B}a_{0}\equiv\mu
+\]
+
+\end_inset
+
+となり，すべての時点で 平均が同じになる。
+\end_layout
+
+\begin_layout Problem
+AR(2) 過程 (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:ch02/ar2"
+
+\end_inset
+
+) に対して 
+\begin_inset Formula $\boldsymbol{\mu}$
+\end_inset
+
+ を計算しなさい。
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+answerbox{6
+\backslash
+baselineskip}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+\begin_inset Formula 
+\[
+\boldsymbol{I}-\boldsymbol{A}=\begin{bmatrix}1-a_{1} & -a_{2}\\
+-1 & 1
+\end{bmatrix}\Longrightarrow\left(\boldsymbol{I}-\boldsymbol{A}\right)^{-1}=\frac{1}{1-a_{1}-a_{2}}\begin{bmatrix}1 & a_{2}\\
+1 & 1-a_{1}
+\end{bmatrix}
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\boldsymbol{C}\left(\boldsymbol{I}-\boldsymbol{A}\right)^{-1}\boldsymbol{B}a_{0}=\frac{1}{1-a_{1}-a_{2}}\begin{bmatrix}1 & 0\end{bmatrix}\begin{bmatrix}1 & a_{2}\\
+1 & 1-a_{1}
+\end{bmatrix}\begin{bmatrix}1\\
+0
+\end{bmatrix}a_{0}=\frac{a_{0}}{1-a_{1}-a_{2}}=\mu.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+すべての 
+\begin_inset Formula $t$
+\end_inset
+
+ について分散が同一であることは以下のように示せる。この計算では
+\begin_inset Formula $a_{0}=0$
+\end_inset
+
+ （したがって，
+\begin_inset Formula $\mu=0$
+\end_inset
+
+）と置くが，これによって一般性を失うことはない。
+\begin_inset Formula 
+\begin{align*}
+\mathrm{Var}(y_{t}) & =\boldsymbol{C}\mathbb{E}\left[\boldsymbol{x}_{t}\boldsymbol{x}_{t}^{\top}\right]\boldsymbol{C}^{\top}\\
+\mathbb{E}\left[\boldsymbol{x}_{t}\boldsymbol{x}_{t}^{\top}\right] & =\mathbb{E}\left[\boldsymbol{A}\boldsymbol{x}_{t-1}\boldsymbol{x}_{t-1}^{\top}\boldsymbol{A}^{\top}+(\text{独立性によりゼロになる項})+\boldsymbol{B}\boldsymbol{B}^{\top}\varepsilon_{t}^{2}\right]\\
+ & =\boldsymbol{A}\mathbb{E}\left[\boldsymbol{x}_{t-1}\boldsymbol{x}_{t-1}^{\top}\right]\boldsymbol{A}^{\top}+\boldsymbol{B}\boldsymbol{B}^{\top}\sigma^{2}\\
+ & =\left(\boldsymbol{A}\right)^{2}\mathbb{E}\left[\boldsymbol{x}_{t-2}\boldsymbol{x}_{t-2}^{\top}\right]\left(\boldsymbol{A}^{\top}\right)^{2}+\left(\boldsymbol{A}\boldsymbol{B}\boldsymbol{B}^{\top}\boldsymbol{A}^{\top}+\boldsymbol{B}\boldsymbol{B}^{\top}\right)\sigma^{2}\\
+ & =\cdots\\
+ & =\left(\boldsymbol{A}\right)^{n}\mathbb{E}\left[\boldsymbol{x}_{t-n}\boldsymbol{x}_{t-n}^{\top}\right]\left(\boldsymbol{A}^{\top}\right)^{n}+\left[\boldsymbol{A}^{n}\boldsymbol{B}\boldsymbol{B}^{\top}\left(\boldsymbol{A}^{\top}\right)^{n}+\cdots+\boldsymbol{A}\boldsymbol{B}\boldsymbol{B}^{\top}\boldsymbol{A}^{\top}+\boldsymbol{B}\boldsymbol{B}^{\top}\right]\sigma^{2}
+\end{align*}
+
+\end_inset
+
+
+\begin_inset Formula $\boldsymbol{A}$
+\end_inset
+
+ の安定性より，
+\begin_inset Formula $n\to\infty$
+\end_inset
+
+ で収束して， 
+\begin_inset Formula 
+\begin{align*}
+\mathbb{E}\left[\boldsymbol{x}_{t}\boldsymbol{x}_{t}^{\top}\right] & =\sum_{n=0}^{\infty}\boldsymbol{A}^{n}\boldsymbol{B}\boldsymbol{B}^{\top}\left(\boldsymbol{A}^{\top}\right)^{n}\sigma^{2}\equiv\boldsymbol{\Sigma},\\
+\mathrm{Var}(y_{t}) & \equiv\boldsymbol{C}\boldsymbol{\Sigma}\boldsymbol{C}^{\top}
+\end{align*}
+
+\end_inset
+
+
+\begin_inset Formula $\boldsymbol{\Sigma}$
+\end_inset
+
+ の具体的な値を求めるには，行列方程式
+\begin_inset Formula 
+\begin{equation}
+\boldsymbol{\Sigma}=\boldsymbol{A}\boldsymbol{\Sigma}\boldsymbol{A}^{\top}+\boldsymbol{B}\boldsymbol{B}^{\top}\sigma^{2}\label{eq:ch04/lyapunov}
+\end{equation}
+
+\end_inset
+
+を
+\begin_inset Formula $\boldsymbol{\Sigma}$
+\end_inset
+
+について解けばよい。式 (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:ch04/lyapunov"
+
+\end_inset
+
+) のような方程式は
+\series bold
+離散時間リアプノフ方程式
+\series default
+と呼ばれている。
+\end_layout
+
+\begin_layout Problem
+行列方程式 (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:ch04/lyapunov"
+
+\end_inset
+
+) の未知行列 
+\begin_inset Formula $\boldsymbol{\Sigma}$
+\end_inset
+
+を
+\begin_inset Formula 
+\[
+\boldsymbol{\Sigma}=\begin{bmatrix}\alpha & \beta\\
+\beta & \gamma
+\end{bmatrix}
+\]
+
+\end_inset
+
+と成分表示する。方程式
+\begin_inset Formula 
+\[
+\begin{bmatrix}\alpha & \beta\\
+\beta & \gamma
+\end{bmatrix}=\begin{bmatrix}a_{1} & a_{2}\\
+1 & 0
+\end{bmatrix}\begin{bmatrix}\alpha & \beta\\
+\beta & \gamma
+\end{bmatrix}\begin{bmatrix}a_{1} & 1\\
+a_{2} & 0
+\end{bmatrix}+\begin{bmatrix}1\\
+0
+\end{bmatrix}\begin{bmatrix}1 & 0\end{bmatrix}\sigma^{2}
+\]
+
+\end_inset
+
+を 
+\begin_inset Formula $\alpha,\beta,\gamma$
+\end_inset
+
+ について解き，
+\begin_inset Formula 
+\[
+\mathrm{Var}(y_{t})=\frac{(1-a_{1}^{2})\sigma^{2}}{1-a_{2}-(a_{1}^{2}+a_{2}^{2})-a_{2}(a_{1}^{2}-a_{2}^{2})}
+\]
+
+\end_inset
+
+であることを示しなさい。
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+answerbox{10
+\backslash
+baselineskip}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+異なる時点の変数間の共分散（自己共分散）を計算しよう。これも 
+\begin_inset Formula $a_{0}=0$
+\end_inset
+
+ として一般性を失うことはない。
+\begin_inset Formula 
+\begin{align*}
+\mathbb{E}\left[\boldsymbol{x}_{t}\boldsymbol{x}_{t-k}^{\top}\right] & =\mathbb{E}\left[\left(\boldsymbol{A}^{k}\boldsymbol{x}_{t-k}+\sum_{j=0}^{k-1}\boldsymbol{A}^{j}\boldsymbol{B}\varepsilon_{t-j}\right)\boldsymbol{x}_{t-k}^{\top}\right]\\
+ & =\boldsymbol{A}^{k}\boldsymbol{\Sigma}+\sum_{j=0}^{k-1}\boldsymbol{A}^{j}\mathbb{E}\left[\boldsymbol{B}\underbrace{\varepsilon_{t-j}}_{t-j>t-k}\boldsymbol{x}_{t-k}^{\top}\right]\\
+ & =\boldsymbol{A}^{k}\boldsymbol{\Sigma}
+\end{align*}
+
+\end_inset
+
+となる。最後の等式は，ホワイトノイズの仮定から得られる「過去の 
+\begin_inset Formula $\boldsymbol{x}$
+\end_inset
+
+ と未来の 
+\begin_inset Formula $\varepsilon$
+\end_inset
+
+ が独立である」という性質によって成り立つ。
+\begin_inset Formula $y$
+\end_inset
+
+ については
+\begin_inset Formula 
+\[
+\mathrm{Cov}(y_{t},y_{t-k})=\boldsymbol{C}\boldsymbol{A}^{k}\boldsymbol{\Sigma}\boldsymbol{C}^{\top}
+\]
+
+\end_inset
+
+である。一般に，
+\begin_inset Formula $\mathrm{Cov}(y_{t},y_{t-k})$
+\end_inset
+
+ は 
+\begin_inset Formula $t$
+\end_inset
+
+, 
+\begin_inset Formula $k$
+\end_inset
+
+ に依存するが，弱定常AR過程の自己共分散は 
+\begin_inset Formula $t$
+\end_inset
+
+ にはよらず時間差 
+\begin_inset Formula $k$
+\end_inset
+
+ のみで決定できる。自己共分散を 
+\begin_inset Formula $k$
+\end_inset
+
+ の関数と見て，
+\begin_inset Formula 
+\[
+\phi(k)=\mathrm{Cov}(y_{t},y_{t-k})=\boldsymbol{C}\boldsymbol{A}^{k}\boldsymbol{\Sigma}\boldsymbol{C}^{\top}
+\]
+
+\end_inset
+
+を定義する。
+\begin_inset Formula $\phi(k)$
+\end_inset
+
+ を
+\series bold
+自己共分散関数
+\series default
+という。
+\end_layout
+
+\begin_layout Standard
+自己共分散が時間差のみに依存するという性質は応用上極めて重要である。
+\begin_inset Formula $\mathrm{Cov}(y_{t},y_{t-k})$
+\end_inset
+
+ の定義に含まれる期待値は，本来，時系列の生成を何度も繰り返して計算した結果の平均（アンサンブル平均）によって推定されるべきものである。しかし，1回だけ生成した
+長時間時系列の中には同じ時間差を持つデータがたくさん入っているので（
+\begin_inset Formula $y_{t}$
+\end_inset
+
+ と 
+\begin_inset Formula $y_{t-k}$
+\end_inset
+
+, 
+\begin_inset Formula $y_{t+1}$
+\end_inset
+
+と 
+\begin_inset Formula $y_{t-k+1}$
+\end_inset
+
+, 
+\begin_inset Formula $y_{t+2}$
+\end_inset
+
+ と 
+\begin_inset Formula $y_{t-k+2}$
+\end_inset
+
+ など），これらの実データの平均値を使うことで共分散の推定が可能になる。アンサンブル平均が長時間平均と一致するという性質は
+\series bold
+エルゴード性
+\series default
+として知られている。実データを用いる時系列分析では，1回だけ生成された時系列しか使えないことがほとんどなので，エルゴード性を持つモデルは大変都合がよいのだ。
+\end_layout
+
+\begin_layout Subsubsection*
+自己相関のグラフ
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\boldsymbol{A}$
+\end_inset
+
+ が安定固有値のみをもつ場合，自己共分散関数
+\begin_inset Formula 
+\[
+ACF_{k}=\boldsymbol{C}\boldsymbol{A}^{k}\boldsymbol{\Sigma}\boldsymbol{C}^{\top},\quad k=0,1,2,\dots
+\]
+
+\end_inset
+
+は 
+\begin_inset Formula $k\to\infty$
+\end_inset
+
+ に伴って減衰（ゼロに漸近）する挙動を示す。これは弱定常 AR 過程の重要な特徴である。
+\end_layout
+
+\begin_layout Standard
+さらに，偏自己相関関数（partial autocorrelation function, PACF) という重要な概念があるので，ここで紹介しておこう。AR
+ (2) のケースでは，
+\begin_inset Formula 
+\begin{align*}
+y_{t} & =a_{1}y_{t-1}+a_{2}y_{t-2}+(*)\\
+ & =a_{1}(a_{1}y_{t-2}+(*))+a_{2}y_{t-2}+(*)
+\end{align*}
+
+\end_inset
+
+なので（議論に関係ない部分は 
+\begin_inset Formula $(*)$
+\end_inset
+
+ としている），
+\begin_inset Formula $y_{t-2}\longrightarrow y_{t}$
+\end_inset
+
+ の影響は，
+\begin_inset Formula $y_{t-1}$
+\end_inset
+
+ を経由した間接的な影響（
+\begin_inset Formula $a_{1}^{2}y_{t-2}$
+\end_inset
+
+）と，
+\begin_inset Formula $y_{1}$
+\end_inset
+
+ を介さない直接的な影響（
+\begin_inset Formula $a_{2}y_{t-2}$
+\end_inset
+
+）の2つの部分に分解できる。間接的な影響を取り除いて直接的な影響のみを取り出そうとするものが PACF である。AR過程の場合は係数が PACF
+ に相当するので，AR(2) では 
+\begin_inset Formula $k=2$
+\end_inset
+
+ のことろでするどいカットオフが生じる。
+\begin_inset Formula 
+\[
+PACF_{1}=a_{1},\quad PACF_{2}=a_{2},\quad PACF_{3}=PACF_{4}=\cdots=0
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+与えられたデータから ACF や PACF を推定
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+標本ACF，標本PACF は線形回帰モデルを用いて推定する。
+\end_layout
+
+\end_inset
+
+，可視化することができるので，ここで説明したような定性的な性質を理解しておけば，手元の時系列データが AR過程で表現できそうか，また，次数がどれくらいかを見積も
+ることができる。詳細は 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "Okimoto"
+literal "false"
+
+\end_inset
+
+ を参照。　
+\end_layout
+
+\begin_layout Section
+プログラミング：シミュレーション
+\end_layout
+
+\begin_layout Standard
+データからモデルやモデルのパラメータを決定することを
+\series bold
+推定
+\series default
+という。逆に，1つのモデルパラメータからデータを生成することを
+\series bold
+シミュレーション
+\series default
+という。この節ではシミュレーションについて説明し，次節で推定について簡単に紹介する。実データを使った分析例は次節で紹介する。（予定）
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+確認する！！
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch04/import>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+<<ch04/random/noinc>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+時系列データの表現
+\end_layout
+
+\begin_layout Standard
+\begin_inset Branch childonly
+inverted 0
+status open
+
+\begin_layout Standard
+2
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "chap:物価指数とインフレーション"
+
+\end_inset
+
+章では，ベクトル時系列データを行列形式で表現した。つまり，
+\begin_inset Formula $T$
+\end_inset
+
+ 個の 
+\begin_inset Formula $d$
+\end_inset
+
+ 次元ベクトル
+\begin_inset Formula 
+\[
+\boldsymbol{x}_{t}=\begin{bmatrix}x_{t,1}\\
+x_{t,2}\\
+\vdots\\
+x_{t,d}
+\end{bmatrix},\qquad t=0,1,2,\dots,T-1
+\]
+
+\end_inset
+
+からなる時系列データを 
+\begin_inset Formula $T\times d$
+\end_inset
+
+ 行列（2次元配列）を用いて，
+\begin_inset Formula 
+\[
+\begin{bmatrix}x_{0,1} & x_{0,2} & \cdots & x_{0,d}\\
+x_{1,1} & x_{1,2} & \cdots & x_{1,d}\\
+\vdots & \vdots & \ddots & \vdots\\
+x_{t,1} & x_{t,2} & \cdots & x_{t,d}\\
+\vdots & \vdots & \ddots & \vdots\\
+x_{T-1,1} & x_{T-1,2} & \cdots & x_{T-1,d}
+\end{bmatrix}
+\]
+
+\end_inset
+
+のように表現した。このような表現が最も基本的であるのは間違いないのだが，
+\series bold
+NumPy
+\series default
+ で「
+\begin_inset Formula $t$
+\end_inset
+
+ 期のデータ（行）を取り出す」という操作をするときに，取り出したベクトルには縦横の情報が設定されていない状況（1次元配列）になってしまう。行列とベクトルの計算す
+るときに間違いが起こりやすく，エラーの温床になってしまう。そこで，少し方針を変えて次のような愚直な理解をしよう。
+\begin_inset Formula 
+\[
+\text{ベクトル時系列}=T\text{ 個の }d\times1\text{ 行列を並べたもの}
+\]
+
+\end_inset
+
+つまり，シェイプが 
+\begin_inset Formula $(T,d,1)$
+\end_inset
+
+ であるような
+\series bold
+NumPy
+\series default
+配列（3次元配列）を用いて 
+\begin_inset Formula $T$
+\end_inset
+
+期間 
+\begin_inset Formula $d$
+\end_inset
+
+ 変数のデータを表現する。このように作った配列から 
+\begin_inset Formula $t$
+\end_inset
+
+期の情報を取り出すと，シェイプ　
+\begin_inset Formula $(d,1)$
+\end_inset
+
+ の配列（2次元配列）となるので，いつでも「列ベクトル」になっている。 
+\begin_inset Float table
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+centering
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+ベクトル時系列の表現
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Tabular
+<lyxtabular version="3" rows="3" columns="3">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Branch childonly
+inverted 0
+status open
+
+\begin_layout Standard
+2
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "chap:物価指数とインフレーション"
+
+\end_inset
+
+章の表現
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+この章の表現
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+全体のシェイプ
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $(T,d)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $(T,d,1)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $t$
+\end_inset
+
+ 期のベクトルのシェイプ
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $(d,)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $(d,1)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+実際のコードを見てみよう。配列 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+x
+\end_layout
+
+\end_inset
+
+ は3期間，2変数のデータである。ゼロで初期化している。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch04/3d-array-zero>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+初期値を代入しよう。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch04/3d-array-initial>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $t-1$
+\end_inset
+
+期のデータから
+\begin_inset Formula $t$
+\end_inset
+
+期のデータに変換する行列 
+\begin_inset Formula $A$
+\end_inset
+
+ を次のように設定する。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch04/transition-matrix>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+ここでは 
+\begin_inset Formula 
+\[
+x_{t}=Ax_{t-1},\quad t=1,2
+\]
+
+\end_inset
+
+という単純な差分方程式の解を逐次的に計算してみよう。「行列 
+\begin_inset Formula $\times$
+\end_inset
+
+ ベクトル」の演算は Python ではアットマーク 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+@
+\end_layout
+
+\end_inset
+
+ を用いる。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch04/simulation>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+計算が終わった後には，表形式でデータを持っておきたいと考えるかもしれない。これには シェイプを上書きするだけでよい。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch04/reshape>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Problem
+最後のコードで，シェイプが 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+(T, d)
+\end_layout
+
+\end_inset
+
+ である2次元配列を得た。これをシェイプが 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+(T, d, 1)
+\end_layout
+
+\end_inset
+
+ である3次元配列に戻すにはどのようにすればよいか？
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+解答: 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+x.shape = *x.shape, 1
+\end_layout
+
+\end_inset
+
+ とするのがクリーンだろう。右辺は * でタプルを一旦ばらして，1を追加したタプルを作っている。こういうものだと考えておけばよい。
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Problem
+この節のコードを 3次元配列を使わないコードで再現しなさい。
+\end_layout
+
+\begin_layout Subsection
+行列の安定性
+\end_layout
+
+\begin_layout Standard
+安定行列に関する命題
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "prop: ch04/an"
+
+\end_inset
+
+, 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "prop: ch04/i-a"
+
+\end_inset
+
+ を確認しておこう。
+\end_layout
+
+\begin_layout Standard
+安定性を判別するため数値線形代数用のライブラリをインポートしておく
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+numpy.linalg
+\end_layout
+
+\end_inset
+
+ を使ってもよい。
+\end_layout
+
+\end_inset
+
+。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch04/import-linalg>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+次の行列 
+\begin_inset Formula $\boldsymbol{A}$
+\end_inset
+
+ の安定性を確認しよう。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch04/define-A1>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+E, V = LA.eig(A)
+\end_layout
+
+\end_inset
+
+ というコードを実行すると，
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+E
+\end_layout
+
+\end_inset
+
+ に固有値，
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+V
+\end_layout
+
+\end_inset
+
+ に固有ベクトルを並べた行列が格納される（
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+E
+\end_layout
+
+\end_inset
+
+，
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+V
+\end_layout
+
+\end_inset
+
+ という名前は変えてもよい）。今知りたいのは固有値の絶対値なので，
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+np.abs(E)
+\end_layout
+
+\end_inset
+
+ をチェックする。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch04/eigen-A1>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+1 を超えるものがあるので，
+\begin_inset Formula $A^{n}$
+\end_inset
+
+ は発散するはずだ。確認するために各要素 
+\begin_inset Formula $A=[a_{ij}]$
+\end_inset
+
+ の絶対値の和 
+\begin_inset Formula $\sum_{i,j}|a_{ij}|$
+\end_inset
+
+ の振る舞いを可視化してみよう。（図
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:ch04/不安定固有値を持つ行列のべき"
+
+\end_inset
+
+）
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch04/unstable-A1/plot,cache=TRUE>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+centering
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+includegraphics[height=0.3
+\backslash
+textheight]{Figure/ch04/unstable-A1-1}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:ch04/不安定固有値を持つ行列のべき"
+
+\end_inset
+
+不安定固有値を持つ行列のべき
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+次の行列は安定固有値のみを持つようだ。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch04/define-A2>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+可視化の結果は図
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:ch04/安定固有値のみを持つ行列のべき"
+
+\end_inset
+
+のようになる。コードは省略する。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch04/stable-A2/graphics>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+centering
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+includegraphics[height=0.3
+\backslash
+textheight]{Figure/ch04/stable-A2-1}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:ch04/安定固有値のみを持つ行列のべき"
+
+\end_inset
+
+安定固有値のみを持つ行列のべき
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+上で定義した 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+A2
+\end_layout
+
+\end_inset
+
+ は命題
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "prop: ch04/i-a"
+
+\end_inset
+
+の公式
+\begin_inset Formula 
+\[
+\left(\boldsymbol{I}-\boldsymbol{A}\right)^{-1}=\sum_{n=0}^{\infty}\boldsymbol{A}^{n}
+\]
+
+\end_inset
+
+を満たすはずである。極限の計算はできないので，十分大きい 
+\begin_inset Formula $N$
+\end_inset
+
+ に対して，
+\begin_inset Formula 
+\[
+\left(\boldsymbol{I}-\boldsymbol{A}\right)\left(\sum_{n=0}^{N}\boldsymbol{A}^{n}\right)\approx\boldsymbol{I}
+\]
+
+\end_inset
+
+が成り立つことを確認しよう。総和の計算には，
+\begin_inset Formula 
+\[
+\sum_{n=0}^{N}\boldsymbol{A}^{n}=\boldsymbol{I}+\boldsymbol{A}\left(\sum_{n=0}^{N-1}\boldsymbol{A}^{n}\right)
+\]
+
+\end_inset
+
+という関係を用いると便利である。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch04/inverse-formula>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+AR 過程
+\end_layout
+
+\begin_layout Standard
+AR(2) 過程
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+y_{t}=0.6y_{t-1}+0.3y_{t-2}+\varepsilon_{t}\label{eq:ch02/ar2-1}
+\end{equation}
+
+\end_inset
+
+をシミュレーションしてみよう。シミュレーションというのは，適当な初期値 
+\begin_inset Formula $y_{0}$
+\end_inset
+
+, 
+\begin_inset Formula $y_{1}$
+\end_inset
+
+ と，適当に発生させたランダムな 
+\begin_inset Formula $\varepsilon_{t}$
+\end_inset
+
+ を使って 
+\begin_inset Formula $y_{t}$
+\end_inset
+
+ を計算してみることである。状態空間表現を用いるとクリーンなコードを書けるので，この表現を用いよう。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+\boldsymbol{x}_{t} & =\boldsymbol{A}\boldsymbol{x}_{t-1}+\boldsymbol{B}\varepsilon_{t}\\
+y_{t} & =\boldsymbol{C}\boldsymbol{x}_{t},
+\end{align*}
+
+\end_inset
+
+ただし，
+\begin_inset Formula 
+\[
+\boldsymbol{x}_{t}=\begin{bmatrix}y_{t}\\
+y_{t-1}
+\end{bmatrix},\quad\boldsymbol{A}=\begin{bmatrix}0.6 & 0.3\\
+1 & 0
+\end{bmatrix},\quad\boldsymbol{B}=\begin{bmatrix}1\\
+0
+\end{bmatrix},\quad\boldsymbol{C}=\begin{bmatrix}1 & 0\end{bmatrix},
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\mathbb{E}\left[\varepsilon_{t}\right]=0.0,\quad\mathrm{Var}(\varepsilon_{t})=1.0
+\]
+
+\end_inset
+
+とする。初期値はゼロとしよう。係数行列と初期条件を適当に設定しさえすれば，一般の AR (
+\begin_inset Formula $p$
+\end_inset
+
+) 過程をほぼ同じコードで記述できる。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch04/ar-coeff>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+固有値を確認する。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch04/ar-eig>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+問題なさそうなので，他の行列も定義しよう。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch04/ar-coeff-other>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+ランダムな外乱 
+\begin_inset Formula $\varepsilon_{t}$
+\end_inset
+
+ は正規乱数を用いて生成しよう。平均 0，分散1 の正規乱数は次のように生成する。
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+loc
+\end_layout
+
+\end_inset
+
+, 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+scale
+\end_layout
+
+\end_inset
+
+, 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+size
+\end_layout
+
+\end_inset
+
+はそれぞれ平均，標準偏差，大きさを表すパラメータである。
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+size
+\end_layout
+
+\end_inset
+
+ にタプルを渡すと，この章の時系列表現と同じような形式で乱数を生成できる。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch04/ar-noise>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+これで準備が整った。300期間分のシミュレーションをして結果をプロットしてみよう。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch04/ar-simulation>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+作図のために1次元配列に変換していることに注意しよう。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch04/ar-plot/plot, cache=TRUE>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+centering
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+includegraphics[height=0.3
+\backslash
+textheight]{Figure/ch04/ar-plot-1}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+AR(2) のシミュレーション
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+プログラミング：推定
+\end_layout
+
+\begin_layout Standard
+この節では，Python を使ったデータの取得とモデルパラメータの推定を簡単に紹介する。Python による推定は
+\series bold
+ statsmodels
+\series default
+ というライブラリを用いる。時系列分析（time series analysis）用のツール群を使うためには次のインポート文を実行する。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch04/import-tsa>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+データとして先程作った 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+y
+\end_layout
+
+\end_inset
+
+ を用いよう。
+\end_layout
+
+\begin_layout Standard
+次のように標本自己相関を可視化できる（図
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:ch04/標本自己相関"
+
+\end_inset
+
+）。標本自己相関は，間接的な影響も含めて，過去から現在への影響の強さを見るもので，図の右の方に進むほど「より過去」のデータが現在に与える影響を表している。図
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:ch04/標本自己相関"
+
+\end_inset
+
+ は標本自己相関が徐々に減衰するというAR過程の特徴を表現している。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch04/acf/plot>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+centering
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+includegraphics[height=0.3
+\backslash
+textheight]{Figure/ch04/acf-1}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:ch04/標本自己相関"
+
+\end_inset
+
+標本自己相関
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+標本偏自己相関は次のようにして可視化する（図
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:ch04/標本偏自己相関"
+
+\end_inset
+
+）。標本偏自己相関は，間接的な影響を除いて，過去から現在への影響の強さを見るものである。図の右の方に進むほど「より過去」のデータが現在に与える影響を表していると
+いう点では標本自己相関と同じである。図
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:ch04/標本偏自己相関"
+
+\end_inset
+
+は標本偏自己相関がするどくカットオフするというAR過程の特徴を表現している。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch04/pacf/plot>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+centering
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+includegraphics[height=0.3
+\backslash
+textheight]{Figure/ch04/pacf-1}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:ch04/標本偏自己相関"
+
+\end_inset
+
+標本自己相関
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+推定には 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+SARIMAX
+\end_layout
+
+\end_inset
+
+ というメソッドを用いる。これは AR モデルを特殊ケースとして含む SARIMAXモデルの係数を推定するメソッドである。ちなみに，SARIMAX
+ というのは，以下のようなコンポーネントを持つ時系列モデルである。詳しくは時系列分析の専門書を読んでほしい。
+\end_layout
+
+\begin_layout Itemize
+S: Seasonal, 季節変動成分を許す
+\end_layout
+
+\begin_layout Itemize
+AR: 自己回帰
+\end_layout
+
+\begin_layout Itemize
+I: Integral, 和分過程
+\end_layout
+
+\begin_layout Itemize
+MA: Moving Average, 移動平均
+\end_layout
+
+\begin_layout Itemize
+X: eXogenous, 外生変数
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+データと 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+order=(2, 0, 0)
+\end_layout
+
+\end_inset
+
+ だけを指定すると，季節成分も移動平均成分も外生変数を持たない和分過程でない自己回帰モデル，すなわち普通の AR(2) 過程を推定する。
+\end_layout
+
+\begin_layout Standard
+推定は
+\end_layout
+
+\begin_layout Itemize
+モデルの設定
+\end_layout
+
+\begin_layout Itemize
+モデルのフィット
+\end_layout
+
+\begin_layout Standard
+という2段階で行われる。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch04/ar-estimate, results='hide'>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+結果は 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+summary
+\end_layout
+
+\end_inset
+
+ メソッドを使って確認する。ここでは紙面の都合で 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+params
+\end_layout
+
+\end_inset
+
+ を見ることにする。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch04/ar-params>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+得られた結果とデータを生成するときに使ったパラメータと見比べて，数字の意味を確認しておいてほしい。
+\end_layout
+
+\begin_layout Problem
+次のコードを実行して，表示された内容を確認しなさい。パラメータはどこに書かれているか。他の数字をどのように解釈するか。
+\end_layout
+
+\begin_layout Problem
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch04/ar-summary/dnr>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Problem
+適当に与えたパラメータに対してAR過程のシミュレーションを実行しなさい。シミュレーション結果に対して推定のコードを実行し，パラメータを復元できているかどうかを確
+認しなさい。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Branch childonly
+inverted 0
+status open
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset bibtex
+LatexCommand bibtex
+btprint "btPrintCited"
+bibfiles "../Bibliography/ref,../Bibliography/software"
+options "Styles/jecon"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document
