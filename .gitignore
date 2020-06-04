@@ -3,6 +3,10 @@
 .RData
 .Rproj.user
 
+# Knitr Cache
+/Lecture\ Notes/cache/*
+/Lecture\ Slides/cache/*
+
 # Python
 .ipynb_checkpoints
 .python-version
