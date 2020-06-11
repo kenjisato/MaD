@@ -1,0 +1,2085 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass beamer
+\begin_preamble
+\usepackage{Styles/beamer}
+\usepackage{Styles/code}
+
+% Knitr Setup 
+<<setup, include=FALSE>>=
+source('Knitr/setup.R')
+reticulate::source_python('Knitr/setup.py')
+@
+\end_preamble
+\options xcolor=dvipsnames,dvipdfmx,aspectratio=169,handout
+\use_default_options true
+\begin_modules
+knitr
+logicalmkup
+\end_modules
+\maintain_unincluded_children false
+\language japanese
+\language_package default
+\inputencoding utf8-platex
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics none
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize 11
+\spacing other 1.2
+\use_hyperref false
+\pdf_title "マルコフスイッチング合理的期待モデル"
+\pdf_author "佐藤 健治 / Kenji Sato"
+\pdf_subject "経済動学"
+\pdf_bookmarks true
+\pdf_bookmarksnumbered false
+\pdf_bookmarksopen false
+\pdf_bookmarksopenlevel 1
+\pdf_breaklinks false
+\pdf_pdfborder false
+\pdf_colorlinks false
+\pdf_backref false
+\pdf_pdfusetitle true
+\papersize default
+\use_geometry true
+\use_package amsmath 2
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine natbib
+\cite_engine_type authoryear
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+動態マクロ経済学
+\begin_inset Newline newline
+\end_inset
+
+Week 6
+\end_layout
+
+\begin_layout Author
+佐藤健治
+\begin_inset Newline newline
+\end_inset
+
+sato@eco.osakafu-u.ac.jp
+\end_layout
+
+\begin_layout Date
+2020/6/12
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<engine='R', include=FALSE>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+knitr::read_chunk('Python/week06.py')
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout FragileFrame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+準備運動：IPython を起動してください
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<week06/prepare, include=FALSE>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\begin_layout Plain Layout
+
+<<week06/prepare, eval=FALSE>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout FragileFrame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+numpy.matrix は非推奨 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+NumPy には 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+Matrix
+\end_layout
+
+\end_inset
+
+ 型というのがあって，行列を表現するのに使われていました。今は推奨されておりません。比較的最近出た書籍とかでも使っているものがありますが，自分で書くコードには使
+わないでください。
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+https://numpy.org/doc/1.18/reference/generated/numpy.matrix.html
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+普通に 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+array
+\end_layout
+
+\end_inset
+
+ 型を使うとよいです。
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+2次元配列が行列
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout FragileFrame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+行列演算
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+数学で習う行列の掛け算は 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+@
+\end_layout
+
+\end_inset
+
+ を使う。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<week06/matrix-arithmetic/dnr>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+クイズ: 次のコードは何を計算している？
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<week06/matrix-arithmetic-quiz/dnr>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout FragileFrame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+落とし穴
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+NumPy の 1次元配列（ベクトル）は，状況に応じて行ベクトル・列ベクトルになったりする。
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+A @ x
+\end_layout
+
+\end_inset
+
+ の 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+x
+\end_layout
+
+\end_inset
+
+ は列ベクトルのように振る舞う。
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+A + x
+\end_layout
+
+\end_inset
+
+ （数学的な対応物のない式）の 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+x
+\end_layout
+
+\end_inset
+
+ は行ベクトルを3つ重ねた行列のように振る舞う。
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+行列の演算をメインとした計算では，数式上は列ベクトルと想定することが多いので，ベクトルを2次元配列（1列だけからなる行列）にしておくと分かりやすいです。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<week06/matrix-arithmetic-avoid-pitfall>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout FragileFrame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+落とし穴 (2)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+@
+\end_layout
+
+\end_inset
+
+ はスカラーとの積として使えないので，スカラー時系列も 
+\begin_inset Formula $1\times1$
+\end_inset
+
+ 行列の系列とみなすほうが何かと便利。
+\end_layout
+
+\begin_layout Itemize
+次のコードは失敗する。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<week06/matrix-arithmetic-pitfall/dnr>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+eps の形状を変えた次のコードはうまくいく。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<week06/matrix-at/dnr>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout FragileFrame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+ベクトル時系列の表現
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Columns
+
+\end_layout
+
+\begin_deeper
+\begin_layout Column
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+0.48
+\backslash
+textwidth
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+ベクトル時系列のデータは表形式で表現できる。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Tabular
+<lyxtabular version="3" rows="5" columns="4">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $x$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $y$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $z$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $t=0$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $x_{0}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $y_{0}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $z_{0}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $t=1$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $x_{1}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $y_{1}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $z_{1}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $t=2$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $x_{2}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $y_{2}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $z_{2}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\vdots$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\vdots$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\vdots$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\vdots$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Column
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+0.48
+\backslash
+textwidth
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+これは行列で表示できる。
+\begin_inset Formula 
+\[
+\begin{bmatrix}x_{0} & y_{0} & z_{0}\\
+x_{1} & y_{1} & z_{1}\\
+x_{2} & y_{2} & z_{2}\\
+\vdots & \vdots & \vdots
+\end{bmatrix}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+ベクトルの変化と捉えると....
+ 
+\begin_inset Formula 
+\[
+\begin{bmatrix}x_{0}\\
+y_{0}\\
+z_{0}
+\end{bmatrix},\quad\begin{bmatrix}x_{1}\\
+y_{1}\\
+z_{1}
+\end{bmatrix},\quad\begin{bmatrix}x_{2}\\
+y_{2}\\
+z_{2}
+\end{bmatrix},\quad\dots
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout FragileFrame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+時系列を3次元配列で表現する
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Columns
+
+\end_layout
+
+\begin_deeper
+\begin_layout Column
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+0.48
+\backslash
+textwidth
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<week06/ts-representation>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Column
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+0.48
+\backslash
+textwidth
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<week06/ts-representation-2>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout FragileFrame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+行列とベクトルの演算が頻繁に現れる線形時系列モデルのシミュレーションでは3次元配列の表現が一番使いやすい（と思う）。
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+各時点のデータが列ベクトルになる。
+\end_layout
+
+\begin_layout Itemize
+全部を2次元配列にしておくと 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+@
+\end_layout
+
+\end_inset
+
+ が使いやすい。
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+可視化やデータの保存には行列形式（表形式）が自然なので，行き来できるようにする。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<week06/ts-representation-transform/dnr>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+線形時系列モデル
+\end_layout
+
+\begin_layout FragileFrame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+どういう問題を扱いたいか？
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+エンダース『実証のための計量時系列分析』にならって，Samuelson (1939) のモデルを紹介する。
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+動機づけのため。メイントピックより発展的な内容。
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+GDP の動学モデルとして以下のようなモデルを考える。
+\begin_inset Formula 
+\begin{align*}
+y_{t} & =c_{t}+i_{t}\\
+c_{t} & =\eta y_{t-1}+\varepsilon_{ct}\\
+i_{t} & =\beta(c_{t}-c_{t-1})+\varepsilon_{it}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Formula $y$
+\end_inset
+
+ は GDP, 
+\begin_inset Formula $c$
+\end_inset
+
+ は消費，
+\begin_inset Formula $i$
+\end_inset
+
+ は設備投資。1つ目の式は，自由な閉鎖経済の国民所得勘定の恒等式に対応する。
+\end_layout
+
+\begin_layout Itemize
+2つ目の式は消費関数
+\end_layout
+
+\begin_layout Itemize
+3つ目の式は「加速度原理」と呼ばれる式。消費の増分が設備投資を引き起こす。
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout FragileFrame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+式変形
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+\begin{bmatrix}1 & -1 & -1\\
+0 & 1 & 0\\
+0 & -\beta & 1
+\end{bmatrix}\begin{bmatrix}y_{t}\\
+c_{t}\\
+i_{t}
+\end{bmatrix} & =\begin{bmatrix}0 & 0 & 0\\
+\eta & 0 & 0\\
+0 & -\beta & 0
+\end{bmatrix}\begin{bmatrix}y_{t-1}\\
+c_{t-1}\\
+i_{t-1}
+\end{bmatrix}+\begin{bmatrix}0\\
+\varepsilon_{ct}\\
+\varepsilon_{it}
+\end{bmatrix}\\
+ & \Downarrow\\
+\underbrace{\begin{bmatrix}y_{t}\\
+c_{t}\\
+i_{t}
+\end{bmatrix}}_{\boldsymbol{y}_{t}} & =\underbrace{\begin{bmatrix}1 & 1+\beta & 1\\
+0 & 1 & 0\\
+0 & \beta & 1
+\end{bmatrix}\begin{bmatrix}0 & 0 & 0\\
+\eta & 0 & 0\\
+0 & -\beta & 0
+\end{bmatrix}}_{\boldsymbol{A}}\underbrace{\begin{bmatrix}y_{t-1}\\
+c_{t-1}\\
+i_{t-1}
+\end{bmatrix}}_{\boldsymbol{y}_{t-1}}+\underbrace{\begin{bmatrix}1 & 1+\beta & 1\\
+0 & 1 & 0\\
+0 & \beta & 1
+\end{bmatrix}\begin{bmatrix}0\\
+\varepsilon_{ct}\\
+\varepsilon_{it}
+\end{bmatrix}}_{\boldsymbol{\varepsilon}_{t}}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout FragileFrame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+線形時系列モデル
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\boldsymbol{y}_{t}=\boldsymbol{A}\boldsymbol{y}_{t-1}+\boldsymbol{\varepsilon}_{t}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+関心のある時系列は 
+\begin_inset Formula $\boldsymbol{y}$
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\boldsymbol{\varepsilon}$
+\end_inset
+
+ は外的なショック。（平均ゼロ，分散均一，予測不可能）
+\end_layout
+
+\begin_layout Itemize
+行列とベクトルの掛け算と足し算で構成される「漸化式」 
+\begin_inset Newline newline
+\end_inset
+
+→ 線形時系列モデル
+\end_layout
+
+\begin_layout Itemize
+ベクトル時系列の今の値が自分自身の過去の値で決まっているモデル。VAR モデル（Vector AutoRegressive モデル）
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout FragileFrame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+推定とシミュレーション
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Formula $\{\boldsymbol{y}_{t}\}\longrightarrow\boldsymbol{A}$
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+推定。
+\end_layout
+
+\begin_layout Itemize
+推定結果は，経済構造の解釈や，後に述べるシミュレーションに使う。
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+\begin_inset Formula $\boldsymbol{A}\longrightarrow\{\boldsymbol{y}_{t}\}$
+\end_inset
+
+ 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+シミュレーション。
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\boldsymbol{A}$
+\end_inset
+
+ は推定する。あるいは，パラメータの経済的な意味と他の実証分析から外生的なパラメータを設定することもある。カリブレーション
+\end_layout
+
+\begin_layout Itemize
+「投資を刺激するショックが起こると，GDPはどの程度変化するか？」
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout FragileFrame
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout FragileFrame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+重要な性質 (1)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\boldsymbol{y}_{t}=\boldsymbol{A}^{n}\boldsymbol{y}_{t-n}+\underbrace{(\boldsymbol{\varepsilon}_{t}+\boldsymbol{A}\boldsymbol{\varepsilon}_{t-1}+\boldsymbol{A}^{2}\boldsymbol{\varepsilon}_{t-2}+\cdots\boldsymbol{A}^{n-1}\boldsymbol{\varepsilon}_{t-n+1})}_{\text{平均ゼロ}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+現在の 
+\begin_inset Formula $\boldsymbol{y}_{t}$
+\end_inset
+
+ が大昔の影響を受けずにゼロの周りをウロウロするなら，
+\begin_inset Formula $\boldsymbol{A}^{n}\to\boldsymbol{O}$
+\end_inset
+
+ (零行列）が成り立っている。
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Formula $\boldsymbol{A}^{n}\to\boldsymbol{O}$
+\end_inset
+
+ : 行列 
+\begin_inset Formula $\boldsymbol{A}$
+\end_inset
+
+ の「
+\series bold
+安定性
+\series default
+」
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\boldsymbol{A}$
+\end_inset
+
+ の固有値の絶対値が全部 1未満であればよい。
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+GDP，消費，投資はゼロの周りをウロウロするわけはないのだけど，基準となる水準からの変動だと見ればよい。
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+変動がおおよそゼロ，という状態は経済の「均衡」に対応
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout FragileFrame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+重要な性質 (2) と，今後の見通し
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+シミュレーションができるモデルは，過去から未来に進行するということ。
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Formula $\boldsymbol{y}_{t-1}\longrightarrow\boldsymbol{y}_{t}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+この前提が崩れるとシミュレーションできない。
+\end_layout
+
+\begin_layout Itemize
+線形であれ，非線形であれ，この形式だとシミュレーションは簡単。
+\end_layout
+
+\begin_layout Itemize
+推定は難しい。非線形だともっと難しい。
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+経済モデルは「将来の予想」が重要。
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Formula $\boldsymbol{y}_{t+1}\longrightarrow\boldsymbol{y}_{t}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+将来の予想から今が決まるモデルであっても，シミュレーションは 
+\begin_inset Formula $\boldsymbol{y}_{t-1}\longrightarrow\boldsymbol{y}_{t}$
+\end_inset
+
+ のモデルを作った後に実行する。
+\end_layout
+
+\begin_layout Itemize
+Blanchard-Khan の方法，ダイナミックプログラミング
+\end_layout
+
+\begin_layout Itemize
+この授業はどこまで行けるのか？！
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout FragileFrame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+AR モデル
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+上のモデルをシミュレーションしてもいいのだけど，もう少し汎用的なモデルを紹介する。
+\end_layout
+
+\begin_layout Itemize
+AR (2) 過程
+\begin_inset Formula 
+\[
+y_{t}=a_{1}y_{t-1}+a_{2}y_{t-2}+\varepsilon_{t}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Formula $\varepsilon_{t}$
+\end_inset
+
+ は「ホワイトノイズ」
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $y_{t}$
+\end_inset
+
+ は株価の変化率みたいな変数だと思えばよい。
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout FragileFrame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+状態空間表現
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+次のような変数を導入する。
+\begin_inset Formula 
+\[
+\boldsymbol{x}_{t}=\begin{bmatrix}y_{t}\\
+y_{t-1}
+\end{bmatrix}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+先程の AR(2) の式が次の行列方程式と一致することを確認せよ。
+\begin_inset Formula 
+\begin{align*}
+\boldsymbol{x}_{t} & =\boldsymbol{A}\boldsymbol{x}_{t-1}+\boldsymbol{B}\varepsilon_{t}\\
+y_{t} & =\boldsymbol{C}\boldsymbol{x}_{t}
+\end{align*}
+
+\end_inset
+
+ただし，
+\begin_inset Formula 
+\[
+\boldsymbol{A}=\begin{bmatrix}a_{1} & a_{2}\\
+1 & 0
+\end{bmatrix},\qquad\boldsymbol{B}=\begin{bmatrix}1\\
+0
+\end{bmatrix},\qquad\boldsymbol{C}=\begin{bmatrix}1 & 0\end{bmatrix}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout FragileFrame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+解の表現
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+計算は省略するが，
+\begin_inset Formula $y_{t}$
+\end_inset
+
+ は次のように書ける。
+\begin_inset Formula 
+\[
+y_{t}=\boldsymbol{C}\boldsymbol{A}^{n}\boldsymbol{x}_{t-n}+\sum_{k=0}^{n-1}\boldsymbol{C}\boldsymbol{A}^{k}\boldsymbol{B}\varepsilon_{t-k},
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+ここでも 
+\begin_inset Formula $\boldsymbol{A}^{n}$
+\end_inset
+
+ が重要な働きをする。
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\boldsymbol{A}$
+\end_inset
+
+ の固有値が全部絶対値 1未満なら，
+\begin_inset Formula $\boldsymbol{A}^{n}\to\boldsymbol{O}$
+\end_inset
+
+ となって，このAR(2) 過程は「よい振る舞い」（弱定常性）を示す。
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+コンピュータシミュレーションには逐次的な計算のほうがよいので，この表現は使わない。
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout FragileFrame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+係数行列
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+次のように定義する。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<week06/ar2>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+大かっこの数に注意。
+\end_layout
+
+\begin_layout Itemize
+AR(2) の表現に変換してみてください。
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout FragileFrame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+安定性
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<week06/ar2-stability>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout FragileFrame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+シミュレーションのコード
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<week06/ar2-sim>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout FragileFrame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<week06/ar2-sim/plot>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+centering
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+includegraphics[width=
+\backslash
+textwidth]{Figure/week06/ar2-sim-1}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout FragileFrame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+たくさんのシミュレーション
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<week06/ar2-many-sim/plot>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout FragileFrame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+centering
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+includegraphics[width=
+\backslash
+textwidth]{Figure/week06/ar2-many-sim-1}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout FragileFrame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+推定について一言
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+AR モデルの推定に使える statsmodels ライブラリの使い方をテキストの方で簡単に説明しています。
+\end_layout
+
+\begin_layout Itemize
+ACF, PACF の見方や推定についての詳細は，エンダースや沖本『経済・ファイナンスデータの計量時系列分析』などを参照
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout FragileFrame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+課題
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+これまではコピペで完了する課題が多かったのですが，少しずつ負荷を上げていきます。
+\end_layout
+
+\begin_layout Itemize
+課題のポイント
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+rng.normal(loc=0, scale=0.3, size=(T, 1, 1))
+\end_layout
+
+\end_inset
+
+ のパラメータ 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+loc
+\end_layout
+
+\end_inset
+
+ と 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+scale
+\end_layout
+
+\end_inset
+
+ を変化させたときに，AR(2) モデルのシミュレーション結果はどのように変わるか。
+\end_layout
+
+\begin_layout Itemize
+グラフの見た目とこれらのパラメータはどのような関係にあるか。いろいろなシミュレーション結果の観察と，テキスト（4章）に書かれている数学的な結果を見比べて議論して
+ください。
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\boldsymbol{A}^{n}\to\boldsymbol{O}$
+\end_inset
+
+ とならない係数を持つモデルをシミュレーションするとどうなるか。例示する。
+\end_layout
+
+\end_deeper
+\end_deeper
+\end_body
+\end_document

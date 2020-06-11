@@ -1,23 +1,22 @@
 library(reticulate)
-
-python3 <- "/usr/local/var/pyenv/versions/anaconda3-2019.10/bin/python3"
-use_python(python3, required = TRUE)
+Sys.setenv(RETICULATE_PYTHON = conda_python())
 
 ## Default Configurations ----
 knitr_config <- list(
-    fig.width   = 12, 
-    fig.asp     = 0.618, 
-    fig.align   = "center",
-    fig.path    = "Figure/",
-    engine      = "python",
-    background  = NA,
-    comment     = NA
+  fig.width   = 12, 
+  fig.asp     = 0.618, 
+  fig.align   = "center",
+  fig.path    = "Figure/",
+  engine      = "python",
+  background  = NA,
+  comment     = NA
 )
 
 ## Specific for Mac ----
 if (Sys.info()["sysname"] %in% c("Darwin")) {
-  knitr_config[['engine.path']] <- list(python = python3)
+  knitr_config[['engine.path']] <- list(python = conda_python())
 }
+
 
 ## Set printer-friendly knitr theme, run only when called from LyX ----
 # if (!interactive()){
