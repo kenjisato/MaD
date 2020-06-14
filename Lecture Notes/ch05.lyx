@@ -1,0 +1,4166 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass scrbook
+\begin_preamble
+\usepackage{Styles/common}
+\usepackage{Styles/code}
+\usepackage{Styles/problem}
+
+\usepackage{url}
+
+% Knitr Setup 
+<<setup, include=FALSE>>=
+source('Knitr/setup.R')
+source_python('Knitr/setup.py')
+@
+\end_preamble
+\options dvipdfmx,paper=a5,fontsize=9pt
+\use_default_options true
+\master _main.lyx
+\begin_modules
+knitr
+theorems-ams-chap-bytype
+theorems-ams-extended-chap-bytype
+logicalmkup
+\end_modules
+\maintain_unincluded_children false
+\language japanese
+\language_package default
+\inputencoding utf8-platex
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\float_placement th
+\paperfontsize default
+\spacing onehalf
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine natbib
+\cite_engine_type authoryear
+\biblio_style plainnat
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date true
+\justification true
+\use_refstyle 1
+\use_minted 0
+\branch childonly
+\selected 1
+\filename_suffix 0
+\color #faf0e6
+\end_branch
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style cjk
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+mainmatter
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<engine='R', echo=FALSE>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+knitr::read_chunk('Python/ch05.py')
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+setcounter{chapter}{4}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Branch childonly
+inverted 0
+status open
+
+\begin_layout Standard
+\begin_inset CommandInset toc
+LatexCommand tableofcontents
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Chapter
+成長と変動
+\end_layout
+
+\begin_layout Section
+概要
+\end_layout
+
+\begin_layout Standard
+この講義では以下のことを学ぶ。
+\end_layout
+
+\begin_layout Itemize
+片対数グラフ
+\end_layout
+
+\begin_layout Itemize
+マクロ経済学における短期と長期
+\end_layout
+
+\begin_layout Itemize
+完全雇用，自然失業率，潜在GDP
+\end_layout
+
+\begin_layout Itemize
+利用可能なマクロ・データ
+\end_layout
+
+\begin_layout Itemize
+Pandas を使って取得する方法
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+理論パートの内容は，短期モデルと長期モデルを切り分けるときの考え方について説明する。次章以降に学ぶマクロ経済理論を学ぶための準備である。この章のプログラミングパ
+ートの後半部分は他の章と比べて陳腐化するのが早い。次のような理由からだ。
+\end_layout
+
+\begin_layout Itemize
+Pandas のような進化の早いライブラリは使用法が比較的早く変化するため，ここで紹介したコードが標準的な方法ではなくなる，あるいは，まったく実行できなくなる可
+能性がある。
+\end_layout
+
+\begin_layout Itemize
+データ取得は外部の Web API に依存している。API のバージョンアップによって古いコードが動かなくなる可能性がある。
+\end_layout
+
+\begin_layout Itemize
+新たなデータ提供者，外部API のの出現により，より洗練されたデータ取得方法が生み出される。
+\end_layout
+
+\begin_layout Standard
+このような問題を事前に解決することはできないので，必要な修正と知識の更新は読み手に委ねることにする。気をつけて読んでください。
+\end_layout
+
+\begin_layout Section
+理論：数学
+\end_layout
+
+\begin_layout Subsection
+片対数グラフ
+\end_layout
+
+\begin_layout Standard
+経済時系列を図示するときには，片対数グラフがよく使われるので簡単に説明しておこう。
+\end_layout
+
+\begin_layout Standard
+ある変数 
+\begin_inset Formula $y>0$
+\end_inset
+
+ の変化を次のように表現する。
+\begin_inset Formula 
+\[
+y_{t}=(1+g_{t})y_{t-1}
+\]
+
+\end_inset
+
+ここで 
+\begin_inset Formula $g$
+\end_inset
+
+ は 
+\begin_inset Formula $y$
+\end_inset
+
+ の変化率（
+\begin_inset Formula $1+g_{t}>0$
+\end_inset
+
+）であり，時間変化する可能性がある。対数値を取ると，
+\begin_inset Formula 
+\begin{align*}
+\log y_{t} & =\log(1+g_{t})+\log y_{t-1}\\
+ & =\log(1+g_{t})+\log(1+g_{t-1})+\log y_{t-2}\\
+ & =\cdots\\
+ & =\sum_{k=1}^{t}\log(1+g_{k})+\log y_{0}
+\end{align*}
+
+\end_inset
+
+と書ける。ここで，
+\begin_inset Formula $g_{t}\equiv g$
+\end_inset
+
+ と定数であるとすれば，
+\begin_inset Formula 
+\[
+\log y_{t}=t\log(1+g)+\log y_{0}
+\]
+
+\end_inset
+
+横軸を 
+\begin_inset Formula $t$
+\end_inset
+
+，縦軸を 
+\begin_inset Formula $\log y_{t}$
+\end_inset
+
+ としてグラフを書くと，傾きが 
+\begin_inset Formula $\log(1+g)\approx g$
+\end_inset
+
+ の直線になる。実際にグラフを見てみよう。コードを短くするため，
+\begin_inset Formula $y_{0}=1$
+\end_inset
+
+, 
+\begin_inset Formula $g_{t}\equiv g=0.02$
+\end_inset
+
+ として，
+\begin_inset Formula $y_{t}=(1+0.02)^{t}$
+\end_inset
+
+ と解いてしまっている。図
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:ch05-1"
+
+\end_inset
+
+ のようになる。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch05/growth-graph/plot>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "48col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+centering
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+includegraphics[width=
+\backslash
+textwidth, trim = 0mm 13mm 0mm 15mm, clip]{Figure/ch05/growth-graph-1}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset Formula $y_{t}$
+\end_inset
+
+ のグラフ
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:ch05-1"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hfill
+\end_layout
+
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "48col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+centering
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+includegraphics[width=
+\backslash
+textwidth, trim = 0mm 13mm 0mm 15mm, clip]{Figure/ch05/growth-graph-log-1}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset Formula $\log y_{t}$
+\end_inset
+
+ のグラフ
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:ch05-2"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+対数変換したグラフは図
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:ch05-2"
+
+\end_inset
+
+のようになる。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch05/growth-graph-log/plot>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $g$
+\end_inset
+
+ が上昇すると傾きがきつくなる。では，
+\begin_inset Formula $g_{t}$
+\end_inset
+
+ が一定ではなく上昇傾向にある場合はどうなるだろうか？変化の様子をみるために，
+\begin_inset Formula $t<50$
+\end_inset
+
+ に対して 
+\begin_inset Formula $g_{t}=0.02$
+\end_inset
+
+, 
+\begin_inset Formula $t\ge50$
+\end_inset
+
+ に対して 
+\begin_inset Formula $g_{t}=0.04$
+\end_inset
+
+ であるとして作図してみよう（図
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:ch05-3"
+
+\end_inset
+
+）。
+\begin_inset Formula $t=50$
+\end_inset
+
+ のあたりで変化率が変わっていることが分かるだろうか。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch05/growth-change/plot>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "48col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+centering
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+includegraphics[width=
+\backslash
+textwidth, trim = 0mm 13mm 0mm 15mm, clip]{Figure/ch05/growth-change-1}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset Formula $y_{t}$
+\end_inset
+
+ のグラフ（
+\begin_inset Formula $t\ge50$
+\end_inset
+
+ で成長率が 0.04 に上昇）
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:ch05-3"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hfill
+\end_layout
+
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "48col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+centering
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+includegraphics[width=
+\backslash
+textwidth, trim = 0mm 13mm 0mm 15mm, clip]{Figure/ch05/growth-change-log-1}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset Formula $\log y_{t}$
+\end_inset
+
+ のグラフ（
+\begin_inset Formula $t\ge50$
+\end_inset
+
+ で成長率が 0.04 に上昇）
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:ch05-4"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+対数変換したグラフ図
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:ch05-4"
+
+\end_inset
+
+を見ると，変化率の変化は明白である。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch05/growth-change-log/plot>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+上のコードでは，対数計算を明示的に行ったが，Matplotlib でプロットするときには明示的に対数計算をする代わりにメモリ（スケール）を変更するのが普通である
+。次のようにする（図
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:ch05-5"
+
+\end_inset
+
+）。縦軸のメモリに注目せよ。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch05/growth-log-scale/plot>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+centering
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+includegraphics[width=0.48
+\backslash
+textwidth, trim = 0mm 13mm 0mm 15mm, clip]{Figure/ch05/growth-log-scale-1}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset Formula $y_{t}$
+\end_inset
+
+ の片対数グラフ（
+\begin_inset Formula $t\ge50$
+\end_inset
+
+ で成長率が 0.04 に上昇）
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:ch05-5"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+片方の軸だけが対数メモリになっているので，このようなグラフを片対数グラフという。10を底とする対数（常用対数）を用いることが多い。その場合，縦軸メモリを
+ 1つ上に上るとデータが10倍になるようなメモリになっている。
+\end_layout
+
+\begin_layout Problem
+文房具店や大学生協に行き，片対数メモリのグラフ用紙を購入し，使ってみよう。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Problem
+上のコードは途中で成長率が上昇するケースを可視化した。逆に，途中で成長率が低下する場合はどのようになるか。結果を予想し，コードを書き，グラフを確認せよ。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+移動平均
+\end_layout
+
+\begin_layout Standard
+非常に変動が激しいデータ 
+\begin_inset Formula $x$
+\end_inset
+
+ が手元にあるとしよう。このとき，隣り合う時点間の変化
+\begin_inset Formula 
+\[
+\Delta x_{t+1}=x_{t+1}-x_{t}
+\]
+
+\end_inset
+
+は一時的かつ外的な要因に起因する変動まで拾ってしまって，変化の傾向を見失ってしまう可能性がある。例えば，
+\begin_inset Formula $\bar{x}_{t}$
+\end_inset
+
+ を観測できない本質的な変動要因であるとして（例：企業の生産性が上がるから株価が上がる），観測可能なデータ 
+\begin_inset Formula $x_{t}$
+\end_inset
+
+ はあまり本質的でない要因 
+\begin_inset Formula $\varepsilon_{t}$
+\end_inset
+
+ （例：政治スキャンダルで株価が下がる）によって撹乱されてしまうとする。
+\begin_inset Formula 
+\[
+x_{t}=\bar{x}_{t}+\varepsilon_{t}
+\]
+
+\end_inset
+
+
+\begin_inset Formula $\varepsilon_{t}$
+\end_inset
+
+ と異なる時点の 
+\begin_inset Formula $s$
+\end_inset
+
+ の 
+\begin_inset Formula $\varepsilon_{s}$
+\end_inset
+
+ には独立性が仮定される。
+\begin_inset Formula $\mathrm{Var}(\varepsilon_{t})\equiv\sigma^{2}$
+\end_inset
+
+ と仮定しよう。本来，
+\begin_inset Formula 
+\[
+\bar{x}_{t+1}-\bar{x}_{t}
+\]
+
+\end_inset
+
+を測りたいのだけども，観測できないものは測れない。しぶしぶ，
+\begin_inset Formula $x_{t+1}-x_{t}$
+\end_inset
+
+ を使うのだが，
+\begin_inset Formula 
+\[
+x_{t+1}-x_{t}=\left(\bar{x}_{t+1}-\bar{x}_{t}\right)+\left(\varepsilon_{t+1}-\varepsilon_{t}\right)
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\Longrightarrow\mathrm{Var}\left((x_{t+1}-x_{t})-(\bar{x}_{t+1}-\bar{x}_{t})\right)=2\sigma^{2}
+\]
+
+\end_inset
+
+となり，誤差の分散が拡大してしまう。
+\end_layout
+
+\begin_layout Standard
+撹乱項の影響を除去して，時系列の変化の傾向（
+\series bold
+トレンド
+\series default
+）を見るために使うのが
+\series bold
+移動平均
+\series default
+である。例えば，2期間前方移動平均は次のように定義する
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+「前方」の意味，前方移動平均以外のオプションは以下のように整理できる。
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $t$
+\end_inset
+
+ 期の移動平均の値を 
+\begin_inset Formula $t$
+\end_inset
+
+ 期以前のデータのみで計算するとき，前方移動平均。
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $t$
+\end_inset
+
+ 期の移動平均の値を 
+\begin_inset Formula $t$
+\end_inset
+
+ 期以後のデータのみで計算するとき，後方移動平均。
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $t$
+\end_inset
+
+ 期の移動平均の値を 
+\begin_inset Formula $t$
+\end_inset
+
+ 期を中心としたデータで計算するとき，中心移動平均。
+\end_layout
+
+\end_inset
+
+。
+\begin_inset Formula 
+\[
+x_{t}^{(2)}=\frac{x_{t-1}+x_{t}}{2}
+\]
+
+\end_inset
+
+分散にどのように影響するかを見てみよう。
+\begin_inset Formula 
+\begin{align*}
+x_{t+1}^{(2)}-x_{t}^{(2)} & =\frac{x_{t}+x_{t+1}}{2}-\frac{x_{t-1}+x_{t}}{2}\\
+ & =\frac{x_{t+1}-x_{t-1}}{2}\\
+ & =\frac{\bar{x}_{t+1}-\bar{x}_{t-1}}{2}+\frac{\varepsilon_{t+1}-\varepsilon_{t-1}}{2}
+\end{align*}
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\Longrightarrow\mathrm{Var}\left(\left(x_{t+1}^{(2)}-x_{t}^{(2)}\right)-\left(\frac{\bar{x}_{t+1}-\bar{x}_{t-1}}{2}\right)\right)=\frac{\sigma^{2}}{2}
+\]
+
+\end_inset
+
+移動平均を計算することで，本質的な変動要因 
+\begin_inset Formula $\bar{x}$
+\end_inset
+
+ の推定に関する不確実性を逓減できる。平均を取る期間の長さ（ウインドウ）を長くすれば，変動要因の影響をさらに小さくすることができる。ただし，1つ注意が必要である
+。移動平均が推定しているのはあくまでも
+\begin_inset Formula $\frac{\bar{x}_{t+1}-\bar{x}_{t-1}}{2}$
+\end_inset
+
+ であり，
+\begin_inset Formula $x_{t+1}-x_{t}$
+\end_inset
+
+ でない。トレンドが線形である場合にはこれらは一致するが，トレンドにも循環的な傾向がある場合にはその循環傾向さえも打ち消してしまう。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+この性質をうまく利用すると，季節的な変動を除去することができる。例えば，消費の四半期データはボーナス月を含むか含まないかが実測値に影響しそうである。知りたいこと
+が長期的な傾向である場合には，季節的な要因を除去するために4期の移動平均を計算するとよい。
+\end_layout
+
+\begin_layout Problem
+デパートの売上のデータを毎日取っているとする。どのような周期の循環成分が見られるだろうか。除去するためにはどのような移動平均を取ればよいか。
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+answerbox{4
+\backslash
+baselineskip}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+理論: 成長と変動
+\end_layout
+
+\begin_layout Standard
+マクロ経済学で最も重視される経済変数は実質GDPである。実質GDPは，経済で生産された総付加価値額から物価上昇を除去したものとして定義される。人口規模で標準化し
+た「一人あたり実質GDP」は，その国の個人が享受する物質的豊かさの基本指標として特に注目される。実質GDPや一人あたり実質GDPにはもちろん様々な原因で変化が起
+こるのだが，マクロ経済学では時間変化を大まかに次の2つのタイプに分けて分析する。
+\end_layout
+
+\begin_layout Enumerate
+経済成長。資本の蓄積，教育や技術の進歩によって生産性が向上し，経済規模が拡大する。
+\end_layout
+
+\begin_layout Enumerate
+経済変動。予期しない出来事によって経済活動が落ち込んだり，逆に，活発になること。景気循環とも言う。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+長期と短期
+\end_layout
+
+\begin_layout Standard
+経済指標の変化を「成長」と「変動」という観点で切り分けるときには，注目している時間のスパンに意識を向けるようにしよう。通常，成長は長い時間を掛けて起こる現象なの
+で，長期的な視野で経済を眺めることが有効である。一方，変動に注目するときには短い時間の中での変化に関心があることが多い。
+\end_layout
+
+\begin_layout Standard
+短期は長期の一部だし，短期の積み重ねが長期ではないか，と考えた人もいるかもしれない。日常言語を基準に考えれば，まさにその通りなのだけど，多くの経済理論はそのよう
+には作られていない。長期と短期は別々の枠組みを使って考えなければならない。マクロ経済モデルにはおおまかな分類として，
+\end_layout
+
+\begin_layout Itemize
+長期のモデル
+\end_layout
+
+\begin_layout Itemize
+短期のモデル
+\end_layout
+
+\begin_layout Standard
+の2つのタイプのモデルが存在する
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+もちろん，このような分類は不完全なものだ。「成長」という長期の動向を扱う分析であっても，工業化以前の経済が工業化に至る飛躍的な成長を分析するモデルと，先進国の比
+較的安定した成長を記述するモデルは異なっている。
+\end_layout
+
+\end_inset
+
+。この2つのタイプを切り分けるのは，時間の長さというよりも，市場の機能や性質に由来する違いである。
+\end_layout
+
+\begin_layout Itemize
+長期のモデルでは，市場が完全であり，需給調整が円滑に機能する。
+\end_layout
+
+\begin_layout Itemize
+短期のモデルでは，市場は不完全であり，需給調整の機能が制限されている。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+特に次のような分け方をすることが多い。
+\end_layout
+
+\begin_layout Itemize
+長期のモデルでは，物価が伸縮的（需給に応じて速やかに変化）である。
+\end_layout
+
+\begin_layout Itemize
+短期のモデルでは，物価が硬直的（需給に応じて変化しない）である。
+\end_layout
+
+\begin_layout Standard
+なぜこのような切り分けに対して，長期・短期という言葉を使うかというと，
+\end_layout
+
+\begin_layout Itemize
+長い期間を通して見れば市場はうまく機能しているように見える，
+\end_layout
+
+\begin_layout Itemize
+短い期間だけを見ると，市場にはいろいろな不備が生じている，
+\end_layout
+
+\begin_layout Standard
+ということだろう。
+\end_layout
+
+\begin_layout Standard
+長期では，財・サービス市場，要素市場，金融市場などすべての市場が需給一致の状態にある。したがって，働きたいと考えている労働者はすべて雇用されている状態にあるし，
+遊休状態にある資本も存在しない。実際の経済はこのような状態にはないが，ベンチマークとなる時間変化を示すときに使われる便利な想定である。
+\end_layout
+
+\begin_layout Standard
+短期では，市場は物価の変化によって需給を一致させることができない。したがって，一時的な不均衡状態が生じる可能性が高い。失業の拡大によって一時的な厚生の悪化が生じ
+るので，政府介入の余地が生まれる。望ましくない景気循環に対抗するための「反循環的経済政策」の理解が短期分析の1つの目標になっている。景気後退を引き起こす外的な撹
+乱要因（ショック）が起こったときに，市場が完全に機能していれば経済主体の間の取引によって解消できたであろう問題であっても，市場が不完全であるときには大きな厚生悪
+化につながる可能性がある。このようなショックが，経済全体にどのように波及するか，そして，その問題にどのように対処するかというのが短期分析のテーマになっている。
+\end_layout
+
+\begin_layout Subsection
+完全雇用GDP・潜在GDP
+\end_layout
+
+\begin_layout Standard
+さて，ここではシンプルに「短期には失業が存在する」という一点だけに注目しよう。失業が存在するということは，その経済では使える生産要素を使い切っていないということ
+だ。したがって，経済が生産できる最大の量を生産していない。経済が生産できる最大の量を
+\series bold
+完全雇用GDP
+\series default
+と呼ぼう。なお，後で説明する潜在GDPのことを完全雇用GDPと呼ぶことも多いが，ここでは区別して使っている。長期のモデルでは，失業が存在しないという大胆な仮定を
+おいて分析することが多い。すなわち，完全雇用GDP の時間変化・成長を見るのが長期分析の目的である。
+\end_layout
+
+\begin_layout Standard
+短期モデルでは，失業が中心的な役割を果たす。実際の経済においても，労働市場の価格（賃金）には色々な原因で硬直性が存在すると考えられていて，それが失業の1つの原因
+になっている。例えば，物価が下落したときに名目賃金が十分下がらなければ，実質賃金は上昇する。実質賃金に反応する労働需要と労働供給は，超過供給の状態になる。これは
+働きたい人が働けない状態，つまり失業，が生じる。名目賃金の硬直性について，大抵のマクロ経済学の教科書には次の仮説を提示して説明している。
+\end_layout
+
+\begin_layout Itemize
+インサイダー・アウトサイダー理論
+\end_layout
+
+\begin_layout Itemize
+効率賃金仮説
+\end_layout
+
+\begin_layout Standard
+いずれも，賃金が市場を清算させる水準よりも高い水準に留まってしまう原因に関する仮説である。各自，標準的なマクロ経済学の教科書を読んで概要を調べておいてほしい
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+失業の章を設ける？
+\end_layout
+
+\end_inset
+
+。
+\end_layout
+
+\begin_layout Standard
+また，市場が清算する水準に賃金が設定されていたとしても労働市場には失業が存在するという考え方もある。労働市場で取引されている財（労働力）は，食品や工業製品などの
+ように均質ではないので，適材適所な組み合わせ（マッチング）を見つけるためにどうしても時間や費用がかかってしまうからだ。したがって，市場均衡価格がついているにも関
+わらず失業が存在する。企業が労働者に望む能力や技能と，求職者が持っている能力との差によって生じる失業を
+\series bold
+構造的失業
+\series default
+，職探しのためにかかる時間が原因で起こる失業を
+\series bold
+摩擦的失業
+\series default
+と呼ぶ
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+本書では学部の標準的なマクロ経済学の教科書として『マンキュー マクロ経済学 I, II』を推奨しているが，ここで用いている失業に関する用語法はマンキューと異なっ
+ていることに注意しておく。マンキューの教科書では「実質賃金の硬直性によって生じる需給の不一致が原因の失業」を構造的失業と定義し，マッチングの違いによって生じる失
+業を摩擦的失業と定義している。
+\end_layout
+
+\end_inset
+
+。構造的失業と摩擦的失業は切り分けることが難しいので，摩擦的・構造的失業というようにセットで扱われることが多い。
+\end_layout
+
+\begin_layout Problem
+失業者に対して支払われる失業給付金は摩擦的・構造的失業を意図せず高めてしまう可能性がある。理由を検討しなさい。
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+answerbox{6
+\backslash
+baselineskip}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+摩擦的・構造的失業だけが残っているときの失業率を
+\series bold
+自然失業率
+\series default
+という。自然失業率を離職と就職が均衡している状態の失業率と解釈することもできて，長期的には自然失業率の水準で失業が推移すると考えられている。言うまでもなく，現実
+の経済の失業率は自然失業率より高いときもあれば低いときもある。この差，特に失業の上乗せ部分のことを
+\series bold
+循環的失業
+\series default
+という。摩擦的・構造的失業は労働市場の制度，慣行や時代背景によって変わるものなので，短期的な政策目標とはなりにくい。一方，循環的失業は景気後退によって生じた失業
+なので，政策介入によって解消することができるかもしれない。
+\end_layout
+
+\begin_layout Standard
+自然失業率を達成している経済で生産されている量は
+\series bold
+潜在GDP
+\series default
+ （あるいは完全雇用GDP）と呼ばれる。その定義から，経済のベンチマークとなる生産量としてふさわしいことが分かるだろう。もちろん，潜在GDP を直接観測できる訳
+ではないので，各国の中央銀行や政府機関が推計している。図
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:ch05-fred"
+
+\end_inset
+
+はアメリカの四半期実質GDP （Real GDP）と潜在GDP（Potential GDP） の推計値をプロットしたものである。縦軸を対数スケールにしているので
+，経済成長率は徐々に低下しつつも比較的順調な成長経路を辿っていることが分かる。長期のモデルによって行う経済成長の分析は，このような経済の右肩上がりの拡大を対象と
+している
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+完全雇用GDPと潜在GDP の違いを無視しているが，これらは非常に強く相関しているので大きな問題にはならないだろう。
+\end_layout
+
+\end_inset
+
+。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch05/import2/noinc>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\begin_layout Plain Layout
+
+<<ch05/fred-gdp-read/noinc>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\begin_layout Plain Layout
+
+<<ch05/fred-gdp/graphics, cache=TRUE>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+centering
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+includegraphics[height=0.35
+\backslash
+textheight]{Figure/ch05/fred-gdp-1}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+アメリカの実質GDPと潜在GDP（Source: FRED） 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:ch05-fred"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+一方，実質GDPと潜在GDPの差に注目すると，いくつかの時期で大きな差が表れている。差を明確にするための変数を導入しよう。実質GDPと潜在GDPの差を
+\series bold
+GDPギャップ
+\series default
+という。下の図
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:ch05-fred-1"
+
+\end_inset
+
+ は GDPギャップを潜在GDPで除した値（GDPギャップ率）
+\begin_inset Formula 
+\[
+\text{GDPギャップ率}=\frac{\text{実質GDP}-\text{潜在GDP}}{\text{潜在GDP}}
+\]
+
+\end_inset
+
+をプロットしたグラフである。データは図
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:ch05-fred"
+
+\end_inset
+
+と同じものを使っている。正の値を取っている時期には経済のベンチマークとなるパフォーマンス（＝潜在GDP）よりも大きな生産を行っているので，好景気（景気拡張期）を
+表している。逆に，負の値を取っている時期には経済は本来生産できる量よりも少ない量しか生産していない。したがって，この時期（色付き部分）には景気後退を経験している
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+ここでは，GDPギャップの符号のみで景況判断をしているが，景気後退の終了前には「GDPギャップは負だが景気はよい」という状況があり得る。したがって，実際の景況判
+断は実質GDPの山と谷を見極めるという仕事になる。アメリカの景気の転換点はNBER（全米経済研究所）が発表している。
+\end_layout
+
+\end_inset
+
+。経済変動と経済変動に伴う厚生低下の是正に関する分析はマクロ経済の短期モデルの仕事である。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch05/gdp-gap/graphics, cache=TRUE>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+centering
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+includegraphics[height=0.35
+\backslash
+textheight]{Figure/ch05/gdp-gap-1}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+GDPギャップ（Source: FRED） 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:ch05-fred-1"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+失業に関するデータも見ておこう。図
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:ch05-fred-3"
+
+\end_inset
+
+は同じ時期の失業率と自然失業率（natural rate of unemployment) の推計値をプロットしたものである。色付き部分は図
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:ch05-fred-1"
+
+\end_inset
+
+と同様，GDPギャップが負になる領域を表している。失業率が自然失業率の水準を超えて高くなっている時期と，GDPギャップが負になる時期がおおよそ同じであることに注
+意をしてほしい。もちろんこれは驚くようなことではなく，潜在GDPの定義に由来する。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch05/fred-umemployment/graphics, cache=TRUE>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+centering
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+includegraphics[height=0.35
+\backslash
+textheight]{Figure/ch05/fred-umemployment-1}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+GDPギャップ（Source: FRED） 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:ch05-fred-3"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+フィリップス曲線
+\end_layout
+
+\begin_layout Standard
+次にインフレーションと失業の関係を見てみよう。図
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:ch05-fred-2"
+
+\end_inset
+
+ は PCEデフレーター（個人消費デフレーター）から計算したインフレ率の12期中心移動平均をプロットしたものである。色付き部分は図
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:ch05-fred-1"
+
+\end_inset
+
+と同様，GDPギャップが負になる領域を表している。
+\series bold
+色付き部分がインフレ率が減少している時期におおむね重なっている
+\series default
+ことに注意してほしい。つまり，
+\end_layout
+
+\begin_layout Itemize
+GDPギャップが正になるときには，インフレ率は上昇する傾向にある。
+\end_layout
+
+\begin_layout Itemize
+GDPギャップが負になるときには，インフレ率は低下する傾向にある。
+\end_layout
+
+\begin_layout Standard
+つまり，
+\end_layout
+
+\begin_layout Itemize
+GDP ギャップとインフレ率との間には正の相関がある。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch05/fred-inflation/graphics, cache=TRUE>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+centering
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+includegraphics[height=0.35
+\backslash
+textheight]{Figure/ch05/fred-inflation-1}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+GDPギャップとインフレーション（Source: FRED） 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:ch05-fred-2"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+正のGDPギャップを
+\series bold
+インフレギャップ
+\series default
+，負のGDPギャップを
+\series bold
+デフレギャップ
+\series default
+と呼ぶ。GDPギャップが正であるということは，その時期には基準となる水準より大きな生産活動が行われている。企業にとっては新しく雇用をして生産を拡大したい局面では
+あるが，労働市場は逼迫しているから，賃金に上昇圧力が加わるだろう。消費者の所得も増えているので，上昇した雇用コストを生産物価格に転嫁したい企業は容易にそのように
+できる。結果的にインフレ率は当初の予想水準よりも高めになる。逆に，GDPギャップが負であるときには，企業は生産活動を抑えている。労働需要が小さく，賃金には下降圧
+力が加わる。所得は小さいので，生産物価格を上げにくい環境になっているし，企業はその必要性も感じていない。結果として，インフレ率は当初の予想水準よりも低くなる。こ
+のインフレ率に関する「当初の予想水準」は，
+\series bold
+予想インフレ率
+\series default
+という。
+\end_layout
+
+\begin_layout Standard
+長期的には市場は理想的な機能を果たし，情報の非対称性も解消される。長期的な経済の動向は次のようになる。
+\end_layout
+
+\begin_layout Itemize
+長期的には自然失業率が達成される。
+\end_layout
+
+\begin_layout Itemize
+長期的には潜在GDPが生産される。
+\end_layout
+
+\begin_layout Itemize
+長期的には予想インフレ率は実際のインフレ率と一致する。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $t$
+\end_inset
+
+ 期のインフレ率を 
+\begin_inset Formula $\pi_{t}$
+\end_inset
+
+, 
+\begin_inset Formula $(t-1)$
+\end_inset
+
+ 期に形成された 
+\begin_inset Formula $t$
+\end_inset
+
+ 期のインフレ率に関する予想を 
+\begin_inset Formula $\mathbb{E}_{t-1}\pi_{t}$
+\end_inset
+
+，実質GDPを 
+\begin_inset Formula $Y_{t}$
+\end_inset
+
+, 潜在GDPを 
+\begin_inset Formula $\bar{Y}_{t}$
+\end_inset
+
+とすると，前述の関係は次のように表現できる。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\pi_{t}-\mathbb{E}_{t-1}\pi_{t}=\alpha\left(Y_{t}-\bar{Y}_{t}\right),\qquad\alpha>0
+\]
+
+\end_inset
+
+この関係式は（修正）
+\series bold
+フィリップス曲線
+\series default
+である。賃金上昇率と所得の関係を表す。マクロ経済の物価水準と供給水準の関係を決定する方程式で，AS曲線（Aggregate Supply）とも呼ばれている。
+\end_layout
+
+\begin_layout Section
+プログラミング: 準備
+\end_layout
+
+\begin_layout Subsection
+Conda による追加ライブラリのインストール
+\end_layout
+
+\begin_layout Standard
+この章のプログラムでは，
+\series bold
+pandas-datareader
+\series default
+ というライブラリを用いる。インスールされていない可能性があるので，Anaconda プロンプトで次のコマンドを実行してインスールしておく。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<bash, eval=FALSE>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+conda install pandas-datareader
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+IPython からこのコマンドを実行するには次のようにする。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<eval=FALSE>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+!conda install pandas-datareader
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Python の基本型
+\end_layout
+
+\begin_layout Subsubsection*
+文字列
+\end_layout
+
+\begin_layout Standard
+すでに何度も使っているが「
+\series bold
+文字列型
+\series default
+」について確認しておこう。文字列は文字の並びである。シングルクォーテーションかダブルクオーテーションのペアで囲むことで作成する。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch05/string-1>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+日本語の文字も登録できる。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch05/string-2>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+リストと同じ記法で文字列の一部を取り出すことができる。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch05/string-3>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+list()
+\end_layout
+
+\end_inset
+
+ 関数を使うと明示的にリストに変換できる。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch05/string-list>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+このような変換が必要なときに自動的に行われていると考えてよい。文字列の中に含まれる各文字を走査する 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+for
+\end_layout
+
+\end_inset
+
+ ループを書くこともできる。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch05/string-for>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Problem
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+enumerate() 
+\end_layout
+
+\end_inset
+
+の使い方を調べて説明しなさい。
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+answerbox{4
+\backslash
+baselineskip}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+f-string という便利な記法がある。f-string を使えば文字列定義の中で式を使うことができる。次の使用例を見れば使い方は明らかだろう。クォーテーショ
+ンマークの前の 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+f
+\end_layout
+
+\end_inset
+
+ と中の波括弧部分に注目する。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch05/f-string>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+文字列フォーマット用の記法を組み合わせると，小数点以下の表示桁数や，右寄せ左寄せなどのコントロールが可能になる
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+詳細は 
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+https://docs.python.org/3/library/string.html#format-string-syntax
+\end_layout
+
+\end_inset
+
+ を参照。
+\end_layout
+
+\end_inset
+
+。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch05/f-string-format>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+辞書
+\end_layout
+
+\begin_layout Standard
+辞書（dictionary）というデータ構造が非常によく用いられるので覚えておこう。普通の辞書は「見出し語」と「定義」の多数の組合せから構成されている。Pyth
+on の辞書も同じような構成になっている。「キー」と「値」のペアが辞書である。次の辞書 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+d
+\end_layout
+
+\end_inset
+
+ には3つのキー, 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+
+, 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+'a'
+\end_layout
+
+\end_inset
+
+, 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+'x'
+\end_layout
+
+\end_inset
+
+, が登録されている。対応する値はそれぞれ，
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+100
+\end_layout
+
+\end_inset
+
+, 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+200
+\end_layout
+
+\end_inset
+
+, 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+[1, 2]
+\end_layout
+
+\end_inset
+
+ である。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch05/define-dict>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+値はどのような型のオブジェクトでも割り当てることができる。一方，キーの方には制約があって，「不変（immutable）」なオブジェクトのみを割り当てることができ
+る。例えば，整数，浮動小数点数，文字列やタプルは不変なオブジェクトである。リストは不変なオブジェクトではないので，キーにすることはできない。
+\end_layout
+
+\begin_layout Problem
+「リスト」をキーとする辞書を定義しようとすると，どのようなエラーが発生するか。実験して結果を記録しなさい。
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+answerbox{4
+\backslash
+baselineskip}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+角括弧の中にキーを入れると値を読み出せる。キーは変数に格納していても問題ない。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch05/read-dict>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+辞書をループするとすべての「キー」を走査する。この例では登録順に表示されているが，これは必ずしも保証されていない
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+順序が意味をもつ場合には 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+OrderedDict 
+\end_layout
+
+\end_inset
+
+型を用いる。詳細は 
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+https://docs.python.org/3/library/collections.html#collections.OrderedDict
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch05/loop-dict>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+キーと値の組合せについてループしたいときには，
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+items()
+\end_layout
+
+\end_inset
+
+ メソッドを使うとよい。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch05/loop-dict2>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Pandas 入門
+\end_layout
+
+\begin_layout Standard
+Python で表形式のデータを扱うときは 
+\series bold
+pandas
+\series default
+ というライブラリを用いるのが標準的である。
+\series bold
+NumPy
+\series default
+ の配列をベースに設計されている。配列との主要な違いは，
+\end_layout
+
+\begin_layout Itemize
+異なるデータ型を持つ列の混在が許される。
+\end_layout
+
+\begin_layout Itemize
+行・列に意味のあるラベル（インデックス）を付けることができる。
+\end_layout
+
+\begin_layout Itemize
+その他データの加工・可視化を便利にする機能が追加されている。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $4\times3$
+\end_inset
+
+ 行列をもとに 
+\series bold
+pandas
+\series default
+ の 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+DataFrame
+\end_layout
+
+\end_inset
+
+ オブジェクトを作ってみよう。インデックスを付けずに作る場合は次のようになる。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch05/pandas-no-indices>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+多くの場合，次のようにインデックスが付けられている。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch05/pandas-with-indices>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+DataFrame の定義にはリスト様のオブジェクトを値に持つ辞書を用いることもできる。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch05/pandas-define-with-dict>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+pandas
+\series default
+ の 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+DataFrame
+\end_layout
+
+\end_inset
+
+ オブジェクトには時系列データを扱うための便利なメソッドが定義されている。差分を計算する 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+diff()
+\end_layout
+
+\end_inset
+
+ や変化率を計算する 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+pct_change()
+\end_layout
+
+\end_inset
+
+ はその一例である。これらのメソッドを使うを 1行目のデータが欠測値（NA）となるので，
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+dropna()
+\end_layout
+
+\end_inset
+
+ メソッドをつなげて削除することが多い。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch05/pandas-diff>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\begin_layout Plain Layout
+
+<<ch05/pandas-pct-change>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+DataFrame オブジェクトの列を取得するのにはいくつかの方法があるが，列名を指定して呼び出す2つの方法を確実に覚えておこう。単一の列をけ呼び出す場合には表
+示の見た目が変わっていることに注意しよう。
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+Series
+\end_layout
+
+\end_inset
+
+ オブジェクトと呼ばれるオブジェクトになっている。要するに，
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+DataFrame
+\end_layout
+
+\end_inset
+
+ は
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+Series
+\end_layout
+
+\end_inset
+
+ を列方向に並べたものだ。これらの違いは，
+\series bold
+NumPy
+\series default
+ の2次元配列と1次元配列の違いと考えておけばよい。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch05/pandas-get-columns>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+行を取得するには次のようにインデックスのスライス記法を用いる。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch05/pandas-get-rows>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+pandas
+\series default
+ を使えば列を追加するのも簡単だ。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch05/pandas-add-column>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+データを 
+\series bold
+pandas
+\series default
+ の 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+DataFrame
+\end_layout
+
+\end_inset
+
+ にしておくと簡便な記法で可視化ができる。基本の 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+plot()
+\end_layout
+
+\end_inset
+
+ メソッドを使うと折れ線グラフが描ける（図
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:ch05-pandas-plot-1"
+
+\end_inset
+
+）。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch05/pandas-plot/plot>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+centering
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+includegraphics[width=0.6
+\backslash
+textwidth, trim = 0mm 13mm 0mm 15mm, clip]{Figure/ch05/pandas-plot-1}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\series bold
+pandas
+\series default
+ のプロット
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:ch05-pandas-plot-1"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+散布図を描くには 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+plot.scatter()
+\end_layout
+
+\end_inset
+
+ を使う。図
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:ch05-pandas-plot-1-1"
+
+\end_inset
+
+ はマーカーのサイズをデータ依存にさせる，いわゆるバブルチャートである。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch05/pandas-scatter/plot>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+centering
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+includegraphics[width=0.6
+\backslash
+textwidth, trim = 0mm 13mm 0mm 15mm, clip]{Figure/ch05/pandas-scatter-1}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\series bold
+pandas
+\series default
+ の散布図
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:ch05-pandas-plot-1-1"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+plot.bar()
+\end_layout
+
+\end_inset
+
+, 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+plot.barh()
+\end_layout
+
+\end_inset
+
+を使うと棒グラフを描写できる。 結果はそれぞれ図
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:ch05-pandas-plot-2"
+
+\end_inset
+
+と図
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:ch05-pandas-plot-3"
+
+\end_inset
+
+のようになる。
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+stacked=True
+\end_layout
+
+\end_inset
+
+ とすれば積み上げ棒グラフになる。水平方向にグラフを伸ばす方法も紹介しておこう。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch05/pandas-bar/plot>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+centering
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+includegraphics[width=0.6
+\backslash
+textwidth, trim = 0mm 13mm 0mm 15mm, clip]{Figure/ch05/pandas-bar-1}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\series bold
+pandas
+\series default
+ の棒グラフ
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:ch05-pandas-plot-2"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch05/pandas-barh/plot>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+centering
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+includegraphics[width=0.6
+\backslash
+textwidth, trim = 0mm 13mm 0mm 15mm, clip]{Figure/ch05/pandas-barh-1}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\series bold
+pandas
+\series default
+ の積み上げ棒グラフプロット
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:ch05-pandas-plot-3"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+プログラミング: データを眺める
+\end_layout
+
+\begin_layout Standard
+さて，本章プログラミングパートの本題に入ろう。
+\end_layout
+
+\begin_layout Standard
+「オープンデータ」という標語のもとに多くの公的組織・私的組織が広く利用可能なデータをインターネット上で公開している。ウェブサイトにExcel ファイルやCSVフ
+ァイルを置いているだけのものから，機械可読が容易な形式で配布されているもの，プログラム上で取得ができるような特別な配慮がなされたものまで様々である。
+\end_layout
+
+\begin_layout Subsection
+API
+\end_layout
+
+\begin_layout Standard
+一般にソフトウェア間で通信を行う方式のことを API (Application Programming Interface) と呼ぶ。データ提供者が
+ API （Web API）を提供している場合，プログラマは API の規則に適合したコードを書くことで，プログラム的にデータを取得することができる。API
+ には登録不要で利用できるものから，事前に利用者情報を登録した上で APIキーやAPIトークンといった認証情報を取得しておく必要があるものもある。プログラマは必
+要な認証情報を取得した後，データ提供者のウェブサーバーに API リクエストを送信する。API リクエストはHTTP (HyperText Transfer
+ Protocol) という方式で行われる。大雑把に言えば，ウェブブラウザのアドレスバーにアドレスを打ち込むようなイメージである。ただし，ブラウザは使わない（使
+ってもいいけど）。APIリクエスト用の「アドレス」には必要なデータは何かを説明するためのテキスト（「クエリ」）を付加する。データ提供者のサーバーがデータ要求を受
+け取ると，必要なデータをデータベースサーバーから取得する。APIリクエストのクエリを使用しているデータベースに対するクエリに変換し，出力結果を適切にフォーマット
+してプログラマに送り返す。プログラマは XMLやJSON, CSVといった形式でフォーマットされたテキスト情報としてデータを受け取る
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+XML (eXtensible Markup Language) はHTML (HyperText Markup Language; ウェブページを書くときの記
+法）に似た記法でデータとメタデータを記録する方法。JSON (JavaScript Object Notation) は JavaScript
+ (ウェブページの動的処理で用いられるプログラミング言語) のオブジェクト記法を用いたデータ記法。Python の辞書のような書き方をする。CSV
+ (Comma Separated Values) は表形式のデータをコンマと改行で区切るだけのシンプルな表現である。
+\end_layout
+
+\end_inset
+
+。
+\end_layout
+
+\begin_layout Standard
+すべてのデータ提供者が同じ形式でデータを提供していれば話は簡単なのだが，実際にはデータ提供者ごとに
+\end_layout
+
+\begin_layout Itemize
+クエリ記法が違う，
+\end_layout
+
+\begin_layout Itemize
+出力データのフォーマット方法が違う
+\end_layout
+
+\begin_layout Standard
+という問題がある。個別の API のドキュメントを読んで使用方法を調べるというのがデータ利用の最初の難関である。かなり早い段階で難関がやってくるので，ここで諦め
+てしまう人も多いだろう。
+\end_layout
+
+\begin_layout Subsection
+pandas-datareader
+\end_layout
+
+\begin_layout Standard
+データ提供者ごとにAPI の規則が異なっていることがデータ利用を難しくしているのであれば，API の差異を吸収して共通の記法でデータを取得できるようにすれば，デ
+ータ活用の利便性は格段に向上するだろう。
+\series bold
+pandas-datareader
+\series default
+ というライブラリはこのような目的で作られている。プログラマが直接APIリクエストを発行する代わりに，
+\series bold
+pandas-datareader
+\series default
+ に対して，標準化された記法でリクエストを送る。
+\series bold
+pandas-datareader
+\series default
+ はデータ提供者ごとのクエリ記法に変換し，データの取得を行う。取得されたデータはデータ提供者が使用しているフォーマット方式から 
+\series bold
+pandas
+\series default
+ のデータフレームに変換する。
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+pandas-datareader
+\series default
+ を使うとインターネット上で公開されているデータをダウンロードして 
+\series bold
+pandas
+\series default
+ のデータフレーム形式に変換する作業が簡単になる。利用可能なデータは公式の安定ドキュメントで確認しておいてほしい。
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+https://pydata.github.io/pandas-datareader/remote_data.html
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+インポートして実際に使ってみよう。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch05/pandas-datareader>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+FRED (St.
+ Louis FED)
+\end_layout
+
+\begin_layout Standard
+FRED はセントルイス連邦準備銀行が提供する経済時系列データのデータベースである。アメリカのデータだけでなく世界各国の情報も手に入れることができる。ウェブサイ
+ト 
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+https://fred.stlouisfed.org/
+\end_layout
+
+\end_inset
+
+ にもデータのダウンロードや可視化のツールが一通り揃っているので，ぜひ試してほしい。
+\end_layout
+
+\begin_layout Standard
+さて，ウェブサイトの検索窓で「GDP」と検索すると，1つ目の結果は「Real Gross Domestic Product」となっている。実質GDP
+ のことである。これを開くと図
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:FRED-のウェブサイトでデータコードを確認する"
+
+\end_inset
+
+のような見出しと，グラフが表示されるはずだ。Python で処理するために必要な情報は図の赤枠で囲った部分の小さなコード「GDPC1」である。同じようにして潜在
+GDP「Potential GDP」も検索してコードを確認しておこう。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+centering
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+includegraphics[height=0.3
+\backslash
+textheight]{Images/05-fed}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+FRED のウェブサイトでデータコードを確認する
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:FRED-のウェブサイトでデータコードを確認する"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+次のコードが使用例である。
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+pdr.get_data_fred()
+\end_layout
+
+\end_inset
+
+ で FRED のデータを取得できる
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+多くのデータソースに対して 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+pdr.get_data_*()
+\end_layout
+
+\end_inset
+
+ という関数が用意されている。
+\end_layout
+
+\end_inset
+
+。1つ目の引数としてリスト 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+['GDPPOT', 'GDPC1']
+\end_layout
+
+\end_inset
+
+ を書いて，ダウンロード対象が GDPPOT（潜在GDP）と GDPC1（実質GDP）であることを指定する。結果に 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+gdp
+\end_layout
+
+\end_inset
+
+ という名前を付けた。これは 
+\series bold
+pandas
+\series default
+ のデータフレームになっている。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch05/pandas-fred-gdp>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+データフレームに対して実行できる処理はすぐに使える。例えば，図を描くのも簡単だ。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch05/pandas-fred-gdp/plot>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+centering
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+includegraphics[height=0.3
+\backslash
+textheight]{Figure/ch05/pandas-fred-1}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+FRED で取得したデータ
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:pdr-fred-1"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Problem
+GDP ギャップとGDPギャップ率を計算して，
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+gdp
+\end_layout
+
+\end_inset
+
+ データフレームに新しい列 (gap, rgap) として追加しなさい。結果は次のようになる。
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch05/pandas-fred-gdp-gap, echo=FALSE>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Problem
+GDPギャップ率をプロットしなさい。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+次に，インフレ率を見るために Consumer Price Index for All Urban Consumers: All Items in
+ U.S.
+ City Average (CPIAUCSL) を取得してみよう。これは消費者物価指数の月次データである。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch05/pandas-fred-price>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+インフレ率を見るために 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+pct_change()
+\end_layout
+
+\end_inset
+
+ メソッドを用いる。月次のデータなので 12倍して年率換算しておこう。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch05/pandas-fred-inflation/plot>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+centering
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+includegraphics[height=0.35
+\backslash
+textheight]{Figure/ch05/pandas-fred-inflation-1}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+CPIAUCSL (Source: FRED)
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:pdr-fred-2"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+変動が激しいので移動平均を計算してみよう。
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+rolling()
+\end_layout
+
+\end_inset
+
+ メソッドでグループ化して，グループごとに平均を取るとよい。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch05/pandas-fred-ma>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+最後にプロットしてみよう。移動平均を取る期間（ウインドウ）が長くなるほど，なめらかなグラフになっていることを確認してほしい。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch05/pandas-fred-ma-plot/plot>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+centering
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+includegraphics[height=0.35
+\backslash
+textheight]{Figure/ch05/pandas-fred-ma-plot-1}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+CPIAUCSL の移動平均 (Source: FRED)
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:pdr-fred-3"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+World Bank
+\end_layout
+
+\begin_layout Standard
+国際比較をしたいときには，世界銀行のパネルデータを用いることができる。1960年から2010年までの一人あたりの名目GDPのデータ（米ドル換算）をダウンロードす
+るコードは以下のように書ける。FRED とはかなり使い方が異なっているので注意しよう。
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+from pandas_datareader import wb
+\end_layout
+
+\end_inset
+
+ というコードで世界銀行のデータベースにアクセスするための特別なモジュール 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+wb
+\end_layout
+
+\end_inset
+
+ を使えるようにしている。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch05/wb-gdp, cache=TRUE>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+いわゆる「縦持ち」のデータになっているので国ごとに列を分けておこう。
+\series bold
+pandas
+\series default
+ を使ったデータ加工の詳細は McKinney 
+\begin_inset CommandInset citation
+LatexCommand citeyearpar
+key "wes"
+literal "false"
+
+\end_inset
+
+ などを参考にしてほしい。あとで可視化をするので，結果が見やすくなるように対数変換もしている。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch05/wb-gdp-pivot>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+出来上がった表は非常に大きいので出力は省略する。手元のコンピュータで確認してほしい。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch05/wb-gdp-pivot/dnr>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+4年分のデータの密度プロットを表示する。この図はヒストグラムをなめらかにしたもので，横軸は1人あたり名目GDPの対数値，縦軸はそのGDP水準に所属する国の頻度を
+表している。山が高いほどその水準のGDPを獲得する国が多い。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch05/wb-gdp-density/plot>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+centering
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+includegraphics[height=0.35
+\backslash
+textheight]{Figure/ch05/wb-gdp-density-1}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+CPIAUCSL の移動平均 (Source: FRED)
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:pdr-wb-density"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+グラフから次の傾向が読み取れることを見てほしい。
+\end_layout
+
+\begin_layout Itemize
+密度のグラフが右方向に移動している。つまり，平均的に見れば時代の経過ととともに，多くの1人あたりGDPを生産するようになる。これは経済成長を意味している。
+\end_layout
+
+\begin_layout Itemize
+密度のグラフが徐々に広がってきているように見える。これは，上位の国と下位の国の間での所得格差（国内の格差ではないことに注意）が広がっていることを意味している。た
+だし，この図だけでは格差についての正確な議論はできない。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Problem
+1人あたり名目GDPをダウンロードするときに NY.GDP.PCAP.CD というコードを使った。World Bank Open Data 
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+https://data.worldbank.org/
+\end_layout
+
+\end_inset
+
+ のウェブサイトを閲覧して，このデータを検索しなさい。ページのどの場所にコードが書かれているか。検索ボックスから他の指標についても調べてコードを探し，
+\series bold
+pandas-datareader
+\series default
+ でダウンロードしてみなさい。
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+answerbox{4
+\backslash
+baselineskip}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Branch childonly
+inverted 0
+status open
+
+\begin_layout Standard
+\begin_inset CommandInset bibtex
+LatexCommand bibtex
+btprint "btPrintCited"
+bibfiles "../Bibliography/ref,../Bibliography/software"
+options "styles/jecon"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document
