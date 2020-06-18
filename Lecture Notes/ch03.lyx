@@ -18,7 +18,7 @@ source('Knitr/setup.R')
 source_python('Knitr/setup.py')
 @
 \end_preamble
-\options dvipdfmx,a5paper,9pt
+\options dvipdfmx,paper=a5,fontsize=9pt
 \use_default_options true
 \master _main.lyx
 \begin_modules

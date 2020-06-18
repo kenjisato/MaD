@@ -21,7 +21,7 @@ knitr::read_chunk('Knitr/setup.py')
 <<python-setup, include=FALSE>>=
 @ 
 \end_preamble
-\options dvipdfmx,twoside,paper=a5,fontsize=9pt
+\options dvipdfmx,paper=a5,fontsize=9pt
 \use_default_options true
 \master _main.lyx
 \begin_modules
@@ -168,6 +168,13 @@ LatexCommand tableofcontents
 
 \begin_layout Chapter
 変化率と複利計算
+\begin_inset CommandInset label
+LatexCommand label
+name "chap:変化率と複利計算"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard

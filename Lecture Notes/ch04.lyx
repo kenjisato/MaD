@@ -21,7 +21,7 @@ knitr::read_chunk('Knitr/setup.py')
 <<python-setup, include=FALSE>>=
 @ 
 \end_preamble
-\options dvipdfmx,a5paper,9pt
+\options dvipdfmx,paper=a5,fontsize=9pt
 \use_default_options true
 \master _main.lyx
 \begin_modules
@@ -1319,7 +1319,7 @@ reference "eq:ch04/companion-form"
  次ベクトルの漸化式に書き換えることができるはずだ。やってみよう。
 \begin_inset Formula 
 \begin{align*}
-b_{n} & =\alpha_{0}+\alpha_{1}b_{n-1}+\alpha_{2}b_{n-2}+\cdots+\alpha_{n-p}b_{n}
+b_{n} & =\alpha_{0}+\alpha_{1}b_{n-1}+\alpha_{2}b_{n-2}+\cdots+\alpha_{n-p}b_{n-p}
 \end{align*}
 
 \end_inset
