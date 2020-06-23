@@ -49,9 +49,6 @@ frame.plot.scatter(x='a', y='b')
 plt.show()
 
 
-
-
-
 #---- END
 
 

@@ -1,0 +1,5929 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass scrbook
+\begin_preamble
+\usepackage{Styles/common}
+\usepackage{Styles/code}
+\usepackage{Styles/problem}
+\usepackage{url}
+
+% Knitr Setup 
+<<setup, include=FALSE>>=
+source('Knitr/setup.R')
+source_python('Knitr/setup.py')
+@
+\end_preamble
+\options dvipdfmx,paper=a5,9pt
+\use_default_options true
+\master _main.lyx
+\begin_modules
+knitr
+theorems-ams-chap-bytype
+theorems-ams-extended-chap-bytype
+logicalmkup
+\end_modules
+\maintain_unincluded_children false
+\language japanese
+\language_package default
+\inputencoding utf8-platex
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 1
+\bibtex_command default
+\index_command default
+\float_placement th
+\paperfontsize default
+\spacing onehalf
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine natbib
+\cite_engine_type authoryear
+\biblio_style plainnat
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date true
+\justification true
+\use_refstyle 1
+\use_minted 0
+\branch childonly
+\selected 1
+\filename_suffix 0
+\color #faf0e6
+\end_branch
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style cjk
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+mainmatter
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<engine='R', echo=FALSE>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+knitr::read_chunk('Python/ch06.py')
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Branch childonly
+inverted 0
+status open
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+setcounter{chapter}{5}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset toc
+LatexCommand tableofcontents
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Chapter
+成長会計とソロー・モデル
+\end_layout
+
+\begin_layout Section
+概要
+\end_layout
+
+\begin_layout Standard
+この講義では以下のことを学ぶ。
+\end_layout
+
+\begin_layout Itemize
+生産関数と成長会計
+\end_layout
+
+\begin_layout Itemize
+ソロー・モデル
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+プログラミングパートでは関数定義について学び，ソロー・モデルのシミュレーションを行う。
+\end_layout
+
+\begin_layout Section
+理論: 成長会計
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:growth-accounting"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+成長率公式
+\begin_inset CommandInset label
+LatexCommand label
+name "subsec:成長率公式"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+第
+\begin_inset Branch childonly
+inverted 0
+status open
+
+\begin_layout Standard
+1
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "chap:変化率と複利計算"
+
+\end_inset
+
+章において成長率（変化率）の定義と次の近似公式について説明した。
+\begin_inset Formula 
+\[
+\frac{y_{t}-y_{t-1}}{y_{t-1}}\approx\log y_{t}-\log y_{t-1}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+左辺で定義される成長率は取り扱いが難しいので，この節では右辺で定義される成長率を使う
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+ソローモデルについて説明する次節ではもう一度，通常の離散時間の成長率を用いる。
+\end_layout
+
+\end_inset
+
+。第
+\begin_inset Branch childonly
+inverted 0
+status open
+
+\begin_layout Standard
+1
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "chap:変化率と複利計算"
+
+\end_inset
+
+章においては「瞬時変化率」と読んで詳細な説明を省略したものだ。
+\end_layout
+
+\begin_layout Standard
+瞬時変化率（以下，単に成長率あるいは変化率）には便利な公式がある。
+\begin_inset Formula $y$
+\end_inset
+
+ の 
+\begin_inset Formula $t$
+\end_inset
+
+期の前期比成長率を 
+\begin_inset Formula $g_{t}^{y}$
+\end_inset
+
+ と表そう。
+\begin_inset Formula $x_{t}$
+\end_inset
+
+ と 
+\begin_inset Formula $y_{t}$
+\end_inset
+
+ という2つの時系列があったとき，その積 
+\begin_inset Formula $x_{t}y_{t}$
+\end_inset
+
+ の成長率は
+\begin_inset Formula 
+\[
+g_{t}^{xy}=\log x_{t}y_{t}-\log x_{t-1}y_{t-1}=\left(\log x_{t}-\log x_{t-1}\right)+\left(\log y_{t}-\log y_{t-1}\right)=g_{t}^{x}+g_{t}^{y}
+\]
+
+\end_inset
+
+ と書ける。つまり，「積の成長率は成長率の和」になる。同様に差と商，べきについても公式を導くことができる。
+\end_layout
+
+\begin_layout Problem
+次の事実を示しなさい。ただし，
+\begin_inset Formula $g^{xyz}$
+\end_inset
+
+ や 
+\begin_inset Formula $g^{x^{\alpha}}$
+\end_inset
+
+ はそれぞれ 
+\begin_inset Formula $xyz$
+\end_inset
+
+ の成長率，
+\begin_inset Formula $x^{\alpha}$
+\end_inset
+
+ などの成長率を意味する。すべての時系列変数（
+\begin_inset Formula $x,y,z,w$
+\end_inset
+
+）は正の値を取るものとする。ギリシャ文字（
+\begin_inset Formula $\alpha$
+\end_inset
+
+,
+\begin_inset Formula $\beta$
+\end_inset
+
+, 
+\begin_inset Formula $\gamma$
+\end_inset
+
+）は実数定数で正，負，またはゼロの値を取る。
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Formula $g^{x/y}=g^{x}-g^{y}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $g^{x^{\alpha}}=\alpha g^{x}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $g^{x^{\alpha}y^{\beta}z^{\gamma}}=\alpha g^{x}+\beta g^{y}+\gamma g^{z}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $g^{x^{\alpha}/y^{\beta}}=\alpha g^{x}-\beta g^{y}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+answerbox{4
+\backslash
+baselineskip}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+コブ=ダグラス型生産関数
+\end_layout
+
+\begin_layout Standard
+マクロ経済の総生産（実質GDP） 
+\begin_inset Formula $Y$
+\end_inset
+
+ が，資本 
+\begin_inset Formula $K$
+\end_inset
+
+ と労働 
+\begin_inset Formula $L$
+\end_inset
+
+ という生産要素を投入することで生産されると考える。投入要素を利用・雇用するには費用がかかる。さらに，
+\begin_inset Formula $(K,L)$
+\end_inset
+
+ から 
+\begin_inset Formula $Y$
+\end_inset
+
+ を作るという生産過程の効率性を「技術」という言葉で表現しよう。技術は公共的な性質を持つもの（例えば微積分の公式）もあれば，各企業が独自で持っている場合（いわゆ
+る，企業秘密，コカ・コーラのレシピなど）も，特許などで守られている場合もあるだろう。理論的な分析を簡単にするために，これらはひとまず無償で利用可能な共有知識であ
+るとして，すべてひっくるめて 
+\begin_inset Formula $A$
+\end_inset
+
+ で表す。生産における投入，産出の関係 
+\begin_inset Formula $(K,L,A)\mapsto Y$
+\end_inset
+
+ を総生産関数（aggregate production function） 
+\begin_inset Formula $F$
+\end_inset
+
+ を使って次のように書くことができる。
+\begin_inset Formula 
+\[
+Y=F(K,L,A)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+一般的な表現では分析を先にすすめるのが難しいので，パラメータ 
+\begin_inset Formula $0<\alpha<1$
+\end_inset
+
+ を導入して，
+\series bold
+コブ=ダグラス型
+\series default
+と呼ばれる次の形式で総生産関数を特定化する。
+\begin_inset Formula 
+\[
+Y=AK^{\alpha}L^{1-\alpha}
+\]
+
+\end_inset
+
+上記の形式で生産関数に組み込まれた技術水準 
+\begin_inset Formula $A$
+\end_inset
+
+ は
+\series bold
+全要素生産性
+\series default
+（total factor productivity）と呼ばれる。
+\end_layout
+
+\begin_layout Standard
+コブ=ダグラス型生産関数は次の性質を持っている。
+\end_layout
+
+\begin_layout Subsubsection*
+規模に関して収穫一定である
+\end_layout
+
+\begin_layout Standard
+投入要素を 
+\begin_inset Formula $c$
+\end_inset
+
+ 倍にすると，生産物も 
+\begin_inset Formula $c$
+\end_inset
+
+ 倍になる（
+\begin_inset Formula $c>0$
+\end_inset
+
+）。
+\begin_inset Formula $Y=AK^{\alpha}L^{1-\alpha}$
+\end_inset
+
+ のとき，
+\begin_inset Formula 
+\begin{align*}
+Y' & =A\left(cK\right)^{\alpha}\left(cL\right)^{1-\alpha}\\
+ & =c^{\alpha+(1-\alpha)}AK^{\alpha}L^{1-\alpha}\\
+ & =cAK^{\alpha}L^{1-\alpha}
+\end{align*}
+
+\end_inset
+
+が成り立つ。規模に関して収穫一定という性質は「1次同次」とも呼ばれる。
+\end_layout
+
+\begin_layout Subsubsection*
+限界生産性が平均生産性に比例する
+\end_layout
+
+\begin_layout Standard
+資本の限界生産性（marginal product of capital, MPK) は次のように定義される。
+\begin_inset Formula 
+\[
+MPK=\frac{\partial Y}{\partial K}
+\]
+
+\end_inset
+
+平均生産性は 
+\begin_inset Formula $Y/K$
+\end_inset
+
+ で定義される。コブ=ダグラス型生産関数を偏微分して，2つの生産性の関係を見てみよう。
+\begin_inset Formula 
+\[
+MPK=\frac{\partial Y}{\partial K}=\alpha AK^{\alpha-1}L^{1-\alpha}=\alpha\frac{AK^{\alpha}L^{1-\alpha}}{K}=\alpha\frac{Y}{K}
+\]
+
+\end_inset
+
+となる。
+\end_layout
+
+\begin_layout Problem
+労働の限界生産性（marginal product of labor, MPL）と労働の平均生産性 
+\begin_inset Formula $Y/L$
+\end_inset
+
+ の関係を調べなさい。
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+answerbox{4
+\backslash
+baselineskip}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Subsubsection*
+ゼロ利潤
+\end_layout
+
+\begin_layout Standard
+企業が次の利潤最大化問題を解いて資本と労働の需要を決定するとしよう。
+\begin_inset Formula 
+\[
+\max_{K,L}Y-rK-wL
+\]
+
+\end_inset
+
+ここで 
+\begin_inset Formula $r$
+\end_inset
+
+ は資本を市場から借りてくる場合に支払わなければならない実質レンタル率である
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+ソロー・モデルの節で出てくる 
+\begin_inset Formula $r$
+\end_inset
+
+ と定義が少し異なっている。ここの 
+\begin_inset Formula $r$
+\end_inset
+
+ は資本減耗率　
+\begin_inset Formula $\delta$
+\end_inset
+
+ を含んでいるが，ソロー・モデルの節では 
+\begin_inset Formula $\delta$
+\end_inset
+
+ を含んでいないと考えればよい。
+\end_layout
+
+\end_inset
+
+。通常，企業は資本を保有しているので会計的には費用とはならないので，機会費用として計算する。
+\begin_inset Formula $w$
+\end_inset
+
+ は実質賃金率である。
+\begin_inset Formula $rK+wL$
+\end_inset
+
+ は生産活動のコストである。
+\end_layout
+
+\begin_layout Standard
+利潤最大化のための1階条件は
+\begin_inset Formula 
+\[
+MPK=r,\qquad MPL=w
+\]
+
+\end_inset
+
+である。つまり，
+\begin_inset Formula 
+\[
+\alpha\frac{Y}{K}=r,\qquad(1-\alpha)\frac{Y}{L}=w
+\]
+
+\end_inset
+
+が成り立つ。もう少し整理すると，
+\begin_inset Formula 
+\[
+rK=\alpha Y,\qquad wL=(1-\alpha)Y
+\]
+
+\end_inset
+
+となる。
+\begin_inset Formula $rK$
+\end_inset
+
+ は資本に対して支払われる報酬額であり，
+\begin_inset Formula $wL$
+\end_inset
+
+ は労働力に対して支払われる報酬額である。資本は総生産の 
+\begin_inset Formula $\alpha$
+\end_inset
+
+ の割合を報酬として得る。
+\begin_inset Formula $\alpha=rK/Y$
+\end_inset
+
+ を
+\series bold
+資本分配率
+\series default
+（capital share）と呼ぶ。同様に 
+\begin_inset Formula $1-\alpha=wL/Y$
+\end_inset
+
+ を
+\series bold
+労働分配率
+\series default
+（labor share）と呼ぶ。
+\end_layout
+
+\begin_layout Standard
+これらの報酬を合算すると企業の費用になるのだが，企業の売上と一致することに注意しよう。
+\begin_inset Formula 
+\[
+rK+wL=\alpha Y+(1-\alpha)Y=Y
+\]
+
+\end_inset
+
+実は，一般に規模に関する収穫一定を満たす生産関数のもとでは，企業利潤は高々ゼロになる。
+\end_layout
+
+\begin_layout Problem
+\begin_inset CommandInset label
+LatexCommand label
+name "prob:zero-profit"
+
+\end_inset
+
+規模に関する収穫一定を仮定する。企業利潤が正になるような生産プランが仮にあったとすれば，その生産プランは最適にはならない。また，費用を一切かけずに操業停止ができ
+るなら，負の利潤も最適になりえない。これらの事実を証明しなさい。
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+answerbox{6
+\backslash
+baselineskip}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Problem
+上記の数学的事実は，多くの実在する企業が正の利潤を稼いでいることと矛盾するだろうか。説明しなさい。
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+answerbox{6
+\backslash
+baselineskip}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Subsection
+成長会計
+\end_layout
+
+\begin_layout Standard
+2時点における，生産活動のデータ 
+\begin_inset Formula $(Y_{t-1},K_{t-1},L_{t-1})$
+\end_inset
+
+, 
+\begin_inset Formula $(Y_{t},K_{t},L_{t})$
+\end_inset
+
+ を手に入れたとしよう。
+\begin_inset Formula 
+\begin{align*}
+Y_{t} & =A_{t}K_{t}^{\alpha}L_{t}^{1-\alpha}\\
+Y_{t-1} & =A_{t-1}K_{t-1}^{\alpha}L_{t-1}^{1-\alpha}
+\end{align*}
+
+\end_inset
+
+ ここで，
+\begin_inset Formula $A_{t-1}$
+\end_inset
+
+, 
+\begin_inset Formula $A_{t}$
+\end_inset
+
+ に関する情報は得られない。
+\end_layout
+
+\begin_layout Standard
+上式の対数差を取ると，
+\begin_inset Formula 
+\begin{multline*}
+\log Y_{t}-\log Y_{t-1}=\left(\log A_{t}-\log A_{t-1}\right)\\
++\alpha\left(\log K_{t}-\log K_{t-1}\right)+(1-\alpha)\left(\log L_{t}-\log L_{t-1}\right)
+\end{multline*}
+
+\end_inset
+
+と書ける。対数差は成長率なので，節 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:成長率公式"
+
+\end_inset
+
+ の記法にならえば，
+\begin_inset Formula 
+\[
+g_{t}^{Y}=g_{t}^{A}+\alpha g_{t}^{K}+(1-\alpha)g_{t}^{L}
+\]
+
+\end_inset
+
+ となる。つまり，経済成長（
+\begin_inset Formula $Y$
+\end_inset
+
+ の拡大）は，
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $A$
+\end_inset
+
+ の成長（技術進歩）
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $K$
+\end_inset
+
+ の成長（資本蓄積）
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $L$
+\end_inset
+
+ の成長（人口成長）
+\end_layout
+
+\begin_layout Standard
+の3つの要因に分解される。
+\series bold
+成長会計
+\series default
+（growth accounting）とは，このような要因分解を通して経済成長に貢献する要因を明らかにする分析のことである。ここで，
+\begin_inset Formula $g_{t}^{Y}$
+\end_inset
+
+, 
+\begin_inset Formula $g_{t}^{K}$
+\end_inset
+
+, 
+\begin_inset Formula $g_{t}^{L}$
+\end_inset
+
+ の情報はデータから計算可能であるので，観測されない技術の成長率を次のように逆算できる。
+\begin_inset Formula 
+\[
+g_{t}^{A}=g_{t}^{Y}-\alpha g_{t}^{K}-(1-\alpha)g_{t}^{L}
+\]
+
+\end_inset
+
+全要素生産性の成長率を「残差」によって求めるのである。これは
+\series bold
+ソロー残差
+\series default
+と呼ばれている。
+\end_layout
+
+\begin_layout Remark
+第
+\begin_inset Branch childonly
+inverted 0
+status open
+
+\begin_layout Standard
+3
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "chap:GDPの成長と格差"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+章で，GDP の支出面の恒等式 
+\begin_inset Formula $Y=C+I+G+NX$
+\end_inset
+
+ を使って寄与度を計算したことを思い出そう。寄与度は 
+\begin_inset Formula $C$
+\end_inset
+
+ や 
+\begin_inset Formula $I$
+\end_inset
+
+ の差分を 
+\begin_inset Formula $Y$
+\end_inset
+
+ で割って求めるものであって，
+\begin_inset Formula $C$
+\end_inset
+
+ や 
+\begin_inset Formula $I$
+\end_inset
+
+ の成長率は使っていない。
+\end_layout
+
+\begin_layout Subsection
+JIPデータベース
+\begin_inset CommandInset label
+LatexCommand label
+name "subsec:JIPデータベース"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+独立行政法人経済産業研究所では，日本の経済成長と産業構造変化を分析するための基礎資料として，日本産業生産性データベース（JIP データベース）を構築，公開してい
+る
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+https://www.rieti.go.jp/jp/database/jip.html
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+。表
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:日本経済の成長会計（ソース：JIPデータベース-2018）"
+
+\end_inset
+
+はJIPデータベース 2018 として公表されている2010年までの成長会計の結果である。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+centering
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+日本経済の成長会計（ソース：JIPデータベース 2018）
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:日本経済の成長会計（ソース：JIPデータベース-2018）"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Tabular
+<lyxtabular version="3" rows="9" columns="5">
+<features booktabs="true" tabularvalignment="middle">
+<column alignment="left" valignment="top">
+<column alignment="right" valignment="top">
+<column alignment="right" valignment="top">
+<column alignment="right" valignment="top">
+<column alignment="right" valignment="top">
+<row>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+マクロ（すべて）
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+1995-2000
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+2000-2005
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+2005-2010
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+2000-2010
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+GDP成長率
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $1.35$
+\end_inset
+
+%
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.88$
+\end_inset
+
+%
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-0.11$
+\end_inset
+
+%
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.89$
+\end_inset
+
+%
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+労働投入増加の寄与
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-0.05$
+\end_inset
+
+%
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-0.09$
+\end_inset
+
+%
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-0.26$
+\end_inset
+
+%
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.07$
+\end_inset
+
+%
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+　　　マンアワー増加
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-0.37$
+\end_inset
+
+%
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-0.42$
+\end_inset
+
+%
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-0.55$
+\end_inset
+
+%
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-0.04$
+\end_inset
+
+%
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+　　　労働の質向上
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.33$
+\end_inset
+
+%
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.34$
+\end_inset
+
+%
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.29$
+\end_inset
+
+%
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.11$
+\end_inset
+
+%
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+資本投入増加の寄与
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $1.07$
+\end_inset
+
+%
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.39$
+\end_inset
+
+%
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.10$
+\end_inset
+
+%
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.03$
+\end_inset
+
+%
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+　　　資本の量の増加
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.85$
+\end_inset
+
+%
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.28$
+\end_inset
+
+%
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-0.05$
+\end_inset
+
+%
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-0.03$
+\end_inset
+
+%
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+　　　資本の質向上
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.21$
+\end_inset
+
+%
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.11$
+\end_inset
+
+%
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.15$
+\end_inset
+
+%
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.06$
+\end_inset
+
+%
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+TFPの寄与
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.33$
+\end_inset
+
+%
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.58$
+\end_inset
+
+%
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.04$
+\end_inset
+
+%
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.80$
+\end_inset
+
+%
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+JIP データベースでは産業部門ごとに成長会計を行っている。また，生産関数には資本や労働の質を考慮したものを使っているという違いがある。しかし，本章で説明した簡
+易的な成長会計を知っておけば詳細な分析マニュアルに取り組むことができるはずだ。
+\end_layout
+
+\begin_layout Section
+ソローモデル
+\end_layout
+
+\begin_layout Standard
+ソローモデルは，資本，労働，技術の成長によって経済成長を説明しようとするモデルである。以下のような特徴を持っている。
+\end_layout
+
+\begin_layout Itemize
+労働力の成長率は外生的に与えられた定数である。
+\end_layout
+
+\begin_layout Itemize
+技術の成長率は外生的に与えられた定数である。
+\end_layout
+
+\begin_layout Itemize
+資本蓄積は投資と資本減耗の関係によって定まる。
+\end_layout
+
+\begin_layout Itemize
+投資資金の供給源である貯蓄は所得の一定割合である。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+労働 
+\begin_inset Formula $L$
+\end_inset
+
+ と技術 
+\begin_inset Formula $A$
+\end_inset
+
+ は以下の成長ルールに従う。
+\begin_inset Formula 
+\begin{align*}
+L_{t} & =(1+n)L_{t-1}\\
+A_{t} & =(1+g)A_{t-1}
+\end{align*}
+
+\end_inset
+
+
+\begin_inset Formula $n$
+\end_inset
+
+ は人口成長率，
+\begin_inset Formula $g$
+\end_inset
+
+ は技術進歩率である。
+\end_layout
+
+\begin_layout Standard
+資本の変化は投資と資本減耗によって引き起こされる。企業が行う粗投資を 
+\begin_inset Formula $I_{t}$
+\end_inset
+
+ と書く。生産のために利用された資本は一定の割合 
+\begin_inset Formula $0<\delta<1$
+\end_inset
+
+ だけ減耗すると仮定すると，次の方程式が得られる。
+\begin_inset Formula 
+\begin{equation}
+K_{t}-K_{t-1}=I_{t-1}-\delta K_{t-1}\label{eq:CA}
+\end{equation}
+
+\end_inset
+
+この方程式を資本蓄積方程式と呼ぶ。ソローモデルの最重要方程式である。
+\end_layout
+
+\begin_layout Standard
+所得 
+\begin_inset Formula $Y_{t}=F(K_{t},L_{t},A_{t})$
+\end_inset
+
+ の一定割合 
+\begin_inset Formula $0<s<1$
+\end_inset
+
+ が貯蓄されるとする。貸付資金の市場が均衡しているとき貯蓄 
+\begin_inset Formula $sY_{t}$
+\end_inset
+
+ と投資　
+\begin_inset Formula $I_{t}$
+\end_inset
+
+ は一致するので，
+\begin_inset Formula 
+\[
+I_{t}=sY_{t}=sF(K_{t},L_{t},A_{t})
+\]
+
+\end_inset
+
+ となる。
+\end_layout
+
+\begin_layout Remark
+変数の初期値 
+\begin_inset Formula $K_{0}$
+\end_inset
+
+, 
+\begin_inset Formula $L_{0}$
+\end_inset
+
+, 
+\begin_inset Formula $A_{0}$
+\end_inset
+
+, パラメータ 
+\begin_inset Formula $s$
+\end_inset
+
+, 
+\begin_inset Formula $\delta$
+\end_inset
+
+ および生産関数 
+\begin_inset Formula $F$
+\end_inset
+
+ を与えればシミュレーションは実行可能である。これは，下式右辺が 
+\begin_inset Formula $t$
+\end_inset
+
+ 期の変数とパラメータのみで表現されていることから分かる。
+\begin_inset Formula 
+\begin{align}
+K_{t} & =sF(K_{t-1},L_{t-1},A_{t-1})+(1-\delta)K_{t-1}\label{eq:K}\\
+L_{t} & =(1+n)L_{t-1}\label{eq:L}\\
+A_{t} & =(1+g)A_{t-1}\label{eq:A}
+\end{align}
+
+\end_inset
+
+しかし，マクロ経済モデルとしての解釈性のために追加的な仮定を置く。節を変えて説明しよう。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+解析的な分析
+\end_layout
+
+\begin_layout Standard
+総生産関数 
+\begin_inset Formula $F$
+\end_inset
+
+ は次の形式を持つとする。
+\begin_inset Formula 
+\[
+Y=F(K,AL)
+\]
+
+\end_inset
+
+つまり，
+\begin_inset Formula $A$
+\end_inset
+
+, 
+\begin_inset Formula $L$
+\end_inset
+
+ は生産に対して独立に影響するのではなく，
+\begin_inset Formula $AL$
+\end_inset
+
+ という積の形で性質に作用する。
+\begin_inset Formula $AL$
+\end_inset
+
+ を効率労働と呼ぶ。
+\begin_inset Formula $F$
+\end_inset
+
+ は規模に関して収穫一定である。つまり，
+\begin_inset Formula 
+\[
+F(cK,cAL)=cF(K,AL),\qquad c>0.
+\]
+
+\end_inset
+
+収穫一定なので，次のように変形できる。
+\begin_inset Formula 
+\[
+Y=F(K,AL)=AL\cdot F\left(\frac{K}{AL},1\right)
+\]
+
+\end_inset
+
+両辺を 
+\begin_inset Formula $AL$
+\end_inset
+
+ で割って，
+\begin_inset Formula 
+\[
+\frac{Y}{AL}=F\left(\frac{K}{AL},1\right)
+\]
+
+\end_inset
+
+つまり，効率労働1単位当たりの生産 
+\begin_inset Formula $y=Y/(AL)$
+\end_inset
+
+ は効率労働1単位当たりの資本 
+\begin_inset Formula $k=K/(AL)$
+\end_inset
+
+ には，
+\begin_inset Formula 
+\[
+y=F(k,1)=f(k)
+\]
+
+\end_inset
+
+という関係がある。
+\begin_inset Formula $f$
+\end_inset
+
+ は効率労働当たりの資本を効率労働あたりの生産に変換する生産関数である。
+\end_layout
+
+\begin_layout Assumption
+\begin_inset CommandInset label
+LatexCommand label
+name "assu:ch06/f"
+
+\end_inset
+
+
+\begin_inset Formula $f$
+\end_inset
+
+ には次の性質を仮定する。
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Formula $f(0)=0$
+\end_inset
+
+,
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $f'(k)>0$
+\end_inset
+
+,
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $f''(k)<0$
+\end_inset
+
+,
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $f'(0+)>(\delta+g+n+gn)/s$
+\end_inset
+
+,
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $f'(+\infty)<(\delta+g+n+gn)/s$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Problem
+コブ=ダグラス型 
+\begin_inset Formula $F(K,AL)=K^{\alpha}(AL)^{1-\alpha}$
+\end_inset
+
+ のとき，上記5つの仮定がすべて満たされることを確認せよ。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $f''(k)<0$
+\end_inset
+
+ は資本の限界生産力が逓減することを表している。以下の命題を通して確認しておこう。
+\end_layout
+
+\begin_layout Proposition
+\begin_inset CommandInset label
+LatexCommand label
+name "prop:fprime"
+
+\end_inset
+
+
+\begin_inset Formula $F=F(K,AL)$
+\end_inset
+
+ は収穫一定，
+\begin_inset Formula $k=K/(AL)$
+\end_inset
+
+，
+\begin_inset Formula $f(k)=F(k,1)$
+\end_inset
+
+ のとき，
+\begin_inset Formula 
+\[
+f'(k)=\frac{\partial F}{\partial K}
+\]
+
+\end_inset
+
+が成り立つ。
+\end_layout
+
+\begin_layout Proof
+定義に忠実に計算すればよい。
+\begin_inset Formula 
+\begin{align*}
+\frac{\partial F}{\partial K} & =\lim_{\Delta K\to0}\frac{F(K+\Delta K,AL)-F(K,AL)}{\Delta K}\\
+ & =\lim_{\Delta K\to0}\frac{F\left(\frac{K}{AL}+\frac{\Delta K}{AL},1\right)-F\left(\frac{K}{AL},1\right)}{\frac{\Delta K}{AL}}\\
+ & =\lim_{\Delta K/(AL)\to0}\frac{f\left(k+\frac{\Delta K}{AL}\right)-f\left(k\right)}{\frac{\Delta K}{AL}}\\
+ & =f'\left(k\right)
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+資本蓄積方程式 (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:CA"
+
+\end_inset
+
+) を効率労働当たりの変数を用いて書き直そう。
+\begin_inset Formula 
+\[
+K_{t+1}=sF(K_{t},A_{t}L_{t})+(1-\delta)K_{t}
+\]
+
+\end_inset
+
+両辺を 
+\begin_inset Formula $A_{t}L_{t}$
+\end_inset
+
+ で割ると，
+\begin_inset Formula 
+\[
+\frac{K_{t+1}}{A_{t}L_{t}}=s\frac{F(K_{t},A_{t}L_{t})}{A_{t}L_{t}}+(1-\delta)\frac{K_{t}}{A_{t}L_{t}}
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\frac{A_{t+1}L_{t+1}}{A_{t}L_{t}}\frac{K_{t+1}}{A_{t+1}L_{t+1}}=sf\left(k_{t}\right)+\left(1-\delta\right)k_{t}
+\]
+
+\end_inset
+
+
+\begin_inset Formula $k$
+\end_inset
+
+ の変化を表現する次の差分方程式を得る。
+\begin_inset Formula 
+\[
+k_{t+1}=\frac{sf\left(k_{t}\right)+\left(1-\delta\right)k_{t}}{\left(1+g\right)\left(1+n\right)}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Proposition
+ソローモデルの効率労働1単位あたりの資本 
+\begin_inset Formula $k_{t}$
+\end_inset
+
+ は差分方程式
+\begin_inset Formula 
+\begin{equation}
+k_{t}=\frac{sf\left(k_{t-1}\right)+\left(1-\delta\right)k_{t-1}}{\left(1+g\right)\left(1+n\right)},\qquad t=1,2,\dots\label{eq:ch06/solow}
+\end{equation}
+
+\end_inset
+
+に従って変化する。ただし，
+\begin_inset Formula 
+\[
+k_{0}=\frac{K_{0}}{A_{0}L_{0}}
+\]
+
+\end_inset
+
+は所与である。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+位相図
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+G(k)=\frac{sf\left(k\right)+\left(1-\delta\right)k}{\left(1+g\right)\left(1+n\right)}
+\]
+
+\end_inset
+
+と定義しよう。ソローモデルの差分方程式 (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:ch06/solow"
+
+\end_inset
+
+) は 
+\begin_inset Formula $k_{t}=G(k_{t-1})$
+\end_inset
+
+ と書ける。
+\begin_inset Formula $G$
+\end_inset
+
+ のグラフは単調増加になる。
+\begin_inset Formula 
+\[
+G'\left(k\right)=\frac{sf'\left(k\right)+\left(1-\delta\right)}{\left(1+g\right)\left(1+n\right)}>0
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+図
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:ch06/graph-g"
+
+\end_inset
+
+ は 
+\begin_inset Formula $k_{t}=G(k_{t-1})$
+\end_inset
+
+ を作図したものである。45° の直線は 
+\begin_inset Formula $k_{t}=k_{t-1}$
+\end_inset
+
+ なる点を表している。このグラフを使って
+\begin_inset Formula $k_{0}$
+\end_inset
+
+, 
+\begin_inset Formula $k_{1}$
+\end_inset
+
+, 
+\begin_inset Formula $k_{2}$
+\end_inset
+
+ を順々に定められることを確認してほしい。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+centering
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+includegraphics[height=0.2
+\backslash
+textheight]{Images/06-solow-G-Phase}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset Formula $k_{t}=G(k_{t-1})$
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:ch06/graph-g"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+図
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:ch06/graph-g"
+
+\end_inset
+
+ では，
+\begin_inset Formula 
+\begin{align*}
+k_{t} & =G(k_{t-1})\\
+k_{t} & =k_{t-1}
+\end{align*}
+
+\end_inset
+
+の交点（この点を 
+\begin_inset Formula $k_{t-1}=k_{t}=k^{*}$
+\end_inset
+
+としよう）に徐々に近づいていくことが分かる。このような収束性は 
+\begin_inset Formula $f$
+\end_inset
+
+ に課した仮定
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "assu:ch06/f"
+
+\end_inset
+
+ から導かれるものである。詳細は省略するが 
+\begin_inset Formula $G$
+\end_inset
+
+ には次のような性質がある。
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $G$
+\end_inset
+
+ は単調増加である。
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $G'$
+\end_inset
+
+ は単調減少である。
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $k<k^{*}$
+\end_inset
+
+ において，
+\begin_inset Formula $G(k)>k$
+\end_inset
+
+ である。
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $k>k^{*}$
+\end_inset
+
+ において，
+\begin_inset Formula $G(k)<k$
+\end_inset
+
+ である。
+\end_layout
+
+\begin_layout Subsubsection*
+ダイナミクス
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $k$
+\end_inset
+
+ の時間変化を見るには， 
+\begin_inset Formula $k_{t+1}-k_{t}$
+\end_inset
+
+ を調べるとよい。
+\begin_inset Formula 
+\begin{align*}
+k_{t+1}-k_{t} & =\frac{sf(k_{t})+(1-\delta)k_{t}-(1+g)(1+n)k_{t}}{(1+g)(1+n)}\\
+ & =\frac{sf(k_{t})-(\delta+g+n+gn)k_{t}}{(1+g)(1+n)}
+\end{align*}
+
+\end_inset
+
+したがって，
+\begin_inset Formula 
+\[
+k_{t+1}>k_{t}\Longleftrightarrow sf(k_{t})>(\delta+g+n+gn)k_{t}
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+k_{t+1}<k_{t}\Longleftrightarrow sf(k_{t})<(\delta+g+n+gn)k_{t}
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+k_{t+1}=k_{t}\Longleftrightarrow sf(k_{t})=(\delta+g+n+gn)k_{t}
+\]
+
+\end_inset
+
+が分かる。
+\begin_inset Formula $sf(k_{t})$
+\end_inset
+
+ は効率労働あたりの貯蓄である。
+\begin_inset Formula $(\delta+g+n+gn)k_{t}$
+\end_inset
+
+ は効率労働あたりの資本を増やしも減らしもしない投資の水準になっていることが分かる。
+\end_layout
+
+\begin_layout Subsubsection*
+定常状態
+\end_layout
+
+\begin_layout Standard
+3つ目の条件に注目しよう。
+\begin_inset Formula $k_{t}=k^{*}$
+\end_inset
+
+が
+\begin_inset Formula 
+\[
+sf(k^{*})=(\delta+g+n+gn)k^{*}
+\]
+
+\end_inset
+
+となるとき，
+\begin_inset Formula $k_{t}=k_{t+1}=k^{*}$
+\end_inset
+
+が成り立つ。この 
+\begin_inset Formula $k_{t}=k^{*}$
+\end_inset
+
+ は時間変化しないので，
+\series bold
+定常状態
+\series default
+（steady state）と呼ばれる。 
+\begin_inset Formula 
+\[
+\left[\left(1+g\right)\left(1+n\right)-(1-\delta)\right]k^{*}=sf(k^{*})
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\left(g+n+\delta+gn\right)k^{*}=sf(k^{*})
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+定常状態 
+\begin_inset Formula $k^{*}$
+\end_inset
+
+ はパラメータ 
+\begin_inset Formula $\delta$
+\end_inset
+
+, 
+\begin_inset Formula $g$
+\end_inset
+
+, 
+\begin_inset Formula $n$
+\end_inset
+
+, 
+\begin_inset Formula $s$
+\end_inset
+
+ に依存して変化する（
+\begin_inset Formula $f$
+\end_inset
+
+ によっても変化する）。
+\begin_inset Formula 
+\[
+k^{*}=k^{*}\left(\delta,g,n,s\right)
+\]
+
+\end_inset
+
+と書くとすれば，
+\begin_inset Formula 
+\[
+\frac{\partial k^{*}}{\partial\delta}<0,\quad\frac{\partial k^{*}}{\partial g}<0,\quad\frac{\partial k^{*}}{\partial n}<0,\quad\frac{\partial k^{*}}{\partial s}>0
+\]
+
+\end_inset
+
+が成り立つ。
+\end_layout
+
+\begin_layout Problem
+上の不等式を確認しなさい。
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+answerbox{4
+\backslash
+baselineskip}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+初期状態が 
+\begin_inset Formula $0<k_{0}<k^{*}$
+\end_inset
+
+ である場合には，
+\begin_inset Formula $k_{t}$
+\end_inset
+
+ は単調増加しながら 
+\begin_inset Formula $k^{*}$
+\end_inset
+
+ に収束する。
+\begin_inset Formula $k_{0}>k^{*}$
+\end_inset
+
+ なら 
+\begin_inset Formula $k_{t}$
+\end_inset
+
+ は単調減少しながら 
+\begin_inset Formula $k^{*}$
+\end_inset
+
+ に収束する。いずれの場合でも 
+\begin_inset Formula $\lim_{t\to\infty}k_{t}\to k^{*}$
+\end_inset
+
+ が成り立つので，
+\begin_inset Formula $k^{*}$
+\end_inset
+
+は経済の長期の均衡状態であるとみなすことができる。
+\end_layout
+
+\begin_layout Subsubsection*
+均整成長経路
+\end_layout
+
+\begin_layout Standard
+長期均衡に収束した後の経済を考えよう。効率労働あたりの資本は 
+\begin_inset Formula $k^{*}$
+\end_inset
+
+ となっている。このとき，効率労働あたりの生産は 
+\begin_inset Formula $y^{*}=f(k^{*})$
+\end_inset
+
+ となり，一定値である。
+\end_layout
+
+\begin_layout Standard
+しかし，私たちが本当に知りたいのは総所得 
+\begin_inset Formula $Y$
+\end_inset
+
+ や一人あたりの総所得 
+\begin_inset Formula $Y/L$
+\end_inset
+
+ といった変数であって，
+\begin_inset Formula $k^{*}$
+\end_inset
+
+ や 
+\begin_inset Formula $y^{*}$
+\end_inset
+
+ ではない。しかし，
+\begin_inset Formula $Y$
+\end_inset
+
+ や 
+\begin_inset Formula $Y/L$
+\end_inset
+
+ の情報は簡単に復元できる。
+\begin_inset Formula 
+\begin{align*}
+Y_{t} & =A_{t}L_{t}y^{*}=A_{t}L_{t}f(k^{*})\\
+\frac{Y_{t}}{L_{t}} & =A_{t}f(k^{*})
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+この関係から 
+\begin_inset Formula $Y$
+\end_inset
+
+ や 
+\begin_inset Formula $Y/L$
+\end_inset
+
+ の成長率を計算することができる。
+\begin_inset Formula 
+\[
+\frac{Y_{t}-Y_{t-1}}{Y_{t-1}}=\frac{A_{t}L_{t}f(k^{*})-A_{t-1}L_{t-1}f(k^{*})}{A_{t-1}L_{t-1}f(k^{*})}=g+n+gn
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\frac{\left(Y_{t}/L_{t}\right)-\left(Y_{t-1}/L_{t-1}\right)}{\left(Y_{t-1}/L_{t-1}\right)}=\frac{A_{t}f(k^{*})-A_{t-1}f(k^{*})}{A_{t-1}f(k^{*})}=g
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Proposition
+\begin_inset CommandInset label
+LatexCommand label
+name "prop:ch06/bgp"
+
+\end_inset
+
+ソローモデルの定常状態では，総生産 
+\begin_inset Formula $Y$
+\end_inset
+
+, 総消費 
+\begin_inset Formula $C=(1-s)Y$
+\end_inset
+
+, 総投資 
+\begin_inset Formula $I=sY$
+\end_inset
+
+, 資本ストック 
+\begin_inset Formula $K$
+\end_inset
+
+ の成長率は 
+\begin_inset Formula $g+n+gn\approx g+n$
+\end_inset
+
+ となる。一人あたりの総生産 
+\begin_inset Formula $Y/L$
+\end_inset
+
+, 一人あたりの総消費 
+\begin_inset Formula $C/L$
+\end_inset
+
+, 一人あたりの総投資 
+\begin_inset Formula $I/L$
+\end_inset
+
+,一人あたりの資本ストック 
+\begin_inset Formula $K/L$
+\end_inset
+
+ の成長率は 
+\begin_inset Formula $g$
+\end_inset
+
+ となる。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Problem
+命題
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "prop:ch06/bgp"
+
+\end_inset
+
+を証明しなさい。
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+answerbox{6
+\backslash
+baselineskip}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+長期均衡ではすべての経済変数が同じ率で定率の成長を経験する。このような状況を均整成長（balanced growth）と呼ぶ。長期均衡ではソローモデルは「均整成
+長経路」（balanced growth path）に乗っている。
+\end_layout
+
+\begin_layout Standard
+成長率に関する命題
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "prop:ch06/bgp"
+
+\end_inset
+
+を日常的な表現で書き換えておこう。この事実は非常に重要なので暗記しておくとよい。
+\end_layout
+
+\begin_layout Proposition
+ソロー・モデルの均整成長経路を考える。一人あたりの実質GDP，一人あたりの資本，一人あたりの消費の成長率はは技術進歩率と一致する。マクロ経済全体の実質GDP，資
+本，消費の成長率は技術進歩率と人口成長率の和と一致する。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+要素所得
+\end_layout
+
+\begin_layout Standard
+マクロ経済には代表的な企業が一社あって，その企業が利潤最大化問題を解いていると考える。市場は完全競争的である。
+\begin_inset Formula 
+\[
+\max_{K,L}F\left(K,AL\right)-\left(r+\delta\right)K-wL
+\]
+
+\end_inset
+
+資本コストについては実質利子率と資本減耗率を区別していることに注意する
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+資本を所有する家計は1単位の資本を貸し出すかわりに，市場で決まる実質利子率 
+\begin_inset Formula $r$
+\end_inset
+
+ を要求する。さらに，資本の減耗分 
+\begin_inset Formula $\delta$
+\end_inset
+
+ も補填した上で1単位の資本を返さないといけないので，企業にとってのコストは 
+\begin_inset Formula $r+\delta$
+\end_inset
+
+ となる。要するに 
+\begin_inset Formula $\delta$
+\end_inset
+
+ は原状回復のためのコストである。ゼロ利潤条件は
+\begin_inset Formula 
+\[
+Y=wL+rK+\delta K
+\]
+
+\end_inset
+
+ となるが，GDP 統計において，分配面のGDP が労働所得，企業所得，資本減耗に大きく分類することを思い出そう。
+\begin_inset Formula $rK$
+\end_inset
+
+ は企業所得を企業所有者に分配したものだと考えれば，理論とデータの対応関係が見えてくるはずだ。
+\end_layout
+
+\end_inset
+
+。利潤最大化のための1階条件は
+\begin_inset Formula 
+\[
+\frac{\partial F}{\partial K}=r+\delta,\qquad\frac{\partial F}{\partial L}=w
+\]
+
+\end_inset
+
+である。命題
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "prop:fprime"
+
+\end_inset
+
+で説明したとおり 
+\begin_inset Formula $\partial F/\partial K=f'(k)$
+\end_inset
+
+ なので，均整成長経路上では
+\begin_inset Formula 
+\[
+r=f'(k^{*})-\delta
+\]
+
+\end_inset
+
+ が成り立つ。収穫一定の下では利潤ゼロになるので（問題
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "prob:zero-profit"
+
+\end_inset
+
+），労働所得について， 
+\begin_inset Formula 
+\[
+wL=Y-(r+\delta)K
+\]
+
+\end_inset
+
+が成り立つ。両辺を 
+\begin_inset Formula $L$
+\end_inset
+
+ で割ってやると，
+\begin_inset Formula 
+\begin{align*}
+w & =A\left[y-(r+\delta)k\right]\\
+ & =A\left[f(k)-f'(k)k\right]
+\end{align*}
+
+\end_inset
+
+均整成長経路上では，
+\begin_inset Formula 
+\[
+w=A\left[f(k^{*})-f'(k^{*})k^{*}\right]
+\]
+
+\end_inset
+
+となるので，
+\begin_inset Formula $w$
+\end_inset
+
+ は 
+\begin_inset Formula $A$
+\end_inset
+
+ と同じ成長率で成長することが分かる。
+\end_layout
+
+\begin_layout Proposition
+ソロー・モデルの均整成長経路上では実質利子率は一定である。賃金率は技術進歩率と同じ率で上昇する。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+移行過程
+\end_layout
+
+\begin_layout Standard
+ソローモデルに従う経済が均整成長経路にあるとする。次のような環境変化・政策変化が起こってモデルのパラメータが変化すると，定常状態からの乖離が生じるので新しい均衡
+経路に向かう移行が始まる。
+\end_layout
+
+\begin_layout Itemize
+積極的な移民政策によって 
+\begin_inset Formula $n$
+\end_inset
+
+ が上昇する。
+\end_layout
+
+\begin_layout Itemize
+子育て支援策を縮小して 
+\begin_inset Formula $n$
+\end_inset
+
+ が低下する。
+\end_layout
+
+\begin_layout Itemize
+技術開発を支援する政策によって 
+\begin_inset Formula $g$
+\end_inset
+
+ が上昇する。
+\end_layout
+
+\begin_layout Itemize
+資本ストックの保全技術が向上して 
+\begin_inset Formula $\delta$
+\end_inset
+
+ が低下する。
+\end_layout
+
+\begin_layout Itemize
+大災害が発生して資本ストックの一部が破壊される。
+\end_layout
+
+\begin_layout Standard
+ここでは，
+\begin_inset Formula $n$
+\end_inset
+
+ の上昇に伴う均衡の移行を分析してみよう。経済は最初の定常状態 
+\begin_inset Formula $k_{1}^{*}$
+\end_inset
+
+ にあるとする。
+\begin_inset Formula $n$
+\end_inset
+
+ の上昇にともなって，定常状態の効率労働あたり資本ストックは減少する。
+\begin_inset Formula 
+\[
+k_{2}^{*}<k_{1}^{*}
+\]
+
+\end_inset
+
+ このとき，
+\begin_inset Formula $k_{0}=k_{1}^{*}$
+\end_inset
+
+ として，方程式 (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:ch06/solow"
+
+\end_inset
+
+) に従って，
+\begin_inset Formula $t>0$
+\end_inset
+
+ の効率労働あたり資本ストックが単調に減少し，長期的には 
+\begin_inset Formula $k_{2}^{*}$
+\end_inset
+
+ に収束する。
+\end_layout
+
+\begin_layout Subsection
+時間の流れと時間変数の測り方
+\end_layout
+
+\begin_layout Standard
+動き続けるアナログ時計をイメージしてほしい。経済活動は連続的に流れる時間の中で行われている。しかし，モデル分析上の都合で離散時間的な変数 
+\begin_inset Formula $Y_{t-1},Y_{t}$
+\end_inset
+
+, 
+\begin_inset Formula $K_{t-1}$
+\end_inset
+
+, 
+\begin_inset Formula $K_{t}$
+\end_inset
+
+ を使って分析している。データの測り方や変数の定義は恣意的なものだから，書き手と読み手の間で意識のすり合わせが必要だ。
+\end_layout
+
+\begin_layout Standard
+連続的な時間を適当な，通常一定の，長さの期間に区切る（図
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:ch06/graph-g-time"
+
+\end_inset
+
+）。各期間を「期」と呼ぶ。期の長さは1ヶ月，3ヶ月，1年という長さがよく使われる
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+現実のデータと，モデル分析に使われる理論的な変数との対応関係を真面目に考えようとすると大変に複雑である。例えば，月次データを分析するときには月の日数の長さとか，
+クリスマスを含むとか，ボーナス月を含むかなどの理論モデルには出てこないような要因で変動が生じる可能性がある。現実社会のすべての複雑性を理論モデルに取り込むことは
+できないので，データの方を理論にあわせる場合も多い（例：季節調整）。
+\end_layout
+
+\end_inset
+
+。例えば，
+\begin_inset Formula $t$
+\end_inset
+
+期の始まり（期首）は 
+\begin_inset Formula $t-1$
+\end_inset
+
+ 期の終わり（期末）と一致している。
+\end_layout
+
+\begin_layout Standard
+経済変数には，
+\end_layout
+
+\begin_layout Itemize
+フロー変数
+\end_layout
+
+\begin_layout Itemize
+ストック変数
+\end_layout
+
+\begin_layout Standard
+という2種類の変数がある。
+\end_layout
+
+\begin_layout Standard
+資本 
+\begin_inset Formula $K$
+\end_inset
+
+ や労働力 
+\begin_inset Formula $L$
+\end_inset
+
+，技術 
+\begin_inset Formula $A$
+\end_inset
+
+ は分析期間のある時点で計測される量のことである。このような変数をストック変数という。ストック変数は原理的には任意の時点で測ることのできる量であるが，通常は期末
+（あるいは同じことだが期首）に測る。ストック変数のことは「期末の残高」というイメージで捉えておけばよいだろう。図
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:ch06/graph-g-time"
+
+\end_inset
+
+の 
+\begin_inset Formula $K_{t-1}$
+\end_inset
+
+ が 
+\begin_inset Formula $t-1$
+\end_inset
+
+ 期末の境界線近くに書かれているのはそのようなイメージを描いたものだ
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+変数の時間添字の選び方には自由度があることに注意してほしい。この章の説明では
+\begin_inset Formula $K_{t-1}$
+\end_inset
+
+ を 
+\begin_inset Formula $t-1$
+\end_inset
+
+ 期末の資本ストック（つまり，
+\begin_inset Formula $t$
+\end_inset
+
+ 期期首の資本ストック）と定義したが，同じ量を表すのに 
+\begin_inset Formula $K_{t}$
+\end_inset
+
+ と書くこともできる。定義をきちんと読む必要がある。
+\end_layout
+
+\end_inset
+
+。
+\end_layout
+
+\begin_layout Standard
+生産 
+\begin_inset Formula $Y$
+\end_inset
+
+, 消費 
+\begin_inset Formula $C$
+\end_inset
+
+, 投資 
+\begin_inset Formula $I$
+\end_inset
+
+ のような変数はある瞬間に計測されるものではなく，計測期間中に随時行われる経済活動の総量を計測する変数である。このように，ある期間中の経済活動を測る変数をフロー
+変数という。
+\end_layout
+
+\begin_layout Standard
+図
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:ch06/graph-g-time"
+
+\end_inset
+
+ にはソローモデルの変数間の関係を描いているので，図を見ながらソローモデルを再構築できるか腕試ししてみよう。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+centering
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+includegraphics[width=
+\backslash
+textwidth]{Images/06-solow-G-Time}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+ソローモデルの変数間の関係
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:ch06/graph-g-time"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+技術進歩の分類
+\end_layout
+
+\begin_layout Standard
+節
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:growth-accounting"
+
+\end_inset
+
+ では 
+\begin_inset Formula $Y=AK^{\alpha}L^{1-\alpha}$
+\end_inset
+
+ という形のコブ=ダグラス型生産関数を用いた。この節では，
+\begin_inset Formula $Y=F(K,AL)$
+\end_inset
+
+ という形の生産関数を用いている。コブ=ダグラス型に置き換えると，
+\begin_inset Formula $Y=K^{\alpha}(AL)^{1-\alpha}$
+\end_inset
+
+ と書ける。もちろん，
+\begin_inset Formula $A$
+\end_inset
+
+ の意味合いは異なるのだが，コブ=ダグラス型を使う限り本質的な違いはない。前者の関数形を後者の関数形に変形してみよう。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+Y & =AK^{\alpha}L^{1-\alpha}\\
+ & =K^{\alpha}\left(A^{\frac{1}{1-\alpha}}L\right)^{1-\alpha}
+\end{align*}
+
+\end_inset
+
+
+\begin_inset Formula $B=A^{\frac{1}{1-\alpha}}$
+\end_inset
+
+という変数変換をすれば，
+\begin_inset Formula 
+\[
+Y=K^{\alpha}\left(BL\right)^{1-\alpha}
+\]
+
+\end_inset
+
+ とできる。
+\end_layout
+
+\begin_layout Standard
+1つ注意をしておこう。
+\begin_inset Formula $Y=AK^{\alpha}L^{1-\alpha}$
+\end_inset
+
+ なるソロー・モデルでは，均整成長経路の1人当たり実質GDP 成長率が 
+\begin_inset Formula $A$
+\end_inset
+
+ の成長率と一致しない。
+\begin_inset Formula $B$
+\end_inset
+
+ の成長率と一致するので，
+\begin_inset Formula $g^{B}\approx g^{A}/(1-\alpha)$
+\end_inset
+
+ になる。節
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:JIPデータベース"
+
+\end_inset
+
+ の表
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:日本経済の成長会計（ソース：JIPデータベース-2018）"
+
+\end_inset
+
+ の 2000-2005 に注目してみると，
+\begin_inset Formula $g^{A}=0.58$
+\end_inset
+
+% である。
+\begin_inset Formula $\alpha=1/3$
+\end_inset
+
+ （よく使われる資本分配率の近似値）とおくと
+\begin_inset Formula 
+\[
+g^{B}=\frac{0.58}{1-(1/3)}\approx0.87
+\]
+
+\end_inset
+
+であり，実際の数値と非常によく似た値になる。この時期の日本経済は定常状態の近くにあったのかもしれない（断定するだけの証拠はない）。
+\end_layout
+
+\begin_layout Standard
+さて，生産関数に技術進歩を導入する方法には3パターンある。
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $Y=AF(K,L)$
+\end_inset
+
+ → ヒックス中立的技術進歩（要素節約的技術進歩）
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $Y=F(AK,L)$
+\end_inset
+
+ → ソロー中立的技術進歩（資本節約的技術進歩）
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $Y=F(K,AL)$
+\end_inset
+
+ → ハロッド中立的技術進歩（労働節約的技術進歩）
+\end_layout
+
+\begin_layout Standard
+ソロー・モデルでは分析の都合上，ハロッド中立な技術進歩を念頭において考えている。
+\end_layout
+
+\begin_layout Section
+プログラミング：関数
+\end_layout
+
+\begin_layout Subsection
+関数
+\end_layout
+
+\begin_layout Standard
+「関数」（function）という言葉は数学でもおなじみのもので，
+\end_layout
+
+\begin_layout Itemize
+関数とは，数を変換する規則
+\end_layout
+
+\begin_layout Standard
+のことだ。数に限定する必要はないので，抽象的な考え方が苦手でなければ，何らかの対象を別の対象に写す写像（mapping）と捉えておくとよい。これは数学でもプログ
+ラミングでも同じことだ。
+\end_layout
+
+\begin_layout Standard
+プログラミングで言うところの関数は，もう少し広い概念である。例えば，一連のタスクをまとめて名前を付けたものも「関数」と呼ぶ。その関数が結果として意味のある値を返
+すかどうかは重要ではない
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+このような「関数」をプロシージャと言って区別することもあるが，Python ではそのような区別はない。
+\end_layout
+
+\end_inset
+
+。値を返さない関数は，
+\end_layout
+
+\begin_layout Itemize
+画面上にメッセージを出力するとか，
+\end_layout
+
+\begin_layout Itemize
+ファイルにデータを出力するとか，
+\end_layout
+
+\begin_layout Itemize
+プログラムの他の所で定義されているオブジェクトを上書き変更する
+\end_layout
+
+\begin_layout Standard
+などといった操作を行っている。プログラミングを実行しているコンピュータの状態に変更を与えるような効果を「副作用」（side effect）という。
+\end_layout
+
+\begin_layout Standard
+関数はオブジェクトに変換操作を施して結果として別のオブジェクトを返すもの，基本的には副作用は避けるべきものだと考えておこう。つまり，
+\end_layout
+
+\begin_layout Itemize
+関数とは，オブジェクトを変換する規則
+\end_layout
+
+\begin_layout Standard
+のことだ。副作用を避けるというのは結構難しいもので，Python では配列やリストを操作する関数を作るときには慎重に書かないと意図せず副作用を作りこんでしまうこ
+とがある。入力された配列を関数の中で書き換えてしまうという間違いがよく起こる。こればかりは慣れるしかないので，今は次のことだけ覚えておこう。
+\end_layout
+
+\begin_layout Itemize
+副作用は避ける。
+\end_layout
+
+\begin_layout Itemize
+副作用を使うときは意識的に行う。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Python の関数定義
+\end_layout
+
+\begin_layout Standard
+いつも通り次のコードを実行しておこう。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch06/import>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Python における関数定義の基本は 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+def
+\end_layout
+
+\end_inset
+
+ キーワードを用いる次のようなコードだ。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch06/function-1>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+この関数は数学的な関数 
+\begin_inset Formula $f(x)=x^{3}-10x$
+\end_inset
+
+ をPython で表現したものだ。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+for
+\end_layout
+
+\end_inset
+
+ や 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+if
+\end_layout
+
+\end_inset
+
+ と同じように，
+\end_layout
+
+\begin_layout Itemize
+コロンの後に改行，
+\end_layout
+
+\begin_layout Itemize
+改行後のブロックは空白4つでインデント
+\end_layout
+
+\begin_layout Standard
+という形式で関数の本体ブロックを明示している。
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+return
+\end_layout
+
+\end_inset
+
+ の右側の値が関数呼び出しの結果として返される
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+R や Julia とは異なり，Python では明示的な 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+return
+\end_layout
+
+\end_inset
+
+ 文が必要である。
+\end_layout
+
+\end_inset
+
+。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<eval=FALSE>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+def 関数名(仮引数名):
+\end_layout
+
+\begin_layout Plain Layout
+
+    関数の本体（結果を計算するための長いコード）
+\end_layout
+
+\begin_layout Plain Layout
+
+    return 結果
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+関数名(実引数)
+\end_layout
+
+\end_inset
+
+ という形式で関数を呼び出すことができる。関数呼び出しで指定された実引数が，関数定義の仮引数に代入されて関数の本体ブロックのコードが実行される。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch06/function-2>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+実引数がどのような型であるかを関数定義の際に指定する必要がないので，本体ブロックの実行に支障がなければどんな型のオブジェクトも実引数に入れることができる。例えば
+，
+\series bold
+NumPy
+\series default
+ の配列はべきや四則演算を自由に行えるので，次のような関数呼び出しが可能である。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch06/function-3>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Problem
+次のコードを実行するとどのような結果になるか。予想し，実行しなさい。予想通りの結果にならなかった場合は理由を考えなさい。
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch06/function-error/dnr>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+answerbox{4
+\backslash
+baselineskip}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+数学的な関数を定義したら作図をしてみよう。結果は図
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:fのグラフ"
+
+\end_inset
+
+のようになる。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch06/function-np/plot>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+centering
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+includegraphics[height=0.3
+\backslash
+textheight]{Figure/ch06/function-np-1}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset Formula $f(x)=x^{3}-10x$
+\end_inset
+
+ のグラフ
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:fのグラフ"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+複数の引数を取る関数を定義することもできる。次のコードは 
+\begin_inset Formula $\alpha=0.3$
+\end_inset
+
+ のコブ=ダグラス型関数を定義する。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch06/define-multivar-func>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch06/use-multivar-func-1>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+なお，コロンの後の改行は必須ではなく，本体が1行だけのシンプルな関数は改行をせずに1行に書くこともできる。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch06/one-line>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+格段に読みやすくなったりしないし，行数をケチる必要はないので，いつでも改行を入れる方がよい。
+\end_layout
+
+\begin_layout Subsubsection*
+ラムダ式
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+def
+\end_layout
+
+\end_inset
+
+ による関数定義の他にも関数を定義する方法がある。
+\series bold
+ラムダ式
+\series default
+ (lambda expression) を用いるものだ。
+\end_layout
+
+\begin_layout Standard
+数字の桁数を数える先程のコードをもう一度使おう。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch06/simple-lambda>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+ラムダ式は名前を持たない関数（無名関数）を使いたいときに便利な記法である
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+def
+\end_layout
+
+\end_inset
+
+ を使える局面でも 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+lambda
+\end_layout
+
+\end_inset
+
+を使いたがる人もいる。好みの問題かもしれないけど，読みにくいのでやめたほうがいい。
+\end_layout
+
+\end_inset
+
+。
+\end_layout
+
+\begin_layout Standard
+Python ではどこでも 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+def
+\end_layout
+
+\end_inset
+
+ で関数を作れるので，ラムダ式を知らないと実現できないことはまったくないはずだ。しかし，2つの理由で覚えておくとよい。
+\end_layout
+
+\begin_layout Itemize
+他の人が書いたコードを読むとき。ラムダ式は非常によく好まれる。
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+lambda
+\end_layout
+
+\end_inset
+
+ は Python のキーワードなので，変数名として使うことができない。数理モデルの分析では 
+\begin_inset Formula $\lambda$
+\end_inset
+
+ という変数名をよく使うのだけど，アルファベットの変数名としては lamda にする。スペルミスではなく衝突を避けるためだ。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+ラムダ式を使うべき局面は，例えば 
+\series bold
+Pandas
+\series default
+ のデータフレームや列の 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+apply()
+\end_layout
+
+\end_inset
+
+ メソッド，
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+transform()
+\end_layout
+
+\end_inset
+
+ メソッドを用いるときなど，1回限りの無名関数を使いたいときである。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch06/pandas-apply>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+関数（メソッド）の引数として関数を渡している。これは高階関数という機能である。後ほど紹介する。
+\end_layout
+
+\begin_layout Subsection
+引数のテクニック
+\end_layout
+
+\begin_layout Standard
+落ち穂拾い的に Python の引数に関するルールを書き連ねておこう。今まですでに説明なく使ってきたものも含まれるので，思考の整理に役立ててほしい。
+\end_layout
+
+\begin_layout Subsubsection*
+位置引数とキーワード引数
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+cd(2, 3)
+\end_layout
+
+\end_inset
+
+ という関数呼び出しは実引数を書いた位置によって，どの仮引数に代入されるかが決まる。上で 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+def cd(x, y):
+\end_layout
+
+\end_inset
+
+ と定義したので，
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+x=2
+\end_layout
+
+\end_inset
+
+, 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+y=3
+\end_layout
+
+\end_inset
+
+ という代入操作が関数の本体ブロックの最初に実行される。このような書いた位置によって判定される引数を
+\series bold
+位置引数
+\series default
+（positional argument）という。
+\end_layout
+
+\begin_layout Standard
+関数と引数の関係についてはもう少し話しておくべきことがある。すでに実例では使用しているのだが，関数呼び出しの際に 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+x=2
+\end_layout
+
+\end_inset
+
+, 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+y=3
+\end_layout
+
+\end_inset
+
+ という明示的な仮引数指定ができる。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch06/use-multivar-func-2>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+このように指定した引数は
+\series bold
+キーワード引数
+\series default
+（keyword argument）という。なにが嬉しいのか？キーワード引数は順序を入れ替えることができるのだ。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch06/use-multivar-func-3>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+一部だけをキーワード引数にすることもできる。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch06/use-multivar-ok>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+位置引数より先にキーワード引数を書くことはできない。次のコードはエラーになるので，実行してエラーメッセージを確認しておこう。（必ず実行すること）
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch06/use-multivar-error/dnr>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+デフォルト引数
+\end_layout
+
+\begin_layout Standard
+引数の一部はデフォルトの値を設定することができる。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch06/optional-argument>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+引数の指定を省略するとデフォルト値が使われる。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch06/optional-argument-1>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+引数を指定するとデフォルトが上書きされて指定した値が使われる。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch06/optional-argument-2>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+* と **
+\end_layout
+
+\begin_layout Standard
+関数を定義するとき，事前に引数の数が分からないことがある。「可変長引数」を作るには1つにはリストを入力に受け付けるようにする方法がある。任意個の要素を持つ1個の
+リストを引数として設定する代わりに，次のように書くこともできる。引数の数を数えるだけのシンプルなコードだ。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch06/arbitrary-number>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+args
+\end_layout
+
+\end_inset
+
+ という名前は重要ではない。その前に付記された 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+*
+\end_layout
+
+\end_inset
+
+ が重要である。
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+*
+\end_layout
+
+\end_inset
+
+ を付記された変を関数定義の仮引数リストに書くと，ゼロ個以上不定個の引数を受け付ける関数を書くことができる。（いくつあるかは事前には分からない）引数は，関数本体
+の中では 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+args
+\end_layout
+
+\end_inset
+
+という名前のリストになっている。
+\end_layout
+
+\begin_layout Standard
+位置引数だけでなくキーワード引数も可変長にできる。これには 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+**
+\end_layout
+
+\end_inset
+
+ という記号を付記して仮引数リストを作ればよい。次の関数は，キーワード引数が格納された辞書をそのまま返している。関数本体で引数を使って何らかの操作をしたいときに
+は，辞書として引数にアクセスできる。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch06/kwargs>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+位置引数はキーワード引数に先行しなければならないので，
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+*args
+\end_layout
+
+\end_inset
+
+ と 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+**kwargs
+\end_layout
+
+\end_inset
+
+ を両方書くときには順序に気をつけよう。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch06/star-both>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+さて，関数定義の可変長位置引数を示す 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+*
+\end_layout
+
+\end_inset
+
+は関数本体ではリストを作り，可変長キーワード引数を示す
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+**
+\end_layout
+
+\end_inset
+
+ は関数本体では辞書を作る。
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+*
+\end_layout
+
+\end_inset
+
+ や 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+**
+\end_layout
+
+\end_inset
+
+ を関数呼び出しのときに使うとリストや辞書を使って引数を指定できる。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch06/call-with-star>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch06/call-with-2stars>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+副作用
+\end_layout
+
+\begin_layout Standard
+副作用の代表例は画面上への出力だ。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch06/function-print>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+わざわざこのような説明しているのは，ときどき次のような誤りをする人がいるからだ。
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+print()
+\end_layout
+
+\end_inset
+
+ を使った画面上の出力は関数の出力ではないので，このコードはエラーになる。値を返さない関数を計算式の中で使うことはできない。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch06/function-print-error/dnr>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Problem
+上のコードを実行するとどのような結果になるか。確認せよ。
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+answerbox{4
+\backslash
+baselineskip}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+上のコードのような誤りは比較的容易に問題点に気づけるので大きなミスにはつながらないだろう。しかし，次のコードはより深刻な問題を含んでいる。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch06/change-copy-hopefully>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+次のような意図で書かれたコードだ。
+\end_layout
+
+\begin_layout Enumerate
+引数 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+x
+\end_layout
+
+\end_inset
+
+ には変更を加えたくないので，結果の配列 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+y
+\end_layout
+
+\end_inset
+
+ を 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+x
+\end_layout
+
+\end_inset
+
+ のコピーとして作成する。
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+y
+\end_layout
+
+\end_inset
+
+の第0要素を2倍する。
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+y
+\end_layout
+
+\end_inset
+
+ を返す。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+なんとなく正しいコードのように感じただろうか。しかし，
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+x
+\end_layout
+
+\end_inset
+
+ を変更したくないという気持ちは裏切られることになる。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch06/check-x>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+本書のレベルで「なぜこのような結果になるか」の説明をすることは難しい（その必要もないだろう）。リストや配列の「コピー」は慎重に行わなければならないということだけ
+肝に命じておけば十分だろう
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Python の変数はオブジェクト（メモリ上のデータ）へのポインタ（位置を示す目印）であり，リストはポインタを並べた配列である。
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+y = x
+\end_layout
+
+\end_inset
+
+ という代入文で 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+x
+\end_layout
+
+\end_inset
+
+ がリストだった場合，ポインタへのポインタが指し示す本体の数字をコピーすればオブジェクトの共有が起こらないのだけど，そこまで深追いしない。このような振る舞いにつ
+いては Python Tutor の可視化を使って確認するとよい。
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+x
+\end_layout
+
+\end_inset
+
+ がリストのケース（
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+https://kjst.jp/453
+\end_layout
+
+\end_inset
+
+）と
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+x
+\end_layout
+
+\end_inset
+
+ が数のケース（
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+https://kjst.jp/t0i
+\end_layout
+
+\end_inset
+
+）を較べてみよう。深くネストされたリストの完全なコピーを作るには 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+copy.deepcopy()
+\end_layout
+
+\end_inset
+
+ を使う
+\end_layout
+
+\end_inset
+
+。今の場合には次のようにすれば問題を解決できる。「全要素」を表すコロンを使った下記のテクニックは多用されるので覚えておこう。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch06/change-copy-really>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+引数を変更するという厄介な副作用を取り除くことができた。
+\end_layout
+
+\begin_layout Subsection
+関数のスコープ
+\end_layout
+
+\begin_layout Standard
+次のコードを見てみよう。
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+a
+\end_layout
+
+\end_inset
+
+ という変数が関数の外側と内側で2回定義されている。(3) の関数呼び出しのときに (2) 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+a = 0
+\end_layout
+
+\end_inset
+
+ が実行される。関数呼び出しの結果は 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+a = 0
+\end_layout
+
+\end_inset
+
+ の影響を受けている。しかし，関数呼び出しが終わった後に 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+a
+\end_layout
+
+\end_inset
+
+ の値を表示しようとすると，関数呼び出しがなかったかのように元の値 3 が表示される。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch06/scope>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing double
+関数の内側 (2) で定義された 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+a
+\end_layout
+
+\end_inset
+
+ と外側 (1) で定義された 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+a
+\end_layout
+
+\end_inset
+
+ は同名だが別のオブジェクトである。プログラムが名前を探索する範囲のことをスコープと呼ぶ。関数は独自のスコープを持っていて，新しい変数を定義するコードが実行され
+るときに，外側の変数に影響を与えることがないように，新しい変数を作る。変数を定義するコードが実行されない限りは関数の外側の変数を自由に使うことができる。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch06/scope2>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+前節「副作用」では，リストが誤って書き換わってしまう挙動を紹介した。平仄が合わないと感じるかもしれないが，そういうものだと受け入れてほしい。
+\end_layout
+
+\begin_layout Subsection
+高階関数
+\end_layout
+
+\begin_layout Standard
+関数はオブジェクトを変換して，1個のオブジェトを返す
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+return
+\end_layout
+
+\end_inset
+
+ を書かなかった，書き忘れた場合は 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+None
+\end_layout
+
+\end_inset
+
+ という特別なオブジェクトを返す。
+\end_layout
+
+\end_inset
+
+。
+\end_layout
+
+\begin_layout Standard
+Python では関数も普通のオブジェクトなので，
+\end_layout
+
+\begin_layout Itemize
+関数を返す関数
+\end_layout
+
+\begin_layout Itemize
+関数を引数にする関数（上で 
+\series bold
+pandas
+\series default
+ データフレームの 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+apply()
+\end_layout
+
+\end_inset
+
+メソッドを紹介した），
+\end_layout
+
+\begin_layout Itemize
+関数を引数にして関数を返す関数
+\end_layout
+
+\begin_layout Standard
+を定義できる。やってみよう。
+\end_layout
+
+\begin_layout Subsubsection*
+コブ=ダグラス型生産関数
+\end_layout
+
+\begin_layout Standard
+ソロー・モデルで用いたコブ=ダグラス型生産関数　
+\begin_inset Formula 
+\[
+F(K,L,A)=K^{\alpha}(AL)^{1-\alpha}
+\]
+
+\end_inset
+
+は 
+\begin_inset Formula $\alpha$
+\end_inset
+
+ でパラメータ付けられている。つまり，
+\begin_inset Formula $\alpha$
+\end_inset
+
+ を決めれば 
+\begin_inset Formula $F$
+\end_inset
+
+ が決まる，という関係にある。これが高階関数だ。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch06/cobb-doublas-factory>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+関数を返す関数を定義するには次のことをする。
+\end_layout
+
+\begin_layout Itemize
+関数定義の中で関数を定義する。
+\end_layout
+
+\begin_layout Itemize
+関数定義の中で定義した関数を返す。
+\end_layout
+
+\begin_layout Subsubsection*
+シミュレーション
+\end_layout
+
+\begin_layout Standard
+漸化式 
+\begin_inset Formula 
+\[
+y_{t}=ay_{t-1}+b,\qquad t=1,2,\dots,T-1
+\]
+
+\end_inset
+
+で表現される時系列のシミュレーションも高階関数で書ける。
+\end_layout
+
+\begin_layout Standard
+まず，次のように書き換えると，漸化式の右辺（更新ルール）が高階関数（関数を返す関数）であることが分かる。
+\begin_inset Formula 
+\begin{align*}
+y_{t} & =G(y_{t-1}),\qquad G(y)=ay+b
+\end{align*}
+
+\end_inset
+
+すなわち，
+\begin_inset Formula 
+\[
+(a,b)\mapsto G
+\]
+
+\end_inset
+
+これは先程と同様にできる。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch06/recursive-formula>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+シミュレーションは更新ルール 
+\begin_inset Formula $G$
+\end_inset
+
+ と，初期値 
+\begin_inset Formula $y_{0}$
+\end_inset
+
+と，シミュレーションの長さ 
+\begin_inset Formula $T$
+\end_inset
+
+ を与えて，
+\begin_inset Formula $(y_{0},y_{1},\dots,y_{T-1})$
+\end_inset
+
+ を返す高階関数（関数を引数とする関数）として理解できる。
+\begin_inset Formula 
+\[
+(G,y_{0},T)\mapsto(y_{0},y_{1},y_{2},\dots,y_{T-1})
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+以下の例では，
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+y0 = np.asarray(y0)
+\end_layout
+
+\end_inset
+
+：入力された初期値 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+y0
+\end_layout
+
+\end_inset
+
+ がNumPy の配列であることを保証する。
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+y = np.empty((T, *y0.shape))
+\end_layout
+
+\end_inset
+
+：初期値 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+y0
+\end_layout
+
+\end_inset
+
+ のシェイプが 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+(a,b)
+\end_layout
+
+\end_inset
+
+ なら，結果を格納する配列のシェイプは 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+(T,a,b)
+\end_layout
+
+\end_inset
+
+ である。
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+y[t] = update_rule(y[t-1])
+\end_layout
+
+\end_inset
+
+：更新ルールはこの関数の引数なので，そのまま使う。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch06/recursive-formula-simulate>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+定義済みの関数を少し変更する
+\end_layout
+
+\begin_layout Standard
+先程の 
+\begin_inset Formula $G$
+\end_inset
+
+ はランダムな撹乱項が入っていなかったので，これを追加しよう。もう一度定義し直してもいいのだけど，撹乱項を足すだけの変更なので，元の定義は有効活用しよう。つまり
+，次のような変更をする。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+G(y) & =ay+b\\
+ & \downarrow\\
+G_{\varepsilon}(y) & =G(y)+\varepsilon
+\end{align*}
+
+\end_inset
+
+これは関数 
+\begin_inset Formula $G$
+\end_inset
+
+ を受け取って関数 
+\begin_inset Formula $G_{\varepsilon}$
+\end_inset
+
+ を返す高階関数だ。
+\end_layout
+
+\begin_layout Standard
+われわれは 
+\begin_inset Formula $G$
+\end_inset
+
+ は引数を1つだけ受け取ることを知っているが，これは修正を施したい関数 
+\begin_inset Formula $G$
+\end_inset
+
+ によって違う。どんなケースにも対応できるようにしたい場合には，可変長引数を用いると実現できる。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch06/randomize>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+*args,**kwargs
+\end_layout
+
+\end_inset
+
+ を引数にするのは関数を受け取って関数を返す高階関数を作るときにはよく使われるので覚えておくとよい。詳しく知りたい人は「デコレータ」というキーワードで検索してみ
+よう。
+\end_layout
+
+\begin_layout Section
+プログラミング：ソロー・モデル
+\end_layout
+
+\begin_layout Standard
+理論パートでは，
+\end_layout
+
+\begin_layout Itemize
+成長会計
+\end_layout
+
+\begin_layout Itemize
+ソロー・モデル
+\end_layout
+
+\begin_layout Standard
+という2つのトピックを扱った。成長会計を実行するために必要なプログラミングの知識はすでに習得済みなので，改めて解説する必要もないだろう。
+\end_layout
+
+\begin_layout Subsection
+成長会計
+\end_layout
+
+\begin_layout Standard
+自力で実行できるだけの力がついているはずなので省略する。
+\end_layout
+
+\begin_layout Subsection
+ソロー・モデルのシミュレーション
+\end_layout
+
+\begin_layout Standard
+ソロー・モデルを (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:K"
+
+\end_inset
+
+), (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:L"
+
+\end_inset
+
+), (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:A"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+) を用いてシミュレーションしてみよう。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch06/solow-model>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+具体的なパラメータを設定してみよう。コブ=ダグラス型の生産関数はすでに作っておいたものを使う。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<c06/set-parameters>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+シミュレーションはすでに作っておいた 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+simulate()
+\end_layout
+
+\end_inset
+
+ 関数を使えば良い。初期値は適当に 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+[2,1,1]
+\end_layout
+
+\end_inset
+
+ にしておいた。シミュレーション期間は 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+T = 100
+\end_layout
+
+\end_inset
+
+ とする。結果は2次元配列（行列形式）になるはずなので， pandas のデータフレームにしておくと便利だ。
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+columns=['K', 'L', 'A']
+\end_layout
+
+\end_inset
+
+ と分かるのは，
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+solow()
+\end_layout
+
+\end_inset
+
+ 関数をそのように定義したからだ。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch06/simulate-solow>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+データフレームなら，プロットも簡単だ（図
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:ソロー・モデルのシミュレーション結果"
+
+\end_inset
+
+）。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch06/simulate-solow/plot>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+centering
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+includegraphics[width=
+\backslash
+textwidth]{Figure/ch06/simulate-solow-1}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+ソロー・モデルのシミュレーション結果
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:ソロー・モデルのシミュレーション結果"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+効率労働あたりの資本は定常状態に収束しているだろうか。確認してみよう（図
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:効率労働あたりの資本"
+
+\end_inset
+
+）。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch06/reset-figsize/noinc>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+<<ch06/small-k/plot>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+centering
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+includegraphics[height=0.3
+\backslash
+textheight]{Figure/ch06/small-k-1}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+効率労働あたりの資本
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:効率労働あたりの資本"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+政策変化
+\end_layout
+
+\begin_layout Standard
+ソロー・モデルの移行過程を学ぶときには，例えば，
+\end_layout
+
+\begin_layout Itemize
+貯蓄率の上昇が効率労働当たりの消費 
+\begin_inset Formula $c=C/(AL)$
+\end_inset
+
+ に下方ジャンプを引き起す，
+\end_layout
+
+\begin_layout Standard
+といった分析をするのが一般的だが，これはマンキューの教科書に譲ることにする。
+\end_layout
+
+\begin_layout Standard
+実際に関心があるのは総所得 
+\begin_inset Formula $Y$
+\end_inset
+
+, 消費 
+\begin_inset Formula $C$
+\end_inset
+
+ など，および 1人あたりの平均値 
+\begin_inset Formula $Y/L$
+\end_inset
+
+ や 
+\begin_inset Formula $C/L$
+\end_inset
+
+ などであって，
+\begin_inset Formula $C/(AL)$
+\end_inset
+
+ 自体にはあまり関心がない。私たちはすでに，シミュレーションの技術を身に着けてしまったので，解析的に解けるかどうかという制約に縛られずに自由に分析することができ
+る。やってみよう。
+\end_layout
+
+\begin_layout Standard
+まず，最初のパラメータを設定しよう。意味はすでに明らかだろうから説明は省略する。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch06/saving-change-initial-params>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+20期経過したあとに貯蓄率（
+\begin_inset Formula $s$
+\end_inset
+
+）が 0.2 から 0.3 に上昇するとしよう。変化がないときと比べて消費の水準（経済の厚生に直結する）は増えるだろうか？あるいは，減るだろうか？
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $Y$
+\end_inset
+
+ や 
+\begin_inset Formula $C$
+\end_inset
+
+ の計算を繰り返し行うのでヘルパー関数を定義しておく。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch6/saving-change-helper>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+ベンチマークとなる「変化なし」のケースのシミュレーションは次のように書ける。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch06/saving-no-change>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+変化がある場合の，変化前のシミュレーションは次の通り。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch06/saving-before>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+パラメータ変化が起こるので，パラメータと初期値を再設定する。初期値は，変化前のシミュレーションの最後の値だ。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch06/saving-change-new-param>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+シミュレーションをして before と after をつないでやる。ただし，before の最後と after の最初は同じものなので注意する。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch06/saving-after>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+結果をプロットすると図
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:貯蓄率の変化"
+
+\end_inset
+
+のようになる。貯蓄率の上昇によって一時的に消費が減少しているが，長期的に見ると資本蓄積の加速が効いてきて，変化がないケースよりも消費水準が大きくなる。長期の経済
+成長率は貯蓄率によらずに，技術進歩率と人口成長率のみで定まることを思い出そう。貯蓄率の上昇は，消費や所得の水準を高める効果はあっても，成長を高める効果は長期的に
+は失われる。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch06/saving-change/plot>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+centering
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+includegraphics[height=0.3
+\backslash
+textheight]{Figure/ch06/saving-change-1}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+貯蓄率の変化
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:貯蓄率の変化"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+解析解 vs シミュレーション結果
+\end_layout
+
+\begin_layout Standard
+さて，最後に，シミュレーションは万能ではないということに注意をしておこう。この章で学んだような初歩的なシミュレーションで得た結果は「ある特定のパラメータの組み合
+わせで成り立つ」ということしか言えない。何百通り，何千通りとシミュレーションを繰り返したとして，すべての実数パラメータの可能性を網羅することはできない。もし，あ
+なたがコンピュータがあれば数学はいらないなどと考えているようであれば，それは大きな間違いなので考えを改めよう。数学的な議論を無視して，コンピュータで（たまたま）
+出た結果を盲信してはいけない。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Branch childonly
+inverted 0
+status open
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset bibtex
+LatexCommand bibtex
+btprint "btPrintCited"
+bibfiles "../Bibliography/ref,../Bibliography/software"
+options "../styles/jecon"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document

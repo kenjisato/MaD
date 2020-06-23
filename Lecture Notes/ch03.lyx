@@ -167,7 +167,7 @@ LatexCommand tableofcontents
 GDP の成長と格差
 \begin_inset CommandInset label
 LatexCommand label
-name "chap:名目GDPと実質GDP"
+name "chap:GDPの成長と格差"
 
 \end_inset
 
