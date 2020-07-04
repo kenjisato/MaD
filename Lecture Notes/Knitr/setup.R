@@ -57,11 +57,7 @@ read_label <- function(lbl, split = '/') {
 knitr::knit_hooks$set(
     sympy = function(before, options, envir) {},
     source = function(x, options) {
-        if (!is.null(options$sympy) && options$sympy){
-            x <- sub("from\\s+sympy\\s+import\\s+latex\\n", "", x)
-            x <- sub("print\\(latex\\((.*),(.*)\\)\\)", "\\1", x)
-        }
-        
+      
         lst_opts <- "style=Source"
         if (!is.null(options$caption)) {
             lst_opts <- paste0(lst_opts, ",caption=", options$caption)
@@ -73,9 +69,14 @@ knitr::knit_hooks$set(
               "\n\\end{lstlisting}\n", sep = "")
     }, 
     output = function(x, options) {
-        if (options$results == 'asis') return(x)
-        paste("\\begin{lstlisting}[style=Result]\n", x, 
-            "\\end{lstlisting}\n", sep = "")
+      if (!is.null(options$sympy)){
+        x <- paste0("\\begin{", options$sympy, "}", x, "\\end{", options$sympy, "}")
+        return(x)
+      }  
+      if (options$results == 'asis') return(x)
+      
+      paste("\\begin{lstlisting}[style=Result]\n", x, 
+          "\\end{lstlisting}\n", sep = "")
     }, 
     chunk = function(x, options) x,
     warning = hook_lst_bf, 
@@ -88,11 +89,6 @@ knitr::knit_hooks$set(
 
 ## Option Hooks ----
 knitr::opts_hooks$set(
-    # For SymPy Code
-    sympy = function(options) {
-        if(options$sympy) options$results = "asis"
-        options
-    },
     echo = function(options) {
         echo <- read_label(options$label)$echo
         if (!is.null(echo)) options$echo <- echo
