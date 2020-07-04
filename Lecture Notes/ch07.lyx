@@ -1,0 +1,4767 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass scrbook
+\begin_preamble
+\usepackage{Styles/common}
+\usepackage{Styles/code}
+\usepackage{Styles/problem}
+\usepackage{url}
+
+% Knitr Setup 
+<<setup, include=FALSE>>=
+source('Knitr/setup.R')
+source_python('Knitr/setup.py')
+@
+\end_preamble
+\options dvipdfmx,a5paper,9pt
+\use_default_options true
+\master _main.lyx
+\begin_modules
+knitr
+theorems-ams-chap-bytype
+theorems-ams-extended-chap-bytype
+logicalmkup
+\end_modules
+\maintain_unincluded_children false
+\language japanese
+\language_package default
+\inputencoding utf8-platex
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\float_placement th
+\paperfontsize default
+\spacing onehalf
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine natbib
+\cite_engine_type authoryear
+\biblio_style plainnat
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date true
+\justification true
+\use_refstyle 1
+\use_minted 0
+\branch childonly
+\selected 1
+\filename_suffix 0
+\color #faf0e6
+\end_branch
+\branch parentonly
+\selected 0
+\filename_suffix 0
+\color #faf0e6
+\end_branch
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style cjk
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+mainmatter
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<engine='R', echo=FALSE>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+knitr::read_chunk('Python/ch07.py')
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Branch childonly
+inverted 0
+status open
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+setcounter{chapter}{6}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset toc
+LatexCommand tableofcontents
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Chapter
+2期間最適消費モデル
+\end_layout
+
+\begin_layout Section
+概要
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+第
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "chap:成長会計とソロー・モデル"
+
+\end_inset
+
+章のソロー・モデルの分析では，当期所得の一定割合 
+\begin_inset Formula $(1-s)$
+\end_inset
+
+ が消費され，残り 
+\begin_inset Formula $s$
+\end_inset
+
+ が貯蓄されると仮定した：
+\begin_inset Formula 
+\[
+C_{t}=(1-s)Y_{t},\qquad t=1,2,\dots
+\]
+
+\end_inset
+
+この仮定には次のような批判があるだろう。消費は当期の所得だけでなく，将来所得にも影響されるはずだ。を将来の所得が高いと予想している個人は，現在借入れをしてでも消
+費を増やすだろうし，将来所得が小さくなると予想している個人は貯蓄を増やして消費を減らす行動を取るだろう。
+\end_layout
+
+\begin_layout Standard
+ソロー・モデルを使うと，1人あたり実質GDPの長期的な成長率を決定する要因が技術進歩であることを示すことができる。この結果は基本的な成長会計とも整合的であるし，
+カルドアの事実のほとんどを説明する
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+TODO: 参考文献
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+。使いやすいモデルではあるのだが，その良好な性能が「将来所得を考慮せずに当期の所得を決める」という強い仮定にあるのだとすれば，このモデルに対して，「たまたまうま
+くいっただけ」，「データに合うように都合よくモデルを作っているだけ」と考える人も現れるだろう。経済学者は最適化問題の解として説明できない仮定を受け入れないように
+訓練されているのだ。
+\end_layout
+
+\begin_layout Standard
+この章から数章にわたって，消費者の意思決定の方法に関する仮定を緩めてもソロー・モデルの基本的な結論に影響しないことを説明する。導入部となるこの章では，もっとも単
+純な，代表的個人が 2期間の消費計画を最適に決定する問題を紹介する。代表的個人とは，要するに，経済に人が1人しかいないということだ。そのような経済をイメージしに
+くければ，同じ選好を持つ多数の消費者がいる経済だと考えてもよい。この経済には獲得した財を貯蔵して増やす手段があって，1期と2期の間で消費の配分を選ぶことができる
+。1期にたくさん消費すると，2期には消費を減らさなければならないので，消費者は
+\series bold
+異時点間の資源配分
+\series default
+の問題に直面しているのだ。
+\end_layout
+
+\begin_layout Standard
+この章で学ぶモデルは重要なモデルの基礎となる。計画期間を 2 から無限大に伸ばし，無限期間生きる代表的個人を考える。さらに，ソロー・モデルと同じ資本蓄積の方程式
+と合わせると，最適成長モデルあるいはラムゼー・モデルと呼ばれる成長モデルが得られる。計画期間を伸ばす代わりに，2期間の最適化問題を解く経済主体が毎期生まれて，2
+期生きたあとに死んでいくようにすると，世代重複モデルと呼ばれるモデルになる。
+\end_layout
+
+\begin_layout Standard
+本章では，
+\end_layout
+
+\begin_layout Section
+理論: ミクロ経済学の復習
+\end_layout
+
+\begin_layout Subsection
+効用関数
+\end_layout
+
+\begin_layout Standard
+異なる財を同時期に消費する計画を立てる静学的な問題から出発しよう。経済には財1, 2 があって，消費量の配分を検討しているとしよう。消費量（より正確に言えば消費
+しようと計画する量）をそれぞれ 
+\begin_inset Formula $x_{1}$
+\end_inset
+
+, 
+\begin_inset Formula $x_{2}$
+\end_inset
+
+ のように下付き添字1, 2 で表現する。消費者は「効用関数」（utility function）という選択の基準を持っているとする。効用関数は計画消費量
+ 
+\begin_inset Formula $x_{1}$
+\end_inset
+
+, 
+\begin_inset Formula $x_{2}$
+\end_inset
+
+ の関数として，
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+U(x_{1},x_{2})
+\]
+
+\end_inset
+
+と書く。
+\begin_inset Formula $U$
+\end_inset
+
+ は計画消費量の組合せ 
+\begin_inset Formula $(x_{1},x_{2})$
+\end_inset
+
+ に点数を付けていく関数で，財1, 2 ともに「消費量が増えるとうれしい」という普通の財であれば
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+財（goods）は良い（good）ものである。消費量を増やすと効用が下がる bads という概念もある。例えば，金融資産のリスクとか，大気汚染物質とか，労働とか
+。
+\end_layout
+
+\end_inset
+
+，
+\begin_inset Formula 
+\[
+x_{1}'\ge x_{1}\quad\text{and}\quad x_{2}'\ge x_{2}\quad\text{どちらか一方は厳密な不等式}
+\]
+
+\end_inset
+
+であるとき，
+\begin_inset Formula 
+\[
+U(x_{1}',x_{2}')>U(x_{1},x_{2})
+\]
+
+\end_inset
+
+が成り立つ。これは「
+\begin_inset Formula $(x_{1},x_{2})$
+\end_inset
+
+ 平面を右上に行けば行くほど効用が高まる」ことを表している。
+\end_layout
+
+\begin_layout Standard
+その他もろもろの技術的な仮定を置くのだが，詳細は適当なミクロ経済学の教科書を参照してもらいたい。分析上で特に重要な仮定は，無差別曲線の形状に関するものである。あ
+る点 
+\begin_inset Formula $(x_{1}',x_{2}')$
+\end_inset
+
+ を通る無差別曲線は，
+\begin_inset Formula 
+\[
+\left\{ (x_{1},x_{2})\in\mathbb{R}_{+}^{2}\ \mid\ U(x_{1},x_{2})=U(x_{1}',x_{2}')\right\} 
+\]
+
+\end_inset
+
+なる集合のことである
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+\begin_inset Formula $\mathbb{R}_{+}^{2}$
+\end_inset
+
+ は2次元空間（平面）の第1象限を表す。すなわち，
+\begin_inset Formula $\mathbb{R}_{+}^{2}=\left\{ (x,y)\in\mathbb{R}^{2}\ \mid\ x\ge0,\ y\ge0\right\} $
+\end_inset
+
+.
+\end_layout
+
+\end_inset
+
+。取りうる効用水準すべてについて無差別曲線が定義できるので，
+\begin_inset Formula $(x_{1},x_{2})$
+\end_inset
+
+ 平面に無数の無差別曲線曲線を描くことができる。無差別曲線には次のことを仮定する。すべての無差別曲線が，
+\end_layout
+
+\begin_layout Itemize
+厚みのない「線」である，
+\end_layout
+
+\begin_layout Itemize
+他の無差別曲線と交わることがない，
+\end_layout
+
+\begin_layout Itemize
+原点に向かって厳密に凸である，
+\end_layout
+
+\begin_layout Itemize
+なめらかな線である。
+\end_layout
+
+\begin_layout Standard
+このような仮定の下で，無差別曲線は図
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:ch07/無差別曲線と最適消費点"
+
+\end_inset
+
+の原点に向かって凸な曲線のようになる。本当は無数に描けるのだが，3本だけ描いていることに注意してほしい。右上に位置している無差別曲線の方が，左下に位置しているも
+のよりも効用水準が高い。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+centering
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+includegraphics[height=0.3
+\backslash
+textheight]{Images/07-two-period-Indifference}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+無差別曲線と最適消費点
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:ch07/無差別曲線と最適消費点"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+任意の点 
+\begin_inset Formula $(x_{1}',x_{2}')$
+\end_inset
+
+, 
+\begin_inset Formula $U(x_{1}',x_{2}')=\bar{U}$
+\end_inset
+
+, の近くに無差別曲線 
+\begin_inset Formula 
+\[
+\left\{ (x_{1},x_{2})\ \mid\ U(x_{1},x_{2})=\bar{U}\right\} 
+\]
+
+\end_inset
+
+ の接線を引くことができる。接線の傾き 
+\begin_inset Formula $dx_{2}/dx_{1}$
+\end_inset
+
+ を求めるには，全微分を用いて次のような形式的な操作をするとよい
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+厳密な議論は陰関数定理による。
+\end_layout
+
+\end_inset
+
+。
+\begin_inset Formula 
+\[
+dU=\frac{\partial U}{\partial x_{1}}dx_{1}+\frac{\partial U}{\partial x_{2}}dx_{2}
+\]
+
+\end_inset
+
+無差別曲線 「
+\begin_inset Formula $U=\text{一定}$
+\end_inset
+
+」を保つ方向の微分を計算したいので，
+\begin_inset Formula $dU=0$
+\end_inset
+
+ とすると，
+\begin_inset Formula 
+\[
+\frac{dx_{2}}{dx_{1}}=-\frac{\left(\frac{\partial U}{\partial x_{1}}\right)}{\left(\frac{\partial U}{\partial x_{2}}\right)}=MRS
+\]
+
+\end_inset
+
+を得る。接線の傾きを
+\series bold
+限界代替率
+\series default
+（marginal rate of substitution, MRS）と呼ぶ（図
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:ch07/MRS"
+
+\end_inset
+
+）。財1の消費を増やしたときに，財2の消費を減らさなければ効用が変化してしまう。効用を一定に保つために財2を減らさなければならない量が限界代替率である。効用水準
+を変えずに，財2から財1に代替しているのである。このことは全微分の公式に戻ってみると分かりやすい。
+\begin_inset Formula 
+\[
+\frac{\partial U}{\partial x_{1}}\times1+\frac{\partial U}{\partial x_{2}}\times\underbrace{\left(-\frac{\partial U/\partial x_{1}}{\partial U/\partial x_{2}}\right)}_{=MRS}=0
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+centering
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+includegraphics[height=0.3
+\backslash
+textheight]{Images/07-two-period-MRS}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+限界代替率
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:ch07/MRS"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+予算制約
+\end_layout
+
+\begin_layout Standard
+消費者は予算に限りがあるので，無尽蔵に消費を増やすわけにはいかない。財1, 2 の価格をそれぞれ 
+\begin_inset Formula $p_{1}$
+\end_inset
+
+, 
+\begin_inset Formula $p_{2}>0$
+\end_inset
+
+, 消費者の予算を 
+\begin_inset Formula $m>0$
+\end_inset
+
+ としよう。すると，消費者は
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+p_{1}x_{1}+p_{2}x_{2}\le m
+\]
+
+\end_inset
+
+が成り立つように 
+\begin_inset Formula $x_{1}$
+\end_inset
+
+, 
+\begin_inset Formula $x_{2}$
+\end_inset
+
+ を選ばなければならない。この不等式が成り立つ 
+\begin_inset Formula $(x_{1},x_{2})$
+\end_inset
+
+ の集合を「予算集合」（budget set）という。この不等式が等号で成り立つ集合（線分）を「予算線」（budget line）という。予算集合の不等式は
+\begin_inset Formula 
+\[
+\frac{x_{1}}{m/p_{1}}+\frac{x_{2}}{m/p_{2}}\le1
+\]
+
+\end_inset
+
+と書けるので，
+\begin_inset Formula $(x_{1},x_{2})$
+\end_inset
+
+ 平面に予算集合を描くと，横軸切片が　
+\begin_inset Formula $m/p_{1}$
+\end_inset
+
+, 縦軸切片が 
+\begin_inset Formula $m/p_{2}$
+\end_inset
+
+ であるような線分（傾きは 
+\begin_inset Formula $-p_{1}/p_{2}$
+\end_inset
+
+）と，横軸，縦軸で囲まれた直角三角形の領域になる。図
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:ch07/無差別曲線と最適消費点"
+
+\end_inset
+
+ の影付きの直角三角形の領域が予算集合で，斜辺が予算線である。
+\end_layout
+
+\begin_layout Subsection
+効用最大化と均衡
+\end_layout
+
+\begin_layout Standard
+消費者は，予算制約を満たすという条件の下で，効用 
+\begin_inset Formula $U(x_{1},x_{2})$
+\end_inset
+
+ が最大になるような 
+\begin_inset Formula $(x_{1},x_{2})$
+\end_inset
+
+ を選ぶ，という問題に直面している。これを数学的な表現を用いて次のように書く。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+ & \max_{x_{1},x_{2}}U(x_{1},x_{2})\\
+ & \text{subject to} & (P1)\\
+ & \quad p_{1}x_{1}+p_{2}x_{2}\le m
+\end{align*}
+
+\end_inset
+
+ここで，
+\begin_inset Formula $p_{1},p_{2},m$
+\end_inset
+
+ は定数パラメータと考える。
+\end_layout
+
+\begin_layout Standard
+効用を最大化する 
+\begin_inset Formula $(x_{1},x_{2})$
+\end_inset
+
+ を見つけることを「効用最大化問題を解く」，より一般に「最適化問題を解く」という。また，効用（より一般には「目的関数」）を最大化すると判明した
+ 
+\begin_inset Formula $(x_{1},x_{2})$
+\end_inset
+
+ を「解」と呼ぶ。解を 
+\begin_inset Formula $(x_{1}^{*},x_{2}^{*})$
+\end_inset
+
+ と表現すると，
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+p_{1}x_{1}^{*}+p_{2}x_{2}^{*}\le m
+\]
+
+\end_inset
+
+と
+\begin_inset Formula 
+\[
+p_{1}x_{1}+p_{2}x_{2}\le m\Longrightarrow U(x_{1}^{*},x_{2}^{*})\ge U(x_{1},x_{2})
+\]
+
+\end_inset
+
+が同時に成り立っている。つまり，
+\end_layout
+
+\begin_layout Itemize
+解は予算制約を満たす，
+\end_layout
+
+\begin_layout Itemize
+解は予算制約を満たす他の選択肢の中で，目的関数の値が最大である。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+上記の効用最大化問題を解くためには，難しい数学は必要ない。次の2つのことがわかっていればよい
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+無差別曲線の形状や配置に仮定したことに強く依存しているが，技術的になりすぎるので説明は省略する。
+\end_layout
+
+\end_inset
+
+。
+\end_layout
+
+\begin_layout Itemize
+予算を余らせても効用に影響しないので，予算は使い切る方がよい。つまり，
+\begin_inset Formula 
+\[
+p_{1}x_{1}+p_{2}x_{2}=m
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+無差別曲線はできるだけ右上にあるものの方がよいので，ギリギリ予算線に接するような無差別曲線を選ぶのがよい。つまり，無差別曲線の接線の傾き（MRS）が予算線の傾き
+と一致する。
+\begin_inset Formula 
+\begin{equation}
+MRS=-\frac{\partial U/\partial x_{1}}{\partial U/\partial x_{2}}=-\frac{p_{1}}{p_{2}}\label{eq:ch07/mrs-optimal}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+図
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:ch07/無差別曲線と最適消費点"
+
+\end_inset
+
+の 
+\begin_inset Formula $E$
+\end_inset
+
+ 点が効用を最大化する消費点である。
+\begin_inset Formula $I$
+\end_inset
+
+ 点は効用は高いものの，予算集合外にあるので解にならない。
+\begin_inset Formula $F$
+\end_inset
+
+ 点は限界代替率と相対価格に関する条件 (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:ch07/mrs-optimal"
+
+\end_inset
+
+) を満たしていないので，解にならない。
+\end_layout
+
+\begin_layout Standard
+条件 (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:ch07/mrs-optimal"
+
+\end_inset
+
+) 
+\begin_inset Formula 
+\begin{equation}
+\frac{\partial U/\partial x_{1}}{\partial U/\partial x_{2}}=\frac{p_{1}}{p_{2}}\label{eq:mrs=relprice}
+\end{equation}
+
+\end_inset
+
+は特に重要なので経済的な意味を確認しておこう。右辺は財1の財2に対する相対価格であり，2財に対する市場の評価を表している。財1を1単位多く消費するためには，財2
+は 
+\begin_inset Formula $p_{1}/p_{2}$
+\end_inset
+
+ 単位だけ減らさなければならない。
+\begin_inset Formula 
+\[
+p_{1}\times1+p_{2}\times\left(-\frac{p_{1}}{p_{2}}\right)=0
+\]
+
+\end_inset
+
+左辺の方はすでに説明したとおり，効用を変化させない代替の比率である。これは2財に対する消費者の主観的な評価を表している。式 (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:mrs=relprice"
+
+\end_inset
+
+) が成り立っていないときには，消費の配分をかえることで効用を高めることができる。このとき，最大化は達成されていない。
+\end_layout
+
+\begin_layout Standard
+「(
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:mrs=relprice"
+
+\end_inset
+
+) が成り立たないなら最大ではない」からと言って，「(
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:mrs=relprice"
+
+\end_inset
+
+) が成り立つときに最大である」とは言えないことに注意しよう。(
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:mrs=relprice"
+
+\end_inset
+
+) は最大化問題の解が満たすべき必要条件であるが，十分条件であるとは限らない。しかし，われわれは無差別曲線に多くのことを仮定したので（原点に向かって厳密に凸な形
+状，右上の方が効用が高い），この問題はクリアされている。不安な読者はミクロ経済学か数理経済学の教科書を参考にするとよい。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Problem
+予算線上にある消費点 
+\begin_inset Formula $(x_{1},x_{2})$
+\end_inset
+
+ では，
+\begin_inset Formula 
+\[
+\frac{\partial U/\partial x_{1}}{\partial U/\partial x_{2}}>\frac{p_{1}}{p_{2}}
+\]
+
+\end_inset
+
+である。このとき，
+\begin_inset Formula $x_{1}$
+\end_inset
+
+, 
+\begin_inset Formula $x_{2}$
+\end_inset
+
+ をどのように変化させれば効用を高められるか。理由とともに答えなさい。（ヒント：図
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:ch07/無差別曲線と最適消費点"
+
+\end_inset
+
+の点 
+\begin_inset Formula $F$
+\end_inset
+
+ から点 
+\begin_inset Formula $E$
+\end_inset
+
+ に移動させることが必要である）
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+answerbox{4
+\backslash
+baselineskip}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+ラグランジュ未定乗数法
+\end_layout
+
+\begin_layout Standard
+前述のような最適化問題を機械的に解く方法としてラグランジュ未定乗数法というものがあるので，簡単に解説しておこう。
+\begin_inset Formula 
+\begin{align*}
+ & \max_{x_{1},x_{2}}U(x_{1},x_{2})\\
+ & \text{subject to}\\
+ & \quad p_{1}x_{1}+p_{2}x_{2}\le m
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+ラグランジアンと呼ばれる関数を次のように定義する。
+\begin_inset Formula 
+\[
+\mathcal{L}=\underbrace{U(x_{1},x_{2})}_{\text{目的関数}}+\lambda\underbrace{\left[m-\left(p_{1}x_{1}+p_{2}x_{2}\right)\right]}_{\text{制約条件, }\ge0}
+\]
+
+\end_inset
+
+確実に 
+\begin_inset Formula $p_{1}x_{1}+p_{2}x_{2}=m$
+\end_inset
+
+ となることを保証する条件が与えられている場合には，ラグランジアン 
+\begin_inset Formula $\mathcal{L}$
+\end_inset
+
+ を 
+\begin_inset Formula $x_{1},x_{2}$
+\end_inset
+
+ と 
+\begin_inset Formula $\lambda$
+\end_inset
+
+ （未定乗数）で偏微分してゼロとなる点が解になる。
+\begin_inset Formula 
+\begin{align}
+\frac{\partial\mathcal{L}}{\partial x_{1}} & =\frac{\partial U}{\partial x_{1}}-\lambda p_{1}=0\\
+\frac{\partial\mathcal{L}}{\partial x_{2}} & =\frac{\partial U}{\partial x_{2}}-\lambda p_{2}=0\\
+\frac{\partial\mathcal{L}}{\partial\lambda} & =m-\left(p_{1}x_{1}+p_{2}x_{2}\right)\label{eq:lagrange}
+\end{align}
+
+\end_inset
+
+もし，
+\begin_inset Formula $p_{1}x_{1}+p_{2}x_{2}<m$
+\end_inset
+
+ となる可能性がある場合には，(
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:lagrange"
+
+\end_inset
+
+) の代わりに
+\begin_inset Formula 
+\[
+\lambda\left[m-\left(p_{1}x_{1}+p_{2}x_{2}\right)\right]=0
+\]
+
+\end_inset
+
+という条件を使う。制約条件にゆとり（スラック）がある場合には 
+\begin_inset Formula $\lambda$
+\end_inset
+
+ がゼロになる。
+\end_layout
+
+\begin_layout Example
+効用関数をコブダグラス型
+\begin_inset Formula 
+\begin{equation}
+U(x_{1},x_{2})=x_{1}^{\alpha}x_{2}^{1-\alpha}\label{eq:ch07/cd}
+\end{equation}
+
+\end_inset
+
+ に特定化しよう。このとき，
+\begin_inset Formula 
+\[
+\mathcal{L}=x_{1}^{\alpha}x_{2}^{1-\alpha}+\lambda\left[m-\left(p_{1}x_{1}+p_{2}x_{2}\right)\right]
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\begin{align*}
+\frac{\partial\mathcal{L}}{\partial x_{1}} & =\alpha x_{1}^{\alpha-1}x_{2}^{1-\alpha}-\lambda p_{1}=0\\
+\frac{\partial\mathcal{L}}{\partial x_{2}} & =(1-\alpha)x_{1}^{\alpha}x_{2}^{-\alpha}-\lambda p_{2}=0
+\end{align*}
+
+\end_inset
+
+より，
+\begin_inset Formula 
+\begin{equation}
+\frac{\alpha}{1-\alpha}\frac{x_{2}}{x_{1}}=\frac{p_{1}}{p_{2}}\Longrightarrow\alpha p_{2}x_{2}=(1-\alpha)p_{1}x_{1}\label{eq:a}
+\end{equation}
+
+\end_inset
+
+を得る。さらに，
+\begin_inset Formula 
+\[
+\frac{\partial\mathcal{L}}{\partial\lambda}=m-\left(p_{1}x_{1}+p_{2}x_{2}\right)=0
+\]
+
+\end_inset
+
+(
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:a"
+
+\end_inset
+
+) を使うと，
+\begin_inset Formula 
+\begin{equation}
+x_{1}=\frac{\alpha m}{p_{1}},\qquad x_{2}=\frac{(1-\alpha)m}{p_{2}}\label{eq:ch07/sol-1}
+\end{equation}
+
+\end_inset
+
+を得る。これが財1, 2 の需要関数になる。
+\end_layout
+
+\begin_layout Example
+未定乗数についても解いておこう。
+\begin_inset Formula 
+\[
+\lambda=\frac{\alpha x_{1}^{\alpha-1}x_{2}^{1-\alpha}}{p_{1}}=\frac{\alpha}{p_{1}}\left(\frac{x_{2}}{x_{1}}\right)^{1-\alpha}=\frac{\alpha}{p_{1}}\left(\frac{(1-\alpha)p_{1}}{\alpha p_{2}}\right)^{1-\alpha}=\left(\frac{\alpha}{p_{1}}\right)^{\alpha}\left(\frac{1-\alpha}{p_{2}}\right)^{1-\alpha}
+\]
+
+\end_inset
+
+式 (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:ch07/cd"
+
+\end_inset
+
+) と (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:ch07/sol-1"
+
+\end_inset
+
+) を考慮して 
+\begin_inset Formula $\lambda$
+\end_inset
+
+ を解釈できる。
+\begin_inset Formula $\lambda$
+\end_inset
+
+ は所得 
+\begin_inset Formula $m$
+\end_inset
+
+ を1単位増やしたときに得られる追加的な効用（限界効用）である。追加的な1単位の所得は 
+\begin_inset Formula $\lambda$
+\end_inset
+
+ の分だけ効用を増加させる。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Example
+効用関数を準線形と仮定しよう。
+\begin_inset Formula 
+\[
+U(x_{1},x_{2})=\log x_{1}+x_{2}
+\]
+
+\end_inset
+
+ただし，このような関数形の場合には 
+\begin_inset Formula $x_{1}=0$
+\end_inset
+
+ や 
+\begin_inset Formula $x_{2}=0$
+\end_inset
+
+ となる可能性がある（端点解）。こういうときには，
+\begin_inset Formula $x_{1}\ge0$
+\end_inset
+
+, 
+\begin_inset Formula $x_{2}\ge0$
+\end_inset
+
+ という暗黙の制約条件をきちんと考慮してやる必要がある。ラグランジアンは
+\begin_inset Formula 
+\[
+\mathcal{L}=u(x_{1})+x_{2}+\lambda\left[m-p_{1}x_{1}-p_{2}x_{2}\right]+\lambda_{1}x_{1}+\lambda_{2}x_{2}
+\]
+
+\end_inset
+
+になる。解が満たす条件は，
+\begin_inset Formula 
+\begin{align*}
+\frac{1}{x_{1}}-\lambda p_{1}+\lambda_{1} & =0\\
+1-\lambda p_{2}+\lambda_{2} & =0\\
+p_{1}x_{1}+p_{2}x_{2} & =m\\
+\lambda_{1}x_{1} & =0\\
+\lambda_{2}x_{2} & =0
+\end{align*}
+
+\end_inset
+
+となる。少し整理すると，
+\begin_inset Formula 
+\begin{align*}
+p_{1}x_{1}+p_{2}x_{2} & =m\\
+\lambda p_{1}x_{1} & =1\\
+\left[\lambda p_{2}-1\right]x_{2} & =0
+\end{align*}
+
+\end_inset
+
+まず，
+\begin_inset Formula $x_{2}\ge0$
+\end_inset
+
+ であると仮定してみよう。このとき，
+\begin_inset Formula 
+\[
+\lambda=\frac{1}{p_{2}},\qquad x_{1}=\frac{p_{2}}{p_{1}},\qquad x_{2}=\frac{m-p_{2}}{p_{2}}
+\]
+
+\end_inset
+
+となる。
+\begin_inset Formula $x_{2}\ge0$
+\end_inset
+
+ であるためには，
+\begin_inset Formula $m\ge p_{2}$
+\end_inset
+
+ でなければならないようだ。
+\end_layout
+
+\begin_layout Example
+では，
+\begin_inset Formula $p_{2}<m$
+\end_inset
+
+ のときどうなるか。このとき，
+\begin_inset Formula $x_{2}=0$
+\end_inset
+
+ となるので，
+\begin_inset Formula $\lambda p_{2}-1$
+\end_inset
+
+ は不定である。しかし，
+\begin_inset Formula $p_{1}x_{1}+p_{2}x_{2}=m$
+\end_inset
+
+ から 
+\begin_inset Formula 
+\[
+x_{1}=\frac{m}{p_{1}}
+\]
+
+\end_inset
+
+と分かる。
+\end_layout
+
+\begin_layout Section
+理論: 2期間の最適消費モデル
+\end_layout
+
+\begin_layout Standard
+前節では，静学的な設定のもとで，2財の選択に関する意思決定の性質を説明した。この節では，同じ財の2期間にわたる消費支出の配分を考える。動学的な計画問題であっても
+，均衡決定に関する考え方は同じであることを示す。しかし，時間経過には自然な順序関係があるので，分析に追加的な視点が加わることになる。例えば，消費量の経時的な増減
+を観察することで，経済成長についての含意を引き出せるかもしれない。
+\end_layout
+
+\begin_layout Standard
+まずは，将来と未来をつなぐ「割引」について説明する。その後，2期間の最適消費モデルを定式化し，均衡消費を求める。
+\end_layout
+
+\begin_layout Subsection
+価値の割引
+\end_layout
+
+\begin_layout Standard
+1年後に100万円を受け取る契約を考えよう。この契約の，現時点における価値はいくらだろうか。100万円より小さいということが直感的にも明らかだろう。1年後に10
+0万円受け取る権利をわざわざ100万円払って購入する人はいないだろう
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+犯罪多発などの理由でタンス預金が現実的でなければ，そのような契約もあるかもしれない。
+\end_layout
+
+\end_inset
+
+。額面上の同額を翌年にスライドさせるよりも，利子の付く金融資産で 100万円を運用する方が得だからだ。話を簡単にするために，マクロ経済には唯一の名目利子率がある
+と仮定しよう
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+実際には，借り手の信用力やマクロ経済環境に応じて各個人が支払わなければならない利子率は異なる。貸すときの利子率（預金につく利子率）は借りるときの利子率（ローンに
+課される利子率）よりもはるかに小さい。したがって，利子率が1つだけというのは現実には観測されないが，単純化の仮定として広く受け入れられている。
+\end_layout
+
+\end_inset
+
+。名目利子率は貨幣価値を翌年に持ち越すときの額面評価額の拡大率のことである。今の 100万円は1年後の 
+\begin_inset Formula $100(1+i)$
+\end_inset
+
+ 万円と等価である。逆に言えば，来年の 100万円は今の 
+\begin_inset Formula $100/(1+i)$
+\end_inset
+
+ 万円と等価になる。将来の貨幣価値を現在の貨幣価値に換算する公式は
+\begin_inset Formula 
+\[
+\text{現在の貨幣価値}=\frac{\text{将来の貨幣価値}}{1+\text{名目利子率}}
+\]
+
+\end_inset
+
+であり，この操作を
+\series bold
+割引
+\series default
+という。
+\end_layout
+
+\begin_layout Standard
+貨幣価値はインフレ率の変化によって上下するので，名目利子率からインフレ率を除去した実質利子率を考えるのが便利である。
+\begin_inset Formula $p_{t}$
+\end_inset
+
+ を 
+\begin_inset Formula $t$
+\end_inset
+
+ 期の価格，
+\begin_inset Formula $x_{t}$
+\end_inset
+
+ を数量，
+\begin_inset Formula $i_{t}$
+\end_inset
+
+ を名目利子率とする。これらはスカラー（ベクトルではない普通の数）である。貨幣価値は 
+\begin_inset Formula $p_{t}x_{t}$
+\end_inset
+
+ のように書けるので，上記の割引の公式を置き換えて，
+\begin_inset Formula 
+\[
+p_{t-1}x_{t-1}=\frac{p_{t}x_{t}}{1+i_{t}}
+\]
+
+\end_inset
+
+とできる。
+\begin_inset Formula 
+\[
+x_{t-1}=\frac{x_{t}}{(1+i_{t})\left(\frac{p_{t-1}}{p_{t}}\right)}
+\]
+
+\end_inset
+
+インフレ率を 
+\begin_inset Formula $\pi_{t}=(p_{t}/p_{t-1})-1$
+\end_inset
+
+ とすれば，分母を次のように変形できる。
+\begin_inset Formula 
+\[
+(1+i_{t})\left(\frac{p_{t-1}}{p_{t}}\right)=\frac{1+i_{t}}{1+\pi_{t}}=1+r_{t}
+\]
+
+\end_inset
+
+このように定義した 
+\begin_inset Formula $r_{t}$
+\end_inset
+
+ を用いると，実質的な価値の割引の公式を得る。
+\begin_inset Formula 
+\[
+x_{t-1}=\frac{x_{t}}{1+r_{t}}
+\]
+
+\end_inset
+
+ 
+\begin_inset Formula $r_{t}$
+\end_inset
+
+ は実質利子率と呼ばれる。
+\end_layout
+
+\begin_layout Remark
+実質利子率の定義を近似的に，
+\begin_inset Formula 
+\[
+r=\frac{1+i}{1+\pi}-1\approx i-\pi
+\]
+
+\end_inset
+
+とすることができる。定義式両辺の対数を取ると
+\begin_inset Formula 
+\[
+\log(1+i)=\log(1+r)+\log(1+\pi)
+\]
+
+\end_inset
+
+となる。ここでも再び瞬時成長率と離散時間の実効成長率の差が現れる。瞬時成長率については，
+\begin_inset Formula 
+\[
+i=r+\pi
+\]
+
+\end_inset
+
+が厳密な等号で成立している。名目利子率，実質利子率，インフレ率の関係を表すこの公式は
+\series bold
+フィッシャー方程式
+\series default
+と呼ばれている。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+効用の割引
+\end_layout
+
+\begin_layout Standard
+今年の消費から得られる効用と来年同じだけ消費することで得られる効用とを，今年のあなたが比較するとしよう。たとえば，今，寿司を食べに行くのと，1年後に寿司を食べに
+行くことを計画するのでは，どちらが現在の効用を高めるだろうか。同じ消費行動をするのであれば，現在の消費と較べて将来の消費の方が効用に与える影響は小さくなるはずだ
+。価値と同様に，効用についても割り引く必要がある。
+\end_layout
+
+\begin_layout Standard
+このような考察をもとに，次のような効用関数を使用することが考えられる。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+U(c_{1},c_{2})=u(c_{1})+\frac{u(c_{2})}{1+\rho}=u(c_{1})+\beta u(c_{2})
+\]
+
+\end_inset
+
+
+\begin_inset Formula $u(\cdot)$
+\end_inset
+
+ を期間効用関数と呼ぶ。毎期の消費を当期の視点で評価したものである。将来の消費から得られる効用が現在の消費と比べて小さくなることを 
+\begin_inset Formula $1/(1+\rho)$
+\end_inset
+
+ で掛けることで表現する。
+\begin_inset Formula $\rho>0$
+\end_inset
+
+ を割引率，
+\begin_inset Formula $1/(1+\rho)=\beta<1$
+\end_inset
+
+ を割引因子と呼ぶ。
+\end_layout
+
+\begin_layout Subsection
+予算制約
+\end_layout
+
+\begin_layout Standard
+ある消費者が効用
+\begin_inset Formula 
+\[
+U(c_{1},c_{2})=u(c_{1})+\beta u(c_{2})
+\]
+
+\end_inset
+
+を最大化するように消費計画 
+\begin_inset Formula $c_{1}$
+\end_inset
+
+, 
+\begin_inset Formula $c_{2}$
+\end_inset
+
+ を選びたいとしよう。
+\begin_inset Formula $c_{1}$
+\end_inset
+
+ は1期の実質消費，
+\begin_inset Formula $c_{2}$
+\end_inset
+
+ は2期の実質消費である。この消費者はどのような予算制約に直面しているだろうか。
+\end_layout
+
+\begin_layout Standard
+この消費者は1期，2期のそれぞれにおいて 
+\begin_inset Formula $y_{1}$
+\end_inset
+
+, 
+\begin_inset Formula $y_{2}$
+\end_inset
+
+ の実質労働所得を稼ぐとしよう。この経済では，期首に保有している貯蓄残高に対して利払いを受けられる。例えば，消費者の計画時点での貯蓄残高 
+\begin_inset Formula $s_{0}$
+\end_inset
+
+ に対して，利子 
+\begin_inset Formula $r_{1}s_{0}$
+\end_inset
+
+ が1期に支払われる。1期の期末にかけての貯蓄残高の変化 
+\begin_inset Formula $s_{1}-s_{0}$
+\end_inset
+
+ は，1期に受け取る労働所得 
+\begin_inset Formula $y_{1}$
+\end_inset
+
+ と利子所得 
+\begin_inset Formula $r_{1}s_{0}$
+\end_inset
+
+ および1期に支払う消費支出 
+\begin_inset Formula $c_{1}$
+\end_inset
+
+ を用いて，次のように表現できる。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+s_{1}-s_{0}=y_{1}+r_{1}s_{0}-c_{1}
+\]
+
+\end_inset
+
+あるいは
+\begin_inset Formula 
+\[
+c_{1}=y_{1}+(1+r_{1})s_{0}-s_{1}
+\]
+
+\end_inset
+
+同様にして2期のお金の出入りは次のように表現できる。
+\begin_inset Formula 
+\[
+c_{2}=y_{2}+(1+r_{2})s_{1}-s_{2}
+\]
+
+\end_inset
+
+2期の式を1期分割り引くと，
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+c_{1} & =y_{1}+(1+r_{1})s_{0}-s_{1}\\
+\frac{c_{2}}{1+r_{2}} & =\frac{y_{2}}{1+r_{2}}+s_{1}-\frac{1}{1+r_{2}}s_{2}
+\end{align*}
+
+\end_inset
+
+辺々足すと 
+\begin_inset Formula $s_{1}$
+\end_inset
+
+ が消えて，
+\begin_inset Formula 
+\[
+c_{1}+\frac{c_{2}}{1+r_{2}}+\frac{s_{2}}{1+r_{2}}=(1+r_{1})s_{0}+y_{1}+\frac{y_{2}}{1+r_{2}}
+\]
+
+\end_inset
+
+を得る。
+\end_layout
+
+\begin_layout Standard
+貯蓄残高はマイナスにもなることに注意しよう。負の残高は債務を表している。この消費は 
+\begin_inset Formula $c_{1}$
+\end_inset
+
+, 
+\begin_inset Formula $c_{2}$
+\end_inset
+
+, 
+\begin_inset Formula $s_{2}$
+\end_inset
+
+ を上手に選んで 
+\begin_inset Formula $U(c_{1},c_{2})$
+\end_inset
+
+ を最大にしたい。しかし，
+\begin_inset Formula $s_{2}$
+\end_inset
+
+ がいくらでも大きなマイナスの値になるのであれば，効用関数は際限なく大きくできるだろう。最大化問題は意味をなさなくなってしまう。
+\begin_inset Formula $s_{2}$
+\end_inset
+
+ には下限を設定する必要がある。簡単のために，借金を残して死ぬ計画を立てないという条件を課そう。すなわち，
+\begin_inset Formula 
+\[
+s_{2}\ge0
+\]
+
+\end_inset
+
+ である。この条件の下では，
+\begin_inset Formula 
+\[
+c_{1}+\frac{c_{2}}{1+r_{2}}\le(1+r_{1})s_{0}+y_{1}+\frac{y_{2}}{1+r_{2}}
+\]
+
+\end_inset
+
+となる。表現を簡単にするため，
+\begin_inset Formula $r_{1}=1$
+\end_inset
+
+, 
+\begin_inset Formula $r_{2}=r$
+\end_inset
+
+ と書き直そう。考慮すべき制約条件は次のようになる。
+\begin_inset Formula 
+\begin{equation}
+c_{1}+\frac{c_{2}}{1+r}\le s_{0}+y_{1}+\frac{y_{2}}{1+r}\label{eq:ch07/bc}
+\end{equation}
+
+\end_inset
+
+この式は
+\begin_inset Formula 
+\[
+\text{消費の割引現在価値の総和}\le\text{所得の割引現在価値の総和}
+\]
+
+\end_inset
+
+という形式になっている。生涯所得以上には消費することはできないというまっとうな条件になっている。
+\end_layout
+
+\begin_layout Standard
+なお，生涯所得に関する制約が成り立っている限りは1期末の借入れをいくらでも大きくすることができることに注意しよう。つまり，
+\begin_inset Formula $s_{2}\ge0$
+\end_inset
+
+ ではあるものの，
+\begin_inset Formula $s_{1}$
+\end_inset
+
+ については非常に大きなマイナスになっても構わない。この条件については，
+\begin_inset Formula 
+\begin{equation}
+s_{1}\ge0\label{eq:ch07/borrowing-constraint}
+\end{equation}
+
+\end_inset
+
+あるいは
+\begin_inset Formula 
+\[
+s_{1}\ge-\text{\ensuremath{\underline{s}}}
+\]
+
+\end_inset
+
+のような条件を付加して修正することがある。このような追加的な制約条件を借入制約（borrowing constraint）と呼ぶ。
+\end_layout
+
+\begin_layout Problem
+(
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:ch07/bc"
+
+\end_inset
+
+) を満たす 
+\begin_inset Formula $c_{1}$
+\end_inset
+
+, 
+\begin_inset Formula $c_{2}$
+\end_inset
+
+ の範囲を 
+\begin_inset Formula $(c_{1},c_{2})$
+\end_inset
+
+ 平面に描きなさい。
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+answerbox{6
+\backslash
+baselineskip}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Problem
+(
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:ch07/bc"
+
+\end_inset
+
+) と (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:ch07/borrowing-constraint"
+
+\end_inset
+
+) を満たす 
+\begin_inset Formula $c_{1}$
+\end_inset
+
+, 
+\begin_inset Formula $c_{2}$
+\end_inset
+
+ の範囲を 
+\begin_inset Formula $(c_{1},c_{2})$
+\end_inset
+
+ 平面に描きなさい。
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+answerbox{6
+\backslash
+baselineskip}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+解法
+\end_layout
+
+\begin_layout Standard
+借入制約のないケースを考えよう。消費者は
+\begin_inset Formula 
+\begin{align*}
+ & \max u(c_{1})+\beta u(c_{2})\\
+ & \text{subject to} & (P2)\\
+ & \qquad c_{1}+\frac{c_{2}}{1+r}\le s_{0}+y_{1}+\frac{y_{2}}{1+r}
+\end{align*}
+
+\end_inset
+
+を解く。ここで，この問題を解く際には 
+\begin_inset Formula $s_{0},y_{1},y_{2},r,\beta$
+\end_inset
+
+ は定数パラメータと考える。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $c_{1}$
+\end_inset
+
+ の価格が 
+\begin_inset Formula $1$
+\end_inset
+
+, 
+\begin_inset Formula $c_{2}$
+\end_inset
+
+ の価格が 
+\begin_inset Formula $1/(1+r)$
+\end_inset
+
+ と解釈すれば，問題 
+\begin_inset Formula $(P1)$
+\end_inset
+
+ と 
+\begin_inset Formula $(P2)$
+\end_inset
+
+ は同じ形式を持っていることが分かるだろう。したがって，限界代替率が相対価格と一致するという条件が解を特徴づける。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+MRS=\frac{u'(c_{1})}{\beta u'(c_{2})}
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\text{相対価格}=\frac{1}{1/(1+r)}=1+r
+\]
+
+\end_inset
+
+ したがって，最適性の必要条件は
+\begin_inset Formula 
+\begin{equation}
+\frac{u'(c_{1})}{u'(c_{2})}=\beta(1+r)\label{eq:ch07/optimality}
+\end{equation}
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+c_{1}+\frac{c_{2}}{1+r}=s_{0}+y_{1}+\frac{y_{2}}{1+r}
+\]
+
+\end_inset
+
+ となる。
+\end_layout
+
+\begin_layout Problem
+ラグランジュ未定乗数法を用いて同じ問題を解きなさい。また，ラグランジュ乗数 
+\begin_inset Formula $\lambda$
+\end_inset
+
+ の経済的な意味を説明しなさい。
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+answerbox{6
+\backslash
+baselineskip}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+解の性質
+\end_layout
+
+\begin_layout Standard
+一般的な効用関数では解釈性が難しいので期間効用を特定化する。特に扱いが容易なのは，相対的危険回避度
+\begin_inset Formula 
+\[
+\Theta(c)=-\frac{cu''(c)}{u'(c)}
+\]
+
+\end_inset
+
+が一定であるような効用関数である。これをCRRA型効用関数（Constant Relative Risk Aversion）と呼ぶ。
+\begin_inset Formula 
+\[
+u(c)=\begin{cases}
+\frac{c^{1-\theta}-1}{1-\theta} & \text{if}\quad\theta\neq1\\
+\log c & \text{if}\quad\theta=1
+\end{cases}
+\]
+
+\end_inset
+
+限界効用逓減を要請するので，
+\begin_inset Formula $\theta>0$
+\end_inset
+
+ でなければならない
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+期間効用関数の限界効用が逓減しないと，総効用 
+\begin_inset Formula $U(c_{1},c_{2})$
+\end_inset
+
+ が原点に向かって厳密に凸にならない。無差別曲線が直線的な形状（ファセットと呼ぶ）を持つと，解が無数に存在する，端点解が生じるといった厄介な問題が生じてくる。
+\end_layout
+
+\end_inset
+
+。
+\end_layout
+
+\begin_layout Problem
+CRRA型効用関数に対して，
+\begin_inset Formula 
+\[
+\Theta(c)=\theta
+\]
+
+\end_inset
+
+が成り立つことを確認しなさい。
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+answerbox{8
+\backslash
+baselineskip}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+CRRA型を仮定すると，(
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:ch07/optimality"
+
+\end_inset
+
+) の条件は
+\begin_inset Formula 
+\[
+\left(\frac{c_{2}}{c_{1}}\right)^{\theta}=\beta(1+r)=\frac{1+r}{1+\rho}
+\]
+
+\end_inset
+
+とできる。
+\begin_inset Formula 
+\begin{equation}
+\frac{c_{2}}{c_{1}}=\left(\frac{1+r}{1+\rho}\right)^{1/\theta}\label{eq:ch07/euler}
+\end{equation}
+
+\end_inset
+
+
+\begin_inset Formula $\theta>0$
+\end_inset
+
+ より，次の命題を得る。
+\end_layout
+
+\begin_layout Proposition
+2期間最適消費問題 
+\begin_inset Formula $(P2)$
+\end_inset
+
+ の最適解 
+\begin_inset Formula $(c_{1}^{*},c_{2}^{*})$
+\end_inset
+
+ は
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+r\lesseqgtr\rho\Leftrightarrow c_{2}^{*}\lesseqgtr c_{1}^{*}
+\]
+
+\end_inset
+
+を満たす。
+\end_layout
+
+\begin_layout Standard
+利子率 
+\begin_inset Formula $r$
+\end_inset
+
+ は消費を遅らせることで追加的に得られる所得である。割引率 
+\begin_inset Formula $\rho$
+\end_inset
+
+ は消費を遅らせることに対する効用のペナルティである。待つことの便益が相対的に小さいとき（
+\begin_inset Formula $r<\rho$
+\end_inset
+
+）には早めにたくさん消費するだろうから，
+\begin_inset Formula $c_{1}^{*}>c_{2}^{*}$
+\end_inset
+
+ が成り立つのである。
+\end_layout
+
+\begin_layout Standard
+1期の貯蓄 
+\begin_inset Formula $s_{1}$
+\end_inset
+
+ について見ておこう。毎期のお金の出入の式に 
+\begin_inset Formula $s_{2}=0$
+\end_inset
+
+ を代入すると以下の式を得る。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+c_{1} & =y_{1}+s_{0}-s_{1}\\
+c_{2} & =y_{2}+(1+r)s_{1}
+\end{align*}
+
+\end_inset
+
+ここで，(
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:ch07/euler"
+
+\end_inset
+
+) を使うと
+\begin_inset Formula 
+\[
+\frac{y_{2}+(1+r)s_{1}}{y_{1}+s_{0}-s_{1}}=\left(\frac{1+r}{1+\rho}\right)^{1/\theta}
+\]
+
+\end_inset
+
+これを 
+\begin_inset Formula $s_{1}$
+\end_inset
+
+ について解く。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+s_{1} & =\frac{\left(\frac{1+r}{1+\rho}\right)^{1/\theta}(y_{1}+s_{0})-y_{2}}{(1+r)+\left(\frac{1+r}{1+\rho}\right)^{1/\theta}}\\
+ & =\frac{\left(1+r\right)^{1/\theta}(y_{1}+s_{0})-\left(1+\rho\right)^{1/\theta}y_{2}}{\left(1+r\right)\left(1+\rho\right)^{1/\theta}+\left(1+r\right)^{1/\theta}}
+\end{align*}
+
+\end_inset
+
+消費者の効用最大化問題によって消費・貯蓄行動を特徴づけると，ソロー・モデルが想定するような単純な貯蓄関数と比べてはるかに複雑な貯蓄関数になる。
+\end_layout
+
+\begin_layout Example
+\begin_inset Formula $y_{2}=0$
+\end_inset
+
+, 
+\begin_inset Formula $s_{0}=0$
+\end_inset
+
+ のケースは貯蓄関数についてもう少し考察をすすめることができる。この仮定は2期間世代重複モデルでも使われる。
+\begin_inset Formula 
+\begin{equation}
+s_{1}=\left[\frac{\left(1+r\right)^{\frac{1-\theta}{\theta}}}{\left(1+\rho\right)^{\frac{1}{\theta}}+\left(1+r\right)^{\frac{1-\theta}{\theta}}}\right]y_{1}\label{eq:ch07/saving}
+\end{equation}
+
+\end_inset
+
+当期の所得の一部が貯蓄に割り振られるという式になっている。ただし，利子率 
+\begin_inset Formula $r$
+\end_inset
+
+ に依存していることに注意しよう。ソロー・モデルの分析で学んだように，利子率は資本の限界生産性 
+\begin_inset Formula $MPK$
+\end_inset
+
+ で決まるので，完全な定率という訳ではない。しかし，さらに 
+\begin_inset Formula $\theta=1$
+\end_inset
+
+ という条件をつければ利子率への依存性がなくなる。
+\begin_inset Formula 
+\[
+s_{1}=\frac{1}{2+\rho}y_{1}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Example
+利子率の上昇は消費の意思決定において2つの効果を引き起こす。1つは第2期の財価格（
+\begin_inset Formula $1/(1+r)$
+\end_inset
+
+）が下落することで，第1期の消費から第2期の消費への代替が進む。つまり第1期の消費を減少させる作用が働く。これを
+\series bold
+代替効果
+\series default
+（substitution effect）という
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+代替効果には，スルツキーの代替効果とヒックスの代替効果がある。スルツキーの代替効果を求めるときには，価格の変化が起こる前の最適消費点が価格変化後の予算線に乗るよ
+うに所得の調整を行ったあとで，新しい予算線上に最適消費点を探す。スルツキーの代替効果は効用関数の形状によらずに必ず非正になる。無限小の価格変化に関するスルツキー
+分解では2つの代替効果は一致する。
+\end_layout
+
+\end_inset
+
+。もう1つは
+\series bold
+所得効果
+\series default
+（income effect）である。価格の下落により購買力が増加することで，第1期，第2期ともに消費を増加させる作用が働く。利子率 
+\begin_inset Formula $r$
+\end_inset
+
+ の上昇に伴って貯蓄が増加する場合，第1期の消費が減少しているはずなので，代替効果が所得効果を上回っていることになる。逆に，利子率の上昇に伴って貯蓄が減少する場
+合，第1期の消費が増加しているので，所得効果が代替効果を上回っている。
+\begin_inset Formula $\theta=1$
+\end_inset
+
+ のときには所得効果と代替効果が相殺し合う。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Problem
+(
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:ch07/saving"
+
+\end_inset
+
+) が 
+\begin_inset Formula $r$
+\end_inset
+
+ の増加関数になるのは 
+\begin_inset Formula $\theta>1$
+\end_inset
+
+ のときか，
+\begin_inset Formula $\theta<1$
+\end_inset
+
+ のときか。判定せよ。
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+answerbox{5
+\backslash
+baselineskip}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Section
+プログラミング
+\end_layout
+
+\begin_layout Standard
+この章のプログラミングパートでは，Python のシンボリック計算ライブラリ 
+\series bold
+SymPy
+\series default
+ と数値最適化のための scipy.optimize モジュール（
+\series bold
+SciPy
+\series default
+ ライブラリの一部）を紹介する。
+\end_layout
+
+\begin_layout Subsection
+シンボリック計算と数値計算
+\end_layout
+
+\begin_layout Standard
+コンピュータを用いた数学的な計算には，シンボリックな計算と数値的な計算がある。シンボリックな計算というのは，記号の操作のみを用いて計算を行うことである。例えば，
+四則演算とべきからなる有限の操作だけを用いて計算をする代数計算や，初等関数の微分，一部の不定積分の計算などはシンボリックな計算の例である。数値的な計算というのは
+，具体的な数値と近似を用いて答えを導く操作と考えておけばよい。
+\end_layout
+
+\begin_layout Standard
+シンボリック計算の身近な例としては，2次方程式
+\begin_inset Formula 
+\[
+ax^{2}+bx+c=0
+\]
+
+\end_inset
+
+の求解問題がある。 
+\begin_inset Formula $a\neq0$
+\end_inset
+
+ のとき，
+\begin_inset Formula 
+\[
+x=\frac{-b\pm\sqrt{b^{2}-4ac}}{2a}
+\]
+
+\end_inset
+
+であることはよく知られている。係数の四則演算とべき根からなる有限回の操作によって解が表現されている。このような求解の手続きを
+\series bold
+代数的に解く
+\series default
+と呼ぶ。得られた解表現を
+\series bold
+解の公式
+\series default
+という。4次方程式までは解の公式が存在することが知られている。5次以上の一般の代数方程式（
+\begin_inset Formula $\text{多項式}=0$
+\end_inset
+
+ なる方程式）には解の公式が存在しない
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+アーベル=ルフィニの定理。「一般」という表現を誤解しないように。これは，「解の公式が存在しない代数方程式がある」ということ。解の公式が存在する部分集合の存在は否
+定していない。
+\end_layout
+
+\end_inset
+
+。
+\end_layout
+
+\begin_layout Standard
+5次以上の方程式では解を見つけることはできないかというと，そうではない。解 
+\begin_inset Formula $x^{*}$
+\end_inset
+
+ に収束する数列 
+\begin_inset Formula $\{x_{n}\}$
+\end_inset
+
+ をうまく見つけられれば（
+\begin_inset Formula $\lim_{n\to\infty}x_{n}=x^{*}$
+\end_inset
+
+）, 十分大きな 
+\begin_inset Formula $N$
+\end_inset
+
+ を用いて 
+\begin_inset Formula $x_{N}\approx x^{*}$
+\end_inset
+
+ という近似式が成り立つ。
+\begin_inset Formula $\lim_{n\to\infty}x_{n}=x^{*}$
+\end_inset
+
+ が成り立つことを証明する手続きを
+\series bold
+解析的に解く
+\series default
+という。解析的な解の近似によって解を求めることを
+\series bold
+数値的に解く
+\series default
+，という
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+解析的に解くという表現は必ずしも数値的に解くことと同義ではない。数列の各ステップ 
+\begin_inset Formula $x_{n}$
+\end_inset
+
+ の計算に無限の自由度を伴う変数（関数）の操作が必要な場合には数値的に解けない。コンピュータの物理的な制約で無限状態を表現できないからだ。したがって，あらゆる計
+算を有限近似で表現できたときにはじめて数値的に解くアルゴリズムを得たことになる。
+\end_layout
+
+\end_inset
+
+。 
+\end_layout
+
+\begin_layout Subsection
+シンボリック計算
+\end_layout
+
+\begin_layout Standard
+Python で代数計算（シンボリック計算）を行うときは 
+\series bold
+SymPy
+\series default
+ というライブラリを用いる。このセクションのコードは Jupyter Notebook を用いて実行することを推奨する。次のコードを実行してインポートと，出力さ
+れる数式の見栄えを調整する。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch07/import-sympy>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch07/for-pdf-only/noinc>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+まずはシンボルとして用いる変数を定義する。アルファベットの単純なシンボルを定義するときには次のように 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+from sympy.abc import ...
+\end_layout
+
+\end_inset
+
+ というイディオムを使うとよい。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch07/define-alph-symbol>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+シンボリックな計算とは，次のような計算のことである。あまりにも自明の計算ではあるが，コンピュータにも私たちが行うような普通の，抽象的な計算ができるところに驚きが
+ある。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch07/use-alph-symbol, sympy=
+\begin_inset Quotes jrd
+\end_inset
+
+equation*
+\begin_inset Quotes jrd
+\end_inset
+
+>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+2次方程式も次のように解いてくれる。 
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch07/solve-quadratic, sympy=
+\begin_inset Quotes jrd
+\end_inset
+
+equation*
+\begin_inset Quotes jrd
+\end_inset
+
+>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+シンボリック計算は代数計算だけではなく，微分の計算なども含まれる。公式の適用で機械的にできる操作はシンボリックな計算ができるのだ。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch07/sympy-diff1, sympy=
+\begin_inset Quotes jrd
+\end_inset
+
+equation*
+\begin_inset Quotes jrd
+\end_inset
+
+>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+これは，なんとなくおかしい気がする。分子と分母の 
+\begin_inset Formula $x$
+\end_inset
+
+ をまとめてくれたりはしないようだ。こういうときには 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+simplify()
+\end_layout
+
+\end_inset
+
+ というメソッドを使うとうまく整理してくれることがある。ただし，いつもうまくいくとは限らないことに注意しよう。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch07/sympy-diff2, sympy=
+\begin_inset Quotes jrd
+\end_inset
+
+equation*
+\begin_inset Quotes jrd
+\end_inset
+
+>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+CRRA型効用関数
+\begin_inset Formula 
+\[
+u(c)=\frac{c^{1-\theta}-1}{1-\theta}
+\]
+
+\end_inset
+
+の相対的危険回避度 
+\begin_inset Formula $-cu''/u'$
+\end_inset
+
+ が定数であることを確認してみよう。ギリシャ文字は英語表記を使うとうまく表示してくれる。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch07/utility, sympy=
+\begin_inset Quotes jrd
+\end_inset
+
+equation*
+\begin_inset Quotes jrd
+\end_inset
+
+>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch07/crra, sympy=
+\begin_inset Quotes jrd
+\end_inset
+
+equation*
+\begin_inset Quotes jrd
+\end_inset
+
+>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+シンボリックな関数に数値を代入したいときがある。例えば，ソロー・モデルの定常状態を考えてみよう。コブ=ダグラス型 
+\begin_inset Formula $f(k)=k^{\alpha}$
+\end_inset
+
+を仮定すると，定常状態の効率労働あたり資本 
+\begin_inset Formula $k^{*}$
+\end_inset
+
+ が満たす方程式は
+\begin_inset Formula 
+\[
+sk^{\alpha}-(\delta+g+n+gn)k=0
+\]
+
+\end_inset
+
+であり，
+\series bold
+SymPy
+\series default
+ では次のように求める。解きたい方程式を 
+\begin_inset Formula $(\text{式)}=0$
+\end_inset
+
+ の形にして，左辺の式のみを指定していることに注意しよう。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch07/solow-ss, sympy=
+\begin_inset Quotes jrd
+\end_inset
+
+equation*
+\begin_inset Quotes jrd
+\end_inset
+
+>>==
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+ここで，パラメータ 
+\begin_inset Formula $\alpha$
+\end_inset
+
+, 
+\begin_inset Formula $s$
+\end_inset
+
+, 
+\begin_inset Formula $\delta$
+\end_inset
+
+, 
+\begin_inset Formula $g$
+\end_inset
+
+, 
+\begin_inset Formula $n$
+\end_inset
+
+ を代入した値を計算したければ，次のように 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+subs()
+\end_layout
+
+\end_inset
+
+ メソッドを使うとよい。入力は辞書である。キーとしてパラメータのシンボル，値には代入したいパラメータ値を設定する。
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+ss[0]
+\end_layout
+
+\end_inset
+
+ としているのはリストの第0要素を抽出するお馴染みのコードだ。一般の方程式には複数個の解があるので，
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+sp.solve()
+\end_layout
+
+\end_inset
+
+ の結果は必ずリストになる。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch07/solow-ss-subs>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+すべてのパラメータに数値を代入するのではなく，例えば，パラメータ 
+\begin_inset Formula $s$
+\end_inset
+
+ を変化させたときに，定常状態の変化を見たいとしよう。
+\begin_inset Formula $s$
+\end_inset
+
+ だけは代入せずにおいておく。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch07/solow-ss-subs2, sympy=
+\begin_inset Quotes jrd
+\end_inset
+
+equation*
+\begin_inset Quotes jrd
+\end_inset
+
+>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+このオブジェクトを 
+\begin_inset Formula $s$
+\end_inset
+
+ の関数として扱いたいなら， 
+\series bold
+SymPy
+\series default
+ のシンボリックなオブジェクトから数値的な関数を生成する必要がある
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+作図するだけなら sympy.plotting モジュールも使うことができる。
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+https://docs.sympy.org/latest/modules/plotting.html
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+。これには 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+sp.lambdify()
+\end_layout
+
+\end_inset
+
+ という関数を使う。シンボリック計算から数値計算に橋渡しをしてくれる重要な関数である。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch07/lambdify>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+プロットしてみよう。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch07/lambdify-plot/plot>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+centering
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+includegraphics[height=0.3
+\backslash
+textheight]{Figure/ch07/lambdify-plot-1}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset Formula $s$
+\end_inset
+
+ と 
+\begin_inset Formula $k^{*}$
+\end_inset
+
+ の関係
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Example
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+ラグランジュ未定乗数法
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "exa:ch07/lagrange"
+
+\end_inset
+
+次の最大化問題を解いてみよう。
+\begin_inset Formula 
+\begin{align*}
+ & \max x^{1/2}y^{1/2}\\
+ & \text{subject to}\\
+ & \qquad x+3y=100
+\end{align*}
+
+\end_inset
+
+ラグランジアン
+\begin_inset Formula 
+\[
+\mathcal{L}=x^{1/2}y^{1/2}+\lambda(100-x-3y)
+\]
+
+\end_inset
+
+として，
+\begin_inset Formula 
+\[
+\frac{\partial\mathcal{L}}{\partial x}=0,\quad\frac{\partial\mathcal{L}}{\partial y}=0,\quad\frac{\partial\mathcal{L}}{\partial\lambda}=0
+\]
+
+\end_inset
+
+となる 
+\begin_inset Formula $(x,y,\lambda)$
+\end_inset
+
+ を求めればよい
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+\begin_inset Formula $\lambda$
+\end_inset
+
+ の英語表記は lambda だが，Python のキーワードなので使えないため lamda としている。Unicode の文字名としては lamda
+ が正しいそうなので，あながち間違いという訳でもないようだが。
+\end_layout
+
+\end_inset
+
+。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch07/lagrangian, sympy=
+\begin_inset Quotes jrd
+\end_inset
+
+equation*
+\begin_inset Quotes jrd
+\end_inset
+
+>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+うまくいった。しかし，この計算はいつでもうまくいくとは限らないことに注意しよう。シンボリックな計算では解けない方程式がある。
+\end_layout
+
+\begin_layout Problem
+例
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exa:ch07/lagrange"
+
+\end_inset
+
+ の数字を少し変えて，上記の手続きで解ける問題と解けない問題を1つずつ探しなさい。なお，
+\series bold
+SymPy
+\series default
+ では有理数は 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+sp.Rational(1/3)
+\end_layout
+
+\end_inset
+
+ などのようにして定義できる。
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+answerbox{6
+\backslash
+baselineskip}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Example
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+多項式近似
+\end_layout
+
+\end_inset
+
+シンボリックな計算が適用できる状況は限られているが，私たちがモデル構築に用いるような普通の関数の微分計算は安全に行える。例えば，
+\begin_inset Formula 
+\[
+f(x)=\sin3x+e^{x/2}
+\]
+
+\end_inset
+
+を 
+\begin_inset Formula $x=x_{0}$
+\end_inset
+
+ のまわりで，2次方程式で近似する問題を考えよう。
+\end_layout
+
+\begin_layout Example
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch07/approximation1, sympy=
+\begin_inset Quotes jrd
+\end_inset
+
+equation*
+\begin_inset Quotes jrd
+\end_inset
+
+>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Example
+2次までテイラー展開の公式は次の通りである。。
+\begin_inset Formula 
+\[
+f(x)\approx f(x_{0})+f'(x_{0})(x-x_{0})+\frac{1}{2}f''(x_{0})(x-x_{0})^{2}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Example
+テイラー近似の公式に忠実に従えば，次のように書ける。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch07/approximation2, sympy=
+\begin_inset Quotes jrd
+\end_inset
+
+equation*
+\begin_inset Quotes jrd
+\end_inset
+
+>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+しかし，
+\series bold
+SymPy
+\series default
+ の 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+series()
+\end_layout
+
+\end_inset
+
+ メソッドを使うほうが簡単だろう。
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+removeO()
+\end_layout
+
+\end_inset
+
+ メソッドは近似誤差を無視するためのものだ。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch07/approximation3, sympy=
+\begin_inset Quotes jrd
+\end_inset
+
+equation*
+\begin_inset Quotes jrd
+\end_inset
+
+>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+近似がうまくいっていることを目視で確かめよう。
+\begin_inset Formula $x=2$
+\end_inset
+
+ の周りで近似し，
+\begin_inset Formula $1<x<3$
+\end_inset
+
+ の範囲でプロットしてみよう。結果は図
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:ch07/2次の多項式近似"
+
+\end_inset
+
+のようになる。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch07/approximation-plot/plot>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+centering
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+includegraphics[height=0.3
+\backslash
+textheight]{Figure/ch07/approximation-plot-1}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+2次の多項式近似
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:ch07/2次の多項式近似"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+数値計算
+\end_layout
+
+\begin_layout Standard
+最適化問題における最も重要な課題は，ある関数がゼロになる点を探すことである。本書では経済モデルの解を可視化したり数値的に評価したりすることに主眼を置いているので
+，求解は代数的な方法ではなく数値的（近似的）な方法で十分である。
+\end_layout
+
+\begin_layout Standard
+最も簡単な1変数の実数値関数を用いて数値求解の概要を説明しよう。図
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:ch07/ニュートン・ラフソン法"
+
+\end_inset
+
+の太実線で描かれた曲線が 
+\begin_inset Formula $f(x)=0$
+\end_inset
+
+ になる 
+\begin_inset Formula $x$
+\end_inset
+
+ を探したい関数であるとする。適当な初期値 
+\begin_inset Formula $x_{0}$
+\end_inset
+
+ を設定する。この点で 
+\begin_inset Formula $f(x)$
+\end_inset
+
+ の接線を引く。接線の方程式は，
+\begin_inset Formula 
+\[
+y=f(x_{0})+f'(x_{0})(x-x_{0})
+\]
+
+\end_inset
+
+である。この接線の方程式の 
+\begin_inset Formula $x$
+\end_inset
+
+ 切片，つまり
+\begin_inset Formula $y=0$
+\end_inset
+
+ となる 
+\begin_inset Formula $x$
+\end_inset
+
+ を探す。この点を 
+\begin_inset Formula $x_{1}$
+\end_inset
+
+ と記すとすれば，
+\begin_inset Formula 
+\[
+x_{1}=x_{0}-\frac{f(x_{0})}{f'(x_{0})}
+\]
+
+\end_inset
+
+
+\begin_inset Formula $(x_{1},f(x_{1}))$
+\end_inset
+
+ で 
+\begin_inset Formula $f(x)$
+\end_inset
+
+ の接線を引いて同じことをすると，
+\begin_inset Formula 
+\[
+x_{2}=x_{1}-\frac{f(x_{1})}{f'(x_{1})}
+\]
+
+\end_inset
+
+を定義できる。図
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:ch07/ニュートン・ラフソン法"
+
+\end_inset
+
+では徐々に 
+\begin_inset Formula $f(x_{*})=0$
+\end_inset
+
+ なる 
+\begin_inset Formula $x_{*}$
+\end_inset
+
+ に近づいている。これをさらに繰り返して，
+\begin_inset Formula 
+\[
+x_{n}=x_{n-1}-\frac{f(x_{n-1})}{f'(x_{n-1})},\qquad n=1,2,\dots
+\]
+
+\end_inset
+
+を定義すると，関数 
+\begin_inset Formula $f$
+\end_inset
+
+ に対する適切な仮定のもとで
+\begin_inset Formula 
+\[
+\lim_{n\to\infty}x_{n}=x_{*}
+\]
+
+\end_inset
+
+となることが示される。この数値求解法を
+\series bold
+ニュートン・ラフソン法
+\series default
+と呼ぶ。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+centering
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+includegraphics[height=0.3
+\backslash
+textheight]{Images/07-two-period-Newton}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+ニュートン・ラフソン法
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:ch07/ニュートン・ラフソン法"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+本書はアルゴリズムの詳細な解説を目的としていないし，私では役者不足なので，これ以上解説を続けるのはやめておこう。数値球解法のユーザーとして必ず認識しておくべき教
+訓を述べるにとどめておく。
+\end_layout
+
+\begin_layout Itemize
+初期値を適切に選ばないと適切な解を見つけることができない。例えば，上で説明した手続きでは図
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:ch07/ニュートン・ラフソン法"
+
+\end_inset
+
+の原点の左にあるもう1つの解は見つけられない。逆に初期値をもっと左の方に取ると 
+\begin_inset Formula $x_{*}$
+\end_inset
+
+ を見つけられない。
+\end_layout
+
+\begin_layout Itemize
+実はニュートン・ラフソン法で求めた数列 
+\begin_inset Formula $(x_{n})_{n\ge0}$
+\end_inset
+
+ が収束しないケースがある。したがって，必ず収束性のチェックをしなければならない
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Quora の質問「When does Newton Raphson fail?」に対する Alon Amit の解答を参照
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Flex URL
+status collapsed
+
+\begin_layout Plain Layout
+
+https://www.quora.com/When-does-Newton-Raphson-fail
+\end_layout
+
+\end_inset
+
+（2020/07/03 閲覧）
+\end_layout
+
+\end_inset
+
+。
+\end_layout
+
+\begin_layout Itemize
+初期値の設定と，収束性に関するチェックは他の求解アルゴリズムを用いる場合にも忘れてはいけない。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Python で数値的に求解したいときは 
+\series bold
+SciPy
+\series default
+ ライブラリの optimize モジュールを用いる。
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+newton()
+\end_layout
+
+\end_inset
+
+ と 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+fsolve()
+\end_layout
+
+\end_inset
+
+ を紹介しよう。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch07/scipy.optimize>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+newton()
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+1変数関数 
+\begin_inset Formula $f:\mathbb{R}\to\mathbb{R}$
+\end_inset
+
+ のゼロ点を探すときには 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+newton()
+\end_layout
+
+\end_inset
+
+ 関数を使う
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.newton.html
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+。引数はゼロを探したい関数 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+func
+\end_layout
+
+\end_inset
+
+，初期値 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+x0
+\end_layout
+
+\end_inset
+
+，導関数 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+fprime
+\end_layout
+
+\end_inset
+
+　である。簡単な例
+\begin_inset Formula 
+\[
+f(x)=x^{2}-3,\qquad f'(x)=2x
+\]
+
+\end_inset
+
+を用いて試してみよう。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch07/newton-single>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+初期値 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+x0
+\end_layout
+
+\end_inset
+
+に 
+\series bold
+NumPy
+\series default
+ 配列を渡すと複数の初期値から出発して複数の解を見つけられる。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch07/newton-ndarray>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+fsolve()
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+ベクトル値関数 
+\begin_inset Formula $f:\mathbb{R}^{n}\to\mathbb{R}^{n}$
+\end_inset
+
+ のゼロ点（ベクトルすべての要素がゼロになる点）を探すときには 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+fsolve()
+\end_layout
+
+\end_inset
+
+ 関数を使うとよい
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.fsolve.html
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+。
+\end_layout
+
+\begin_layout Standard
+異時点間の最適消費モデル
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+ & \max\left[\log c_{1}+\beta\log c_{2}\right]\\
+ & \text{subject to}\\
+ & \qquad c_{1}+\frac{c_{2}}{1+r}=1000
+\end{align*}
+
+\end_inset
+
+を考えよう。
+\begin_inset Formula $\beta=0.95$
+\end_inset
+
+, 
+\begin_inset Formula $r=0.05$
+\end_inset
+
+ とする。ラグランジアン
+\begin_inset Formula 
+\[
+\mathcal{L}=\log c_{1}+\beta\log c_{2}+\lambda\left(1000-c_{1}-\frac{c_{2}}{1+r}\right)
+\]
+
+\end_inset
+
+を用いて，
+\begin_inset Formula 
+\[
+\frac{\partial\mathcal{L}}{\partial c_{1}}=0,\quad\frac{\partial\mathcal{L}}{\partial c_{2}}=0,\quad\frac{\partial\mathcal{L}}{\partial\lambda}=0
+\]
+
+\end_inset
+
+なる点 
+\begin_inset Formula $(c_{1},c_{2},\lambda)$
+\end_inset
+
+ を探したい。最適のための1階条件は
+\begin_inset Formula 
+\begin{align*}
+\frac{1}{c_{1}}-\lambda & =0\\
+\frac{\beta}{c_{2}}-\frac{\lambda}{1+r} & =0\\
+1000-c_{1}-\frac{c_{2}}{1+r} & =0
+\end{align*}
+
+\end_inset
+
+である。したがって，
+\begin_inset Formula 
+\begin{equation}
+f(c_{1},c_{2},\lambda)=\begin{bmatrix}\frac{1}{c_{1}}-\lambda\\
+\frac{\beta}{c_{2}}-\frac{\lambda}{1+r}\\
+1000-c_{1}-\frac{c_{2}}{1+r}
+\end{bmatrix}\label{eq:ch07/fsolve-f}
+\end{equation}
+
+\end_inset
+
+がゼロになる点を探せばよい。
+\end_layout
+
+\begin_layout Standard
+実はこの問題は数値計算をするまでもなく厳密に答えを見つけることができて，最適 
+\begin_inset Formula $(c_{1}^{*},c_{2}^{*},\lambda^{*})$
+\end_inset
+
+ は
+\begin_inset Formula 
+\begin{align*}
+c_{1}^{*} & =\frac{1000}{1+\beta}\approx512.821\\
+c_{2}^{*} & =\beta(1+r)c_{1}^{*}\approx511.538\\
+\lambda^{*} & =0.00195
+\end{align*}
+
+\end_inset
+
+である。
+\end_layout
+
+\begin_layout Standard
+さて，数値的にも解いてみよう。ヤコビアン行列というベクトル関数の微分を計算しておくと数値計算上都合がよい
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+ベクトル関数
+\begin_inset Formula 
+\[
+f(x_{1},x_{2},x_{3})=\begin{bmatrix}f_{1}(x_{1},x_{2},x_{3})\\
+f_{2}(x_{1},x_{2},x_{3})\\
+f_{3}(x_{1},x_{2},x_{3})
+\end{bmatrix}
+\]
+
+\end_inset
+
+に対して，ヤコビアン 
+\begin_inset Formula $Df$
+\end_inset
+
+ は次のように定義される。
+\begin_inset Formula 
+\[
+Df(x_{1},x_{2},x_{3})=\begin{bmatrix}\partial f_{1}/\partial x_{1} & \partial f_{1}/\partial x_{2} & \partial f_{1}/\partial x_{3}\\
+\partial f_{2}/\partial x_{1} & \partial f_{2}/\partial x_{2} & \partial f_{2}/\partial x_{3}\\
+\partial f_{3}/\partial x_{1} & \partial f_{3}/\partial x_{2} & \partial f_{3}/\partial x_{3}
+\end{bmatrix}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+本文の最適化問題では 
+\begin_inset Formula $f$
+\end_inset
+
+ 自体もラグランジアン 
+\begin_inset Formula $\mathcal{L}$
+\end_inset
+
+ の微分（勾配）によって定義される。これを 
+\begin_inset Formula $\nabla\mathcal{L}$
+\end_inset
+
+ と書く，そのヤコビアンは 
+\begin_inset Formula $\mathcal{L}$
+\end_inset
+
+ のヘッセ行列であり， 
+\begin_inset Formula $\nabla^{2}\mathcal{L}$
+\end_inset
+
+ と書くことが多い。
+\begin_inset Formula $\nabla$
+\end_inset
+
+ は ナブラと読む。
+\end_layout
+
+\end_inset
+
+。
+\begin_inset Formula 
+\begin{equation}
+Df(c_{1},c_{2},\lambda)=\begin{bmatrix}-\frac{1}{c_{1}^{2}} & 0 & -1\\
+0 & -\frac{\beta}{c_{2}^{2}} & -\frac{1}{1+r}\\
+-1 & -\frac{1}{1+r} & 0
+\end{bmatrix}\label{eq:ch07/fsolve-df}
+\end{equation}
+
+\end_inset
+
+準備が整ったので数値的に解いてみよう。 下のコードの重要な部分を簡単に説明しておく。
+\end_layout
+
+\begin_layout Itemize
+関数 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+f
+\end_layout
+
+\end_inset
+
+ は (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:ch07/fsolve-f"
+
+\end_inset
+
+) で定義されたもの。
+\end_layout
+
+\begin_layout Itemize
+関数 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+df 
+\end_layout
+
+\end_inset
+
+は (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:ch07/fsolve-df"
+
+\end_inset
+
+) で定義されたヤコビアン行列。
+\end_layout
+
+\begin_layout Itemize
+関数 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+fsolve
+\end_layout
+
+\end_inset
+
+ に渡している 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+x0=[100, 100, 0.1]
+\end_layout
+
+\end_inset
+
+ は 
+\begin_inset Formula $(c_{1},c_{2},\lambda)$
+\end_inset
+
+ の初期値である。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch07/fsolve>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+シンボリック計算と数値計算のあわせ技
+\end_layout
+
+\begin_layout Standard
+ようやく標準的なワークフローを説明する準備が整った。
+\end_layout
+
+\begin_layout Standard
+Python を使って最適化問題を解く手順は次のようになる。
+\series bold
+SymPy
+\series default
+ と 
+\series bold
+SciPy
+\series default
+ の使い訳を確認してほしい。
+\end_layout
+
+\begin_layout Enumerate
+最適化問題をセットアップする。（紙とペン）
+\end_layout
+
+\begin_layout Enumerate
+ラグランジアン 
+\begin_inset Formula $\mathcal{L}$
+\end_inset
+
+ を定義する。（紙とペン）
+\end_layout
+
+\begin_layout Enumerate
+ラグランジアンの勾配 
+\begin_inset Formula $f=\nabla\mathcal{L}$
+\end_inset
+
+ と，そのヤコビアン 
+\begin_inset Formula $Df=\nabla^{2}\mathcal{L}$
+\end_inset
+
+ を計算する。（
+\series bold
+SymPy
+\series default
+）
+\end_layout
+
+\begin_layout Enumerate
+パラメータを固定して，
+\begin_inset Formula $f=\nabla\mathcal{L}$
+\end_inset
+
+ と 
+\begin_inset Formula $Df=\nabla^{2}\mathcal{L}$
+\end_inset
+
+ を数値関数に変換する。（
+\series bold
+SymPy
+\series default
+）
+\end_layout
+
+\begin_layout Enumerate
+適当な初期値と 
+\begin_inset Formula $Df=\nabla^{2}\mathcal{L}$
+\end_inset
+
+ を与えて，
+\begin_inset Formula $f=\nabla\mathcal{L}$
+\end_inset
+
+ がゼロになる点を見つける。（
+\series bold
+SciPy
+\series default
+）
+\end_layout
+
+\begin_layout Enumerate
+その後，必要な数値的な分析を行う。（
+\series bold
+NumPy
+\series default
+, 
+\series bold
+Pandas
+\series default
+）
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Paragraph
+Step 1
+\end_layout
+
+\begin_layout Standard
+再び，異時点間の最適消費モデルを考えよう。効用関数は一般の CRRA型とする。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+ & \max\left[\left(\frac{c_{1}^{1-\theta}-1}{1-\theta}\right)+\beta\left(\frac{c_{2}^{1-\theta}-1}{1-\theta}\right)\right]\\
+ & \text{subject to}\\
+ & \qquad c_{1}+\frac{c_{2}}{1+r}=1000
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch07/full-workflow-utility, sympy=
+\begin_inset Quotes jrd
+\end_inset
+
+equation*
+\begin_inset Quotes jrd
+\end_inset
+
+>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Paragraph
+Step 2
+\end_layout
+
+\begin_layout Standard
+ラグランジアンを定義する。
+\begin_inset Formula $\lambda$
+\end_inset
+
+ が正になるように制約条件の扱い方に気をつけよう。
+\begin_inset Formula 
+\[
+\mathcal{L}=\left(\frac{c_{1}^{1-\theta}-1}{1-\theta}\right)+\beta\left(\frac{c_{2}^{1-\theta}-1}{1-\theta}\right)+\lambda\left(1000-c_{1}-\frac{c_{2}}{1+r}\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch07/full-workflow-lagrangian, sympy=
+\begin_inset Quotes jrd
+\end_inset
+
+equation*
+\begin_inset Quotes jrd
+\end_inset
+
+>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Paragraph
+Step 3
+\end_layout
+
+\begin_layout Standard
+微分 
+\begin_inset Formula $\nabla\mathcal{L}$
+\end_inset
+
+ と 
+\begin_inset Formula $\nabla^{2}\mathcal{L}$
+\end_inset
+
+ を計算する。これは，
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\nabla\mathcal{L}=0
+\]
+
+\end_inset
+
+ となる点を探したいのと，最適化ルーチーン 
+\begin_inset Formula $\nabla^{2}\mathcal{L}$
+\end_inset
+
+ を渡すため。
+\end_layout
+
+\begin_layout Standard
+まずは，
+\begin_inset Formula $f=\nabla\mathcal{L}$
+\end_inset
+
+の計算。
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+sp.Matrix()
+\end_layout
+
+\end_inset
+
+ で行列形式にしておくと見やすい。
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+[L.diff(v) for v in (c1, c2, lamda)]
+\end_layout
+
+\end_inset
+
+ は 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+(c1, c2, lamda)
+\end_layout
+
+\end_inset
+
+ に含まれる各シンボルで微分したものをリストにまとめるという意味。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch07/full-workflow-deriv1, sympy=
+\begin_inset Quotes jrd
+\end_inset
+
+equation*
+\begin_inset Quotes jrd
+\end_inset
+
+>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+続いて 
+\begin_inset Formula $Df=\nabla^{2}\mathcal{L}$
+\end_inset
+
+ の計算。これも 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+sp.Matrix(sp.BlockMatrix())
+\end_layout
+
+\end_inset
+
+ で行列形式にしておく。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch07/full-workflow-deriv2, sympy=
+\begin_inset Quotes jrd
+\end_inset
+
+equation*
+\begin_inset Quotes jrd
+\end_inset
+
+>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Paragraph
+Step 4
+\end_layout
+
+\begin_layout Standard
+続いてパラメータの代入と数値関数への変換を行う。
+\begin_inset Formula $\beta=0.9$
+\end_inset
+
+, 
+\begin_inset Formula $\theta=0.3$
+\end_inset
+
+, 
+\begin_inset Formula $r=0.1$
+\end_inset
+
+ という値を代入している。
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+f
+\end_layout
+
+\end_inset
+
+ の方だけ
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+np.squeeze()
+\end_layout
+
+\end_inset
+
+ をかぶせているのは，shape が 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+(3,)
+\end_layout
+
+\end_inset
+
+ の配列を入出力にとる関数にしたいから。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch07/full-workflow-numeric>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Paragraph
+Step 5
+\end_layout
+
+\begin_layout Standard
+最後に 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+fsolve()
+\end_layout
+
+\end_inset
+
+ で最適化問題を解く。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch07/full-workflow-fsolve>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Paragraph
+Step 6
+\end_layout
+
+\begin_layout Standard
+どのような計算でもよいのだが，例えば消費の変化率を計算したいとしよう。次のようにすればよい。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch07/full-workflow-change>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+パラメータを変えて最適消費点の変化を見たいときには，Step 4 と Step 5 を繰り返してデータを作っていけばよい。
+\end_layout
+
+\begin_layout Standard
+例えば，次のコードは 
+\begin_inset Formula $\theta=0.3,1,5$
+\end_inset
+
+ のそれぞれに対して，
+\begin_inset Formula $r$
+\end_inset
+
+ と 消費の変化率 
+\begin_inset Formula $(c_{2}^{*}-c_{1}^{*})/c_{1}^{*}$
+\end_inset
+
+ の関係を計算し，プロットする。
+\begin_inset Formula $\theta$
+\end_inset
+
+ が大きくなると，消費に変動がなくなってくることが分かる。
+\begin_inset Formula $\theta$
+\end_inset
+
+ は同じ水準の消費を続けたいという消費者の選好を表しているのである。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch07/full-workflow-loop/plot>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+centering
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+includegraphics[height=0.35
+\backslash
+textheight]{Figure/ch07/full-workflow-loop-1}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset Formula $\theta$
+\end_inset
+
+, 
+\begin_inset Formula $r$
+\end_inset
+
+ と消費の変化率の関係
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+なお，ここで考えている最適化問題は実質利子率が変わっても生涯所得には変化がないことに注意しよう。問題 
+\begin_inset Formula $(P2)$
+\end_inset
+
+ をきちんと解く代わりに少し簡単な問題を解いたのである。問題 
+\begin_inset Formula $(P2)$
+\end_inset
+
+ を完全な形で解くことは読者の練習問題にしよう。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Branch childonly
+inverted 0
+status open
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset bibtex
+LatexCommand bibtex
+btprint "btPrintCited"
+bibfiles "../Bibliography/ref,../Bibliography/software"
+options "../styles/jecon"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document
