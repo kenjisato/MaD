@@ -1,0 +1,3181 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass scrbook
+\begin_preamble
+\usepackage{Styles/common}
+\usepackage{Styles/code}
+\usepackage{Styles/problem}
+\usepackage{url}
+
+\usepackage{plext}
+
+% Knitr Setup 
+<<setup, include=FALSE>>=
+source('Knitr/setup.R')
+source_python('Knitr/setup.py')
+@
+\end_preamble
+\options dvipdfmx,a5paper,9pt
+\use_default_options true
+\master _main.lyx
+\begin_modules
+knitr
+theorems-ams-chap-bytype
+theorems-ams-extended-chap-bytype
+logicalmkup
+\end_modules
+\maintain_unincluded_children false
+\language japanese
+\language_package default
+\inputencoding utf8-platex
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\float_placement th
+\paperfontsize default
+\spacing onehalf
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine natbib
+\cite_engine_type authoryear
+\biblio_style plainnat
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date true
+\justification true
+\use_refstyle 1
+\use_minted 0
+\branch childonly
+\selected 1
+\filename_suffix 0
+\color #faf0e6
+\end_branch
+\branch parentonly
+\selected 0
+\filename_suffix 0
+\color #faf0e6
+\end_branch
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style cjk
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+mainmatter
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<engine='R', echo=FALSE>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+knitr::read_chunk('Python/ch08.py')
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Branch childonly
+inverted 0
+status open
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+setcounter{chapter}{7}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset toc
+LatexCommand tableofcontents
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Chapter
+最適成長モデル（ラムゼー・モデル）
+\end_layout
+
+\begin_layout Section
+概要
+\end_layout
+
+\begin_layout Standard
+この章では，2期間の最適消費モデルの知識をもとに，無限期間の異時点間の最適消費問題を解く。企業が生産活動を行っている経済に最適な代表的消費者のモデルを組み込むこ
+とで，最適成長モデル（ラムゼー・モデル）を構築する。これにより，ソロー・モデルの重要な前提であった貯蓄率一定という仮定が取り除かれる。
+\end_layout
+
+\begin_layout Standard
+プログラミングのセクションでは，最適成長モデルの簡便な解法を紹介する。シンボリック計算と数値最適化の手法を用いる。最後に，発展的な学習に向けて少数の参考文献を紹
+介する。
+\end_layout
+
+\begin_layout Section
+不確実性のないラムゼー問題
+\end_layout
+
+\begin_layout Subsection
+セットアップ
+\end_layout
+
+\begin_layout Standard
+無限期間生きる代表的消費者を考える。消費者は現在 0 期の期末にいて，1期以降の消費の計画を立てている。1期以降の労働所得が 
+\begin_inset Formula $y_{1},y_{2},\dots$
+\end_inset
+
+ であることを知っている。所得のうち一部を消費し残りを貯蓄する。
+\begin_inset Formula $(t-1)$
+\end_inset
+
+ 期末の貯蓄残高 
+\begin_inset Formula $s_{t-1}$
+\end_inset
+
+ に対しては，利子所得 
+\begin_inset Formula $r_{t}s_{t-1}$
+\end_inset
+
+ を 
+\begin_inset Formula $t$
+\end_inset
+
+ 期に受け取る。毎期の消費から期間効用 
+\begin_inset Formula $u(c_{t})$
+\end_inset
+
+ を得る。
+\begin_inset Formula $u(c)$
+\end_inset
+
+ はその期に消費していたら得たであろう効用の水準である。0期末で消費計画を立てている消費者は将来の効用を 
+\begin_inset Formula $\beta=1/(1+\rho)$
+\end_inset
+
+ で割り引く。したがって，
+\begin_inset Formula $t$
+\end_inset
+
+ 期の消費 
+\begin_inset Formula $c_{t}$
+\end_inset
+
+ の現在効用は 
+\begin_inset Formula $\beta^{t}u(c_{t})$
+\end_inset
+
+ となる。効用関数 
+\begin_inset Formula $u$
+\end_inset
+
+ には標準的な仮定を課す
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+\begin_inset Formula $u'(\cdot)>0$
+\end_inset
+
+, 
+\begin_inset Formula $u''(\cdot)<0$
+\end_inset
+
+.
+\end_layout
+
+\end_inset
+
+。消費者の目的関数は割引効用の総和を最大にすることとする。
+\end_layout
+
+\begin_layout Standard
+以上のセッティングを効用最大化問題として定式化すると次のようになる。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+ & \max_{(c_{t})_{t\ge1}}U=\sum_{t=1}^{\infty}\beta^{t}u(c_{t})\\
+ & \text{subject to}\\
+ & \qquad c_{t}+(s_{t}-s_{t-1})=w_{t}+r_{t}s_{t-1},\quad t=1,2,\dots\\
+ & \qquad s_{0}:\ \text{given.}
+\end{align*}
+
+\end_inset
+
+ここで，
+\begin_inset Formula $w_{t}$
+\end_inset
+
+, 
+\begin_inset Formula $r_{t}$
+\end_inset
+
+ (
+\begin_inset Formula $t=1,2,\dots)$
+\end_inset
+
+ と 
+\begin_inset Formula $s_{0}$
+\end_inset
+
+ は既知のパラメータであるとする。このモデルでは将来の所得に関する完全な情報を持っている。つまり，
+\series bold
+完全予見
+\series default
+を仮定する。
+\end_layout
+
+\begin_layout Standard
+実はまだ1つ足りていない条件がある。これを見るために毎期の入出金の式（フロー予算制約, flow budget constraint）
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+c_{t}+(s_{t}-s_{t-1})=w_{t}+r_{t}s_{t-1}\label{eq:ch08/flow-budget}
+\end{equation}
+
+\end_inset
+
+から生涯消費と生涯所得の関係式を導出しよう。記号を簡単にするため，
+\begin_inset Formula 
+\[
+1+R_{t}=(1+r_{1})(1+r_{2})\times\cdots\times(1+r_{t})
+\]
+
+\end_inset
+
+と定義する。ただし，
+\begin_inset Formula $R_{0}=0$
+\end_inset
+
+ とする。
+\begin_inset Formula $R_{t}$
+\end_inset
+
+ は 
+\begin_inset Formula $t$
+\end_inset
+
+ 期間の累積的な利子率であり，
+\begin_inset Formula $t$
+\end_inset
+
+期の価値を計画時点（0期）の価値に換算する割引率である。式 (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:ch08/flow-budget"
+
+\end_inset
+
+) を
+\begin_inset Formula 
+\[
+c_{t}+s_{t}=w_{t}+(1+r_{t})s_{t-1}
+\]
+
+\end_inset
+
+と変形した上で，
+\begin_inset Formula $t$
+\end_inset
+
+ 期分割り戻す。
+\begin_inset Formula 
+\[
+\frac{c_{t}}{1+R_{t}}+\frac{s_{t}}{1+R_{t}}=\frac{w_{t}}{1+R_{t}}+\frac{s_{t-1}}{1+R_{t-1}}
+\]
+
+\end_inset
+
+これを 
+\begin_inset Formula $t=1,2,\dots$
+\end_inset
+
+ で足し上げる。左辺と右辺に同じ式がある場合はキャンセルされる。
+\begin_inset Formula 
+\begin{align*}
+\frac{c_{1}}{1+R_{1}}+\cancel{\frac{s_{1}}{1+R_{1}}} & =\frac{w_{1}}{1+R_{1}}+\frac{s_{0}}{1+R_{0}}\\
+\frac{c_{2}}{1+R_{2}}+\cancel{\frac{s_{2}}{1+R_{2}}} & =\frac{w_{2}}{1+R_{2}}+\cancel{\frac{s_{1}}{1+R_{1}}}\\
+\frac{c_{3}}{1+R_{3}}+\frac{s_{3}}{1+R_{3}} & =\frac{w_{3}}{1+R_{3}}+\cancel{\frac{s_{2}}{1+R_{2}}}\\
+ & \vdots
+\end{align*}
+
+\end_inset
+
+
+\begin_inset Formula $t=T$
+\end_inset
+
+ まで足し上げると，次の等式を得る。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\sum_{t=1}^{T}\frac{c_{t}}{1+R_{t}}+\frac{s_{T}}{1+R_{T}}=\sum_{t=1}^{T}\frac{w_{t}}{1+R_{t}}+s_{0}
+\]
+
+\end_inset
+
+
+\begin_inset Formula $T\to\infty$
+\end_inset
+
+ の極限を取ると，
+\begin_inset Formula 
+\begin{equation}
+\sum_{t=1}^{\infty}\frac{c_{t}}{1+R_{t}}+\lim_{t\to\infty}\frac{s_{t}}{1+R_{t}}=\sum_{t=1}^{\infty}\frac{w_{t}}{1+R_{t}}+s_{0}\label{eq:ch08/budget-0}
+\end{equation}
+
+\end_inset
+
+を得る。無限級数は収束することを前提としている。特に，
+\begin_inset Formula $\sum_{t=1}^{\infty}\frac{y_{t}}{1+R_{t}}<\infty$
+\end_inset
+
+ は仮定しなければならない。このことは，
+\begin_inset Formula 
+\[
+\lim_{t\to\infty}\frac{y_{t}}{1+R_{t}}=0
+\]
+
+\end_inset
+
+を意味する。もし，利子よりも早く所得が増えるのであれば，生涯所得は無限大になり，効用最大化問題は有限の解を持たない。
+\end_layout
+
+\begin_layout Standard
+仮に，無限期先の将来の貯蓄残高の割引現在価値を負にすること，つまり，
+\begin_inset Formula 
+\[
+\lim_{t\to\infty}\frac{s_{t}}{1+R_{t}}<0
+\]
+
+\end_inset
+
+が許されるとしてみよう。このとき，生涯所得よりも大きな消費ができる。つまり，
+\begin_inset Formula 
+\[
+\sum_{t=1}^{\infty}\frac{c_{t}}{1+R_{t}}>\sum_{t=1}^{\infty}\frac{w_{t}}{1+R_{t}}+s_{0}
+\]
+
+\end_inset
+
+とできる。したがって，
+\begin_inset Formula $\lim_{t\to\infty}\frac{s_{t}}{1+R_{t}}$
+\end_inset
+
+ をいくらでも大きな負の値にできる場合，効用を最大化する消費を見つけることはできない。なぜなら，消費をどんどん大きくできるので，効用も無限大に発散してしまうから
+だ。効用最大化問題が意味のある解を持つためには，
+\begin_inset Formula $\lim_{t\to\infty}\frac{s_{t}}{1+R_{t}}$
+\end_inset
+
+　は下限を持つ必要がある。通常，
+\begin_inset Formula 
+\begin{equation}
+\lim_{t\to\infty}\frac{s_{t}}{1+R_{t}}\ge0\label{eq:ch08/npg}
+\end{equation}
+
+\end_inset
+
+を仮定する。(
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:ch08/npg"
+
+\end_inset
+
+) は非ポンジー・ゲーム条件（No Ponzi Game 条件）と呼ぶ
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+ポンジー・ゲームあるいはポンジー・スキームというのは，無限連鎖講（いわゆるネズミ講）のこと。
+\end_layout
+
+\end_inset
+
+。非ポンジー・ゲーム条件は，借金を残して死なないという条件
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+bou{
+\end_layout
+
+\end_inset
+
+ではない
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+。負債残高が利子率と同程度以上のスピードで拡大し続けることを禁止する条件である。例えば，1期に作った負債をまったく返済せずに借り換えし続けるような行動を取れば非
+ポンジー・ゲーム条件に違反してしまう。
+\end_layout
+
+\begin_layout Standard
+これで条件が出揃った。解くべき最大化問題は次のものである。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+ & \max_{(c_{t})_{t\ge1}}U=\sum_{t=1}^{\infty}\beta^{t}u(c_{t})\\
+ & \text{subject to}\\
+ & \qquad c_{t}+(s_{t}-s_{t-1})=w_{t}+r_{t}s_{t-1},\quad t=1,2,\dots\\
+ & \qquad\lim_{t\to\infty}\frac{s_{t}}{1+R_{t}}\ge0\\
+ & \qquad s_{0}:\ \text{given.}
+\end{align*}
+
+\end_inset
+
+あるいは生涯所得制約で置き換えて，
+\begin_inset Formula 
+\begin{align}
+ & \max_{(c_{t})_{t\ge1}}U=\sum_{t=1}^{\infty}\beta^{t}u(c_{t})\label{eq:ch08/utility}\\
+ & \text{subject to}\nonumber \\
+ & \qquad\sum_{t=1}^{\infty}\frac{c_{t}}{1+R_{t}}\le\sum_{t=1}^{\infty}\frac{w_{t}}{1+R_{t}}+s_{0}\label{eq:ch08/budget-constraint}\\
+ & \qquad s_{0}:\ \text{given.}\nonumber 
+\end{align}
+
+\end_inset
+
+としても同じ解を得られる。
+\end_layout
+
+\begin_layout Assumption
+効用最大化問題 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:ch08/budget-constraint"
+
+\end_inset
+
+, 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:ch08/budget-constraint"
+
+\end_inset
+
+ には解が存在して，最適消費計画の総効用は有限である。つまり，
+\begin_inset Formula $|U|<+\infty$
+\end_inset
+
+ が成り立つ。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+効用関数 
+\begin_inset Formula $u$
+\end_inset
+
+ が 
+\begin_inset Formula $u'>0$
+\end_inset
+
+, 
+\begin_inset Formula $u''<0$
+\end_inset
+
+ を満たすとき，
+\begin_inset Formula $u$
+\end_inset
+
+ は厳密に凹な関数である。すなわち，任意の 
+\begin_inset Formula $x$
+\end_inset
+
+, 
+\begin_inset Formula $y$
+\end_inset
+
+ と 
+\begin_inset Formula $0<\lambda<1$
+\end_inset
+
+ に対して，
+\begin_inset Formula 
+\[
+u\left(\lambda x+(1-\lambda)y\right)>\lambda u(x)+(1-\lambda)u(y)
+\]
+
+\end_inset
+
+が成り立つ。 この事実を使うと，解が一意であることが示せる。
+\end_layout
+
+\begin_layout Proposition
+効用最大化問題 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:ch08/budget-constraint"
+
+\end_inset
+
+, 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:ch08/budget-constraint"
+
+\end_inset
+
+ の解は 
+\begin_inset Formula $s_{0}$
+\end_inset
+
+ ごとに一意に定まる。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Proof
+\begin_inset Formula $(c_{t}^{'})_{t\ge1}$
+\end_inset
+
+ と 
+\begin_inset Formula $(c_{t}'')_{t\ge1}$
+\end_inset
+
+ がともに効用最大化解であるとしよう。
+\begin_inset Formula $\sum_{t=1}^{\infty}\beta^{t}u(c_{t}')=\sum_{t=1}^{\infty}\beta^{t}u(c_{t}'')$
+\end_inset
+
+ が成り立ち，少なくとも1つの 
+\begin_inset Formula $t\ge1$
+\end_inset
+
+ について，
+\begin_inset Formula $c_{t}'\neq c_{t}''$
+\end_inset
+
+ が成り立つとする。異なる2つの解が存在すると仮定して矛盾を導こう。
+\end_layout
+
+\begin_layout Proof
+任意に 
+\begin_inset Formula $0<\lambda<1$
+\end_inset
+
+ を選ぶ。 
+\begin_inset Formula $(c_{t}^{'})_{t\ge1}$
+\end_inset
+
+ と 
+\begin_inset Formula $(c_{t}'')_{t\ge1}$
+\end_inset
+
+ はどちらも制約条件を満たすので，
+\begin_inset Formula 
+\[
+\sum_{t=1}^{\infty}\frac{\lambda c_{t}'}{1+R_{t}}\le\sum_{t=1}^{\infty}\frac{\lambda w_{t}}{1+R_{t}}+\lambda s_{0}
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\sum_{t=1}^{\infty}\frac{(1-\lambda)c_{t}''}{1+R_{t}}\le\sum_{t=1}^{\infty}\frac{(1-\lambda)w_{t}}{1+R_{t}}+(1-\lambda)s_{0}
+\]
+
+\end_inset
+
+が成り立つ。辺々足すと，
+\begin_inset Formula 
+\[
+\sum_{t=1}^{\infty}\frac{\lambda c_{t}'+(1-\lambda)c_{t}''}{1+R_{t}}\le\sum_{t=1}^{\infty}\frac{w_{t}}{1+R_{t}}+s_{0}
+\]
+
+\end_inset
+
+を得る。これは，
+\begin_inset Formula $\left(\lambda c_{t}'+(1-\lambda)c_{t}\right)_{t\ge1}$
+\end_inset
+
+ で定義される消費計画が制約条件を満たすことを意味している。
+\begin_inset Formula $u$
+\end_inset
+
+ が厳密に凹であるから，
+\begin_inset Formula $c_{t}'\neq c_{t}''$
+\end_inset
+
+ なる 
+\begin_inset Formula $t$
+\end_inset
+
+ については，
+\begin_inset Formula 
+\[
+u\left(\lambda c_{t}'+(1-\lambda)c_{t}\right)>\lambda u\left(c_{t}'\right)+(1-\lambda)u\left(c_{t}''\right)
+\]
+
+\end_inset
+
+が成り立っている。したがって，
+\begin_inset Formula 
+\[
+\sum_{t=1}^{\infty}\beta^{t}u\left(\lambda c_{t}'+(1-\lambda)c_{t}''\right)>\sum_{t=1}^{\infty}\beta^{t}u(c_{t}')=\sum_{t=1}^{\infty}\beta^{t}u(c_{t}'')
+\]
+
+\end_inset
+
+となる。これは，最初に解として選んだはずの 
+\begin_inset Formula $(c_{t}^{'})_{t\ge1}$
+\end_inset
+
+ と 
+\begin_inset Formula $(c_{t}'')_{t\ge1}$
+\end_inset
+
+が効用を最大化できていないということだ。異なる2つの解が存在すると仮定すると，実はそれらは解ではなかったという矛盾にたどりついてしまう。これで，解は1つしかない
+と結論付けられる。
+\end_layout
+
+\begin_layout Subsection
+オイラー条件
+\end_layout
+
+\begin_layout Standard
+限界代替率と相対価格が一致するところで最適消費が決まる。
+\begin_inset Formula $t$
+\end_inset
+
+ 期と 
+\begin_inset Formula $(t+1)$
+\end_inset
+
+ 期の消費の限界代替率は (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:ch08/utility"
+
+\end_inset
+
+) から，
+\begin_inset Formula 
+\[
+MRS_{t,t+1}=\frac{\partial U/\partial c_{t}}{\partial U/\partial c_{t+1}}=\frac{\beta^{t}u'(c_{t})}{\beta^{t+1}u'(c_{t+1})}=\frac{u'(c_{t})}{\beta u'(c_{t+1})}
+\]
+
+\end_inset
+
+相対価格に相当するものは，(
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:ch08/budget-constraint"
+
+\end_inset
+
+) の 
+\begin_inset Formula $c_{t-1}$
+\end_inset
+
+, 
+\begin_inset Formula $c_{t}$
+\end_inset
+
+ に掛かる係数を見ればよい。
+\begin_inset Formula 
+\[
+\text{相対価格}=\frac{1/(1+R_{t})}{1/(1+R_{t+1})}=1+r_{t+1}
+\]
+
+\end_inset
+
+したがって，最適に選ばれた消費計画は
+\begin_inset Formula 
+\begin{equation}
+\frac{u'(c_{t})}{u'(c_{t+1})}=\beta(1+r_{t+1})\label{eq:ch08/euler}
+\end{equation}
+
+\end_inset
+
+を満たす。(
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:ch08/euler"
+
+\end_inset
+
+) を
+\series bold
+オイラー条件
+\series default
+と呼ぶ。
+\end_layout
+
+\begin_layout Standard
+期間効用関数を CRRA型 (第
+\begin_inset Branch childonly
+inverted 0
+status open
+
+\begin_layout Standard
+7
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "chap:2期間最適消費モデル"
+
+\end_inset
+
+章を参照) と仮定すると（
+\begin_inset Formula $\theta>0$
+\end_inset
+
+ を相対的危険回避度の係数とする），
+\begin_inset Formula $u'(c)=c^{-\theta}$
+\end_inset
+
+と特定できるので，
+\begin_inset Formula 
+\begin{equation}
+c_{t+1}=\left[\beta(1+r_{t+1})\right]^{1/\theta}c_{t}\label{eq:ch08/euler-crra}
+\end{equation}
+
+\end_inset
+
+が分かる。
+\end_layout
+
+\begin_layout Subsection
+最適消費経路
+\end_layout
+
+\begin_layout Standard
+式 (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:ch08/euler"
+
+\end_inset
+
+) や (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:ch08/euler-crra"
+
+\end_inset
+
+) は今期の消費から次期の消費を作る方程式になっている。しかし，これだけではシミュレーションを実行することはできない。なぜなら，消費系列の初期値
+ 
+\begin_inset Formula $c_{1}$
+\end_inset
+
+ は問題定式化時点では与えられておらず，効用最大化問題の解として定まるものだからである。シミュレーションを行うには，
+\series bold
+どうにかして 
+\begin_inset Formula $c_{1}$
+\end_inset
+
+ を定めなければならない。
+\end_layout
+
+\begin_layout Standard
+式 (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:ch08/budget-0"
+
+\end_inset
+
+) をもう一度見てみよう。無限期先の将来の貯蓄残高
+\begin_inset Formula 
+\[
+\lim_{t\to\infty}\frac{s_{t}}{1+R_{t}}
+\]
+
+\end_inset
+
+の割引現在価値は非ポンジー・ゲーム条件によって非負であることが分かっている。果たして，正の値を取ることはあるだろうか？
+\begin_inset Formula 
+\[
+\lim_{t\to\infty}\frac{s_{t}}{1+R_{t}}>0\Longrightarrow\sum_{t=1}^{\infty}\frac{c_{t}}{1+R_{t}}<\sum_{t=1}^{\infty}\frac{w_{t}}{1+R_{t}}+s_{0}
+\]
+
+\end_inset
+
+であるから，生涯所得より小さな消費で済ませていることになる。これは効用最大化の観点からは望ましくない。なぜなら，貯蓄を減らして消費を増やせば必ず効用を高めること
+ができるからだ。したがって，
+\begin_inset Formula $\lim_{t\to\infty}\frac{s_{t}}{1+R_{t}}>0$
+\end_inset
+
+ となるような消費計画は最適ではありえない。オイラー条件と 
+\begin_inset Formula $\lim_{t\to\infty}\frac{s_{t}}{1+R_{t}}\le0$
+\end_inset
+
+ が成り立つときに消費計画が最適になることが知られている。将来貯蓄に関するこの不等式条件は
+\series bold
+横断性条件
+\series default
+（transversality condition）と呼ばれている。非ポンジー・ゲーム条件から将来貯蓄が負になることは排除されているので，次の命題にまとめること
+ができる。
+\end_layout
+
+\begin_layout Proposition
+オイラー条件 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:ch08/euler"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ と横断性条件
+\begin_inset Formula 
+\begin{equation}
+\lim_{t\to\infty}\frac{s_{t}}{1+R_{t}}=0\label{eq:ch08/tvc}
+\end{equation}
+
+\end_inset
+
+を満たす消費計画が最適である。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+(
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:ch08/tvc"
+
+\end_inset
+
+) が成り立っていれば，
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+\lim_{t\to\infty}\frac{s_{t}}{1+R_{t}} & =\lim_{t\to\infty}\frac{w_{t}-c_{t}+(1+r_{t})s_{t-1}}{1+R_{t}}\\
+ & =\lim_{t\to\infty}\frac{w_{t}-c_{t}}{1+R_{t}}+\lim_{t\to\infty}\frac{s_{t-1}}{1+R_{t-1}}
+\end{align*}
+
+\end_inset
+
+より，
+\begin_inset Formula 
+\[
+\lim_{t\to\infty}\frac{w_{t}-c_{t}}{1+R_{t}}=0
+\]
+
+\end_inset
+
+が成り立つ。消費の一般的な極限挙動について議論することは難しい。一例を挙げるとするならば，所得の増加率と消費と増加率が極限で一致する均整成長のケースで，利子率が
+成長率を平均的に上回るなら，横断性条件が成り立つ。
+\end_layout
+
+\begin_layout Standard
+オイラー条件 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:ch08/euler"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ より，
+\begin_inset Formula 
+\[
+\frac{1}{1+r_{t+1}}=\frac{\beta u'(c_{t+1})}{u'(c_{t})}
+\]
+
+\end_inset
+
+したがって，
+\begin_inset Formula 
+\begin{align*}
+\frac{1}{1+R_{t}} & =\left(\frac{1}{1+r_{1}}\right)\left(\frac{1}{1+r_{2}}\right)\left(\frac{1}{1+r_{3}}\right)\times\cdots\times\left(\frac{1}{1+r_{t}}\right)\\
+ & =\left(\frac{1}{1+r_{1}}\right)\left(\frac{\beta u'(c_{2})}{u'(c_{1})}\right)\left(\frac{\beta u'(c_{3})}{u'(c_{2})}\right)\times\cdots\times\left(\frac{\beta u'(c_{t})}{u'(c_{t-1})}\right)\\
+ & =\left(\frac{1}{1+r_{1}}\right)\frac{\beta^{t-1}u'(c_{t})}{u'(c_{1})}
+\end{align*}
+
+\end_inset
+
+横断性条件は次のように書き換えることができる。
+\begin_inset Formula 
+\[
+\lim_{t\to\infty}\beta^{t-1}u'(c_{t})s_{t}=0
+\]
+
+\end_inset
+
+
+\begin_inset Formula $\beta^{t-1}u'(c_{t})$
+\end_inset
+
+ は効用で測った貯蓄の機会費用になっている。これは帰属計算された資産価格であり，保有資産の割引現在価値がゼロに収束することを意味する。
+\end_layout
+
+\begin_layout Standard
+式 (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:ch08/euler"
+
+\end_inset
+
+) を，
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+bou{
+\end_layout
+
+\end_inset
+
+未来が現在を決める方程式
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+として眺めてみよう。
+\begin_inset Formula 
+\[
+(1+r_{1})u'(c_{1})=(1+R_{t})\beta^{t-1}u'(c_{t})
+\]
+
+\end_inset
+
+この式が任意の 
+\begin_inset Formula $t$
+\end_inset
+
+ で成り立つので 
+\begin_inset Formula $t\to\infty$
+\end_inset
+
+ としても成り立つはずだ。すなわち，
+\begin_inset Formula 
+\begin{equation}
+(1+r_{1})u'(c_{1})=\lim_{t\to\infty}(1+R_{t})\beta^{t-1}u'(c_{t})\label{eq:initial}
+\end{equation}
+
+\end_inset
+
+
+\begin_inset Formula $c_{1}$
+\end_inset
+
+ を決定するためにこの式を使えそうである。しかし，右辺の極限が収束するかどうかは自明ではない。
+\end_layout
+
+\begin_layout Conjecture
+オイラー条件方程式 (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:ch08/euler"
+
+\end_inset
+
+) と横断性条件 (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:ch08/tvc"
+
+\end_inset
+
+) が成り立つとき，(
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:initial"
+
+\end_inset
+
+) の右辺が収束して初期値 
+\begin_inset Formula $c_{1}$
+\end_inset
+
+ が一意に定まる。
+\end_layout
+
+\begin_layout Proof
+To be completed。
+\end_layout
+
+\begin_layout Proof
+\begin_inset Formula 
+\[
+(1+r_{1})u'(c_{1})=\lim_{t\to\infty}(1+R_{t})\beta^{t-1}u'(c_{t})\frac{s_{t}}{s_{t}}=\lim_{t\to\infty}\frac{\beta^{t-1}u'(c_{t})s_{t}}{s_{t}/(1+R_{t})}
+\]
+
+\end_inset
+
+不定形の極限で，同じスピードで変化しているので，収束するはず・・・・。Stolz
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+--
+\end_layout
+
+\end_inset
+
+Cesaro の定理に類似した結果（極限がわからなくても収束することさえ言えればOK）を探す。Cauchy 列になることを示す？
+\end_layout
+
+\begin_layout Proof
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+\begin_inset Formula $t>s$
+\end_inset
+
+ として。
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Formula 
+\[
+\frac{(1+R_{t})\beta^{t-1}u'(c_{t})}{1+r_{1}}-\frac{(1+R_{s})\beta^{s-1}u'(c_{s})}{1+r_{1}}=\frac{(1+R_{s})\beta^{s-1}}{1+r_{1}}\left[\beta^{t-s}\left(\frac{1+R_{t}}{1+R_{s}}\right)u'(c_{t})-u'(c_{s})\right]
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Formula 
+\begin{align*}
+(1+r_{1})u'(c_{1}) & =\lim_{t\to\infty}(1+R_{t})\beta^{t-1}u'(c_{t})\frac{s_{t}}{s_{t}}\\
+ & =\lim_{t\to\infty}\frac{\beta^{t-1}u'(c_{t})s_{t}}{s_{t}/(1+R_{t})}
+\end{align*}
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\frac{\beta^{t-1}u'(c_{t})s_{t}}{s_{t}/(1+R_{t})}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+最適成長モデル
+\end_layout
+
+\begin_layout Standard
+最適成長モデルまたはラムゼー・モデルは前節の最適消費モデルを成長モデルに組み込んだものである。
+\end_layout
+
+\begin_layout Subsection
+企業の行動と資本蓄積
+\end_layout
+
+\begin_layout Standard
+企業行動はソローモデルとほとんど同じである。総生産は
+\begin_inset Formula 
+\[
+Y_{t}=F(K_{t-1},A_{t-1}L_{t-1})
+\]
+
+\end_inset
+
+によって定まる。
+\begin_inset Formula $Y_{t},$
+\end_inset
+
+
+\begin_inset Formula $K_{t}$
+\end_inset
+
+, 
+\begin_inset Formula $L_{t}$
+\end_inset
+
+, 
+\begin_inset Formula $A_{t}$
+\end_inset
+
+はそれぞれ，
+\begin_inset Formula $t$
+\end_inset
+
+ 期の生産，資本ストック，労働需要，技術水準である。 
+\begin_inset Formula $F$
+\end_inset
+
+ は収穫一定の生産関数である。議論を簡単にするため，ストック変数は各期の期末に測る。すなわち，各期の期首のストックを用いて生産が行われる。
+\end_layout
+
+\begin_layout Assumption
+労働 
+\begin_inset Formula $L$
+\end_inset
+
+ と技術 
+\begin_inset Formula $A$
+\end_inset
+
+ は以下の外生的な成長ルールに従うと仮定する。
+\begin_inset Formula 
+\begin{align*}
+L_{t} & =(1+n)L_{t-1}\\
+A_{t} & =(1+g)A_{t-1}
+\end{align*}
+
+\end_inset
+
+
+\begin_inset Formula $n$
+\end_inset
+
+ は人口成長率，
+\begin_inset Formula $g$
+\end_inset
+
+ は技術進歩率である。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Assumption
+労働需要は完全に非弾力的であり，いつでも，どんな要素価格でも労働供給と需要が一致するとしよう
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+多くのマクロモデルの基礎となっているリアル・ビジネスサイクル・モデルは労働供給が賃金に依存して決まるように拡張したものだ。
+\end_layout
+
+\end_inset
+
+。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+利潤最大化条件により，
+\begin_inset Formula 
+\begin{align*}
+\frac{\partial F}{\partial K}(K_{t-1},A_{t-1}L_{t-1}) & =r_{t}+\delta\\
+\frac{\partial F}{\partial L}(K_{t-1},A_{t-1}L_{t-1}) & =w_{t}
+\end{align*}
+
+\end_inset
+
+ が成り立つ。ただし，
+\begin_inset Formula $r_{t}$
+\end_inset
+
+, 
+\begin_inset Formula $w_{t}$
+\end_inset
+
+, 
+\begin_inset Formula $\delta$
+\end_inset
+
+ はそれぞれ実質利子率，実質賃金，資本減耗率である。
+\end_layout
+
+\begin_layout Standard
+資本蓄積の方程式は，
+\begin_inset Formula 
+\[
+K_{t}-K_{t-1}=Y_{t}-C_{t}-\delta K_{t-1}
+\]
+
+\end_inset
+
+となる。ここで，
+\begin_inset Formula $C_{t}$
+\end_inset
+
+ は総消費であり，政府のない閉鎖経済を考えているので，
+\begin_inset Formula $Y_{t}-C_{t}$
+\end_inset
+
+ は 
+\begin_inset Formula $t$
+\end_inset
+
+ 期の粗投資と一致する。
+\begin_inset Formula $t$
+\end_inset
+
+ 気に起こる資本ストックの変化 
+\begin_inset Formula $K_{t}-K_{t-1}$
+\end_inset
+
+ は粗投資から資本減耗を差し引いたものになる。資本蓄積方程式を 
+\begin_inset Formula $A_{t}L_{t}$
+\end_inset
+
+ で除すと
+\begin_inset Formula 
+\[
+\frac{K_{t}}{A_{t}L_{t}}=\frac{Y_{t}}{A_{t}L_{t}}-\frac{C_{t}}{A_{t}L_{t}}+(1-\delta)\frac{K_{t-1}}{A_{t}L_{t}}
+\]
+
+\end_inset
+
+ここで，効率労働あたりの資本，生産，消費
+\begin_inset Formula 
+\[
+k_{t}=\frac{K_{t}}{A_{t}L_{t}},\quad y_{t}=f(k_{t-1})=\frac{Y_{t}}{A_{t-1}L_{t-1}},\quad c_{t}=\frac{C_{t}}{A_{t-1}L_{t-1}}
+\]
+
+\end_inset
+
+ を導入すると，資本蓄積方程式は，
+\begin_inset Formula 
+\begin{equation}
+k_{t}=\frac{f(k_{t-1})-c_{t}+(1-\delta)k_{t-1}}{(1+g)(1+n)}\label{eq:ch08/dynamics-of-k}
+\end{equation}
+
+\end_inset
+
+と書き換えることができる
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+自分に対するコメント：フロー変数の効率労働あたりの量を 
+\begin_inset Formula $A_{t-1}L_{t-1}$
+\end_inset
+
+ で除している。ソローモデルの章でもそうした方がよかったのかもしれない。あるいはストックを期首で測る。チェックする。
+\end_layout
+
+\end_inset
+
+。
+\end_layout
+
+\begin_layout Standard
+ソロー・モデルとは違って投資の水準が内生的に決まるため，これだけではダイナミクスを決定することはできない。これには家計の行動を記述する必要がある。
+\end_layout
+
+\begin_layout Subsection
+家計
+\end_layout
+
+\begin_layout Standard
+家計の行動はラムゼー問題の解によって定まるとする。ここでは，経済のすべての経済主体が1つの家計に属していると考えよう。個々の経済主体は 
+\begin_inset Formula $t$
+\end_inset
+
+ 期に
+\begin_inset Formula 
+\[
+\bar{c}_{t}=\frac{C_{t}}{L_{t-1}}
+\]
+
+\end_inset
+
+を消費し，その消費によって 
+\begin_inset Formula $u(\bar{c}_{t})$
+\end_inset
+
+ の当期効用を得る
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+\begin_inset Formula $t$
+\end_inset
+
+ 期に生まれる個人は 
+\begin_inset Formula $t$
+\end_inset
+
+ 期には消費しないとしよう。
+\end_layout
+
+\end_inset
+
+。家計全体の効用は時間方向には割引現在効用の総和，空間方向には総人口についての総和を取ったものとなる。したがって，家計は目的関数
+\begin_inset Formula 
+\[
+\sum_{t=1}^{\infty}\beta^{t-1}L_{t-1}u(\bar{c}_{t})
+\]
+
+\end_inset
+
+を最大化したい。
+\begin_inset Formula $L_{t}=(1+n)^{t}L_{0}$
+\end_inset
+
+ であることに注意すると，
+\begin_inset Formula 
+\[
+\sum_{t=1}^{\infty}\left\{ \beta(1+n)\right\} ^{t-1}u(\bar{c}_{t})
+\]
+
+\end_inset
+
+ を最大化することと同じである。ここで1つ仮定を置く必要がある。
+\end_layout
+
+\begin_layout Assumption
+割引因子 
+\begin_inset Formula $\beta$
+\end_inset
+
+ と人口成長率 
+\begin_inset Formula $n$
+\end_inset
+
+ は以下の関係を満たす。
+\begin_inset Formula 
+\[
+\beta<1+n.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+各期の予算制約は次のように書ける。
+\begin_inset Formula $S_{t}$
+\end_inset
+
+ は家計（マクロ経済）の総貯蓄残高である。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\bar{c}_{t}L_{t-1}+(S_{t}-S_{t-1})=r_{t}S_{t-1}+w_{t}L_{t-1}
+\]
+
+\end_inset
+
+1人あたりに換算すると（
+\begin_inset Formula $\bar{s}_{t}=S_{t}/L_{t-1}$
+\end_inset
+
+ と置く），
+\begin_inset Formula 
+\[
+\bar{c}_{t}+\frac{S_{t}}{L_{t-1}}=\frac{(1+r_{t})S_{t-1}}{L_{t-1}}+w_{t}
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\bar{c}_{t}+\bar{s}_{t}=\left(\frac{1+r_{t}}{1+n}\right)\bar{s}_{t-1}+w_{t}
+\]
+
+\end_inset
+
+累積的な利子率を
+\begin_inset Formula 
+\[
+1+R_{t}=\left(\frac{1+r_{1}}{1+n}\right)\left(\frac{1+r_{2}}{1+n}\right)\times\cdots\times\left(\frac{1+r_{t}}{1+n}\right)
+\]
+
+\end_inset
+
+と定義すれば，前節の問題と同じように扱える。割引現在価値を 
+\begin_inset Formula $t=T$
+\end_inset
+
+ まで足し上げると，次の等式を得る。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\sum_{t=1}^{T}\frac{\bar{c}_{t}}{1+R_{t}}+\frac{\bar{s}_{T}}{1+R_{T}}=\sum_{t=1}^{T}\frac{w_{t}}{1+R_{t}}+\bar{s}_{0}
+\]
+
+\end_inset
+
+
+\begin_inset Formula $T\to\infty$
+\end_inset
+
+ の極限を取ると，
+\begin_inset Formula 
+\begin{equation}
+\sum_{t=1}^{\infty}\frac{\bar{c}_{t}}{1+R_{t}}+\lim_{t\to\infty}\frac{\bar{s}_{t}}{1+R_{t}}=\sum_{t=1}^{\infty}\frac{w_{t}}{1+R_{t}}+\bar{s}_{0}\label{eq:ch08/budget2}
+\end{equation}
+
+\end_inset
+
+非ポンジー・ゲーム条件を課すと，次の生涯の制約条件を得る。
+\begin_inset Formula 
+\[
+\sum_{t=1}^{\infty}\frac{\bar{c}_{t}}{1+R_{t}}\le\sum_{t=1}^{\infty}\frac{w_{t}}{1+R_{t}}+\bar{s}_{0}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+したがって，家計は次の制約条件付き最大化問題を解いて消費計画を立てる。
+\begin_inset Formula 
+\begin{align*}
+ & \max\sum_{t=1}^{\infty}\left\{ \beta(1+n)\right\} ^{t-1}u(\bar{c}_{t})\\
+ & \text{subject to}\\
+ & \qquad\sum_{t=1}^{\infty}\frac{\bar{c}_{t}}{1+R_{t}}\le\sum_{t=1}^{\infty}\frac{w_{t}}{1+R_{t}}+\bar{s}_{0}
+\end{align*}
+
+\end_inset
+
+この問題のオイラー条件は
+\begin_inset Formula 
+\[
+\frac{\left\{ \beta(1+n)\right\} ^{t}u'(\bar{c}_{t})}{\left\{ \beta(1+n)\right\} ^{t+1}u'(\bar{c}_{t+1})}=\frac{1/(1+R_{t})}{1/(1+R_{t+1})}
+\]
+
+\end_inset
+
+すなわち，
+\begin_inset Formula 
+\begin{equation}
+\frac{u'(\bar{c}_{t})}{u'(\bar{c}_{t+1})}=\beta(1+r_{t+1})\label{eq:ch08/ramsey-growth-euler}
+\end{equation}
+
+\end_inset
+
+である。
+\end_layout
+
+\begin_layout Standard
+ここで，CRRA型の効用関数を仮定しよう。相対的危険回避度のパラメータを 
+\begin_inset Formula $\theta>0$
+\end_inset
+
+ とすると，
+\begin_inset Formula 
+\[
+u'(c)=c^{-\theta}
+\]
+
+\end_inset
+
+ である。したがって， 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:ch08/ramsey-growth-euler"
+
+\end_inset
+
+ は次のように変形できる。
+\begin_inset Formula 
+\[
+\frac{\bar{c}_{t+1}}{\bar{c}_{t}}=\left\{ \beta(1+r_{t+1})\right\} ^{1/\theta}
+\]
+
+\end_inset
+
+
+\begin_inset Formula $c_{t}=\bar{c}_{t}/A_{t-1}$
+\end_inset
+
+ と 
+\begin_inset Formula $A_{t}=(1+g)A_{t-1}$
+\end_inset
+
+ に注意して効率労働あたりの式に変形すると，
+\begin_inset Formula 
+\[
+\frac{\bar{c}_{t+1}/A_{t}}{\bar{c}_{t}/A_{t}}=\left\{ \beta(1+r_{t+1})\right\} ^{1/\theta}
+\]
+
+\end_inset
+
+したがって，
+\begin_inset Formula 
+\begin{align}
+\frac{c_{t+1}}{c_{t}} & =\frac{\left\{ \beta(1+r_{t+1})\right\} ^{1/\theta}}{1+g}\label{eq:ch08/ramsey-growth-euler2}
+\end{align}
+
+\end_inset
+
+を得る。このオイラー条件と横断性条件が同時に満たされているときに最適である。
+\end_layout
+
+\begin_layout Subsection
+最適経路
+\end_layout
+
+\begin_layout Standard
+最適成長モデルの均衡は次の3つを同時に満たしている状態である。
+\end_layout
+
+\begin_layout Itemize
+企業は毎期の利潤最大化条件を満たしている，かつ，
+\end_layout
+
+\begin_layout Itemize
+家計は生涯消費を最適に選んでいる。
+\end_layout
+
+\begin_layout Itemize
+財市場，資本市場の需給が一致している。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Theorem
+最適成長モデルの均衡（あるいは，最適経路，optimal path）は次の動学方程式で特徴付けられる。
+\begin_inset Formula 
+\begin{align}
+k_{t} & =\frac{f(k_{t-1})-c_{t}+(1-\delta)k_{t-1}}{(1+g)(1+n)}\label{eq:ch08/dyanamics-k}\\
+\frac{c_{t+1}}{c_{t}} & =\frac{\left[\beta\left\{ f'(k_{t})+1-\delta\right\} \right]^{1/\theta}}{1+g}\label{eq:ch08/dynamics-c}
+\end{align}
+
+\end_inset
+
+
+\begin_inset Formula $k_{0}$
+\end_inset
+
+ は所与で，
+\begin_inset Formula $c_{1}$
+\end_inset
+
+ は横断性条件
+\begin_inset Formula 
+\[
+\lim_{t\to\infty}\frac{k_{t}}{1+R_{t}}=0
+\]
+
+\end_inset
+
+によって定まる。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Proof
+式 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:ch08/dynamics-of-k"
+
+\end_inset
+
+, 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:ch08/ramsey-growth-euler2"
+
+\end_inset
+
+ および資本の限界生産性が利子率と一致することを用いている。資本市場精算条件より 
+\begin_inset Formula $S_{t}=K_{t}$
+\end_inset
+
+ が成り立っている。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+もし，初期値 
+\begin_inset Formula $(k_{0},c_{1})$
+\end_inset
+
+ が決まれば，以後の変数値を順番に計算していくことができる。
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $(k_{0},c_{1})$
+\end_inset
+
+ が決まれば，(
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:ch08/dyanamics-k"
+
+\end_inset
+
+) より 
+\begin_inset Formula $k_{1}$
+\end_inset
+
+ が決まる。さらに，(
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:ch08/dyanamics-k"
+
+\end_inset
+
+) より，
+\begin_inset Formula $c_{2}$
+\end_inset
+
+ が決まる。
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $(k_{1},c_{2})$
+\end_inset
+
+ が決まったので，(
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:ch08/dyanamics-k"
+
+\end_inset
+
+) より 
+\begin_inset Formula $k_{2}$
+\end_inset
+
+ が決まる。さらに，(
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:ch08/dyanamics-k"
+
+\end_inset
+
+) より，
+\begin_inset Formula $c_{3}$
+\end_inset
+
+ が決まる。
+\end_layout
+
+\begin_layout Itemize
+以下同様。
+\end_layout
+
+\begin_layout Standard
+しかし，
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:ch08/dyanamics-k"
+
+\end_inset
+
+, 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:ch08/dynamics-c"
+
+\end_inset
+
+ は初期値 
+\begin_inset Formula $k_{0}=K_{0}/(A_{0}L_{0})$
+\end_inset
+
+ のみ与えられており，消費の初期値 
+\begin_inset Formula $c_{1}$
+\end_inset
+
+ は横断性条件によって定められなければならない。これが最適成長モデル，ひいてはマクロ経済モデルをシミュレーションすることの難しさである。
+\end_layout
+
+\begin_layout Subsection
+長期均衡
+\end_layout
+
+\begin_layout Standard
+この問題の設定では，定常状態 
+\begin_inset Formula $(k^{*},c^{*})$
+\end_inset
+
+ に収束する経路が最適経路になる。なお，
+\begin_inset Formula $(k^{*},c^{*})$
+\end_inset
+
+ は次の方程式を満たす。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+k^{*} & =\frac{f(k^{*})-c^{*}+(1-\delta)k^{*}}{(1+g)(1+n)}\\
+1 & =\frac{\left[\beta\left\{ f'(k^{*})+1-\delta\right\} \right]^{1/\theta}}{1+g}.
+\end{align*}
+
+\end_inset
+
+パラメータ（
+\begin_inset Formula $f$
+\end_inset
+
+, 
+\begin_inset Formula $\delta$
+\end_inset
+
+, 
+\begin_inset Formula $\beta$
+\end_inset
+
+, 
+\begin_inset Formula $g$
+\end_inset
+
+, 
+\begin_inset Formula $\theta$
+\end_inset
+
+）が与えられれば，コンピュータを用いて数値的に解 
+\begin_inset Formula $(k^{*},c^{*})$
+\end_inset
+
+ を求められる。
+\end_layout
+
+\begin_layout Standard
+最適成長モデルの最適経路 
+\begin_inset Formula $\left\{ (k_{t},c_{t+1})\right\} _{t=0}^{\infty}$
+\end_inset
+
+ は，
+\begin_inset Formula 
+\[
+\lim_{t\to\infty}k_{t}=k^{*},\qquad\lim_{t\to\infty}c_{t}=c^{*}
+\]
+
+\end_inset
+
+を満たす。効率労働あたりの変数が収束したあとの状態を長期均衡と呼ぶ。経済は十分長い時間がたったあとには長期均衡に収束するので，収束後の状態が経済の長期的な動向を
+示していると考えるのである。
+\end_layout
+
+\begin_layout Standard
+マクロレベルの集計変数については，長期では
+\begin_inset Formula 
+\[
+K_{t}\approx A_{t}L_{t}k^{*},\quad C_{t}\approx A_{t-1}L_{t-1}c^{*}
+\]
+
+\end_inset
+
+などが成り立つ。また，1人あたりの変数については
+\begin_inset Formula 
+\[
+\frac{K_{t}}{L_{t}}\approx A_{t}k^{*},\quad\frac{C_{t}}{L_{t-1}}\approx A_{t-1}c^{*}
+\]
+
+\end_inset
+
+ などが成り立っている。重要なのは成長率であり，次のような性質が成り立つ。
+\end_layout
+
+\begin_layout Theorem
+最適成長モデルの長期均衡は以下の性質を持つ。
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+効率労働あたりの変数は定数である。
+\end_layout
+
+\begin_layout Itemize
+1人あたりの変数は 
+\begin_inset Formula $g$
+\end_inset
+
+ の率で成長する。
+\end_layout
+
+\begin_layout Itemize
+集計量は 
+\begin_inset Formula $g+n+gn$
+\end_inset
+
+ の率で成長する。
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Corollary
+最適成長モデルの長期均衡では，次のことが言える。
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+実質利子率は定数である。
+\end_layout
+
+\begin_layout Itemize
+賃金は 
+\begin_inset Formula $g$
+\end_inset
+
+ の率で成長する。
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+つまり，長期均衡における成長率に注目する限り，最適成長モデルとソロー・モデルでは同じ結論が成り立っている。
+\end_layout
+
+\begin_layout Section
+プログラミング
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:ch08/dyanamics-k"
+
+\end_inset
+
+, 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:ch08/dynamics-c"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ のような式があれば，シミュレーションのコードを自力で書けそうな気がするだろうか。
+\end_layout
+
+\begin_layout Standard
+実は，このモデルのシミュレーションは，これまでに学んできた方法では実行できない。なぜなら，2変数の動学方程式に対して初期値が1つ（
+\begin_inset Formula $k_{0}$
+\end_inset
+
+）しか与えられていないからだ。消費の「初期値」
+\begin_inset Formula $c_{1}$
+\end_inset
+
+ は横断性条件を用いなければ決まらない。つまり，適当に 
+\begin_inset Formula $c_{1}$
+\end_inset
+
+ を選んでシミュレーションして 
+\begin_inset Formula $k_{t}\to k^{*}$
+\end_inset
+
+ と 
+\begin_inset Formula $c_{t}\to c^{*}$
+\end_inset
+
+ が成り立っていることを確認して，ようやくそれが最適経路であるとわかる。手当たりしだいに 
+\begin_inset Formula $c_{1}$
+\end_inset
+
+ を変化させてシミュレーションすることもできるが効率がよくないので，ここでは 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "RHasumi"
+literal "false"
+
+\end_inset
+
+で紹介されている方法を採用しよう。
+\end_layout
+
+\begin_layout Standard
+動学方程式は
+\begin_inset Formula 
+\[
+k_{t}=\frac{f(k_{t-1})-c_{t}+(1-\delta)k_{t-1}}{(1+g)(1+n)}\qquad c_{t+1}=\frac{c_{t}\left[\beta\left\{ f'(k_{t})+1-\delta\right\} \right]^{1/\theta}}{1+g}
+\]
+
+\end_inset
+
+で与えられている。
+\begin_inset Formula $t=0$
+\end_inset
+
+ に対して，
+\begin_inset Formula 
+\[
+k_{1}=\frac{f(k_{0})-c_{1}+(1-\delta)k_{0}}{(1+g)(1+n)}\qquad c_{2}=\frac{c_{1}\left[\beta\left\{ f'(k_{0})+1-\delta\right\} \right]^{1/\theta}}{1+g}
+\]
+
+\end_inset
+
+
+\begin_inset Formula $t=1,2,\dots,T-1$
+\end_inset
+
+ に対して，
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+k_{2}=\frac{f(k_{1})-c_{2}+(1-\delta)k_{1}}{(1+g)(1+n)}\qquad c_{3}=\frac{c_{2}\left[\beta\left\{ f'(k_{1})+1-\delta\right\} \right]^{1/\theta}}{1+g}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+k_{3}=\frac{f(k_{2})-c_{3}+(1-\delta)k_{2}}{(1+g)(1+n)}\qquad c_{4}=\frac{c_{3}\left[\beta\left\{ f'(k_{2})+1-\delta\right\} \right]^{1/\theta}}{1+g}
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\vdots
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+k_{T}=\frac{f(k_{T-1})-c_{T}+(1-\delta)k_{T-1}}{(1+g)(1+n)}\qquad c_{T+1}=\frac{c_{T}\left[\beta\left\{ f'(k_{T})+1-\delta\right\} \right]^{1/\theta}}{1+g}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $t=0$
+\end_inset
+
+ から 
+\begin_inset Formula $t=T-1$
+\end_inset
+
+ までの 
+\begin_inset Formula $2T$
+\end_inset
+
+ 本の方程式がある。変数は2種類，
+\begin_inset Formula $2T+2$
+\end_inset
+
+ 個含まれている：
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $k_{0},k_{1},\dots k_{T}$
+\end_inset
+
+ で 
+\begin_inset Formula $T+1$
+\end_inset
+
+ 個
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $c_{1},c_{2},\dots,c_{T+1}$
+\end_inset
+
+ で 
+\begin_inset Formula $T+1$
+\end_inset
+
+ 個
+\end_layout
+
+\begin_layout Standard
+初期条件 
+\begin_inset Formula $k_{0}$
+\end_inset
+
+ と，終端条件 
+\begin_inset Formula $c_{T+1}=c^{*}$
+\end_inset
+
+ を代入することで，未知変数の数を 
+\begin_inset Formula $2T$
+\end_inset
+
+ 個に減らしてやれば，最適経路を近似的に導くことができる。
+\begin_inset Formula $k_{T}=k^{*}$
+\end_inset
+
+ を代入しないことに注意せよ
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+これをやってしまうと解けなくなる。
+\end_layout
+
+\end_inset
+
+。
+\end_layout
+
+\begin_layout Subsubsection*
+準備
+\end_layout
+
+\begin_layout Standard
+必要なライブラリと関数をインポートする。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch08/import>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch08/for-pdf-only/noinc>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+動学方程式 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:ch08/dynamics-of-k"
+
+\end_inset
+
+, 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:ch08/dynamics-c"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ を定義するために必要最小限のシンボルを導入しよう。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch08/define-symbols>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+生産関数はコブ＝ダグラス型とする。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch08/production, sympy=
+\begin_inset Quotes jrd
+\end_inset
+
+equation*
+\begin_inset Quotes jrd
+\end_inset
+
+>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+動学方程式
+\end_layout
+
+\begin_layout Standard
+動学方程式 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:ch08/dyanamics-k"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:ch08/ramsey-growth-euler2"
+
+\end_inset
+
+ において，ゼロになるべき関数を定義する。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch08/dynamics-k, sympy=
+\begin_inset Quotes jrd
+\end_inset
+
+equation*
+\begin_inset Quotes jrd
+\end_inset
+
+>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+および，
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch08/dynamics-c, sympy=
+\begin_inset Quotes jrd
+\end_inset
+
+equation*
+\begin_inset Quotes jrd
+\end_inset
+
+>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+定常状態 
+\begin_inset Formula $(k^{*},c^{*})$
+\end_inset
+
+ を求めるためには，次のベクトル関数がゼロになる点を探せばよい。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch08/steady-state, sympy=
+\begin_inset Quotes jrd
+\end_inset
+
+equation*
+\begin_inset Quotes jrd
+\end_inset
+
+>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+定常状態を数値的に求める
+\end_layout
+
+\begin_layout Standard
+以下のパラメータを用いる。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch08/parameters>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+数値関数に変換する。これには，
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+sp.lambdify()
+\end_layout
+
+\end_inset
+
+ を用いる。ヤコビ行列も求めておこう。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch08/lambdify>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+fsolve()
+\end_layout
+
+\end_inset
+
+ を用いて定常状態を求める。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch08/solve-for-ss>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<engine=
+\begin_inset Quotes jrd
+\end_inset
+
+R
+\begin_inset Quotes jrd
+\end_inset
+
+, include=FALSE>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+kstar <- py$ss[[1]]
+\end_layout
+
+\begin_layout Plain Layout
+
+cstar <- py$ss[[2]]
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+定常状態の値は 
+\begin_inset Formula $(k^{*},c^{*})\approx(\Sexpr{round(kstar,3)},\Sexpr{round(cstar,3)})$
+\end_inset
+
+ であることが分かる。
+\end_layout
+
+\begin_layout Subsubsection*
+最適経路を求める
+\end_layout
+
+\begin_layout Standard
+たくさんのシンボル変数を作るには次のようにすればよい
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+c[0]
+\end_layout
+
+\end_inset
+
+ は使わない。
+\end_layout
+
+\end_inset
+
+。シンボルのタプルが生成される。負数のインデックスを使うと「最後から 
+\begin_inset Formula $n$
+\end_inset
+
+ 個目」のような指定ができることを思い出そう。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch08/many-symbols, sympy=
+\begin_inset Quotes jrd
+\end_inset
+
+equation*
+\begin_inset Quotes jrd
+\end_inset
+
+>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+最適経路上では次の行列値関数がゼロになる。数が多いので最初の3行のみ出力する。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch08/equilibrium-equation, sympy=
+\begin_inset Quotes jrd
+\end_inset
+
+equation*
+\begin_inset Quotes jrd
+\end_inset
+
+>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+列ベクトルに変換しておこう。
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+.T
+\end_layout
+
+\end_inset
+
+ で転置行列を作ってからリシェイプする。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch08/make-column, sympy=
+\begin_inset Quotes jrd
+\end_inset
+
+equation*
+\begin_inset Quotes jrd
+\end_inset
+
+>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+初期値 
+\begin_inset Formula $k_{0}$
+\end_inset
+
+ と終端条件 
+\begin_inset Formula $c_{T+1}=c^{*}$
+\end_inset
+
+ を与えて数値関数に変換し，解を求める。ヤコビ行列の自動計算は時間がかかるので省略しよう
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+均衡を規定する方程式の構造に注目すれば効率よくヤコビ行列を定義できる。
+\end_layout
+
+\end_inset
+
+。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch08/solve>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+得られた結果には 
+\begin_inset Formula $k_{0}$
+\end_inset
+
+ と 
+\begin_inset Formula $c_{T+1}$
+\end_inset
+
+ が含まれていないので，これを補う。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch08/k-and-c>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+結果をプロットしたものが図
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:最適成長経路"
+
+\end_inset
+
+である。次のコードで生成した。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch08/show/plot>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+centering
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+includegraphics[height=0.3
+\backslash
+textheight]{Figure/ch08/show-1}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+最適成長経路
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:最適成長経路"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+関数にまとめる
+\end_layout
+
+\begin_layout Standard
+次のような関数にまとめておこう。仮引数は次のような意味である。
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+eqm_k
+\end_layout
+
+\end_inset
+
+: 均衡条件 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:ch08/dynamics-of-k"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+eqm_c
+\end_layout
+
+\end_inset
+
+: 均衡条件 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:ch08/dynamics-c"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+k_init
+\end_layout
+
+\end_inset
+
+: 
+\begin_inset Formula $k$
+\end_inset
+
+ の初期値
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+c_final
+\end_layout
+
+\end_inset
+
+: 消費の終端条件。定常状態を事前に求めておく。
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+param
+\end_layout
+
+\end_inset
+
+: モデルのパラメータを格納する辞書
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+T
+\end_layout
+
+\end_inset
+
+: シミュレーションの期間
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch08/function>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+使用例は以下の通り（結果は図
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:最適成長経路-1"
+
+\end_inset
+
+）。
+\begin_inset Formula $k_{0}>k^{*}$
+\end_inset
+
+ から出発しても同じ定常状態に収束していく様子を確認できる。パラメータを変更するなど，各自で色々と試してほしい。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch08/example/plot>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+centering
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+includegraphics[height=0.3
+\backslash
+textheight]{Figure/ch08/example-1}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+最適成長経路
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:最適成長経路-1"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+まとめと注意
+\end_layout
+
+\begin_layout Standard
+この章では，最適成長モデルは均衡経路が近似的に満たすべき連立方程式を用いて均衡経路を数値的に求めた。ソローモデルのシミュレーションとは違って，すべての時点の解が
+一斉に求まるような解法になっている。最適成長モデルは将来の情報に依存して現在の行動が定まるようなモデルだからだ。未来が現在を定める性質を持つモデルを，フォワード
+・ルッキングなモデルと呼ぶ。
+\end_layout
+
+\begin_layout Standard
+フォワード・ルッキングなモデルの解法はこの章で紹介した方法がベストという訳ではない。うまく行かない例を見つけるには，さきほどのコードを 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+T
+\end_layout
+
+\end_inset
+
+ を小さくして再実行してみてほしい。定常状態周りの挙動が安定しないことに気づくと思う。定常状態に有限ステップでたどり着くような点はそれ自身を除いて存在しないので
+，
+\begin_inset Formula $c_{T+1}=c^{*}$
+\end_inset
+
+ が成り立つなら必ず 
+\begin_inset Formula $k_{T}\neq k^{*}$
+\end_inset
+
+ になってしまうのだ。
+\end_layout
+
+\begin_layout Standard
+この章で用いた解法は理論的に高度なことが要求されないという大きな利点があるものの，定常状態の周りで不安定になるので，少し使いにくいケースもある。マクロ経済分析の
+多くは定常状態の周りの状況を分析することを主眼としているからだ。定常状態の周りの分析をきちんと実行するためには，別の手法を用いる方がよい。非線形性と真っ向勝負す
+るなら動的計画法を用いる 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "Stachurski2009"
+literal "false"
+
+\end_inset
+
+。関数解析の入門的な知識が必要になるのでじっくり取り組もう。非線形性が強くない場合や，おおよその傾向を掴むことが目的であれば，定常状態周りの線形近似を用いること
+もできる 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "Kato2006"
+literal "false"
+
+\end_inset
+
+。こちらは線形代数学のやや高度な技術が駆使される。いずれの方向に進むにせよ，
+\begin_inset CommandInset citation
+LatexCommand citet
+key "RHasumi"
+literal "false"
+
+\end_inset
+
+ はよい出発点だろう。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Branch childonly
+inverted 0
+status open
+
+\begin_layout Standard
+\begin_inset CommandInset bibtex
+LatexCommand bibtex
+btprint "btPrintCited"
+bibfiles "../Bibliography/ref,../Bibliography/software"
+options "Styles/jecon"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document
