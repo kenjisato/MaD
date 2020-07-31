@@ -2089,7 +2089,7 @@ k_{t}=\frac{f(k_{t-1})-c_{t}+(1-\delta)k_{t-1}}{(1+g)(1+n)}\qquad c_{t+1}=\frac{
  に対して，
 \begin_inset Formula 
 \[
-k_{1}=\frac{f(k_{0})-c_{1}+(1-\delta)k_{0}}{(1+g)(1+n)}\qquad c_{2}=\frac{c_{1}\left[\beta\left\{ f'(k_{0})+1-\delta\right\} \right]^{1/\theta}}{1+g}
+k_{1}=\frac{f(k_{0})-c_{1}+(1-\delta)k_{0}}{(1+g)(1+n)}\qquad c_{2}=\frac{c_{1}\left[\beta\left\{ f'(k_{1})+1-\delta\right\} \right]^{1/\theta}}{1+g}
 \]
 
 \end_inset
@@ -2104,7 +2104,7 @@ k_{1}=\frac{f(k_{0})-c_{1}+(1-\delta)k_{0}}{(1+g)(1+n)}\qquad c_{2}=\frac{c_{1}\
 \begin_layout Standard
 \begin_inset Formula 
 \[
-k_{2}=\frac{f(k_{1})-c_{2}+(1-\delta)k_{1}}{(1+g)(1+n)}\qquad c_{3}=\frac{c_{2}\left[\beta\left\{ f'(k_{1})+1-\delta\right\} \right]^{1/\theta}}{1+g}
+k_{2}=\frac{f(k_{1})-c_{2}+(1-\delta)k_{1}}{(1+g)(1+n)}\qquad c_{3}=\frac{c_{2}\left[\beta\left\{ f'(k_{2})+1-\delta\right\} \right]^{1/\theta}}{1+g}
 \]
 
 \end_inset
@@ -2115,7 +2115,7 @@ k_{2}=\frac{f(k_{1})-c_{2}+(1-\delta)k_{1}}{(1+g)(1+n)}\qquad c_{3}=\frac{c_{2}\
 \begin_layout Standard
 \begin_inset Formula 
 \[
-k_{3}=\frac{f(k_{2})-c_{3}+(1-\delta)k_{2}}{(1+g)(1+n)}\qquad c_{4}=\frac{c_{3}\left[\beta\left\{ f'(k_{2})+1-\delta\right\} \right]^{1/\theta}}{1+g}
+k_{3}=\frac{f(k_{2})-c_{3}+(1-\delta)k_{2}}{(1+g)(1+n)}\qquad c_{4}=\frac{c_{3}\left[\beta\left\{ f'(k_{3})+1-\delta\right\} \right]^{1/\theta}}{1+g}
 \]
 
 \end_inset
@@ -2881,7 +2881,96 @@ name "fig:最適成長経路"
 \end_layout
 
 \begin_layout Standard
-次のような関数にまとめておこう。仮引数は次のような意味である。
+試行錯誤がある程度落ち着いたら一連の作業を関数にまとめておこう。2つの関数を作る。
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+solve_ss
+\end_layout
+
+\end_inset
+
+: 資本蓄積方程式およびオイラー条件のシンボリックな表現，モデルのパラメータを引数に取り，定常状態 
+\begin_inset Formula $(k^{*},c^{*})$
+\end_inset
+
+ の値を出力する関数
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+solve_optimal_growth
+\end_layout
+
+\end_inset
+
+: 資本蓄積方程式およびオイラー条件のシンボリックな表現，
+\begin_inset Formula $k$
+\end_inset
+
+ の初期値，
+\begin_inset Formula $c$
+\end_inset
+
+ の終端条件，モデルのパラメータを引数に取り，最適経路 
+\begin_inset Formula $\left(\{k_{t}\}_{t=0}^{T},\{c_{t}\}_{t=1}^{T+1}\right)$
+\end_inset
+
+ を出力する関数
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Paragraph
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+solve_ss
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+定常状態を求める関数は次のように定義する。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch08/solve_ss>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+仮引数は次のような意味である。
 \end_layout
 
 \begin_layout Itemize
@@ -2901,7 +2990,7 @@ reference "eq:ch08/dynamics-of-k"
 
 \end_inset
 
-
+のシンボリックな表現
 \end_layout
 
 \begin_layout Itemize
@@ -2924,7 +3013,127 @@ noprefix "false"
 
 \end_inset
 
- 
+ のシンボリックな表現
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+param
+\end_layout
+
+\end_inset
+
+: モデルのパラメータを格納する辞書
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+x0
+\end_layout
+
+\end_inset
+
+: 解探索の初期値
+\end_layout
+
+\begin_layout Standard
+本体部分は上で説明したものとほとんど同じなので，解説は省略する。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Paragraph
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+solve_optimal_growth
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+均衡経路を求める関数を次のように定義する。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch08/solve_optimal_growth>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+仮引数は次のような意味である。
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+eqm_k
+\end_layout
+
+\end_inset
+
+: 均衡条件 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:ch08/dynamics-of-k"
+
+\end_inset
+
+のシンボリックな表現
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+eqm_c
+\end_layout
+
+\end_inset
+
+: 均衡条件 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:ch08/dynamics-c"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ のシンボリックな表現
 \end_layout
 
 \begin_layout Itemize
@@ -2984,26 +3193,18 @@ T
 \end_layout
 
 \begin_layout Standard
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-<<ch08/function>>=
-\end_layout
-
-\begin_layout Plain Layout
-
-@
-\end_layout
-
+\begin_inset Separator plain
 \end_inset
 
 
 \end_layout
 
+\begin_layout Paragraph
+使用例
+\end_layout
+
 \begin_layout Standard
-使用例は以下の通り（結果は図
+定義した関数は，次のように使用する（結果は図
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:最適成長経路-1"
@@ -3075,6 +3276,202 @@ textheight]{Figure/ch08/example-1}
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:最適成長経路-1"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+比較動学分析
+\end_layout
+
+\begin_layout Standard
+長期均衡にある経済に対してパラメータ変化のショックが生じると，その後，経済はどのように変化するだろうか。この手の分析を比較動学分析と呼ぶ。
+\end_layout
+
+\begin_layout Standard
+例えば，次のようなシナリオを考えよう。
+\end_layout
+
+\begin_layout Itemize
+元のパラメータに対する定常状態にある経済に対して，
+\end_layout
+
+\begin_layout Itemize
+技術進歩を加速するイノベーションが起こり，
+\begin_inset Formula $g$
+\end_inset
+
+ が 0.02 から 0.03 に上昇した。 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+やることは3つ。
+\end_layout
+
+\begin_layout Enumerate
+変化前のパラメータに対応する定常状態を求める。（
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+ss1
+\end_layout
+
+\end_inset
+
+ として実行済み）
+\end_layout
+
+\begin_layout Enumerate
+変化後のパラメータに対応する定常状態を求める。
+\end_layout
+
+\begin_layout Enumerate
+変化後のパラメータに対して最適経路を求める。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+パラメータの更新と新しい定常状態は次のように計算できる。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch08/new-ss>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+パラメータ変化後の最適経路を導出する。変化前の定常状態を初期値として付加しておこう。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch08/transition>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+最後に可視化する（結果は図
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:移行過程"
+
+\end_inset
+
+）。パラメータ変化のタイミングで効率労働あたりの消費がジャンプしていることに気がつくだろう。将来の経済状況に関する予想が修正されると，フロー変数には大きな変化が
+起こる。ソロー・モデルにはない，ラムゼー・モデルの特徴である。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch08/transition-plot/plot>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+centering
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+includegraphics[height=0.3
+\backslash
+textheight]{Figure/ch08/transition-plot-1}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+移行過程
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:移行過程"
 
 \end_inset
 
