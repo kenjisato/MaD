@@ -180,6 +180,13 @@ LatexCommand tableofcontents
 
 \begin_layout Chapter
 成長会計とソロー・モデル
+\begin_inset CommandInset label
+LatexCommand label
+name "chap:成長会計とソロー・モデル"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section

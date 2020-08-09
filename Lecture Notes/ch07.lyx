@@ -185,6 +185,13 @@ LatexCommand tableofcontents
 
 \begin_layout Chapter
 2期間最適消費モデル
+\begin_inset CommandInset label
+LatexCommand label
+name "chap:2期間最適消費モデル"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section

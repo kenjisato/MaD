@@ -313,7 +313,7 @@ saving_increased = pd.concat([before, after.iloc[1:]])
 
 
 #---- ch06/saving-change/plot
-saving_increased.C.plot();
+saving_increased.C.plot()
 nochange.C.plot();
 plt.legend(['Saving rate increased', 'No change'])
 plt.show()
