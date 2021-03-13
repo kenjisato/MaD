@@ -6,17 +6,7 @@
 \origin unavailable
 \textclass scrbook
 \begin_preamble
-\usepackage{Styles/common}
-\usepackage{Styles/code}
-\usepackage{Styles/problem}
-
-\usepackage{url}
-
-% Knitr Setup 
-<<setup, include=FALSE>>=
-source('Knitr/setup.R')
-source_python('Knitr/setup.py')
-@
+\input{Include/preamble.tex}
 \end_preamble
 \options dvipdfmx,paper=a5,fontsize=9pt
 \use_default_options true
