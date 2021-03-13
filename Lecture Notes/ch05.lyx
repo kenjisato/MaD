@@ -110,23 +110,12 @@ status open
 
 \begin_layout Plain Layout
 
-
-\backslash
-mainmatter
+<<setup-05, echo=FALSE>>=
 \end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset ERT
-status open
 
 \begin_layout Plain Layout
 
-<<engine='R', echo=FALSE>>=
+source('Knitr/setup.R')
 \end_layout
 
 \begin_layout Plain Layout
@@ -145,6 +134,11 @@ knitr::read_chunk('Python/ch05.py')
 \end_layout
 
 \begin_layout Standard
+\begin_inset Branch childonly
+inverted 0
+status open
+
+\begin_layout Standard
 \begin_inset ERT
 status open
 
@@ -159,11 +153,6 @@ setcounter{chapter}{4}
 
 
 \end_layout
-
-\begin_layout Standard
-\begin_inset Branch childonly
-inverted 0
-status open
 
 \begin_layout Standard
 \begin_inset CommandInset toc

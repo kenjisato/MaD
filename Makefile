@@ -11,12 +11,12 @@ BASENAMES4TEXT := $(basename $(notdir $(NOTES4TEXT)))
 SCRNAMES4TEXT := $(addsuffix .py, $(BASENAMES4TEXT))
 
 TARGET := $(addprefix $(OUTDIR4TEXT)/, $(SCRNAMES4TEXT)) $(addprefix $(OUTDIR4SLIDES)/, $(SCRNAMES4SLIDES)) 
-TEMPLATE := $(NBDIR)/simplepython.tpl
+CONFIG := $(NBDIR)/cfg.py
 
 all: $(TARGET)
 
-$(OUTDIR4SLIDES)/week%.py: $(NBDIR)/week%.ipynb $(TEMPLATE)
-	jupyter nbconvert $< --to python --template $(TEMPLATE) --output-dir $(OUTDIR4SLIDES)
+$(OUTDIR4SLIDES)/week%.py: $(NBDIR)/week%.ipynb $(NBDIR)/cfg.py
+	jupyter nbconvert $< --to script --config $(CONFIG) --output-dir $(OUTDIR4SLIDES)
 
-$(OUTDIR4TEXT)/ch%.py: $(NBDIR)/ch%.ipynb $(TEMPLATE)
-	jupyter nbconvert $< --to python --template $(TEMPLATE) --output-dir $(OUTDIR4TEXT)
+$(OUTDIR4TEXT)/ch%.py: $(NBDIR)/ch%.ipynb $(NBDIR)/cfg.py
+	jupyter nbconvert $< --to script --config $(CONFIG) --output-dir $(OUTDIR4TEXT)

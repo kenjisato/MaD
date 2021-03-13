@@ -6,29 +6,15 @@
 \origin unavailable
 \textclass scrbook
 \begin_preamble
-\usepackage{Styles/common}
-\usepackage{Styles/code}
-\usepackage{Styles/problem}
-
-\usepackage{url}
-
-% Knitr Setup 
-<<setup, include=FALSE>>=
-source('Knitr/setup.R')
-knitr::read_chunk('Knitr/setup.py')
-@
-% Python Setup 
-<<python-setup, include=FALSE>>=
-@ 
+\input{_preamble.tex}
 \end_preamble
-\options dvipdfmx,paper=a5,fontsize=9pt
+\options dvipdfmx,paper=a5,9pt
 \use_default_options true
-\master _main.lyx
 \begin_modules
 knitr
+logicalmkup
 theorems-ams-chap-bytype
 theorems-ams-extended-chap-bytype
-logicalmkup
 \end_modules
 \maintain_unincluded_children false
 \language japanese
@@ -83,6 +69,11 @@ logicalmkup
 \filename_suffix 0
 \color #faf0e6
 \end_branch
+\branch full
+\selected 1
+\filename_suffix 0
+\color #faf0e6
+\end_branch
 \index Index
 \shortcut idx
 \color #008000
@@ -96,7 +87,7 @@ logicalmkup
 \quotes_style cjk
 \dynamic_quotes 0
 \papercolumns 1
-\papersides 1
+\papersides 2
 \paperpagestyle default
 \tracking_changes false
 \output_changes false
@@ -106,46 +97,6 @@ logicalmkup
 \end_header
 
 \begin_body
-
-\begin_layout Standard
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-mainmatter
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-<<engine='R', echo=FALSE>>=
-\end_layout
-
-\begin_layout Plain Layout
-
-knitr::read_chunk('Python/ch01.py')
-\end_layout
-
-\begin_layout Plain Layout
-
-@
-\end_layout
-
-\end_inset
-
-
-\end_layout
 
 \begin_layout Standard
 \begin_inset Branch childonly
@@ -159,6 +110,35 @@ LatexCommand tableofcontents
 \end_inset
 
 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<setup-01, include=FALSE>>= 
+\end_layout
+
+\begin_layout Plain Layout
+
+source('Knitr/setup.R')
+\end_layout
+
+\begin_layout Plain Layout
+
+knitr::read_chunk('Python/ch01.py')
+\end_layout
+
+\begin_layout Plain Layout
+
+@
 \end_layout
 
 \end_inset

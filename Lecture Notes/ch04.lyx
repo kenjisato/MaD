@@ -6,20 +6,7 @@
 \origin unavailable
 \textclass scrbook
 \begin_preamble
-\usepackage{Styles/common}
-\usepackage{Styles/code}
-\usepackage{Styles/problem}
-
-\usepackage{url}
-
-% Knitr Setup 
-<<setup, include=FALSE>>=
-source('Knitr/setup.R')
-knitr::read_chunk('Knitr/setup.py')
-@
-% Python Setup 
-<<python-setup, include=FALSE>>=
-@ 
+\input{_preamble.tex}
 \end_preamble
 \options dvipdfmx,paper=a5,fontsize=9pt
 \use_default_options true
@@ -122,7 +109,20 @@ status open
 
 \begin_layout Plain Layout
 
-<<engine='R', echo=FALSE>>=
+<<setup-04, engine=
+\begin_inset Quotes jrd
+\end_inset
+
+R
+\begin_inset Quotes jrd
+\end_inset
+
+, echo=FALSE>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+source('Knitr/setup.R')
 \end_layout
 
 \begin_layout Plain Layout
@@ -141,6 +141,11 @@ knitr::read_chunk('Python/ch04.py')
 \end_layout
 
 \begin_layout Standard
+\begin_inset Branch childonly
+inverted 0
+status open
+
+\begin_layout Standard
 \begin_inset ERT
 status open
 
@@ -155,11 +160,6 @@ setcounter{chapter}{3}
 
 
 \end_layout
-
-\begin_layout Standard
-\begin_inset Branch childonly
-inverted 0
-status open
 
 \begin_layout Standard
 \begin_inset CommandInset toc

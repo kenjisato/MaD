@@ -6,16 +6,7 @@
 \origin unavailable
 \textclass scrbook
 \begin_preamble
-\usepackage{Styles/common}
-\usepackage{Styles/code}
-\usepackage{Styles/problem}
-\usepackage{url}
-
-% Knitr Setup 
-<<setup, include=FALSE>>=
-source('Knitr/setup.R')
-source_python('Knitr/setup.py')
-@
+\input{Include/preamble.tex}
 \end_preamble
 \options dvipdfmx,paper=a5,9pt
 \use_default_options true
@@ -109,23 +100,12 @@ status open
 
 \begin_layout Plain Layout
 
-
-\backslash
-mainmatter
+<<setup-06, echo=FALSE>>=
 \end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset ERT
-status open
 
 \begin_layout Plain Layout
 
-<<engine='R', echo=FALSE>>=
+source('Knitr/setup.R')
 \end_layout
 
 \begin_layout Plain Layout

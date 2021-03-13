@@ -1,21 +1,36 @@
 #!/usr/bin/env python
 # coding: utf-8
 
+# In[1]:
+
+
 #---- week03/list
 x = [1, 2, 3]
 y = [0.1, 0.2, 0.3]
+
+
+# In[2]:
 
 
 #---- week03/list-sum
 x + y
 
 
+# In[3]:
+
+
 #---- week03/numpy
 import numpy as np
 
 
+# In[4]:
+
+
 #---- week03/numpy-log
 np.log(np.exp(1.0))
+
+
+# In[5]:
 
 
 #---- week03/vectors
@@ -24,8 +39,14 @@ y = np.array([0.1, 0.2, 0.3])
 x + y
 
 
+# In[6]:
+
+
 #---- week03/inner
 np.sum(x * y)
+
+
+# In[7]:
 
 
 #---- week03/ex25-1
@@ -42,11 +63,17 @@ np.sum(price01 * quantity01) / np.sum(price00 * quantity01)
 # Paasche
 
 
+# In[8]:
+
+
 #---- week03/matrix
 price = np.array([[40, 80], 
                   [80, 30]])
 quantity = np.array([[3, 6],
                      [5, 7]])
+
+
+# In[9]:
 
 
 #---- week03/matrix-select
@@ -55,10 +82,16 @@ price[:, 0]   # : は「全部」
 quantity[1, :]
 
 
+# In[10]:
+
+
 #---- week03/result-array
 np.ones(2)
 np.zeros(2)
 np.empty(2)
+
+
+# In[11]:
 
 
 #---- week03/matrix-index
@@ -69,6 +102,9 @@ P[1] = P[0] * (np.sum(price[1, :] * quantity[0, :])
 P
 
 
+# In[12]:
+
+
 #---- week03/matrix-index2
 P = np.empty(2)
 P[0] = 1.0
@@ -76,6 +112,9 @@ t = 1
 P[t] = P[t-1] * (np.sum(price[t, :] * quantity[t-1, :]) 
                  / np.sum(price[t-1, :] * quantity[t-1, :]))
 P
+
+
+# In[13]:
 
 
 #---- week03/problem2/noinc
@@ -113,12 +152,18 @@ PP[t] = PP[t-1] * (np.sum(price[t, :] * quantity[t, :])
                   / np.sum(price[t-1, :] * quantity[t, :]))
 
 
+# In[14]:
+
+
 #---- week03/problem2/plot
 import matplotlib.pyplot as plt
 plt.plot(PL, label = 'Laspeyres')
 plt.plot(PP, label = 'Paasche')
 plt.legend()
 plt.show()
+
+
+# In[ ]:
 
 
 

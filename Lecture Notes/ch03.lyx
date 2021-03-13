@@ -6,19 +6,9 @@
 \origin unavailable
 \textclass scrbook
 \begin_preamble
-\usepackage{Styles/common}
-\usepackage{Styles/code}
-\usepackage{Styles/problem}
-
-\usepackage{url}
-
-% Knitr Setup 
-<<setup, include=FALSE>>=
-source('Knitr/setup.R')
-source_python('Knitr/setup.py')
-@
+\input{Include/preamble.tex}
 \end_preamble
-\options dvipdfmx,paper=a5,fontsize=9pt
+\options dvipdfmx,paper=a5,base=9pt, twoside, openany
 \use_default_options true
 \master _main.lyx
 \begin_modules
@@ -44,7 +34,7 @@ logicalmkup
 \font_tt_scale 100 100
 \use_microtype false
 \use_dash_ligatures true
-\graphics default
+\graphics none
 \default_output_format default
 \output_sync 0
 \bibtex_command default
@@ -110,7 +100,12 @@ status open
 
 \begin_layout Plain Layout
 
-<<engine='R', echo=FALSE>>=
+<<setup-03, echo=FALSE>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+source('Knitr/setup.R')
 \end_layout
 
 \begin_layout Plain Layout
@@ -129,6 +124,11 @@ knitr::read_chunk('Python/ch03.py')
 \end_layout
 
 \begin_layout Standard
+\begin_inset Branch childonly
+inverted 0
+status open
+
+\begin_layout Standard
 \begin_inset ERT
 status open
 
@@ -143,11 +143,6 @@ setcounter{chapter}{2}
 
 
 \end_layout
-
-\begin_layout Standard
-\begin_inset Branch childonly
-inverted 0
-status open
 
 \begin_layout Standard
 \begin_inset CommandInset toc
@@ -5608,7 +5603,40 @@ status open
 
 \begin_layout Plain Layout
 
-<<ch03/if-odds-total, caption='奇数の合計', fig.lp='code:'>>=
+
+\backslash
+newcommand{
+\backslash
+mycaption}{
+\end_layout
+
+\end_inset
+
+奇数の合計
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch03/if-odds-total, caption='
+\backslash
+
+\backslash
+mycaption', fig.lp='code:'>>=
 \end_layout
 
 \begin_layout Plain Layout

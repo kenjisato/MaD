@@ -1,0 +1,1001 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass scrbook
+\begin_preamble
+\input{_preamble.tex}
+\end_preamble
+\options dvipdfmx,paper=a5,fontsize=9pt,twoside
+\use_default_options true
+\master _main.lyx
+\begin_modules
+knitr
+theorems-ams-chap-bytype
+theorems-ams-extended-chap-bytype
+\end_modules
+\maintain_unincluded_children false
+\language japanese
+\language_package default
+\inputencoding utf8-platex
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\float_placement th
+\paperfontsize default
+\spacing onehalf
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine natbib
+\cite_engine_type authoryear
+\biblio_style plainnat
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date true
+\justification true
+\use_refstyle 1
+\use_minted 0
+\branch childonly
+\selected 1
+\filename_suffix 0
+\color #faf0e6
+\end_branch
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style cjk
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<setup-00, include=FALSE>>= 
+\end_layout
+
+\begin_layout Plain Layout
+
+source('Knitr/setup.R')
+\end_layout
+
+\begin_layout Plain Layout
+
+knitr::read_chunk('Python/ch00.py')
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Addchap
+はじめに
+\end_layout
+
+\begin_layout Subsection*
+対象
+\end_layout
+
+\begin_layout Standard
+この講義ノートでは，時間を通じて変化するマクロ経済の様子を分析するための考え方を紹介する。マクロ経済学という分野を整理して理解する上では，「経済成長」と「経済変
+動」という2つの視点から経済環境を眺めることが有用である。すなわち，次のように考える：マクロ経済（＝国の経済全体）は，長期的には経済環境が好転していくという一定
+の傾向（トレンド）に従っているように見える一方で，短期の視野で見れば景気の浮き沈みが人々の暮らし向きを大きく左右している。長期的な「経済成長」と，短期的な「経済
+変動」の2つを合成することで，現実経済の複雑な振る舞いの理解に近づこうというのがマクロ経済分析の基本方針だと言える。
+\end_layout
+
+\begin_layout Standard
+成長と変動のいずれに注目して分析するにしても，「時間」という要素が欠かせないことがすぐに分かるだろう。時間の止まった世界では，成長も景気の浮沈も起こりようがない
+からだ。したがって，マクロ経済学の重要な結論をきちんと理解するためには，時間を通じた変化を扱うための数学的・経済学的なモデルを構築・分析する手法を学ぶ必要がある
+。
+\end_layout
+
+\begin_layout Standard
+時間を扱うための数学は微分方程式や差分方程式である。本講義では，経済変数が離散的な時間軸上で定義されていると考える差分方程式モデルを主に用いる。どちらかが正解と
+か簡単ということではないが，念のため選択を正当化しておこう。現実の経済がどのような振る舞いをするかについてのシンプルな理解を得たいというのが私たちの目標なのだけ
+れども，複雑な経済現象をうまく表現するために巧妙な数理モデルを操作した結果，難解な数学的表現をまとった答えから先に進めなくなってしまう，ということがしばしば起こ
+る。そのようなときには，コンピュータ・シミュレーションを用いたモデルの定量的な評価や可視化が大いに役に立つ。そして，シミュレーションの観点から言えば，離散時間の
+モデルは数学的な表現とコンピュータのコードとの対応関係が見つけやすいという意味でやや易しいと言えるかもしれない。これが本書で離散時間のモデルを用いる理由である。
+それ以上のものではない。
+\end_layout
+
+\begin_layout Standard
+この講義で扱う内容は次の3つのポイントに集約される。
+\end_layout
+
+\begin_layout Itemize
+時間を考慮したマクロ経済モデル（数理モデル）を構築する方法
+\end_layout
+
+\begin_layout Itemize
+構築した数理モデルを解く方法
+\end_layout
+
+\begin_layout Itemize
+解いた結果をコンピュータで可視化する方法
+\end_layout
+
+\begin_layout Standard
+この一連の操作に習熟すれば，マクロ経済モデルの結果を解釈・評価することができるようになる。
+\end_layout
+
+\begin_layout Standard
+マクロ経済学が長期の成長と短期の変動の二本柱からなると言っても，実は最近のマクロ経済モデルの多くは，Ramsey モデルや世代重複モデルといった成長モデルを基礎
+に組み立てられている。これらのモデルは，単純な2期間の最適消費モデル（Fisher の異時点間の最適消費モデル）と大きくは変わらないので，恐れずにチャレンジして
+ほしい。
+\end_layout
+
+\begin_layout Subsection*
+想定読者
+\end_layout
+
+\begin_layout Standard
+想定する読者像は，標準的な学部中級レベルのミクロ経済学・マクロ経済学を履修済みの学部学生・大学院生である。中級のマクロ経済学を復習しながら，シミュレーションの手
+法を学んで，より上級のマクロ経済学に進むための橋渡しをすることを目的としている。
+\end_layout
+
+\begin_layout Standard
+マネジメント学類開講科目のうち，
+\end_layout
+
+\begin_layout Itemize
+マクロ経済学入門，マクロ経済学I，マクロ経済学II
+\end_layout
+
+\begin_layout Itemize
+ミクロ経済学I，ミクロ経済学II
+\end_layout
+
+\begin_layout Standard
+で扱う内容を習得していれば十分であろう。自習をするとすれば，以下の3冊を一通り読んでおくとよい。
+\end_layout
+
+\begin_layout Itemize
+ハル・ヴァリアン（佐藤隆三・監訳）『入門 ミクロ経済学』勁草書房
+\end_layout
+
+\begin_layout Itemize
+N・グレゴリー・マンキュー（足立英之他・訳）『マクロ経済学I 入門編』東洋経済新報社
+\end_layout
+
+\begin_layout Itemize
+N・グレゴリー・マンキュー（足立英之他・訳）『マクロ経済学II 応用編』東洋経済新報社
+\end_layout
+
+\begin_layout Standard
+高校数学や大学初年次で学ぶ微分積分学や線形代数学を超える数学を使うことはほとんどないはずだが，必要になった場合には詳しく説明することを心がけるので，根気よく式変
+形を追ってほしい。不安な読者は，制約条件付き最適化問題を解くためのラグランジュ未定乗数法などといった応用数学のテクニックを先に身につけておくと，スムーズに読むこ
+とができる。
+\end_layout
+
+\begin_layout Subsection*
+特徴
+\end_layout
+
+\begin_layout Standard
+この講義では読者が中級レベルまでのミクロ経済学およびマクロ経済学を履修済みであることを想定し，その知識の土台の上に，より高度な分析手法やコンピュータ・シミュレー
+ションの技法を身につけることを目標としている。シミュレーションに用いる Python 3 の使用経験は問わないという方針のもと，講義で扱うトピックの順序は経済学
+的に自然であることをある程度は意識しつつも多くの例外が発生する。プログラミングのテクニックという観点から難易度が徐々に難しくなるように配慮したというのがその理由
+である。もし経済学に関する説明が直線的でないことに困難を感じる読者は，まず，上で紹介したミクロ・マクロの教科書をじっくり読むことをすすめる。
+\end_layout
+
+\begin_layout Standard
+各章は，概要・理論・プログラミングの3つの部分から成る。理論，プログラミングについては複数の節にまたがることがある。
+\end_layout
+
+\begin_layout Itemize
+「概要」には，各回で理解してもらいたいトピックを列挙している。他の章との対応関係はこの部分に書くようにするで，基礎知識が足りないと感じた場合は，概要に記載されて
+いるパートを読んでみてほしい。この講義ノートは前から順番に読むようには書かれていないので，自由に動き回ってもらってよい。章の全体を一通り読み終えたら，概要に書か
+れている内容を自分で説明できるようになっているかを時間をとって考えてみてほしい。
+\end_layout
+
+\begin_layout Itemize
+「理論」には，数学的・経済学的な分析手法の紹介を書く。数学が苦手な読者は躓いても気にせずに読み進めて，プログラミングの分析まで進んでほしい。
+\end_layout
+
+\begin_layout Itemize
+「プログラミング」には，「理論」で紹介した分析をコンピュータ上で再現・確認するための方法を書いている。すべてのコードを読者が自分で打ち込んで実行することが期待さ
+れている。冗談かと思うかもしれないが，
+\series bold
+プログラミングは指の筋肉を使って学ぶもの
+\series default
+である。相当な上級者になるまでは，コードを読むだけで理解しようなどとは考えないほうがいい。数字を変えたり，条件を変えたりしつつコードを実行しながら学ぶように心が
+けてほしい。
+\end_layout
+
+\begin_layout Standard
+Python 3 の経験があるか他のプログラミング言語にかなり習熟しているが経済学の経験が少ない読者にとっては，標準的な経済学の教程に従った順序で読む方がスムー
+ズに読み進められるかもしれない。そのように感じた読者は，「概要」を読んで，先にどの章を読むべきかを判断してほしい。
+\end_layout
+
+\begin_layout Standard
+コンピュータ・シミュレーションの原理はプログラミング言語によらず共通のものであるが，特定の言語を固定することなく，この共通原理について説明することは大変に困難な
+仕事である。したがって，この講義では多くの講義と同様に1つの言語（すなわち，Python 3）を固定することにした。
+\end_layout
+
+\begin_layout Standard
+プログラミング言語に Python を選んだのに特別な理由はない。しいて言えば，Python はフリーで人気があるプログラミング言語だからだ。Python
+ にこだわらなくても，以下の機能を持つ言語であればなんでもよい。もっと言えば，1つの言語に限定しなくても複数の環境を組み合わせることもできる。
+\end_layout
+
+\begin_layout Itemize
+ベクトル計算を実行できること。
+\end_layout
+
+\begin_layout Itemize
+線形代数計算ができること。
+\end_layout
+
+\begin_layout Itemize
+データ可視化が容易にできること。
+\end_layout
+
+\begin_layout Itemize
+関数の最大化・最小化をする方法を備えていること。
+\end_layout
+
+\begin_layout Itemize
+代数的に微分ができること。
+\end_layout
+
+\begin_layout Standard
+Python 本体ではこのようなことはできないが，
+\series bold
+NumPy
+\series default
+, 
+\series bold
+SciPy
+\series default
+, 
+\series bold
+Matplotlib
+\series default
+, 
+\series bold
+SymPy
+\series default
+ というサードパーティ製のライブラリを用いて実現できる。
+\series bold
+Pandas
+\series default
+ という人気のあるデータ処理用のライブラリを用いれば，生データ，シミュレーション結果の処理を効率的に実行できる。本書では，
+\series bold
+Pandas
+\series default
+ の使い方についても簡単に紹介する。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+構成
+\end_layout
+
+\begin_layout Standard
+本講義ノートは15のセッションからなる講義のために書かれている。講義の構成は下表の通りである。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+centering
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+講義の構成
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Tabular
+<lyxtabular version="3" rows="14" columns="3">
+<features booktabs="true" tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="left" valignment="top" width="4.5cm">
+<column alignment="left" valignment="top" width="4.5cm">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+講
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+理論
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+プログラミング
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+複利計算と成長
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Python を関数電卓として使う
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+物価指数とインフレーション
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+ベクトルの表現と演算，簡単な可視化
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+GDP の成長と格差
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+繰り返し計算，制御構文
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+4
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+時系列データのモデリングと行列計算
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+線形システムのシミュレーションとARモデル
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+5
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+成長と変動
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Pandas による時系列データ取得，可視化
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+6 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+ソロー・モデルと成長会計
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+ユーザー定義関数，非線形システムのシミュレーション
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+7
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2期間最適消費モデル
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+SymPy による代数計算と数値最適化
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+8
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+ラムゼー・モデル (1)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+非線形システムの線形化。フォワードルッキング・モデルのシミュレーション (1)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+9
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+ラムゼー・モデル (2)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+ダイナミック・プログラミング
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+10
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+リアル・ビジネスサイクル・モデル
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+フォワードルッキング・モデルのシミュレーション (2)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+11
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+動学的 AD-AS モデル
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+12
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+ニュー・ケインジアン・フィリップス曲線
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+フォワードルッキング・モデルのシミュレーション (3)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+13
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+ニュー・ケインジアン・モデル
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+フォワードルッキング・モデルのシミュレーション (4)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+開発環境
+\end_layout
+
+\begin_layout Standard
+この書籍のコードは，表
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:ch00:PythonVer"
+
+\end_inset
+
+に示される環境で確認されている。必ずしもバージョンをすべて揃える必要はないが，バージョンが異なることで生じる問題は原則的に読者の責任で解決していただきたい。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch00/versions/noinc>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\begin_layout Plain Layout
+
+<<ch00/importpdr/noinc>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\begin_layout Plain Layout
+
+<<ch00/gentable/noinc>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+centering
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Python およびライブラリのバージョン
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:ch00:PythonVer"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<ch00/showtable, echo=FALSE, results=
+\begin_inset Quotes jrd
+\end_inset
+
+asis
+\begin_inset Quotes jrd
+\end_inset
+
+>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Addchap
+謝辞
+\end_layout
+
+\begin_layout Standard
+本文中で紹介した Python およびサードパーティライブラリ（numpy, scipy, matplotlib, pandas）の他にも多くのオープンソースプ
+ロジェクトのお世話になった。\SpecialChar LaTeX2e
+ を用いたタイプセットに \SpecialChar LyX
+ を使用し，Python コードと実行結果を本文中に埋め込むために R 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "Rcore"
+literal "false"
+
+\end_inset
+
+, 
+\series bold
+knitr
+\series default
+ 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "knitr-book,knitr-man"
+literal "false"
+
+\end_inset
+
+ および 
+\series bold
+reticulate
+\series default
+ 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "reticulate"
+literal "false"
+
+\end_inset
+
+ を用いた。Python, R, \SpecialChar LaTeX
+ を取り巻くコミュニティに感謝する。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Branch childonly
+inverted 0
+status open
+
+\begin_layout Standard
+\begin_inset CommandInset bibtex
+LatexCommand bibtex
+btprint "btPrintCited"
+bibfiles "../Bibliography/ref,../Bibliography/software"
+options "Styles/jecon"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document

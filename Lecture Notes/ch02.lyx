@@ -6,17 +6,7 @@
 \origin unavailable
 \textclass scrbook
 \begin_preamble
-\usepackage{Styles/common}
-\usepackage{Styles/code}
-\usepackage{Styles/problem}
-
-\usepackage{url}
-
-% Knitr Setup 
-<<setup, include=FALSE>>=
-source('Knitr/setup.R')
-source_python('Knitr/setup.py')
-@
+\input{_preamble.tex}
 \end_preamble
 \options dvipdfmx,a5paper,9pt
 \use_default_options true
@@ -110,7 +100,12 @@ status open
 
 \begin_layout Plain Layout
 
-<<engine='R', echo=FALSE>>=
+<<setup-02, include=FALSE>>= 
+\end_layout
+
+\begin_layout Plain Layout
+
+source('Knitr/setup.R') 
 \end_layout
 
 \begin_layout Plain Layout
@@ -129,6 +124,11 @@ knitr::read_chunk('Python/ch02.py')
 \end_layout
 
 \begin_layout Standard
+\begin_inset Branch childonly
+inverted 0
+status open
+
+\begin_layout Standard
 \begin_inset ERT
 status open
 
@@ -143,11 +143,6 @@ setcounter{chapter}{1}
 
 
 \end_layout
-
-\begin_layout Standard
-\begin_inset Branch childonly
-inverted 0
-status open
 
 \begin_layout Standard
 \begin_inset CommandInset toc
@@ -5381,10 +5376,12 @@ status open
 \end_layout
 
 \begin_layout Verbatim
+
 laspeyres[t] = laspeyres[t-1] * (sum(price[t, :] * quantity[t-1, :])
 \end_layout
 
 \begin_layout Verbatim
+
                                  / sum(price[t-1, :] * quantity[t-1, :]))
 \end_layout
 

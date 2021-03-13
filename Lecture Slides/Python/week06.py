@@ -1,6 +1,13 @@
 #!/usr/bin/env python
 # coding: utf-8
 
+# # Week 6 スライド
+
+# ## NumPy Matrix
+
+# In[1]:
+
+
 #---- week06/prepare
 import numpy as np
 import matplotlib.pyplot as plt
@@ -16,6 +23,9 @@ x = rng.choice(range(10), 3)
 x
 
 
+# In[2]:
+
+
 #---- week06/matrix-arithmetic/dnr
 A + B
 A - B
@@ -23,10 +33,16 @@ A @ B
 A @ x
 
 
+# In[3]:
+
+
 #---- week06/matrix-arithmetic-quiz/dnr
 A * B
 A / B
 A + x
+
+
+# In[4]:
 
 
 #---- week06/matrix-arithmetic-avoid-pitfall
@@ -43,10 +59,16 @@ eps.shape = (*eps.shape, 1, 1)
 B @ eps[0]
 
 
+# In[5]:
+
+
 #---- week06/ts-representation
 Y = np.arange(9)
 Y.shape = (3, 3, 1)
 Y
+
+
+# In[6]:
 
 
 #---- week06/ts-representation-2
@@ -54,11 +76,17 @@ Y[0]
 Y[1]
 
 
+# In[7]:
+
+
 #---- week06/ts-representation-transform/dnr
 X = Y.squeeze()
 X
 X.shape = (*X.shape, 1)
 X
+
+
+# In[8]:
 
 
 #---- week06/ar2
@@ -69,10 +97,16 @@ B = np.array([[1.0],
 C = np.array([[1.0, 0.0]])
 
 
+# In[9]:
+
+
 #---- week06/ar2-stability
 E, V = np.linalg.eig(A)
 np.abs(E)
 np.linalg.matrix_power(A, 200)
+
+
+# In[10]:
 
 
 #---- week06/ar2-sim
@@ -90,9 +124,15 @@ for t in range(1, T):
     y[t] = C @ x[t]
 
 
+# In[11]:
+
+
 #---- week06/ar2-sim/plot
 plt.plot(y.squeeze())
 plt.show()
+
+
+# In[12]:
 
 
 #---- week06/ar2-many-sim/plot
@@ -112,7 +152,13 @@ for i in range(10):
 plt.show()
 
 
+# In[13]:
+
+
 #---- END
+
+
+# In[ ]:
 
 
 

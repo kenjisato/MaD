@@ -1,6 +1,9 @@
 #!/usr/bin/env python
 # coding: utf-8
 
+# In[1]:
+
+
 #---- week02/point/graphics
 
 import pandas as pd
@@ -17,6 +20,9 @@ _ = ax.set_ylabel("Real GDP (output) in 2011USD (PPP)")
 plt.show()
 
 
+# In[2]:
+
+
 #---- week02/line/graphics
 
 ax = jpn.plot(x='year', y='rgdpo', color='#ff7f0e')
@@ -24,6 +30,9 @@ ax.plot(jpn2010.year, jpn2010.rgdpo, color='#1f77b4', marker='x')
 _ = ax.set_ylabel("Real GDP (output) in 2011USD (PPP)")
 
 plt.show()
+
+
+# In[3]:
 
 
 #---- week02/growth/graphics
@@ -35,6 +44,9 @@ _ = ax.set_ylabel("Real GDP growth (%)")
 plt.show()
 
 
+# In[4]:
+
+
 #---- week02/var
 x = 10
 y = x
@@ -42,9 +54,15 @@ a, b = 1, 2.3
 hello = "Good bye"
 
 
+# In[5]:
+
+
 #---- week02/use-var
 x * b
 print(hello)
+
+
+# In[6]:
 
 
 #---- week02/hidden-name/dnr
@@ -54,13 +72,22 @@ x-y = 0      # ハイフンを使っている
 u*z = x      # 記号はほとんど使えない
 
 
+# In[ ]:
+
+
 #---- week02/usable-name/dnr
 my_name = "Jack Bauer"    # アンダースコアは使える
 点数 = 100                # ユニコード文字も一部使える 
 
 
+# In[ ]:
+
+
 #---- week02/exa1
 y0, y1, y2, y3 = 500, 550, 600, 650
+
+
+# In[ ]:
 
 
 #---- week02/exa2

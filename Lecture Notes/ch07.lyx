@@ -6,16 +6,7 @@
 \origin unavailable
 \textclass scrbook
 \begin_preamble
-\usepackage{Styles/common}
-\usepackage{Styles/code}
-\usepackage{Styles/problem}
-\usepackage{url}
-
-% Knitr Setup 
-<<setup, include=FALSE>>=
-source('Knitr/setup.R')
-source_python('Knitr/setup.py')
-@
+\input{Include/preamble.tex}
 \end_preamble
 \options dvipdfmx,a5paper,9pt
 \use_default_options true
@@ -114,28 +105,17 @@ status open
 
 \begin_layout Plain Layout
 
-
-\backslash
-mainmatter
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-<<engine='R', echo=FALSE>>=
+<<setup-07, echo=FALSE>>=
 \end_layout
 
 \begin_layout Plain Layout
 
-knitr::read_chunk('Python/ch07.py')
+source('Knitr/setup.R')
+\end_layout
+
+\begin_layout Plain Layout
+
+knitr::read_chunk('Python/ch007.py')
 \end_layout
 
 \begin_layout Plain Layout

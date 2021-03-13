@@ -1,5 +1,11 @@
+if (Sys.info()["sysname"] %in% c("Darwin")) {
+  reticulate_python = "~/.pyenv/versions/anaconda3-2020.11/bin/python"
+} else {
+  reticulate_python = conda_python
+}
+Sys.setenv(RETICULATE_PYTHON = reticulate_python)
+
 library(reticulate)
-Sys.setenv(RETICULATE_PYTHON = conda_python())
 
 ## Default Configurations ----
 knitr_config <- list(
@@ -14,7 +20,7 @@ knitr_config <- list(
 
 ## Specific for Mac ----
 if (Sys.info()["sysname"] %in% c("Darwin")) {
-  knitr_config[['engine.path']] <- list(python = conda_python())
+  knitr_config[['engine.path']] <- list(python = reticulate_python)
 }
 
 ## Set printer-friendly knitr theme, run only when called from LyX ----
@@ -119,44 +125,7 @@ knitr::opts_hooks$set(
 ## empty highlight header ----
 knitr::set_header(highlight = "")
 
-## Shims ----
 
-shim_py_inject_r <- function(envir) {
-    
-    # define our 'R' class
-    py_run_string("class R(object): pass")
-    
-    # extract it from the main module
-    main <- import_main(convert = FALSE)
-    R <- main$R
-    
-    # extract active knit environment
-    if (is.null(envir)) {
-        .knitEnv <- reticulate:::yoink("knitr", ".knitEnv")
-        envir <- .knitEnv$knit_global
-    }
-    
-    # define the getters, setters we'll attach to the Python class
-    getter <- function(self, code) {
-        object <- eval(parse(text = as_r_value(code)), envir = envir)
-        r_to_py(object, convert = is.function(object))
-    }
-    
-    setter <- function(self, name, value) {
-        envir[[as_r_value(name)]] <<- as_r_value(value)
-    }
-    
-    py_set_attr(R, "__getattr__", getter)
-    py_set_attr(R, "__setattr__", setter)
-    py_set_attr(R, "__getitem__", getter)
-    py_set_attr(R, "__setitem__", setter)
-    
-    # now define the R object
-    py_run_string("robj = R()")
-    
-}
-
-utils::assignInNamespace("py_inject_r", shim_py_inject_r,
-                         envir = as.environment("package:reticulate"))
-
+## Source
+source_python('Knitr/setup.py')
 

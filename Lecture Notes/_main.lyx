@@ -6,12 +6,9 @@
 \origin unavailable
 \textclass scrbook
 \begin_preamble
-\usepackage{../styles/common}
-\usepackage{../styles/code}
-\usepackage{../styles/problem}
-\usepackage{url}
+\input{Include/preamble.tex}
 \end_preamble
-\options dvipdfmx,paper=a5,9pt
+\options dvipdfmx,paper=a5,fontsize=9pt
 \use_default_options true
 \begin_modules
 knitr
@@ -36,7 +33,7 @@ theorems-ams-extended-chap-bytype
 \font_tt_scale 100 100
 \use_microtype false
 \use_dash_ligatures true
-\graphics default
+\graphics none
 \default_output_format default
 \output_sync 0
 \bibtex_command default
@@ -96,6 +93,13 @@ theorems-ams-extended-chap-bytype
 
 \begin_body
 
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
 \begin_layout Title
 動態マクロ経済学
 \end_layout
@@ -109,7 +113,7 @@ theorems-ams-extended-chap-bytype
 \begin_inset Newline newline
 \end_inset
 
-2020年度 講義ノート
+2021年度 講義ノート
 \end_layout
 
 \begin_layout Author
@@ -126,9 +130,41 @@ LatexCommand tableofcontents
 \end_layout
 
 \begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+frontmatter
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 \begin_inset CommandInset include
 LatexCommand include
 filename "ch00.lyx"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+mainmatter
+\end_layout
 
 \end_inset
 
@@ -153,6 +189,9 @@ filename "ch02.lyx"
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
 \begin_inset CommandInset include
 LatexCommand include
 filename "ch03.lyx"
@@ -223,11 +262,24 @@ filename "chA.lyx"
 \end_layout
 
 \begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 \begin_inset CommandInset bibtex
 LatexCommand bibtex
 btprint "btPrintCited"
 bibfiles "../Bibliography/ref,../Bibliography/software"
-options "../styles/jecon"
+options "bibtotoc,Styles/jecon"
 
 \end_inset
 

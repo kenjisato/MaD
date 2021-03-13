@@ -1,6 +1,13 @@
-\usepackage[margin=14mm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{newpxtext, newpxmath}
+\usepackage{anyfontsize}
 
-\usepackage{fancyhdr} 
+\usepackage[pass]{geometry}
+\geometry{top=16mm, bottom=13mm, inner=12mm, outer=12mm}
+
+%% HEADER
+
+\usepackage{fancyhdr}
 \pagestyle{fancy}
 
 \renewcommand{\sectionmark}[1]{\markright{\thesection~ #1}}
@@ -16,12 +23,18 @@
   \fancyhf{}%
 }
 
-\usepackage{newpxmath, newpxtext}
-\usepackage{anyfontsize}
+%% LISTS
 
-% enumitem
 \usepackage{enumitem}
 \setlist[itemize]{noitemsep}
 \setlist[enumerate]{noitemsep}
 \setlist[description]{noitemsep}
 
+
+%% Japanese
+\usepackage{pxrubrica}
+
+
+%% LINKS
+
+\usepackage{url}
