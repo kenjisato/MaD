@@ -23,9 +23,5 @@ __pycache__
 # Other
 /Private
 README.html
-/Moodle/*/*.*ml
-/Moodle/*/*.Rmd
-/Moodle/final
-/LectureNotes/Figure/ch*
-/LectureSlides/Figure/*
-/Jupyter/stash
+/Manuscripts/Stash
+/Manuscripts/Figure

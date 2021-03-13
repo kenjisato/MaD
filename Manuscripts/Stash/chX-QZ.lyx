@@ -1,0 +1,984 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass scrbook
+\begin_preamble
+\usepackage{../styles/common}
+\usepackage{../styles/code}
+\end_preamble
+\options dvipdfmx
+\use_default_options true
+\master _main.lyx
+\begin_modules
+knitr
+logicalmkup
+theorems-ams-chap-bytype
+theorems-ams-extended-chap-bytype
+\end_modules
+\maintain_unincluded_children false
+\language japanese
+\language_package default
+\inputencoding utf8-platex
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\float_placement th
+\paperfontsize default
+\spacing onehalf
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine natbib
+\cite_engine_type authoryear
+\biblio_style plainnat
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date true
+\justification true
+\use_refstyle 1
+\use_minted 0
+\branch childonly
+\selected 1
+\filename_suffix 0
+\color #faf0e6
+\end_branch
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style cjk
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 2
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+% Knitr Setup 
+\end_layout
+
+\begin_layout Plain Layout
+
+<<setup, include=FALSE>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+source('../R/setup.R')
+\end_layout
+
+\begin_layout Plain Layout
+
+knitr::read_chunk('../Python/setup.py')
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\begin_layout Plain Layout
+
+% Python Setup 
+\end_layout
+
+\begin_layout Plain Layout
+
+<<python-setup, include=FALSE>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<engine='R', echo=FALSE>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+knitr::read_chunk('../Python/chX-QZ.py')
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Chapter
+Klein の方法
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+thispagestyle{empty}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset citation
+LatexCommand citet
+key "Klein2000"
+literal "false"
+
+\end_inset
+
+による線形合理的期待モデルの解法を解説する。線形化は完了していて，動学システムが
+\begin_inset Formula 
+\begin{equation}
+Ex_{t+1}=Ax_{t}+Bu_{t}\label{eq:qz-target-sys}
+\end{equation}
+
+\end_inset
+
+ と書けているとしよう。変数 
+\begin_inset Formula $x$
+\end_inset
+
+ は，先決変数 
+\begin_inset Formula $x^{1}$
+\end_inset
+
+ と非先決変数 
+\begin_inset Formula $x^{2}$
+\end_inset
+
+ を用いて
+\begin_inset Formula 
+\[
+x=\begin{bmatrix}x^{1}\\
+x^{2}
+\end{bmatrix}
+\]
+
+\end_inset
+
+のように部分ベクトルに分解されているとする。先決変数・非先決変数の並び替えは非線形方程式を線形化するときに実行しておく。式 (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:qz-target-sys"
+
+\end_inset
+
+) の解から指数的に発散するような経路を取り除くことで，システムのバックワード・ルッキングな表現
+\begin_inset Formula 
+\begin{align*}
+x_{t+1}^{1} & =\Omega_{x}x_{t}^{1}+\Omega_{u}u_{t}+\Omega_{y}y_{t+1}^{u}\\
+x_{t}^{2} & =\Psi_{x}x_{t}^{1}+\Psi_{y}y_{t}^{u}
+\end{align*}
+
+\end_inset
+
+を求めたい。ここで，
+\begin_inset Formula $y_{t}^{u}=y^{u}(u_{t},u_{t+1},\dots)$
+\end_inset
+
+ は将来起こるショックに対する期待・予見を反映して決まる。
+\end_layout
+
+\begin_layout Standard
+この章では次のPythonライブラリ・モジュールを使用する。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<qz-import>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+QZ分解
+\end_layout
+
+\begin_layout Standard
+数値計算のための基本となる道具は，行列ペンシル 
+\begin_inset Formula $(E,A)$
+\end_inset
+
+ の QZ分解である。
+\end_layout
+
+\begin_layout Standard
+一般化固有値の理論を簡単に確認しておこう。行列ペンシル 
+\begin_inset Formula $(E,A)$
+\end_inset
+
+ に対して，ゼロでないベクトル 
+\begin_inset Formula $v$
+\end_inset
+
+ と 
+\begin_inset Formula $\lambda\in\mathbb{C}$
+\end_inset
+
+ が存在して
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+Ev=\lambda Av
+\]
+
+\end_inset
+
+が成り立つとき，
+\end_layout
+
+\begin_layout Theorem
+同じサイズを持つ任意の正方行列のペア 
+\begin_inset Formula $(E,A)$
+\end_inset
+
+ に対して，あるユニタリ行列のペア 
+\begin_inset Formula $Q$
+\end_inset
+
+, 
+\begin_inset Formula $Z$
+\end_inset
+
+ が存在して，
+\begin_inset Formula 
+\[
+Q^{*}EZ=S,\qquad Q^{*}AZ=T
+\]
+
+\end_inset
+
+を上三角行列にできる。
+\end_layout
+
+\begin_layout Subsection
+Python による QZ分解
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<qz-exa-matrices>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+定理で述べた等式が成り立っているかどうかを確認しておこう。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<qz-exa-check>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+一般化固有値のソーティング
+\end_layout
+
+\begin_layout Standard
+Klein の方法では左上ブロックに一般化固有値の絶対値が
+\begin_inset Formula $1$
+\end_inset
+
+以下のもの，右下ブロックには絶対値が
+\begin_inset Formula $1$
+\end_inset
+
+より大きいものが来るようにしなければならない。
+\end_layout
+
+\begin_layout Standard
+一般化固有値は 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+tii / sii
+\end_layout
+
+\end_inset
+
+ で取り出せるので，これを見ればよい。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<qz-default-order>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+したがって 
+\begin_inset Formula $-2$
+\end_inset
+
+ という有限固有値と, 代数的重複度
+\begin_inset Formula $2$
+\end_inset
+
+の無限大固有値が存在することが分かる。すべてが不安定固有値なので，安定-不安定の分解は自明なものではあるが，うまく行っているようだ。しかし，これはいつも成り立つ
+訳ではない。次の例を見れば分かるように，
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+scipy.linalg.ordqz
+\end_layout
+
+\end_inset
+
+ のデフォルトでは固有値の並びは制御されていない。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<qz-exa-2>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+これを解決するには，以下のような並べ換えのための関数を定義して 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+scipy.linalg.ordqz
+\end_layout
+
+\end_inset
+
+ の 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+sort
+\end_layout
+
+\end_inset
+
+ パラメータに渡してやればよい。この関数は2つの複素数 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+a
+\end_layout
+
+\end_inset
+
+, 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+b
+\end_layout
+
+\end_inset
+
+ を引数に取り，絶対値の比が1以下であるものを集める。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<qz-sorting-function>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+結果を確認しよう。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<qz-sorted>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Klein の公式
+\end_layout
+
+\begin_layout Standard
+関連する行列のブロック表現を確認しておく。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+Z=\begin{bmatrix}Z_{1s} & Z_{1u}\\
+Z_{2s} & Z_{2u}
+\end{bmatrix}\qquad Q^{*}B=C=\begin{bmatrix}C_{s}\\
+C_{u}
+\end{bmatrix}
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+T=\begin{bmatrix}T_{ss} & T_{su}\\
+0 & T_{uu}
+\end{bmatrix}\qquad S=\begin{bmatrix}S_{ss} & S_{su}\\
+0 & S_{uu}
+\end{bmatrix}
+\]
+
+\end_inset
+
+Klein (2000) は線形合理的期待モデルに対して次の解公式を与えている。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+\Omega_{x} & =Z_{1s}S_{ss}^{-1}T_{ss}Z_{1s}^{-1}\\
+%\Omega_{u}
+ & =Z_{1s}S_{ss}^{-1}\left[C_{s}-(T_{su}-T_{ss}Z_{1s}^{-1}Z_{1u})T_{uu}^{-1}C_{u}\right]\\
+\Omega_{y} & =(Z_{1u}-Z_{1s}S_{ss}^{-1}S_{su})+Z_{1s}S_{ss}^{-1}(T_{su}-T_{ss}Z_{1s}^{-1}Z_{1u})T_{uu}^{-1}S_{uu}
+\end{align*}
+
+\end_inset
+
+
+\begin_inset Formula 
+\begin{align*}
+\Psi_{x} & =Z_{2s}Z_{1s}^{-1}\\
+\Psi_{y} & =Z_{2u}-Z_{2s}Z_{1s}^{-1}Z_{1u}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Python によるブロック行列の表現
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $A$
+\end_inset
+
+, 
+\begin_inset Formula $E$
+\end_inset
+
+ としては先程定義したものを使う。
+\begin_inset Formula $B$
+\end_inset
+
+ および 
+\begin_inset Formula $C$
+\end_inset
+
+ 以外はすべて明らかになっている。
+\begin_inset Formula $B$
+\end_inset
+
+, 
+\begin_inset Formula $C$
+\end_inset
+
+ を次のように設定しよう。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<qz-bc>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Python で行列のブロックを扱うには，
+\series bold
+Numpy
+\series default
+ のスライスオブジェクトを使うと便利である
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+オブジェクトの名前の先頭にアンダースコアを付けている。数字からはじまるオブジェクト名を付けることができないから苦し紛れにこのようにした次第である。
+\end_layout
+
+\end_inset
+
+。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<qz-numpy-slice>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+例えば 
+\begin_inset Formula $Z_{1s},Z_{2u},T_{ss},T_{uu}$
+\end_inset
+
+ を取得する場合には次のようにすればよい。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<qz-numpy-slice-exa>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+\begin_inset Formula $y^{u}$
+\end_inset
+
+ の計算
+\end_layout
+
+\begin_layout Standard
+一般の 
+\begin_inset Formula $y^{u}$
+\end_inset
+
+ は無限和
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+y_{t}^{u}=-\sum_{k=0}^{\infty}\left(T_{uu}^{-1}S_{uu}\right)^{k}T_{uu}^{-1}C_{u}u_{t+k}
+\]
+
+\end_inset
+
+によって計算されるので，通常，正確な評価はできない。しかし，
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $u_{t}$
+\end_inset
+
+ が有限列であるケース
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $u_{t+1}=\Phi u_{t}$
+\end_inset
+
+ が成り立つケース
+\end_layout
+
+\begin_layout Standard
+では計算可能である。後者は，
+\begin_inset Formula $t=0$
+\end_inset
+
+ にショックが起きて,徐々にショックの影響が小さくなっていく（
+\begin_inset Formula $|\Phi|<1$
+\end_inset
+
+）ような変動のモデルとして扱いやすい。
+\end_layout
+
+\begin_layout Subsection
+有限の 
+\begin_inset Formula $u$
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Standard
+ここでは前者を考えよう。すなわち，有限期間でショックが完全になくなるケースである。
+\begin_inset Formula $t=0,1,\dots,T$
+\end_inset
+
+ にショック 
+\begin_inset Formula $(u_{0},\dots,u_{T})$
+\end_inset
+
+ が起こることを予期されていて，そこから 
+\begin_inset Formula $(y_{0}^{u},\dots,y_{T}^{u})$
+\end_inset
+
+ を計算する。ただし, 
+\begin_inset Formula $u_{T+1}$
+\end_inset
+
+ 以降 
+\begin_inset Formula $u$
+\end_inset
+
+ はゼロであるとする。
+\begin_inset Formula 
+\[
+y_{t}^{u}=-\sum_{k=0}^{T-t}\left(T_{uu}^{-1}S_{uu}\right)^{k}T_{uu}^{-1}C_{u}u_{t+k}
+\]
+
+\end_inset
+
+に注意すれば，
+\begin_inset Formula 
+\[
+y_{T+1}^{u}=0
+\]
+
+\end_inset
+
+および
+\begin_inset Formula 
+\[
+y_{t}^{u}=T_{uu}^{-1}\left[S_{uu}y_{t+1}^{u}-C_{u}u_{t}\right],\quad t=0,1,\dots,T
+\]
+
+\end_inset
+
+によって 
+\begin_inset Formula $y_{t}^{u}$
+\end_inset
+
+ の系列を決定できる。適切なサイズのベクトル列 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+u
+\end_layout
+
+\end_inset
+
+ (今の設定では数列) を入力に取り, 
+\begin_inset Formula $y^{u}$
+\end_inset
+
+ に相当するベクトル列を吐き出す関数を定義しておこう。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<qz-yu>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+AR表現を持つ 
+\begin_inset Formula $u$
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Standard
+次に，
+\begin_inset Formula $u_{t+1}=\Psi u_{t}$
+\end_inset
+
+ となる定数行列 
+\begin_inset Formula $\Psi$
+\end_inset
+
+ が存在する場合を考える。このような表現を状態空間表現とかAR表現という
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+確率的な問題を比較率的な問題にするために期待値の記号を省略していたことを思い出そう。期待値を戻すと， 
+\begin_inset Formula $\mathbb{\mathbb{E}}_{t}u_{t+1}=\Psi u_{t}$
+\end_inset
+
+ となればよい。荒く言えば，
+\begin_inset Formula $u_{t+1}=\Psi u_{t}+\varepsilon_{t+1}$
+\end_inset
+
+, 
+\begin_inset Formula $\mathbb{E}_{t}\varepsilon_{t+1}=0$
+\end_inset
+
+ なるノイズ 
+\begin_inset Formula $\varepsilon_{t+1}$
+\end_inset
+
+ によって攪乱されるような系列である。
+\end_layout
+
+\end_inset
+
+。
+\end_layout
+
+\begin_layout Section
+動学方程式を導出する
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<qz-omega-psi>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Branch childonly
+inverted 0
+status open
+
+\begin_layout Standard
+\begin_inset CommandInset bibtex
+LatexCommand bibtex
+btprint "btPrintCited"
+bibfiles "../Bibliography/ref,../Bibliography/software"
+options "../styles/jecon"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document

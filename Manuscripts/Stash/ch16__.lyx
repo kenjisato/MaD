@@ -1,0 +1,740 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass scrbook
+\begin_preamble
+\usepackage{../styles/common}
+\usepackage{../styles/code}
+
+\usepackage{url}
+\end_preamble
+\options dvipdfmx,a5paper,9pt
+\use_default_options true
+\master _main.lyx
+\begin_modules
+knitr
+theorems-ams-chap-bytype
+theorems-ams-extended-chap-bytype
+logicalmkup
+enumitem
+\end_modules
+\maintain_unincluded_children false
+\language japanese
+\language_package default
+\inputencoding utf8-platex
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\float_placement th
+\paperfontsize default
+\spacing onehalf
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine natbib
+\cite_engine_type authoryear
+\biblio_style plainnat
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date true
+\justification true
+\use_refstyle 1
+\use_minted 0
+\branch childonly
+\selected 1
+\filename_suffix 0
+\color #faf0e6
+\end_branch
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style cjk
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+% Knitr Setup 
+\end_layout
+
+\begin_layout Plain Layout
+
+<<setup, include=FALSE>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+source('../R/setup.R')
+\end_layout
+
+\begin_layout Plain Layout
+
+knitr::read_chunk('../Python/setup.py')
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\begin_layout Plain Layout
+
+% Python Setup 
+\end_layout
+
+\begin_layout Plain Layout
+
+<<python-setup, include=FALSE>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<engine='R', echo=FALSE>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+knitr::opts_knit$set(root.dir = '../Python')
+\end_layout
+
+\begin_layout Plain Layout
+
+knitr::opts_chunk$set(fig.path = '../Manuscript/figure/')
+\end_layout
+
+\begin_layout Plain Layout
+
+knitr::read_chunk('../Python/ch04-rbc.py')
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Chapter
+Pythonによる線形動学システム分析
+\end_layout
+
+\begin_layout Standard
+動学マクロ経済モデルの構築から線形化に基づくシミュレーションは次のステップで行われる
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+この方法がすべてではないが，他の方法を理解するための参照点として把握しておくとよい。例えば，5, 6 を高次多項式で近似することでシミュレーションの精度を向上さ
+せることができるし，非線形性そのものに関心がある場合は 4, 5, 6 を動的計画法で置き換える。3 でカリブレーションをする代わりにモデルを使ってベイズ推定す
+る方法がますます主流になってきている。6 の極限挙動に関する想定（言い換えれば，経済主体の予想形成に関する仮定）を別のものに置き換えることも考えられる。
+\end_layout
+
+\end_inset
+
+。
+\end_layout
+
+\begin_layout Enumerate
+経済モデルを構築する。
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+最適化問題，制約条件，外生変数に関する想定
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+動学方程式を導出する（一般に非線形，陰関数方程式）。
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+最適化問題の1階条件，制約条件，外生変数の発展方程式
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+パラメータを設定する。
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+カリブレーション
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+定常状態を計算する。
+\end_layout
+
+\begin_layout Enumerate
+定常状態周りで動学方程式を線形化する。
+\end_layout
+
+\begin_layout Enumerate
+バックワードルッキングな動学方程式を導出する。
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+極限挙動に関する仮定をおく。もっとも標準的な仮定は「指数的な発散が起こらない」というもの。
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+シミュレーションを実行する。
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+インパルス応答（適当な変数の初期値を定常状態から少しずらして，その後の経過を観察すること）
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+可視化する。
+\end_layout
+
+\begin_layout Section
+線形システムの導出
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset citation
+LatexCommand citet
+key "Miao2014"
+literal "false"
+
+\end_inset
+
+ のシミュレーションを再現する。1と2行目は線形システムに汎用的に必要なライブラリ。scipy.linalgはライブラリの中のモジュールないしはパッケージ。3,4
+行目は、最適化。optimizeはrootを使うために一度持ってきくる。f(x,y)に1,2を代入。f.subs({x:1.y:2})。これをつかって、va=vtに
+置換。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<setup, caption='セットアップ'>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<rbc-variables, caption='変数の定義'>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<rbc-parameters, caption='パラメータの設定'>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<rbc-foc, caption='モデルの1階条件', sympy=TRUE>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<rbc-steady-state, caption='定常状態を求める方程式', sympy=TRUE>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<rbc-solve-ss, caption='定常状態の数値解'>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<rbc-ss, caption='定常状態の値を代入する'>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<rbc-compute-A>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<rbc-compute-B>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<rbc-compute-C>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+線形動学システム
+\end_layout
+
+\begin_layout Standard
+ここで定義した 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+A
+\end_layout
+
+\end_inset
+
+, 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+B
+\end_layout
+
+\end_inset
+
+, 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+C
+\end_layout
+
+\end_inset
+
+ は次の動学方程式の係数行列である。
+\begin_inset Formula 
+\[
+Ax_{t+1}=Bx_{t}+Cu_{t}
+\]
+
+\end_inset
+
+ただし， 
+\begin_inset Formula $u_{t}=e_{t}$
+\end_inset
+
+ と置き換えた。
+\begin_inset Formula $x=(x^{1},x^{2})$
+\end_inset
+
+, 
+\begin_inset Formula $x^{1}$
+\end_inset
+
+ は先決変数，
+\begin_inset Formula $x^{2}$
+\end_inset
+
+ は非先決変数となるように並べておく。適当な条件のもとで, 次の「状態空間表現」に変形できる。
+\begin_inset Formula 
+\begin{align}
+x_{t+1}^{1} & =\Omega_{x}x_{t}^{1}+\Omega_{u}u_{t}+\Omega_{y}y_{t+1}^{u}\label{eq:ss-representation}\\
+x_{t}^{2} & =\Psi_{x}x_{t}^{1}+\Psi_{y}y_{t}^{u}\nonumber 
+\end{align}
+
+\end_inset
+
+ここで， 
+\begin_inset Formula $y_{t}^{u}=y^{u}(u_{t},u_{t+1},\dots)$
+\end_inset
+
+ は未来のショックに対する予想を反映して定まる。
+\end_layout
+
+\begin_layout Standard
+係数行列および 
+\begin_inset Formula $y_{t}^{u}$
+\end_inset
+
+ の決め方をおさらいしよう。
+\begin_inset Formula $(A,B)$
+\end_inset
+
+ に対して QZ分解を実行することで，行列ペア 
+\begin_inset Formula $(S,T)$
+\end_inset
+
+ を作る。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+Q^{*}AZ=S\quad Q^{*}BZ=T
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+SZ^{*}x_{t+1}=TZ^{*}x_{t}+Q^{*}Cu_{t}
+\]
+
+\end_inset
+
+ここで
+\begin_inset Formula 
+\[
+y=Z^{*}x,\qquad U=Q^{*}C
+\]
+
+\end_inset
+
+と置くと，
+\begin_inset Formula 
+\[
+Sy_{t+1}=Ty_{t}+Uu_{t}
+\]
+
+\end_inset
+
+と書き換えられる。ブロック行列
+\begin_inset Formula 
+\[
+Z=\begin{bmatrix}Z_{1s} & Z_{1u}\\
+Z_{2s} & Z_{2u}
+\end{bmatrix}\qquad Q^{*}C=U=\begin{bmatrix}U_{s}\\
+U_{u}
+\end{bmatrix}
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+S=\begin{bmatrix}S_{ss} & S_{su}\\
+0 & S_{uu}
+\end{bmatrix}\qquad T=\begin{bmatrix}T_{ss} & T_{su}\\
+0 & T_{uu}
+\end{bmatrix}
+\]
+
+\end_inset
+
+に分解したとき， 
+\begin_inset Formula $S_{ss}^{-1}T_{ss}$
+\end_inset
+
+ および 
+\begin_inset Formula $T_{uu}^{-1}S_{uu}$
+\end_inset
+
+ が安定行列になるように一般化固有ベクトルを並べるものとする。(
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:ss-representation"
+
+\end_inset
+
+) の係数行列は以下のように定まる。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+\Omega_{x} & =Z_{1s}S_{ss}^{-1}T_{ss}Z_{1s}^{-1}\\
+\Omega_{u} & =Z_{1s}S_{ss}^{-1}\left[U_{s}-(T_{su}-T_{ss}Z_{1s}^{-1}Z_{1u})T_{uu}^{-1}U_{u}\right]\\
+\Omega_{y} & =(Z_{1u}-Z_{1s}S_{ss}^{-1}S_{su})+Z_{1s}S_{ss}^{-1}(T_{su}-T_{ss}Z_{1s}^{-1}Z_{1u})T_{uu}^{-1}S_{uu}
+\end{align*}
+
+\end_inset
+
+
+\begin_inset Formula 
+\begin{align*}
+\Psi_{x} & =Z_{2s}Z_{1s}^{-1}\\
+\Psi_{y} & =Z_{2u}-Z_{2s}Z_{1s}^{-1}Z_{1u}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<rbc-solve-lrem>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<rbc-simulation>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<rbc-visualize>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Branch childonly
+inverted 0
+status open
+
+\begin_layout Standard
+\begin_inset CommandInset bibtex
+LatexCommand bibtex
+btprint "btPrintCited"
+bibfiles "../Bibliography/ref,../Bibliography/software"
+options "../styles/jecon"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document
