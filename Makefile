@@ -1,22 +1,65 @@
-NBDIR := Jupyter
+# Lecture Notes
+NotesDir := LectureNotes
+vpath ch%.pdf $(NotesDir)
+vpath ch%.lyx $(NotesDir)
+vpath _main.pdf $(NotesDir)
+vpath _main.lyx $(NotesDir)
+vpath ch%.py $(NotesDir)/Python
 
-OUTDIR4SLIDES := Lecture\ Slides/Python
-NOTES4SLIDES := $(wildcard $(NBDIR)/week*.ipynb)
-BASENAMES4SLIDES := $(basename $(notdir $(NOTES4SLIDES)))
-SCRNAMES4SLIDES := $(addsuffix .py, $(BASENAMES4SLIDES))
+ChapterLyx = $(shell ls $(NotesDir)/ch*.lyx)
+ChapterPdf = $(notdir $(ChapterLyx:.lyx=.pdf))
 
-OUTDIR4TEXT := Lecture\ Notes/Python
-NOTES4TEXT := $(wildcard $(NBDIR)/ch*.ipynb)
-BASENAMES4TEXT := $(basename $(notdir $(NOTES4TEXT)))
-SCRNAMES4TEXT := $(addsuffix .py, $(BASENAMES4TEXT))
+# Lecture Slides
+SlidesDir := LectureSlides
+vpath week%.pdf $(SlidesDir)
+vpath week%.lyx $(SlidesDir)
+vpath week%.py $(SlidesDir)/Python
 
-TARGET := $(addprefix $(OUTDIR4TEXT)/, $(SCRNAMES4TEXT)) $(addprefix $(OUTDIR4SLIDES)/, $(SCRNAMES4SLIDES)) 
-CONFIG := $(NBDIR)/cfg.py
+SlidesLyx = $(shell ls $(SlidesDir)/week*.lyx)
+SlidesPdf = $(notdir $(SlidesLyx:.lyx=.pdf))
 
-all: $(TARGET)
+# Jupyter Notebooks
+JupyterDir := Jupyter
+vpath %.ipynb $(JupyterDir)
 
-$(OUTDIR4SLIDES)/week%.py: $(NBDIR)/week%.ipynb $(NBDIR)/cfg.py
-	jupyter nbconvert $< --to script --config $(CONFIG) --output-dir $(OUTDIR4SLIDES)
+Nb4Book = $(notdir $(shell ls $(JupyterDir)/ch*.ipynb))
+Nb4Slides = $(notdir $(shell ls $(JupyterDir)/week*.ipynb))
 
-$(OUTDIR4TEXT)/ch%.py: $(NBDIR)/ch%.ipynb $(NBDIR)/cfg.py
-	jupyter nbconvert $< --to script --config $(CONFIG) --output-dir $(OUTDIR4TEXT)
+Py4Book = $(notdir $(Nb4Book:.ipynb=.py))
+Py4Slides = $(notdir $(Nb4Slides:.ipynb=.py))
+CONFIG := $(JupyterDir)/cfg.py
+
+# LaTeX and LyX
+vpath %.tex $(NotesDir)/Include
+LYX := /Applications/LyX.app/Contents/MacOS/lyx
+
+# Rules
+
+.PHONY: all
+all: chapters slides
+
+.PHONY: clean
+clean:
+	rm -f $(NotesDir)/*.lyx~
+	rm -f $(SlidesDir)/*.lyx~
+
+python: $(Py4Book) $(Py4Slides)
+chapters: $(ChapterPdf)
+slides: $(SlidesPdf)
+
+book: _main.lyx 
+	$(LYX) --export pdf3 $<
+
+ch%.pdf: ch%.lyx ch%.py
+	$(LYX) --export pdf3 $<
+	
+week%.pdf: week%.lyx week%.py
+	$(LYX) --export pdf3 $<
+
+week%.py: week%.ipynb $(CONFIG)
+	jupyter nbconvert $< --to script --config $(CONFIG) --output-dir $(SlidesDir)/Python
+
+ch%.py: ch%.ipynb $(CONFIG)
+	jupyter nbconvert $< --to script --config $(CONFIG) --output-dir $(NotesDir)/Python
+	
+
