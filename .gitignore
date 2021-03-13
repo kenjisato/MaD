@@ -4,8 +4,8 @@
 .Rproj.user
 
 # Knitr Cache
-/Lecture\ Notes/cache/*
-/Lecture\ Slides/cache/*
+/LectureNotes/cache/*
+/LectureSlides/cache/*
 
 # Python
 .ipynb_checkpoints
@@ -26,6 +26,6 @@ README.html
 /Moodle/*/*.*ml
 /Moodle/*/*.Rmd
 /Moodle/final
-/Lecture\ Notes/Figure/ch*
-/Lecture\ Slides/Figure/*
+/LectureNotes/Figure/ch*
+/LectureSlides/Figure/*
 /Jupyter/stash

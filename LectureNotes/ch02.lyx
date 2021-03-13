@@ -6,7 +6,7 @@
 \origin unavailable
 \textclass scrbook
 \begin_preamble
-\input{_preamble.tex}
+\input{Include/preamble.tex}
 \end_preamble
 \options dvipdfmx,a5paper,9pt
 \use_default_options true
@@ -5376,12 +5376,10 @@ status open
 \end_layout
 
 \begin_layout Verbatim
-
 laspeyres[t] = laspeyres[t-1] * (sum(price[t, :] * quantity[t-1, :])
 \end_layout
 
 \begin_layout Verbatim
-
                                  / sum(price[t-1, :] * quantity[t-1, :]))
 \end_layout
 
