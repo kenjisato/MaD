@@ -135,7 +135,7 @@ status open
 
 \begin_layout Plain Layout
 
-knitr::read_chunk('Python/week02.py')
+knitr::read_chunk('Python/sld02.py')
 \end_layout
 
 \begin_layout Plain Layout
@@ -427,7 +427,7 @@ status open
 
 \begin_layout Plain Layout
 
-<<week02/point/graphics>>=
+<<sld02/point/graphics>>=
 \end_layout
 
 \begin_layout Plain Layout
@@ -450,7 +450,7 @@ status open
 \backslash
 includegraphics[height=0.8
 \backslash
-textheight]{Figures/week02/point-1.pdf}
+textheight]{Figures/sld02/point-1.pdf}
 \end_layout
 
 \end_inset
@@ -486,7 +486,7 @@ status open
 
 \begin_layout Plain Layout
 
-<<week02/line/graphics>>=
+<<sld02/line/graphics>>=
 \end_layout
 
 \begin_layout Plain Layout
@@ -509,7 +509,7 @@ status open
 \backslash
 includegraphics[height=0.8
 \backslash
-textheight]{Figures/week02/line-1.pdf}
+textheight]{Figures/sld02/line-1.pdf}
 \end_layout
 
 \end_inset
@@ -545,7 +545,7 @@ status open
 
 \begin_layout Plain Layout
 
-<<week02/growth/graphics>>=
+<<sld02/growth/graphics>>=
 \end_layout
 
 \begin_layout Plain Layout
@@ -568,7 +568,7 @@ status open
 \backslash
 includegraphics[height=0.8
 \backslash
-textheight]{Figures/week02/growth-1.pdf}
+textheight]{Figures/sld02/growth-1.pdf}
 \end_layout
 
 \end_inset
@@ -1823,7 +1823,7 @@ status open
 
 \begin_layout Plain Layout
 
-<<week02/var, results='hide'>>=
+<<sld02/var, results='hide'>>=
 \end_layout
 
 \begin_layout Plain Layout
@@ -1868,7 +1868,7 @@ status open
 
 \begin_layout Plain Layout
 
-<<week02/use-var>>=
+<<sld02/use-var>>=
 \end_layout
 
 \begin_layout Plain Layout
@@ -1913,7 +1913,7 @@ status open
 
 \begin_layout Plain Layout
 
-<<week02/hidden-name/dnr>>=
+<<sld02/hidden-name/dnr>>=
 \end_layout
 
 \begin_layout Plain Layout
@@ -1936,7 +1936,7 @@ status open
 
 \begin_layout Plain Layout
 
-<<week02/usable-name/dnr>>=
+<<sld02/usable-name/dnr>>=
 \end_layout
 
 \begin_layout Plain Layout
@@ -1997,7 +1997,7 @@ status open
 
 \begin_layout Plain Layout
 
-<<week02/exa1>>=
+<<sld02/exa1>>=
 \end_layout
 
 \begin_layout Plain Layout
@@ -2046,7 +2046,7 @@ status open
 
 \begin_layout Plain Layout
 
-<<week02/exa2>>=
+<<sld02/exa2>>=
 \end_layout
 
 \begin_layout Plain Layout

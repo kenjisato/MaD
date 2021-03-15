@@ -134,7 +134,7 @@ status open
 
 \begin_layout Plain Layout
 
-knitr::read_chunk('Python/week03.py')
+knitr::read_chunk('Python/sld03.py')
 \end_layout
 
 \begin_layout Plain Layout
@@ -175,7 +175,7 @@ status open
 
 \begin_layout Plain Layout
 
-<<week03/list>>=
+<<sld03/list>>=
 \end_layout
 
 \begin_layout Plain Layout
@@ -198,7 +198,7 @@ status open
 
 \begin_layout Plain Layout
 
-<<week03/list-sum>>=
+<<sld03/list-sum>>=
 \end_layout
 
 \begin_layout Plain Layout
@@ -247,7 +247,7 @@ status open
 
 \begin_layout Plain Layout
 
-<<week03/numpy>>=
+<<sld03/numpy>>=
 \end_layout
 
 \begin_layout Plain Layout
@@ -279,7 +279,7 @@ status open
 
 \begin_layout Plain Layout
 
-<<week03/numpy-log>>=
+<<sld03/numpy-log>>=
 \end_layout
 
 \begin_layout Plain Layout
@@ -333,7 +333,7 @@ status open
 
 \begin_layout Plain Layout
 
-<<week03/vectors>>=
+<<sld03/vectors>>=
 \end_layout
 
 \begin_layout Plain Layout
@@ -455,7 +455,7 @@ status open
 
 \begin_layout Plain Layout
 
-<<week03/inner>>=
+<<sld03/inner>>=
 \end_layout
 
 \begin_layout Plain Layout
@@ -1568,7 +1568,7 @@ status open
 
 \begin_layout Plain Layout
 
-<<week03/ex25-1>>=
+<<sld03/ex25-1>>=
 \end_layout
 
 \begin_layout Plain Layout
@@ -1964,7 +1964,7 @@ status open
 
 \begin_layout Plain Layout
 
-<<week03/matrix>>=
+<<sld03/matrix>>=
 \end_layout
 
 \begin_layout Plain Layout
@@ -2306,7 +2306,7 @@ status open
 
 \begin_layout Plain Layout
 
-<<week03/matrix-select>>=
+<<sld03/matrix-select>>=
 \end_layout
 
 \begin_layout Plain Layout
@@ -2650,7 +2650,7 @@ status open
 
 \begin_layout Plain Layout
 
-<<week03/result-array>>=
+<<sld03/result-array>>=
 \end_layout
 
 \begin_layout Plain Layout
@@ -2898,7 +2898,7 @@ status open
 
 \begin_layout Plain Layout
 
-<<week03/matrix-index>>=
+<<sld03/matrix-index>>=
 \end_layout
 
 \begin_layout Plain Layout
@@ -2951,7 +2951,7 @@ status open
 
 \begin_layout Plain Layout
 
-<<week03/matrix-index2>>=
+<<sld03/matrix-index2>>=
 \end_layout
 
 \begin_layout Plain Layout
@@ -3693,7 +3693,7 @@ status open
 
 \begin_layout Plain Layout
 
-<<week03/problem2/noinc>>=
+<<sld03/problem2/noinc>>=
 \end_layout
 
 \begin_layout Plain Layout
@@ -3703,7 +3703,7 @@ status open
 
 \begin_layout Plain Layout
 
-<<week03/problem2/plot>>=
+<<sld03/problem2/plot>>=
 \end_layout
 
 \begin_layout Plain Layout
@@ -3762,7 +3762,7 @@ centering
 \backslash
 includegraphics[width=
 \backslash
-textwidth, trim = 80 10 80 10, clip]{Figure/week03/problem2-1}
+textwidth, trim = 80 10 80 10, clip]{Figures/sld03/problem2-1}
 \end_layout
 
 \end_inset

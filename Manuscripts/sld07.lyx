@@ -134,7 +134,7 @@ status open
 
 \begin_layout Plain Layout
 
-knitr::read_chunk('Python/week07.py')
+knitr::read_chunk('Python/sld07.py')
 \end_layout
 
 \begin_layout Plain Layout
@@ -171,7 +171,7 @@ status open
 
 \begin_layout Plain Layout
 
-<<week07/install/dnr>>=
+<<sld07/install/dnr>>=
 \end_layout
 
 \begin_layout Plain Layout
@@ -194,7 +194,7 @@ status open
 
 \begin_layout Plain Layout
 
-<<week07/prepare, include=FALSE>>=
+<<sld07/prepare, include=FALSE>>=
 \end_layout
 
 \begin_layout Plain Layout
@@ -204,7 +204,7 @@ status open
 
 \begin_layout Plain Layout
 
-<<week07/prepare, eval=FALSE>>=
+<<sld07/prepare, eval=FALSE>>=
 \end_layout
 
 \begin_layout Plain Layout
@@ -245,7 +245,7 @@ status open
 
 \begin_layout Plain Layout
 
-<<week07/array2frame>>=
+<<sld07/array2frame>>=
 \end_layout
 
 \begin_layout Plain Layout
@@ -286,7 +286,7 @@ status open
 
 \begin_layout Plain Layout
 
-<<week07/get-column/dnr>>=
+<<sld07/get-column/dnr>>=
 \end_layout
 
 \begin_layout Plain Layout
@@ -327,7 +327,7 @@ status open
 
 \begin_layout Plain Layout
 
-<<week07/get-row>>=
+<<sld07/get-row>>=
 \end_layout
 
 \begin_layout Plain Layout
@@ -372,7 +372,7 @@ status open
 
 \begin_layout Plain Layout
 
-<<week07/dict>>=
+<<sld07/dict>>=
 \end_layout
 
 \begin_layout Plain Layout
@@ -413,7 +413,7 @@ status open
 
 \begin_layout Plain Layout
 
-<<week07/dict2frame>>=
+<<sld07/dict2frame>>=
 \end_layout
 
 \begin_layout Plain Layout
@@ -454,7 +454,7 @@ status open
 
 \begin_layout Plain Layout
 
-<<week07/plot1/plot>>=
+<<sld07/plot1/plot>>=
 \end_layout
 
 \begin_layout Plain Layout
@@ -490,7 +490,7 @@ centering
 \backslash
 includegraphics[height=0.7
 \backslash
-textheight]{Figure/week07/plot1-1}
+textheight]{Figures/sld07/plot1-1}
 \end_layout
 
 \end_inset
@@ -535,7 +535,7 @@ status open
 
 \begin_layout Plain Layout
 
-<<week07/plot2/plot>>=
+<<sld07/plot2/plot>>=
 \end_layout
 
 \begin_layout Plain Layout
@@ -571,7 +571,7 @@ centering
 \backslash
 includegraphics[height=0.7
 \backslash
-textheight]{Figure/week07/plot2-1}
+textheight]{Figures/sld07/plot2-1}
 \end_layout
 
 \end_inset

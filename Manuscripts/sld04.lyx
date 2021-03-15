@@ -134,7 +134,7 @@ status open
 
 \begin_layout Plain Layout
 
-knitr::read_chunk('Python/week04.py')
+knitr::read_chunk('Python/sld04.py')
 \end_layout
 
 \begin_layout Plain Layout
@@ -171,7 +171,7 @@ status open
 
 \begin_layout Plain Layout
 
-<<week04/import>>=
+<<sld04/import>>=
 \end_layout
 
 \begin_layout Plain Layout
@@ -203,7 +203,7 @@ status open
 
 \begin_layout Plain Layout
 
-<<week04/arange>>=
+<<sld04/arange>>=
 \end_layout
 
 \begin_layout Plain Layout
@@ -267,7 +267,7 @@ status open
 
 \begin_layout Plain Layout
 
-<<week04/shape>>=
+<<sld04/shape>>=
 \end_layout
 
 \begin_layout Plain Layout
@@ -318,7 +318,7 @@ status open
 
 \begin_layout Plain Layout
 
-<<week04/reshape1>>=
+<<sld04/reshape1>>=
 \end_layout
 
 \begin_layout Plain Layout
@@ -386,7 +386,7 @@ status open
 
 \begin_layout Plain Layout
 
-<<week04/reshape2>>=
+<<sld04/reshape2>>=
 \end_layout
 
 \begin_layout Plain Layout
@@ -454,7 +454,7 @@ status open
 
 \begin_layout Plain Layout
 
-<<week04/reshape3>>=
+<<sld04/reshape3>>=
 \end_layout
 
 \begin_layout Plain Layout
@@ -517,7 +517,7 @@ status open
 
 \begin_layout Plain Layout
 
-<<week04/axis-sum>>=
+<<sld04/axis-sum>>=
 \end_layout
 
 \begin_layout Plain Layout
@@ -629,7 +629,7 @@ status open
 
 \begin_layout Plain Layout
 
-<<week04/for-loop1>>=
+<<sld04/for-loop1>>=
 \end_layout
 
 \begin_layout Plain Layout
@@ -668,7 +668,7 @@ status open
 \backslash
 includegraphics[width=1.2
 \backslash
-textwidth]{Images/03-for-loop}
+textwidth]{Diagrams/ch03-for-loop}
 \end_layout
 
 \end_inset
@@ -1482,7 +1482,7 @@ status open
 
 \begin_layout Plain Layout
 
-<<week04/gdp-data>>=
+<<sld04/gdp-data>>=
 \end_layout
 
 \begin_layout Plain Layout
@@ -1523,7 +1523,7 @@ status open
 
 \begin_layout Plain Layout
 
-<<week04/gdp-value>>=
+<<sld04/gdp-value>>=
 \end_layout
 
 \begin_layout Plain Layout
@@ -1564,7 +1564,7 @@ status open
 
 \begin_layout Plain Layout
 
-<<week04/gdp-nominal-def/noinc>>=
+<<sld04/gdp-nominal-def/noinc>>=
 \end_layout
 
 \begin_layout Plain Layout
@@ -1583,7 +1583,7 @@ status open
 
 \begin_layout Plain Layout
 
-<<week04/gdp-nominal-show>>=
+<<sld04/gdp-nominal-show>>=
 \end_layout
 
 \begin_layout Plain Layout
@@ -1624,7 +1624,7 @@ status open
 
 \begin_layout Plain Layout
 
-<<week04/gdp-real-no-for>>=
+<<sld04/gdp-real-no-for>>=
 \end_layout
 
 \begin_layout Plain Layout
@@ -1669,7 +1669,7 @@ status open
 
 \begin_layout Plain Layout
 
-<<week04/gdp-real>>=
+<<sld04/gdp-real>>=
 \end_layout
 
 \begin_layout Plain Layout
@@ -2120,7 +2120,7 @@ status open
 
 \begin_layout Plain Layout
 
-<<week04/contribution-data>>=
+<<sld04/contribution-data>>=
 \end_layout
 
 \begin_layout Plain Layout
@@ -2165,7 +2165,7 @@ status open
 
 \begin_layout Plain Layout
 
-<<week04/contribution-diff>>=
+<<sld04/contribution-diff>>=
 \end_layout
 
 \begin_layout Plain Layout
@@ -2188,7 +2188,7 @@ status open
 
 \begin_layout Plain Layout
 
-<<week04/contribution-gdp>>=
+<<sld04/contribution-gdp>>=
 \end_layout
 
 \begin_layout Plain Layout
@@ -2233,7 +2233,7 @@ status open
 
 \begin_layout Plain Layout
 
-<<week04/contribution-gdp-shifted>>=
+<<sld04/contribution-gdp-shifted>>=
 \end_layout
 
 \begin_layout Plain Layout
@@ -2256,7 +2256,7 @@ status open
 
 \begin_layout Plain Layout
 
-<<week04/contribution>>=
+<<sld04/contribution>>=
 \end_layout
 
 \begin_layout Plain Layout

@@ -134,7 +134,7 @@ status open
 
 \begin_layout Plain Layout
 
-knitr::read_chunk('Python/week06.py')
+knitr::read_chunk('Python/sld06.py')
 \end_layout
 
 \begin_layout Plain Layout
@@ -167,7 +167,7 @@ status open
 
 \begin_layout Plain Layout
 
-<<week06/prepare, include=FALSE>>=
+<<sld06/prepare, include=FALSE>>=
 \end_layout
 
 \begin_layout Plain Layout
@@ -177,7 +177,7 @@ status open
 
 \begin_layout Plain Layout
 
-<<week06/prepare, eval=FALSE>>=
+<<sld06/prepare, eval=FALSE>>=
 \end_layout
 
 \begin_layout Plain Layout
@@ -295,7 +295,7 @@ status open
 
 \begin_layout Plain Layout
 
-<<week06/matrix-arithmetic/dnr>>=
+<<sld06/matrix-arithmetic/dnr>>=
 \end_layout
 
 \begin_layout Plain Layout
@@ -318,7 +318,7 @@ status open
 
 \begin_layout Plain Layout
 
-<<week06/matrix-arithmetic-quiz/dnr>>=
+<<sld06/matrix-arithmetic-quiz/dnr>>=
 \end_layout
 
 \begin_layout Plain Layout
@@ -415,7 +415,7 @@ status open
 
 \begin_layout Plain Layout
 
-<<week06/matrix-arithmetic-avoid-pitfall>>=
+<<sld06/matrix-arithmetic-avoid-pitfall>>=
 \end_layout
 
 \begin_layout Plain Layout
@@ -477,7 +477,7 @@ status open
 
 \begin_layout Plain Layout
 
-<<week06/matrix-arithmetic-pitfall/dnr>>=
+<<sld06/matrix-arithmetic-pitfall/dnr>>=
 \end_layout
 
 \begin_layout Plain Layout
@@ -500,7 +500,7 @@ status open
 
 \begin_layout Plain Layout
 
-<<week06/matrix-at/dnr>>=
+<<sld06/matrix-at/dnr>>=
 \end_layout
 
 \begin_layout Plain Layout
@@ -938,7 +938,7 @@ status open
 
 \begin_layout Plain Layout
 
-<<week06/ts-representation>>=
+<<sld06/ts-representation>>=
 \end_layout
 
 \begin_layout Plain Layout
@@ -973,7 +973,7 @@ status open
 
 \begin_layout Plain Layout
 
-<<week06/ts-representation-2>>=
+<<sld06/ts-representation-2>>=
 \end_layout
 
 \begin_layout Plain Layout
@@ -1043,7 +1043,7 @@ status open
 
 \begin_layout Plain Layout
 
-<<week06/ts-representation-transform/dnr>>=
+<<sld06/ts-representation-transform/dnr>>=
 \end_layout
 
 \begin_layout Plain Layout
@@ -1691,7 +1691,7 @@ status open
 
 \begin_layout Plain Layout
 
-<<week06/ar2>>=
+<<sld06/ar2>>=
 \end_layout
 
 \begin_layout Plain Layout
@@ -1740,7 +1740,7 @@ status open
 
 \begin_layout Plain Layout
 
-<<week06/ar2-stability>>=
+<<sld06/ar2-stability>>=
 \end_layout
 
 \begin_layout Plain Layout
@@ -1781,7 +1781,7 @@ status open
 
 \begin_layout Plain Layout
 
-<<week06/ar2-sim>>=
+<<sld06/ar2-sim>>=
 \end_layout
 
 \begin_layout Plain Layout
@@ -1822,7 +1822,7 @@ status open
 
 \begin_layout Plain Layout
 
-<<week06/ar2-sim/plot>>=
+<<sld06/ar2-sim/plot>>=
 \end_layout
 
 \begin_layout Plain Layout
@@ -1859,7 +1859,7 @@ centering
 \backslash
 includegraphics[width=
 \backslash
-textwidth]{Figure/week06/ar2-sim-1}
+textwidth]{Figures/sld06/ar2-sim-1}
 \end_layout
 
 \end_inset
@@ -1900,7 +1900,7 @@ status open
 
 \begin_layout Plain Layout
 
-<<week06/ar2-many-sim/plot>>=
+<<sld06/ar2-many-sim/plot>>=
 \end_layout
 
 \begin_layout Plain Layout
@@ -1959,7 +1959,7 @@ centering
 \backslash
 includegraphics[width=
 \backslash
-textwidth]{Figure/week06/ar2-many-sim-1}
+textwidth]{Figures/sld06/ar2-many-sim-1}
 \end_layout
 
 \end_inset

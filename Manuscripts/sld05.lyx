@@ -134,7 +134,7 @@ status open
 
 \begin_layout Plain Layout
 
-knitr::read_chunk('Python/week05.py')
+knitr::read_chunk('Python/sld05.py')
 \end_layout
 
 \begin_layout Plain Layout
@@ -167,7 +167,7 @@ status open
 
 \begin_layout Plain Layout
 
-<<week05/practice, include=FALSE>>=
+<<sld05/practice, include=FALSE>>=
 \end_layout
 
 \begin_layout Plain Layout
@@ -177,7 +177,7 @@ status open
 
 \begin_layout Plain Layout
 
-<<week05/practice, eval=FALSE>>=
+<<sld05/practice, eval=FALSE>>=
 \end_layout
 
 \begin_layout Plain Layout
@@ -222,7 +222,7 @@ status open
 
 \begin_layout Plain Layout
 
-<<week05/tf-vector>>=
+<<sld05/tf-vector>>=
 \end_layout
 
 \begin_layout Plain Layout
@@ -267,7 +267,7 @@ status open
 
 \begin_layout Plain Layout
 
-<<week05/tf-sum>>=
+<<sld05/tf-sum>>=
 \end_layout
 
 \begin_layout Plain Layout
@@ -312,7 +312,7 @@ status open
 
 \begin_layout Plain Layout
 
-<<week05/tf-count>>=
+<<sld05/tf-count>>=
 \end_layout
 
 \begin_layout Plain Layout
@@ -335,7 +335,7 @@ status open
 
 \begin_layout Plain Layout
 
-<<week05/tf-ratio>>=
+<<sld05/tf-ratio>>=
 \end_layout
 
 \begin_layout Plain Layout
@@ -394,7 +394,7 @@ centering
 \backslash
 includegraphics[width=0.9
 \backslash
-textwidth]{Images/05-usa-top-percentile-share}
+textwidth]{Images/sld05-usa-top-percentile-share}
 \end_layout
 
 \end_inset
@@ -453,7 +453,7 @@ centering
 \backslash
 includegraphics[width=0.8
 \backslash
-textwidth]{Images/05-We_Are_The_99percent}
+textwidth]{Images/sld05-We_Are_The_99percent}
 \end_layout
 
 \end_inset
@@ -598,7 +598,7 @@ status open
 
 \begin_layout Plain Layout
 
-<<week05/median>>=
+<<sld05/median>>=
 \end_layout
 
 \begin_layout Plain Layout
@@ -670,7 +670,7 @@ status open
 
 \begin_layout Plain Layout
 
-<<week05/quantile>>=
+<<sld05/quantile>>=
 \end_layout
 
 \begin_layout Plain Layout
@@ -1268,7 +1268,7 @@ status open
 
 \begin_layout Plain Layout
 
-<<week05/disposable-income>>=
+<<sld05/disposable-income>>=
 \end_layout
 
 \begin_layout Plain Layout
@@ -1309,7 +1309,7 @@ status open
 
 \begin_layout Plain Layout
 
-<<week05/disposable-income2>>=
+<<sld05/disposable-income2>>=
 \end_layout
 
 \begin_layout Plain Layout
@@ -1354,7 +1354,7 @@ status open
 
 \begin_layout Plain Layout
 
-<<week05/less-than-rpl>>=
+<<sld05/less-than-rpl>>=
 \end_layout
 
 \begin_layout Plain Layout
@@ -1514,7 +1514,7 @@ centering
 \backslash
 includegraphics[width=
 \backslash
-textwidth]{Images/05-gini-example}
+textwidth]{Diagrams/sld05-gini-example}
 \end_layout
 
 \end_inset
@@ -1618,7 +1618,7 @@ status open
 
 \begin_layout Plain Layout
 
-<<week05/gini-data-gen>>=
+<<sld05/gini-data-gen>>=
 \end_layout
 
 \begin_layout Plain Layout
@@ -1628,7 +1628,7 @@ status open
 
 \begin_layout Plain Layout
 
-<<week05/gini-sorted>>=
+<<sld05/gini-sorted>>=
 \end_layout
 
 \begin_layout Plain Layout
@@ -1669,7 +1669,7 @@ status open
 
 \begin_layout Plain Layout
 
-<<week05/gini-cum-freq>>=
+<<sld05/gini-cum-freq>>=
 \end_layout
 
 \begin_layout Plain Layout
@@ -1679,7 +1679,7 @@ status open
 
 \begin_layout Plain Layout
 
-<<week05/gini-formula>>=
+<<sld05/gini-formula>>=
 \end_layout
 
 \begin_layout Plain Layout
@@ -1781,7 +1781,7 @@ status open
 
 \begin_layout Plain Layout
 
-<<week05/top-percentile-data>>=
+<<sld05/top-percentile-data>>=
 \end_layout
 
 \begin_layout Plain Layout
@@ -1855,7 +1855,7 @@ status open
 
 \begin_layout Plain Layout
 
-<<week05/top-percentile-threshold>>=
+<<sld05/top-percentile-threshold>>=
 \end_layout
 
 \begin_layout Plain Layout
@@ -1878,7 +1878,7 @@ status open
 
 \begin_layout Plain Layout
 
-<<week05/top-percentile-share>>=
+<<sld05/top-percentile-share>>=
 \end_layout
 
 \begin_layout Plain Layout
