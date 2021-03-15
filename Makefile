@@ -76,10 +76,6 @@ drawio.opts := -x -f pdf --crop
 
 # Rules
 
-.PHONY: test
-test:
-	@echo $(slides_aux)
-
 .PHONY: all
 all:
 	@echo Compilation takes very long time. What do you want to do?
@@ -99,7 +95,9 @@ all:
 # Compilation.
 .SECONDEXPANSION:
 
-full all.pdf: $(book)/all.pdf;
+full: book chapters
+
+book all.pdf: $(book)/all.pdf;
 $(book)/all.pdf: all.lyx $(chapter_aux) $(chapter_py) diagrams $(img_ext)
 	$(lyxapp) $(lyxapp.opts) $@ $<
 
