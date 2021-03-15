@@ -9,10 +9,10 @@ library(reticulate)
 
 ## Default Configurations ----
 knitr_config <- list(
-  fig.width   = 12, 
-  fig.asp     = 0.618, 
+  fig.width   = 12,
+  fig.asp     = 0.618,
   fig.align   = "center",
-  fig.path    = "Figure/",
+  fig.path    = "Figures/",
   engine      = "python",
   background  = NA,
   comment     = NA
@@ -33,17 +33,17 @@ knitr::opts_chunk$set(knitr_config)
 
 ## Common Hooks ----
 hook_lst_bf <- function(x, options) {
-    paste("\\begin{lstlisting}[basicstyle={\\bfseries}]\n", x, 
+    paste("\\begin{lstlisting}[basicstyle={\\bfseries}]\n", x,
         "\\end{lstlisting}\n", sep = "")
 }
 
 ## Extract Option from Label
 read_label <- function(lbl, split = '/') {
     label <- strsplit(lbl, split)[[1]]
-    
+
     new_options <- list()
     if (length(label) < 3) return(new_options)
-    
+
     if (label[[3]] == 'dnr') {
         new_options$eval <- FALSE
     } else if (label[[3]] == 'noinc') {
@@ -63,30 +63,30 @@ read_label <- function(lbl, split = '/') {
 knitr::knit_hooks$set(
     sympy = function(before, options, envir) {},
     source = function(x, options) {
-      
+
         lst_opts <- "style=Source"
         if (!is.null(options$caption)) {
             lst_opts <- paste0(lst_opts, ",caption=", options$caption)
             lst_opts <- paste0(lst_opts, ",label=", options$fig.lp, options$label)
         }
 
-        paste0("\\begin{lstlisting}[", lst_opts, "]\n",  
-              paste(x, collapse="\n"), 
+        paste0("\\begin{lstlisting}[", lst_opts, "]\n",
+              paste(x, collapse="\n"),
               "\n\\end{lstlisting}\n", sep = "")
-    }, 
+    },
     output = function(x, options) {
       if (!is.null(options$sympy)){
         x <- paste0("\\begin{", options$sympy, "}", x, "\\end{", options$sympy, "}")
         return(x)
-      }  
+      }
       if (options$results == 'asis') return(x)
-      
-      paste("\\begin{lstlisting}[style=Result]\n", x, 
+
+      paste("\\begin{lstlisting}[style=Result]\n", x,
           "\\end{lstlisting}\n", sep = "")
-    }, 
+    },
     chunk = function(x, options) x,
-    warning = hook_lst_bf, 
-    message = hook_lst_bf, 
+    warning = hook_lst_bf,
+    message = hook_lst_bf,
     error = hook_lst_bf,
     document = function(x) {
         gsub('\\\\(begin|end)\\{kframe\\}', '', x)
@@ -128,4 +128,3 @@ knitr::set_header(highlight = "")
 
 ## Source
 source_python('Knitr/setup.py')
-

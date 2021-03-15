@@ -6,11 +6,11 @@
 \origin unavailable
 \textclass scrbook
 \begin_preamble
-\input{Include/preamble.tex}
+\input{Include/ch-preamble.tex}
 \end_preamble
 \options dvipdfmx,a5paper,9pt
 \use_default_options true
-\master _main.lyx
+\master all.lyx
 \begin_modules
 knitr
 theorems-ams-chap-bytype
@@ -115,7 +115,7 @@ source('Knitr/setup.R')
 
 \begin_layout Plain Layout
 
-knitr::read_chunk('Python/ch007.py')
+knitr::read_chunk('Python/ch07.py')
 \end_layout
 
 \begin_layout Plain Layout
@@ -193,16 +193,16 @@ reference "chap:成長会計とソロー・モデル"
 
 \end_inset
 
-章のソロー・モデルの分析では，当期所得の一定割合 
+章のソロー・モデルの分析では，当期所得の一定割合
 \begin_inset Formula $(1-s)$
 \end_inset
 
- が消費され，残り 
+ が消費され，残り
 \begin_inset Formula $s$
 \end_inset
 
  が貯蓄されると仮定した：
-\begin_inset Formula 
+\begin_inset Formula
 \[
 C_{t}=(1-s)Y_{t},\qquad t=1,2,\dots
 \]
@@ -270,20 +270,20 @@ TODO: 参考文献
 
 \begin_layout Standard
 異なる財を同時期に消費する計画を立てる静学的な問題から出発しよう。経済には財1, 2 があって，消費量の配分を検討しているとしよう。消費量（より正確に言えば消費
-しようと計画する量）をそれぞれ 
+しようと計画する量）をそれぞれ
 \begin_inset Formula $x_{1}$
 \end_inset
 
-, 
+,
 \begin_inset Formula $x_{2}$
 \end_inset
 
  のように下付き添字1, 2 で表現する。消費者は「効用関数」（utility function）という選択の基準を持っているとする。効用関数は計画消費量
- 
+
 \begin_inset Formula $x_{1}$
 \end_inset
 
-, 
+,
 \begin_inset Formula $x_{2}$
 \end_inset
 
@@ -291,7 +291,7 @@ TODO: 参考文献
 \end_layout
 
 \begin_layout Standard
-\begin_inset Formula 
+\begin_inset Formula
 \[
 U(x_{1},x_{2})
 \]
@@ -302,7 +302,7 @@ U(x_{1},x_{2})
 \begin_inset Formula $U$
 \end_inset
 
- は計画消費量の組合せ 
+ は計画消費量の組合せ
 \begin_inset Formula $(x_{1},x_{2})$
 \end_inset
 
@@ -318,7 +318,7 @@ status open
 \end_inset
 
 ，
-\begin_inset Formula 
+\begin_inset Formula
 \[
 x_{1}'\ge x_{1}\quad\text{and}\quad x_{2}'\ge x_{2}\quad\text{どちらか一方は厳密な不等式}
 \]
@@ -326,7 +326,7 @@ x_{1}'\ge x_{1}\quad\text{and}\quad x_{2}'\ge x_{2}\quad\text{どちらか一方
 \end_inset
 
 であるとき，
-\begin_inset Formula 
+\begin_inset Formula
 \[
 U(x_{1}',x_{2}')>U(x_{1},x_{2})
 \]
@@ -342,14 +342,14 @@ U(x_{1}',x_{2}')>U(x_{1},x_{2})
 
 \begin_layout Standard
 その他もろもろの技術的な仮定を置くのだが，詳細は適当なミクロ経済学の教科書を参照してもらいたい。分析上で特に重要な仮定は，無差別曲線の形状に関するものである。あ
-る点 
+る点
 \begin_inset Formula $(x_{1}',x_{2}')$
 \end_inset
 
  を通る無差別曲線は，
-\begin_inset Formula 
+\begin_inset Formula
 \[
-\left\{ (x_{1},x_{2})\in\mathbb{R}_{+}^{2}\ \mid\ U(x_{1},x_{2})=U(x_{1}',x_{2}')\right\} 
+\left\{ (x_{1},x_{2})\in\mathbb{R}_{+}^{2}\ \mid\ U(x_{1},x_{2})=U(x_{1}',x_{2}')\right\}
 \]
 
 \end_inset
@@ -429,7 +429,7 @@ centering
 \backslash
 includegraphics[height=0.3
 \backslash
-textheight]{Images/07-two-period-Indifference}
+textheight]{Diagrams/ch07-two-period-Indifference}
 \end_layout
 
 \end_inset
@@ -466,23 +466,23 @@ name "fig:ch07/無差別曲線と最適消費点"
 \end_layout
 
 \begin_layout Standard
-任意の点 
+任意の点
 \begin_inset Formula $(x_{1}',x_{2}')$
 \end_inset
 
-, 
+,
 \begin_inset Formula $U(x_{1}',x_{2}')=\bar{U}$
 \end_inset
 
-, の近くに無差別曲線 
-\begin_inset Formula 
+, の近くに無差別曲線
+\begin_inset Formula
 \[
-\left\{ (x_{1},x_{2})\ \mid\ U(x_{1},x_{2})=\bar{U}\right\} 
+\left\{ (x_{1},x_{2})\ \mid\ U(x_{1},x_{2})=\bar{U}\right\}
 \]
 
 \end_inset
 
- の接線を引くことができる。接線の傾き 
+ の接線を引くことができる。接線の傾き
 \begin_inset Formula $dx_{2}/dx_{1}$
 \end_inset
 
@@ -497,7 +497,7 @@ status open
 \end_inset
 
 。
-\begin_inset Formula 
+\begin_inset Formula
 \[
 dU=\frac{\partial U}{\partial x_{1}}dx_{1}+\frac{\partial U}{\partial x_{2}}dx_{2}
 \]
@@ -513,7 +513,7 @@ dU=\frac{\partial U}{\partial x_{1}}dx_{1}+\frac{\partial U}{\partial x_{2}}dx_{
 \end_inset
 
  とすると，
-\begin_inset Formula 
+\begin_inset Formula
 \[
 \frac{dx_{2}}{dx_{1}}=-\frac{\left(\frac{\partial U}{\partial x_{1}}\right)}{\left(\frac{\partial U}{\partial x_{2}}\right)}=MRS
 \]
@@ -533,7 +533,7 @@ reference "fig:ch07/MRS"
 
 ）。財1の消費を増やしたときに，財2の消費を減らさなければ効用が変化してしまう。効用を一定に保つために財2を減らさなければならない量が限界代替率である。効用水準
 を変えずに，財2から財1に代替しているのである。このことは全微分の公式に戻ってみると分かりやすい。
-\begin_inset Formula 
+\begin_inset Formula
 \[
 \frac{\partial U}{\partial x_{1}}\times1+\frac{\partial U}{\partial x_{2}}\times\underbrace{\left(-\frac{\partial U/\partial x_{1}}{\partial U/\partial x_{2}}\right)}_{=MRS}=0
 \]
@@ -566,7 +566,7 @@ centering
 \backslash
 includegraphics[height=0.3
 \backslash
-textheight]{Images/07-two-period-MRS}
+textheight]{Diagrams/ch07-two-period-MRS}
 \end_layout
 
 \end_inset
@@ -603,15 +603,15 @@ name "fig:ch07/MRS"
 \end_layout
 
 \begin_layout Standard
-消費者は予算に限りがあるので，無尽蔵に消費を増やすわけにはいかない。財1, 2 の価格をそれぞれ 
+消費者は予算に限りがあるので，無尽蔵に消費を増やすわけにはいかない。財1, 2 の価格をそれぞれ
 \begin_inset Formula $p_{1}$
 \end_inset
 
-, 
+,
 \begin_inset Formula $p_{2}>0$
 \end_inset
 
-, 消費者の予算を 
+, 消費者の予算を
 \begin_inset Formula $m>0$
 \end_inset
 
@@ -619,27 +619,27 @@ name "fig:ch07/MRS"
 \end_layout
 
 \begin_layout Standard
-\begin_inset Formula 
+\begin_inset Formula
 \[
 p_{1}x_{1}+p_{2}x_{2}\le m
 \]
 
 \end_inset
 
-が成り立つように 
+が成り立つように
 \begin_inset Formula $x_{1}$
 \end_inset
 
-, 
+,
 \begin_inset Formula $x_{2}$
 \end_inset
 
- を選ばなければならない。この不等式が成り立つ 
+ を選ばなければならない。この不等式が成り立つ
 \begin_inset Formula $(x_{1},x_{2})$
 \end_inset
 
  の集合を「予算集合」（budget set）という。この不等式が等号で成り立つ集合（線分）を「予算線」（budget line）という。予算集合の不等式は
-\begin_inset Formula 
+\begin_inset Formula
 \[
 \frac{x_{1}}{m/p_{1}}+\frac{x_{2}}{m/p_{2}}\le1
 \]
@@ -654,11 +654,11 @@ p_{1}x_{1}+p_{2}x_{2}\le m
 \begin_inset Formula $m/p_{1}$
 \end_inset
 
-, 縦軸切片が 
+, 縦軸切片が
 \begin_inset Formula $m/p_{2}$
 \end_inset
 
- であるような線分（傾きは 
+ であるような線分（傾きは
 \begin_inset Formula $-p_{1}/p_{2}$
 \end_inset
 
@@ -677,11 +677,11 @@ reference "fig:ch07/無差別曲線と最適消費点"
 \end_layout
 
 \begin_layout Standard
-消費者は，予算制約を満たすという条件の下で，効用 
+消費者は，予算制約を満たすという条件の下で，効用
 \begin_inset Formula $U(x_{1},x_{2})$
 \end_inset
 
- が最大になるような 
+ が最大になるような
 \begin_inset Formula $(x_{1},x_{2})$
 \end_inset
 
@@ -689,7 +689,7 @@ reference "fig:ch07/無差別曲線と最適消費点"
 \end_layout
 
 \begin_layout Standard
-\begin_inset Formula 
+\begin_inset Formula
 \begin{align*}
  & \max_{x_{1},x_{2}}U(x_{1},x_{2})\\
  & \text{subject to} & (P1)\\
@@ -706,16 +706,16 @@ reference "fig:ch07/無差別曲線と最適消費点"
 \end_layout
 
 \begin_layout Standard
-効用を最大化する 
+効用を最大化する
 \begin_inset Formula $(x_{1},x_{2})$
 \end_inset
 
  を見つけることを「効用最大化問題を解く」，より一般に「最適化問題を解く」という。また，効用（より一般には「目的関数」）を最大化すると判明した
- 
+
 \begin_inset Formula $(x_{1},x_{2})$
 \end_inset
 
- を「解」と呼ぶ。解を 
+ を「解」と呼ぶ。解を
 \begin_inset Formula $(x_{1}^{*},x_{2}^{*})$
 \end_inset
 
@@ -723,7 +723,7 @@ reference "fig:ch07/無差別曲線と最適消費点"
 \end_layout
 
 \begin_layout Standard
-\begin_inset Formula 
+\begin_inset Formula
 \[
 p_{1}x_{1}^{*}+p_{2}x_{2}^{*}\le m
 \]
@@ -731,7 +731,7 @@ p_{1}x_{1}^{*}+p_{2}x_{2}^{*}\le m
 \end_inset
 
 と
-\begin_inset Formula 
+\begin_inset Formula
 \[
 p_{1}x_{1}+p_{2}x_{2}\le m\Longrightarrow U(x_{1}^{*},x_{2}^{*})\ge U(x_{1},x_{2})
 \]
@@ -772,7 +772,7 @@ status open
 
 \begin_layout Itemize
 予算を余らせても効用に影響しないので，予算は使い切る方がよい。つまり，
-\begin_inset Formula 
+\begin_inset Formula
 \[
 p_{1}x_{1}+p_{2}x_{2}=m
 \]
@@ -785,7 +785,7 @@ p_{1}x_{1}+p_{2}x_{2}=m
 \begin_layout Itemize
 無差別曲線はできるだけ右上にあるものの方がよいので，ギリギリ予算線に接するような無差別曲線を選ぶのがよい。つまり，無差別曲線の接線の傾き（MRS）が予算線の傾き
 と一致する。
-\begin_inset Formula 
+\begin_inset Formula
 \begin{equation}
 MRS=-\frac{\partial U/\partial x_{1}}{\partial U/\partial x_{2}}=-\frac{p_{1}}{p_{2}}\label{eq:ch07/mrs-optimal}
 \end{equation}
@@ -810,7 +810,7 @@ reference "fig:ch07/無差別曲線と最適消費点"
 
 \end_inset
 
-の 
+の
 \begin_inset Formula $E$
 \end_inset
 
@@ -840,8 +840,8 @@ reference "eq:ch07/mrs-optimal"
 
 \end_inset
 
-) 
-\begin_inset Formula 
+)
+\begin_inset Formula
 \begin{equation}
 \frac{\partial U/\partial x_{1}}{\partial U/\partial x_{2}}=\frac{p_{1}}{p_{2}}\label{eq:mrs=relprice}
 \end{equation}
@@ -849,12 +849,12 @@ reference "eq:ch07/mrs-optimal"
 \end_inset
 
 は特に重要なので経済的な意味を確認しておこう。右辺は財1の財2に対する相対価格であり，2財に対する市場の評価を表している。財1を1単位多く消費するためには，財2
-は 
+は
 \begin_inset Formula $p_{1}/p_{2}$
 \end_inset
 
  単位だけ減らさなければならない。
-\begin_inset Formula 
+\begin_inset Formula
 \[
 p_{1}\times1+p_{2}\times\left(-\frac{p_{1}}{p_{2}}\right)=0
 \]
@@ -905,12 +905,12 @@ reference "eq:mrs=relprice"
 \end_layout
 
 \begin_layout Problem
-予算線上にある消費点 
+予算線上にある消費点
 \begin_inset Formula $(x_{1},x_{2})$
 \end_inset
 
  では，
-\begin_inset Formula 
+\begin_inset Formula
 \[
 \frac{\partial U/\partial x_{1}}{\partial U/\partial x_{2}}>\frac{p_{1}}{p_{2}}
 \]
@@ -921,7 +921,7 @@ reference "eq:mrs=relprice"
 \begin_inset Formula $x_{1}$
 \end_inset
 
-, 
+,
 \begin_inset Formula $x_{2}$
 \end_inset
 
@@ -932,11 +932,11 @@ reference "fig:ch07/無差別曲線と最適消費点"
 
 \end_inset
 
-の点 
+の点
 \begin_inset Formula $F$
 \end_inset
 
- から点 
+ から点
 \begin_inset Formula $E$
 \end_inset
 
@@ -976,7 +976,7 @@ baselineskip}
 
 \begin_layout Standard
 前述のような最適化問題を機械的に解く方法としてラグランジュ未定乗数法というものがあるので，簡単に解説しておこう。
-\begin_inset Formula 
+\begin_inset Formula
 \begin{align*}
  & \max_{x_{1},x_{2}}U(x_{1},x_{2})\\
  & \text{subject to}\\
@@ -990,31 +990,31 @@ baselineskip}
 
 \begin_layout Standard
 ラグランジアンと呼ばれる関数を次のように定義する。
-\begin_inset Formula 
+\begin_inset Formula
 \[
 \mathcal{L}=\underbrace{U(x_{1},x_{2})}_{\text{目的関数}}+\lambda\underbrace{\left[m-\left(p_{1}x_{1}+p_{2}x_{2}\right)\right]}_{\text{制約条件, }\ge0}
 \]
 
 \end_inset
 
-確実に 
+確実に
 \begin_inset Formula $p_{1}x_{1}+p_{2}x_{2}=m$
 \end_inset
 
- となることを保証する条件が与えられている場合には，ラグランジアン 
+ となることを保証する条件が与えられている場合には，ラグランジアン
 \begin_inset Formula $\mathcal{L}$
 \end_inset
 
- を 
+ を
 \begin_inset Formula $x_{1},x_{2}$
 \end_inset
 
- と 
+ と
 \begin_inset Formula $\lambda$
 \end_inset
 
  （未定乗数）で偏微分してゼロとなる点が解になる。
-\begin_inset Formula 
+\begin_inset Formula
 \begin{align}
 \frac{\partial\mathcal{L}}{\partial x_{1}} & =\frac{\partial U}{\partial x_{1}}-\lambda p_{1}=0\\
 \frac{\partial\mathcal{L}}{\partial x_{2}} & =\frac{\partial U}{\partial x_{2}}-\lambda p_{2}=0\\
@@ -1035,14 +1035,14 @@ reference "eq:lagrange"
 \end_inset
 
 ) の代わりに
-\begin_inset Formula 
+\begin_inset Formula
 \[
 \lambda\left[m-\left(p_{1}x_{1}+p_{2}x_{2}\right)\right]=0
 \]
 
 \end_inset
 
-という条件を使う。制約条件にゆとり（スラック）がある場合には 
+という条件を使う。制約条件にゆとり（スラック）がある場合には
 \begin_inset Formula $\lambda$
 \end_inset
 
@@ -1051,7 +1051,7 @@ reference "eq:lagrange"
 
 \begin_layout Example
 効用関数をコブダグラス型
-\begin_inset Formula 
+\begin_inset Formula
 \begin{equation}
 U(x_{1},x_{2})=x_{1}^{\alpha}x_{2}^{1-\alpha}\label{eq:ch07/cd}
 \end{equation}
@@ -1059,7 +1059,7 @@ U(x_{1},x_{2})=x_{1}^{\alpha}x_{2}^{1-\alpha}\label{eq:ch07/cd}
 \end_inset
 
  に特定化しよう。このとき，
-\begin_inset Formula 
+\begin_inset Formula
 \[
 \mathcal{L}=x_{1}^{\alpha}x_{2}^{1-\alpha}+\lambda\left[m-\left(p_{1}x_{1}+p_{2}x_{2}\right)\right]
 \]
@@ -1067,7 +1067,7 @@ U(x_{1},x_{2})=x_{1}^{\alpha}x_{2}^{1-\alpha}\label{eq:ch07/cd}
 \end_inset
 
 
-\begin_inset Formula 
+\begin_inset Formula
 \begin{align*}
 \frac{\partial\mathcal{L}}{\partial x_{1}} & =\alpha x_{1}^{\alpha-1}x_{2}^{1-\alpha}-\lambda p_{1}=0\\
 \frac{\partial\mathcal{L}}{\partial x_{2}} & =(1-\alpha)x_{1}^{\alpha}x_{2}^{-\alpha}-\lambda p_{2}=0
@@ -1076,7 +1076,7 @@ U(x_{1},x_{2})=x_{1}^{\alpha}x_{2}^{1-\alpha}\label{eq:ch07/cd}
 \end_inset
 
 より，
-\begin_inset Formula 
+\begin_inset Formula
 \begin{equation}
 \frac{\alpha}{1-\alpha}\frac{x_{2}}{x_{1}}=\frac{p_{1}}{p_{2}}\Longrightarrow\alpha p_{2}x_{2}=(1-\alpha)p_{1}x_{1}\label{eq:a}
 \end{equation}
@@ -1084,7 +1084,7 @@ U(x_{1},x_{2})=x_{1}^{\alpha}x_{2}^{1-\alpha}\label{eq:ch07/cd}
 \end_inset
 
 を得る。さらに，
-\begin_inset Formula 
+\begin_inset Formula
 \[
 \frac{\partial\mathcal{L}}{\partial\lambda}=m-\left(p_{1}x_{1}+p_{2}x_{2}\right)=0
 \]
@@ -1099,7 +1099,7 @@ reference "eq:a"
 \end_inset
 
 ) を使うと，
-\begin_inset Formula 
+\begin_inset Formula
 \begin{equation}
 x_{1}=\frac{\alpha m}{p_{1}},\qquad x_{2}=\frac{(1-\alpha)m}{p_{2}}\label{eq:ch07/sol-1}
 \end{equation}
@@ -1111,7 +1111,7 @@ x_{1}=\frac{\alpha m}{p_{1}},\qquad x_{2}=\frac{(1-\alpha)m}{p_{2}}\label{eq:ch0
 
 \begin_layout Example
 未定乗数についても解いておこう。
-\begin_inset Formula 
+\begin_inset Formula
 \[
 \lambda=\frac{\alpha x_{1}^{\alpha-1}x_{2}^{1-\alpha}}{p_{1}}=\frac{\alpha}{p_{1}}\left(\frac{x_{2}}{x_{1}}\right)^{1-\alpha}=\frac{\alpha}{p_{1}}\left(\frac{(1-\alpha)p_{1}}{\alpha p_{2}}\right)^{1-\alpha}=\left(\frac{\alpha}{p_{1}}\right)^{\alpha}\left(\frac{1-\alpha}{p_{2}}\right)^{1-\alpha}
 \]
@@ -1132,7 +1132,7 @@ reference "eq:ch07/sol-1"
 
 \end_inset
 
-) を考慮して 
+) を考慮して
 \begin_inset Formula $\lambda$
 \end_inset
 
@@ -1140,11 +1140,11 @@ reference "eq:ch07/sol-1"
 \begin_inset Formula $\lambda$
 \end_inset
 
- は所得 
+ は所得
 \begin_inset Formula $m$
 \end_inset
 
- を1単位増やしたときに得られる追加的な効用（限界効用）である。追加的な1単位の所得は 
+ を1単位増やしたときに得られる追加的な効用（限界効用）である。追加的な1単位の所得は
 \begin_inset Formula $\lambda$
 \end_inset
 
@@ -1160,18 +1160,18 @@ reference "eq:ch07/sol-1"
 
 \begin_layout Example
 効用関数を準線形と仮定しよう。
-\begin_inset Formula 
+\begin_inset Formula
 \[
 U(x_{1},x_{2})=\log x_{1}+x_{2}
 \]
 
 \end_inset
 
-ただし，このような関数形の場合には 
+ただし，このような関数形の場合には
 \begin_inset Formula $x_{1}=0$
 \end_inset
 
- や 
+ や
 \begin_inset Formula $x_{2}=0$
 \end_inset
 
@@ -1179,12 +1179,12 @@ U(x_{1},x_{2})=\log x_{1}+x_{2}
 \begin_inset Formula $x_{1}\ge0$
 \end_inset
 
-, 
+,
 \begin_inset Formula $x_{2}\ge0$
 \end_inset
 
  という暗黙の制約条件をきちんと考慮してやる必要がある。ラグランジアンは
-\begin_inset Formula 
+\begin_inset Formula
 \[
 \mathcal{L}=u(x_{1})+x_{2}+\lambda\left[m-p_{1}x_{1}-p_{2}x_{2}\right]+\lambda_{1}x_{1}+\lambda_{2}x_{2}
 \]
@@ -1192,7 +1192,7 @@ U(x_{1},x_{2})=\log x_{1}+x_{2}
 \end_inset
 
 になる。解が満たす条件は，
-\begin_inset Formula 
+\begin_inset Formula
 \begin{align*}
 \frac{1}{x_{1}}-\lambda p_{1}+\lambda_{1} & =0\\
 1-\lambda p_{2}+\lambda_{2} & =0\\
@@ -1204,7 +1204,7 @@ p_{1}x_{1}+p_{2}x_{2} & =m\\
 \end_inset
 
 となる。少し整理すると，
-\begin_inset Formula 
+\begin_inset Formula
 \begin{align*}
 p_{1}x_{1}+p_{2}x_{2} & =m\\
 \lambda p_{1}x_{1} & =1\\
@@ -1218,7 +1218,7 @@ p_{1}x_{1}+p_{2}x_{2} & =m\\
 \end_inset
 
  であると仮定してみよう。このとき，
-\begin_inset Formula 
+\begin_inset Formula
 \[
 \lambda=\frac{1}{p_{2}},\qquad x_{1}=\frac{p_{2}}{p_{1}},\qquad x_{2}=\frac{m-p_{2}}{p_{2}}
 \]
@@ -1253,8 +1253,8 @@ p_{1}x_{1}+p_{2}x_{2} & =m\\
 \begin_inset Formula $p_{1}x_{1}+p_{2}x_{2}=m$
 \end_inset
 
- から 
-\begin_inset Formula 
+ から
+\begin_inset Formula
 \[
 x_{1}=\frac{m}{p_{1}}
 \]
@@ -1306,16 +1306,16 @@ status open
 
 \end_inset
 
-。名目利子率は貨幣価値を翌年に持ち越すときの額面評価額の拡大率のことである。今の 100万円は1年後の 
+。名目利子率は貨幣価値を翌年に持ち越すときの額面評価額の拡大率のことである。今の 100万円は1年後の
 \begin_inset Formula $100(1+i)$
 \end_inset
 
- 万円と等価である。逆に言えば，来年の 100万円は今の 
+ 万円と等価である。逆に言えば，来年の 100万円は今の
 \begin_inset Formula $100/(1+i)$
 \end_inset
 
  万円と等価になる。将来の貨幣価値を現在の貨幣価値に換算する公式は
-\begin_inset Formula 
+\begin_inset Formula
 \[
 \text{現在の貨幣価値}=\frac{\text{将来の貨幣価値}}{1+\text{名目利子率}}
 \]
@@ -1334,7 +1334,7 @@ status open
 \begin_inset Formula $p_{t}$
 \end_inset
 
- を 
+ を
 \begin_inset Formula $t$
 \end_inset
 
@@ -1346,12 +1346,12 @@ status open
 \begin_inset Formula $i_{t}$
 \end_inset
 
- を名目利子率とする。これらはスカラー（ベクトルではない普通の数）である。貨幣価値は 
+ を名目利子率とする。これらはスカラー（ベクトルではない普通の数）である。貨幣価値は
 \begin_inset Formula $p_{t}x_{t}$
 \end_inset
 
  のように書けるので，上記の割引の公式を置き換えて，
-\begin_inset Formula 
+\begin_inset Formula
 \[
 p_{t-1}x_{t-1}=\frac{p_{t}x_{t}}{1+i_{t}}
 \]
@@ -1359,38 +1359,38 @@ p_{t-1}x_{t-1}=\frac{p_{t}x_{t}}{1+i_{t}}
 \end_inset
 
 とできる。
-\begin_inset Formula 
+\begin_inset Formula
 \[
 x_{t-1}=\frac{x_{t}}{(1+i_{t})\left(\frac{p_{t-1}}{p_{t}}\right)}
 \]
 
 \end_inset
 
-インフレ率を 
+インフレ率を
 \begin_inset Formula $\pi_{t}=(p_{t}/p_{t-1})-1$
 \end_inset
 
  とすれば，分母を次のように変形できる。
-\begin_inset Formula 
+\begin_inset Formula
 \[
 (1+i_{t})\left(\frac{p_{t-1}}{p_{t}}\right)=\frac{1+i_{t}}{1+\pi_{t}}=1+r_{t}
 \]
 
 \end_inset
 
-このように定義した 
+このように定義した
 \begin_inset Formula $r_{t}$
 \end_inset
 
  を用いると，実質的な価値の割引の公式を得る。
-\begin_inset Formula 
+\begin_inset Formula
 \[
 x_{t-1}=\frac{x_{t}}{1+r_{t}}
 \]
 
 \end_inset
 
- 
+
 \begin_inset Formula $r_{t}$
 \end_inset
 
@@ -1399,7 +1399,7 @@ x_{t-1}=\frac{x_{t}}{1+r_{t}}
 
 \begin_layout Remark
 実質利子率の定義を近似的に，
-\begin_inset Formula 
+\begin_inset Formula
 \[
 r=\frac{1+i}{1+\pi}-1\approx i-\pi
 \]
@@ -1407,7 +1407,7 @@ r=\frac{1+i}{1+\pi}-1\approx i-\pi
 \end_inset
 
 とすることができる。定義式両辺の対数を取ると
-\begin_inset Formula 
+\begin_inset Formula
 \[
 \log(1+i)=\log(1+r)+\log(1+\pi)
 \]
@@ -1415,7 +1415,7 @@ r=\frac{1+i}{1+\pi}-1\approx i-\pi
 \end_inset
 
 となる。ここでも再び瞬時成長率と離散時間の実効成長率の差が現れる。瞬時成長率については，
-\begin_inset Formula 
+\begin_inset Formula
 \[
 i=r+\pi
 \]
@@ -1451,7 +1451,7 @@ i=r+\pi
 \end_layout
 
 \begin_layout Standard
-\begin_inset Formula 
+\begin_inset Formula
 \[
 U(c_{1},c_{2})=u(c_{1})+\frac{u(c_{2})}{1+\rho}=u(c_{1})+\beta u(c_{2})
 \]
@@ -1462,7 +1462,7 @@ U(c_{1},c_{2})=u(c_{1})+\frac{u(c_{2})}{1+\rho}=u(c_{1})+\beta u(c_{2})
 \begin_inset Formula $u(\cdot)$
 \end_inset
 
- を期間効用関数と呼ぶ。毎期の消費を当期の視点で評価したものである。将来の消費から得られる効用が現在の消費と比べて小さくなることを 
+ を期間効用関数と呼ぶ。毎期の消費を当期の視点で評価したものである。将来の消費から得られる効用が現在の消費と比べて小さくなることを
 \begin_inset Formula $1/(1+\rho)$
 \end_inset
 
@@ -1483,18 +1483,18 @@ U(c_{1},c_{2})=u(c_{1})+\frac{u(c_{2})}{1+\rho}=u(c_{1})+\beta u(c_{2})
 
 \begin_layout Standard
 ある消費者が効用
-\begin_inset Formula 
+\begin_inset Formula
 \[
 U(c_{1},c_{2})=u(c_{1})+\beta u(c_{2})
 \]
 
 \end_inset
 
-を最大化するように消費計画 
+を最大化するように消費計画
 \begin_inset Formula $c_{1}$
 \end_inset
 
-, 
+,
 \begin_inset Formula $c_{2}$
 \end_inset
 
@@ -1510,35 +1510,35 @@ U(c_{1},c_{2})=u(c_{1})+\beta u(c_{2})
 \end_layout
 
 \begin_layout Standard
-この消費者は1期，2期のそれぞれにおいて 
+この消費者は1期，2期のそれぞれにおいて
 \begin_inset Formula $y_{1}$
 \end_inset
 
-, 
+,
 \begin_inset Formula $y_{2}$
 \end_inset
 
- の実質労働所得を稼ぐとしよう。この経済では，期首に保有している貯蓄残高に対して利払いを受けられる。例えば，消費者の計画時点での貯蓄残高 
+ の実質労働所得を稼ぐとしよう。この経済では，期首に保有している貯蓄残高に対して利払いを受けられる。例えば，消費者の計画時点での貯蓄残高
 \begin_inset Formula $s_{0}$
 \end_inset
 
- に対して，利子 
+ に対して，利子
 \begin_inset Formula $r_{1}s_{0}$
 \end_inset
 
- が1期に支払われる。1期の期末にかけての貯蓄残高の変化 
+ が1期に支払われる。1期の期末にかけての貯蓄残高の変化
 \begin_inset Formula $s_{1}-s_{0}$
 \end_inset
 
- は，1期に受け取る労働所得 
+ は，1期に受け取る労働所得
 \begin_inset Formula $y_{1}$
 \end_inset
 
- と利子所得 
+ と利子所得
 \begin_inset Formula $r_{1}s_{0}$
 \end_inset
 
- および1期に支払う消費支出 
+ および1期に支払う消費支出
 \begin_inset Formula $c_{1}$
 \end_inset
 
@@ -1546,7 +1546,7 @@ U(c_{1},c_{2})=u(c_{1})+\beta u(c_{2})
 \end_layout
 
 \begin_layout Standard
-\begin_inset Formula 
+\begin_inset Formula
 \[
 s_{1}-s_{0}=y_{1}+r_{1}s_{0}-c_{1}
 \]
@@ -1554,7 +1554,7 @@ s_{1}-s_{0}=y_{1}+r_{1}s_{0}-c_{1}
 \end_inset
 
 あるいは
-\begin_inset Formula 
+\begin_inset Formula
 \[
 c_{1}=y_{1}+(1+r_{1})s_{0}-s_{1}
 \]
@@ -1562,7 +1562,7 @@ c_{1}=y_{1}+(1+r_{1})s_{0}-s_{1}
 \end_inset
 
 同様にして2期のお金の出入りは次のように表現できる。
-\begin_inset Formula 
+\begin_inset Formula
 \[
 c_{2}=y_{2}+(1+r_{2})s_{1}-s_{2}
 \]
@@ -1573,7 +1573,7 @@ c_{2}=y_{2}+(1+r_{2})s_{1}-s_{2}
 \end_layout
 
 \begin_layout Standard
-\begin_inset Formula 
+\begin_inset Formula
 \begin{align*}
 c_{1} & =y_{1}+(1+r_{1})s_{0}-s_{1}\\
 \frac{c_{2}}{1+r_{2}} & =\frac{y_{2}}{1+r_{2}}+s_{1}-\frac{1}{1+r_{2}}s_{2}
@@ -1581,12 +1581,12 @@ c_{1} & =y_{1}+(1+r_{1})s_{0}-s_{1}\\
 
 \end_inset
 
-辺々足すと 
+辺々足すと
 \begin_inset Formula $s_{1}$
 \end_inset
 
  が消えて，
-\begin_inset Formula 
+\begin_inset Formula
 \[
 c_{1}+\frac{c_{2}}{1+r_{2}}+\frac{s_{2}}{1+r_{2}}=(1+r_{1})s_{0}+y_{1}+\frac{y_{2}}{1+r_{2}}
 \]
@@ -1597,19 +1597,19 @@ c_{1}+\frac{c_{2}}{1+r_{2}}+\frac{s_{2}}{1+r_{2}}=(1+r_{1})s_{0}+y_{1}+\frac{y_{
 \end_layout
 
 \begin_layout Standard
-貯蓄残高はマイナスにもなることに注意しよう。負の残高は債務を表している。この消費は 
+貯蓄残高はマイナスにもなることに注意しよう。負の残高は債務を表している。この消費は
 \begin_inset Formula $c_{1}$
 \end_inset
 
-, 
+,
 \begin_inset Formula $c_{2}$
 \end_inset
 
-, 
+,
 \begin_inset Formula $s_{2}$
 \end_inset
 
- を上手に選んで 
+ を上手に選んで
 \begin_inset Formula $U(c_{1},c_{2})$
 \end_inset
 
@@ -1622,7 +1622,7 @@ c_{1}+\frac{c_{2}}{1+r_{2}}+\frac{s_{2}}{1+r_{2}}=(1+r_{1})s_{0}+y_{1}+\frac{y_{
 \end_inset
 
  には下限を設定する必要がある。簡単のために，借金を残して死ぬ計画を立てないという条件を課そう。すなわち，
-\begin_inset Formula 
+\begin_inset Formula
 \[
 s_{2}\ge0
 \]
@@ -1630,7 +1630,7 @@ s_{2}\ge0
 \end_inset
 
  である。この条件の下では，
-\begin_inset Formula 
+\begin_inset Formula
 \[
 c_{1}+\frac{c_{2}}{1+r_{2}}\le(1+r_{1})s_{0}+y_{1}+\frac{y_{2}}{1+r_{2}}
 \]
@@ -1641,12 +1641,12 @@ c_{1}+\frac{c_{2}}{1+r_{2}}\le(1+r_{1})s_{0}+y_{1}+\frac{y_{2}}{1+r_{2}}
 \begin_inset Formula $r_{1}=1$
 \end_inset
 
-, 
+,
 \begin_inset Formula $r_{2}=r$
 \end_inset
 
  と書き直そう。考慮すべき制約条件は次のようになる。
-\begin_inset Formula 
+\begin_inset Formula
 \begin{equation}
 c_{1}+\frac{c_{2}}{1+r}\le s_{0}+y_{1}+\frac{y_{2}}{1+r}\label{eq:ch07/bc}
 \end{equation}
@@ -1654,7 +1654,7 @@ c_{1}+\frac{c_{2}}{1+r}\le s_{0}+y_{1}+\frac{y_{2}}{1+r}\label{eq:ch07/bc}
 \end_inset
 
 この式は
-\begin_inset Formula 
+\begin_inset Formula
 \[
 \text{消費の割引現在価値の総和}\le\text{所得の割引現在価値の総和}
 \]
@@ -1674,7 +1674,7 @@ c_{1}+\frac{c_{2}}{1+r}\le s_{0}+y_{1}+\frac{y_{2}}{1+r}\label{eq:ch07/bc}
 \end_inset
 
  については非常に大きなマイナスになっても構わない。この条件については，
-\begin_inset Formula 
+\begin_inset Formula
 \begin{equation}
 s_{1}\ge0\label{eq:ch07/borrowing-constraint}
 \end{equation}
@@ -1682,7 +1682,7 @@ s_{1}\ge0\label{eq:ch07/borrowing-constraint}
 \end_inset
 
 あるいは
-\begin_inset Formula 
+\begin_inset Formula
 \[
 s_{1}\ge-\text{\ensuremath{\underline{s}}}
 \]
@@ -1700,15 +1700,15 @@ reference "eq:ch07/bc"
 
 \end_inset
 
-) を満たす 
+) を満たす
 \begin_inset Formula $c_{1}$
 \end_inset
 
-, 
+,
 \begin_inset Formula $c_{2}$
 \end_inset
 
- の範囲を 
+ の範囲を
 \begin_inset Formula $(c_{1},c_{2})$
 \end_inset
 
@@ -1757,15 +1757,15 @@ reference "eq:ch07/borrowing-constraint"
 
 \end_inset
 
-) を満たす 
+) を満たす
 \begin_inset Formula $c_{1}$
 \end_inset
 
-, 
+,
 \begin_inset Formula $c_{2}$
 \end_inset
 
- の範囲を 
+ の範囲を
 \begin_inset Formula $(c_{1},c_{2})$
 \end_inset
 
@@ -1805,7 +1805,7 @@ baselineskip}
 
 \begin_layout Standard
 借入制約のないケースを考えよう。消費者は
-\begin_inset Formula 
+\begin_inset Formula
 \begin{align*}
  & \max u(c_{1})+\beta u(c_{2})\\
  & \text{subject to} & (P2)\\
@@ -1814,7 +1814,7 @@ baselineskip}
 
 \end_inset
 
-を解く。ここで，この問題を解く際には 
+を解く。ここで，この問題を解く際には
 \begin_inset Formula $s_{0},y_{1},y_{2},r,\beta$
 \end_inset
 
@@ -1825,23 +1825,23 @@ baselineskip}
 \begin_inset Formula $c_{1}$
 \end_inset
 
- の価格が 
+ の価格が
 \begin_inset Formula $1$
 \end_inset
 
-, 
+,
 \begin_inset Formula $c_{2}$
 \end_inset
 
- の価格が 
+ の価格が
 \begin_inset Formula $1/(1+r)$
 \end_inset
 
- と解釈すれば，問題 
+ と解釈すれば，問題
 \begin_inset Formula $(P1)$
 \end_inset
 
- と 
+ と
 \begin_inset Formula $(P2)$
 \end_inset
 
@@ -1849,7 +1849,7 @@ baselineskip}
 \end_layout
 
 \begin_layout Standard
-\begin_inset Formula 
+\begin_inset Formula
 \[
 MRS=\frac{u'(c_{1})}{\beta u'(c_{2})}
 \]
@@ -1857,7 +1857,7 @@ MRS=\frac{u'(c_{1})}{\beta u'(c_{2})}
 \end_inset
 
 
-\begin_inset Formula 
+\begin_inset Formula
 \[
 \text{相対価格}=\frac{1}{1/(1+r)}=1+r
 \]
@@ -1865,7 +1865,7 @@ MRS=\frac{u'(c_{1})}{\beta u'(c_{2})}
 \end_inset
 
  したがって，最適性の必要条件は
-\begin_inset Formula 
+\begin_inset Formula
 \begin{equation}
 \frac{u'(c_{1})}{u'(c_{2})}=\beta(1+r)\label{eq:ch07/optimality}
 \end{equation}
@@ -1873,7 +1873,7 @@ MRS=\frac{u'(c_{1})}{\beta u'(c_{2})}
 \end_inset
 
 
-\begin_inset Formula 
+\begin_inset Formula
 \[
 c_{1}+\frac{c_{2}}{1+r}=s_{0}+y_{1}+\frac{y_{2}}{1+r}
 \]
@@ -1884,7 +1884,7 @@ c_{1}+\frac{c_{2}}{1+r}=s_{0}+y_{1}+\frac{y_{2}}{1+r}
 \end_layout
 
 \begin_layout Problem
-ラグランジュ未定乗数法を用いて同じ問題を解きなさい。また，ラグランジュ乗数 
+ラグランジュ未定乗数法を用いて同じ問題を解きなさい。また，ラグランジュ乗数
 \begin_inset Formula $\lambda$
 \end_inset
 
@@ -1924,7 +1924,7 @@ baselineskip}
 
 \begin_layout Standard
 一般的な効用関数では解釈性が難しいので期間効用を特定化する。特に扱いが容易なのは，相対的危険回避度
-\begin_inset Formula 
+\begin_inset Formula
 \[
 \Theta(c)=-\frac{cu''(c)}{u'(c)}
 \]
@@ -1932,7 +1932,7 @@ baselineskip}
 \end_inset
 
 が一定であるような効用関数である。これをCRRA型効用関数（Constant Relative Risk Aversion）と呼ぶ。
-\begin_inset Formula 
+\begin_inset Formula
 \[
 u(c)=\begin{cases}
 \frac{c^{1-\theta}-1}{1-\theta} & \text{if}\quad\theta\neq1\\
@@ -1951,7 +1951,7 @@ u(c)=\begin{cases}
 status open
 
 \begin_layout Plain Layout
-期間効用関数の限界効用が逓減しないと，総効用 
+期間効用関数の限界効用が逓減しないと，総効用
 \begin_inset Formula $U(c_{1},c_{2})$
 \end_inset
 
@@ -1965,7 +1965,7 @@ status open
 
 \begin_layout Problem
 CRRA型効用関数に対して，
-\begin_inset Formula 
+\begin_inset Formula
 \[
 \Theta(c)=\theta
 \]
@@ -2011,7 +2011,7 @@ reference "eq:ch07/optimality"
 \end_inset
 
 ) の条件は
-\begin_inset Formula 
+\begin_inset Formula
 \[
 \left(\frac{c_{2}}{c_{1}}\right)^{\theta}=\beta(1+r)=\frac{1+r}{1+\rho}
 \]
@@ -2019,7 +2019,7 @@ reference "eq:ch07/optimality"
 \end_inset
 
 とできる。
-\begin_inset Formula 
+\begin_inset Formula
 \begin{equation}
 \frac{c_{2}}{c_{1}}=\left(\frac{1+r}{1+\rho}\right)^{1/\theta}\label{eq:ch07/euler}
 \end{equation}
@@ -2034,11 +2034,11 @@ reference "eq:ch07/optimality"
 \end_layout
 
 \begin_layout Proposition
-2期間最適消費問題 
+2期間最適消費問題
 \begin_inset Formula $(P2)$
 \end_inset
 
- の最適解 
+ の最適解
 \begin_inset Formula $(c_{1}^{*},c_{2}^{*})$
 \end_inset
 
@@ -2046,7 +2046,7 @@ reference "eq:ch07/optimality"
 \end_layout
 
 \begin_layout Standard
-\begin_inset Formula 
+\begin_inset Formula
 \[
 r\lesseqgtr\rho\Leftrightarrow c_{2}^{*}\lesseqgtr c_{1}^{*}
 \]
@@ -2057,11 +2057,11 @@ r\lesseqgtr\rho\Leftrightarrow c_{2}^{*}\lesseqgtr c_{1}^{*}
 \end_layout
 
 \begin_layout Standard
-利子率 
+利子率
 \begin_inset Formula $r$
 \end_inset
 
- は消費を遅らせることで追加的に得られる所得である。割引率 
+ は消費を遅らせることで追加的に得られる所得である。割引率
 \begin_inset Formula $\rho$
 \end_inset
 
@@ -2077,11 +2077,11 @@ r\lesseqgtr\rho\Leftrightarrow c_{2}^{*}\lesseqgtr c_{1}^{*}
 \end_layout
 
 \begin_layout Standard
-1期の貯蓄 
+1期の貯蓄
 \begin_inset Formula $s_{1}$
 \end_inset
 
- について見ておこう。毎期のお金の出入の式に 
+ について見ておこう。毎期のお金の出入の式に
 \begin_inset Formula $s_{2}=0$
 \end_inset
 
@@ -2089,7 +2089,7 @@ r\lesseqgtr\rho\Leftrightarrow c_{2}^{*}\lesseqgtr c_{1}^{*}
 \end_layout
 
 \begin_layout Standard
-\begin_inset Formula 
+\begin_inset Formula
 \begin{align*}
 c_{1} & =y_{1}+s_{0}-s_{1}\\
 c_{2} & =y_{2}+(1+r)s_{1}
@@ -2105,14 +2105,14 @@ reference "eq:ch07/euler"
 \end_inset
 
 ) を使うと
-\begin_inset Formula 
+\begin_inset Formula
 \[
 \frac{y_{2}+(1+r)s_{1}}{y_{1}+s_{0}-s_{1}}=\left(\frac{1+r}{1+\rho}\right)^{1/\theta}
 \]
 
 \end_inset
 
-これを 
+これを
 \begin_inset Formula $s_{1}$
 \end_inset
 
@@ -2120,7 +2120,7 @@ reference "eq:ch07/euler"
 \end_layout
 
 \begin_layout Standard
-\begin_inset Formula 
+\begin_inset Formula
 \begin{align*}
 s_{1} & =\frac{\left(\frac{1+r}{1+\rho}\right)^{1/\theta}(y_{1}+s_{0})-y_{2}}{(1+r)+\left(\frac{1+r}{1+\rho}\right)^{1/\theta}}\\
  & =\frac{\left(1+r\right)^{1/\theta}(y_{1}+s_{0})-\left(1+\rho\right)^{1/\theta}y_{2}}{\left(1+r\right)\left(1+\rho\right)^{1/\theta}+\left(1+r\right)^{1/\theta}}
@@ -2135,32 +2135,32 @@ s_{1} & =\frac{\left(\frac{1+r}{1+\rho}\right)^{1/\theta}(y_{1}+s_{0})-y_{2}}{(1
 \begin_inset Formula $y_{2}=0$
 \end_inset
 
-, 
+,
 \begin_inset Formula $s_{0}=0$
 \end_inset
 
  のケースは貯蓄関数についてもう少し考察をすすめることができる。この仮定は2期間世代重複モデルでも使われる。
-\begin_inset Formula 
+\begin_inset Formula
 \begin{equation}
 s_{1}=\left[\frac{\left(1+r\right)^{\frac{1-\theta}{\theta}}}{\left(1+\rho\right)^{\frac{1}{\theta}}+\left(1+r\right)^{\frac{1-\theta}{\theta}}}\right]y_{1}\label{eq:ch07/saving}
 \end{equation}
 
 \end_inset
 
-当期の所得の一部が貯蓄に割り振られるという式になっている。ただし，利子率 
+当期の所得の一部が貯蓄に割り振られるという式になっている。ただし，利子率
 \begin_inset Formula $r$
 \end_inset
 
- に依存していることに注意しよう。ソロー・モデルの分析で学んだように，利子率は資本の限界生産性 
+ に依存していることに注意しよう。ソロー・モデルの分析で学んだように，利子率は資本の限界生産性
 \begin_inset Formula $MPK$
 \end_inset
 
- で決まるので，完全な定率という訳ではない。しかし，さらに 
+ で決まるので，完全な定率という訳ではない。しかし，さらに
 \begin_inset Formula $\theta=1$
 \end_inset
 
  という条件をつければ利子率への依存性がなくなる。
-\begin_inset Formula 
+\begin_inset Formula
 \[
 s_{1}=\frac{1}{2+\rho}y_{1}
 \]
@@ -2195,7 +2195,7 @@ status open
 \series bold
 所得効果
 \series default
-（income effect）である。価格の下落により購買力が増加することで，第1期，第2期ともに消費を増加させる作用が働く。利子率 
+（income effect）である。価格の下落により購買力が増加することで，第1期，第2期ともに消費を増加させる作用が働く。利子率
 \begin_inset Formula $r$
 \end_inset
 
@@ -2222,11 +2222,11 @@ reference "eq:ch07/saving"
 
 \end_inset
 
-) が 
+) が
 \begin_inset Formula $r$
 \end_inset
 
- の増加関数になるのは 
+ の増加関数になるのは
 \begin_inset Formula $\theta>1$
 \end_inset
 
@@ -2262,7 +2262,7 @@ baselineskip}
 \end_layout
 
 \begin_layout Standard
-この章のプログラミングパートでは，Python のシンボリック計算ライブラリ 
+この章のプログラミングパートでは，Python のシンボリック計算ライブラリ
 \series bold
 SymPy
 \series default
@@ -2285,19 +2285,19 @@ SciPy
 
 \begin_layout Standard
 シンボリック計算の身近な例としては，2次方程式
-\begin_inset Formula 
+\begin_inset Formula
 \[
 ax^{2}+bx+c=0
 \]
 
 \end_inset
 
-の求解問題がある。 
+の求解問題がある。
 \begin_inset Formula $a\neq0$
 \end_inset
 
  のとき，
-\begin_inset Formula 
+\begin_inset Formula
 \[
 x=\frac{-b\pm\sqrt{b^{2}-4ac}}{2a}
 \]
@@ -2331,11 +2331,11 @@ status open
 \end_layout
 
 \begin_layout Standard
-5次以上の方程式では解を見つけることはできないかというと，そうではない。解 
+5次以上の方程式では解を見つけることはできないかというと，そうではない。解
 \begin_inset Formula $x^{*}$
 \end_inset
 
- に収束する数列 
+ に収束する数列
 \begin_inset Formula $\{x_{n}\}$
 \end_inset
 
@@ -2343,11 +2343,11 @@ status open
 \begin_inset Formula $\lim_{n\to\infty}x_{n}=x^{*}$
 \end_inset
 
-）, 十分大きな 
+）, 十分大きな
 \begin_inset Formula $N$
 \end_inset
 
- を用いて 
+ を用いて
 \begin_inset Formula $x_{N}\approx x^{*}$
 \end_inset
 
@@ -2368,7 +2368,7 @@ status open
 status open
 
 \begin_layout Plain Layout
-解析的に解くという表現は必ずしも数値的に解くことと同義ではない。数列の各ステップ 
+解析的に解くという表現は必ずしも数値的に解くことと同義ではない。数列の各ステップ
 \begin_inset Formula $x_{n}$
 \end_inset
 
@@ -2378,7 +2378,7 @@ status open
 
 \end_inset
 
-。 
+。
 \end_layout
 
 \begin_layout Subsection
@@ -2386,7 +2386,7 @@ status open
 \end_layout
 
 \begin_layout Standard
-Python で代数計算（シンボリック計算）を行うときは 
+Python で代数計算（シンボリック計算）を行うときは
 \series bold
 SymPy
 \series default
@@ -2433,7 +2433,7 @@ status open
 \end_layout
 
 \begin_layout Standard
-まずはシンボルとして用いる変数を定義する。アルファベットの単純なシンボルを定義するときには次のように 
+まずはシンボルとして用いる変数を定義する。アルファベットの単純なシンボルを定義するときには次のように
 \begin_inset Flex Code
 status open
 
@@ -2498,7 +2498,7 @@ equation*
 \end_layout
 
 \begin_layout Standard
-2次方程式も次のように解いてくれる。 
+2次方程式も次のように解いてくれる。
 \end_layout
 
 \begin_layout Standard
@@ -2560,11 +2560,11 @@ equation*
 \end_layout
 
 \begin_layout Standard
-これは，なんとなくおかしい気がする。分子と分母の 
+これは，なんとなくおかしい気がする。分子と分母の
 \begin_inset Formula $x$
 \end_inset
 
- をまとめてくれたりはしないようだ。こういうときには 
+ をまとめてくれたりはしないようだ。こういうときには
 \begin_inset Flex Code
 status open
 
@@ -2606,14 +2606,14 @@ equation*
 
 \begin_layout Standard
 CRRA型効用関数
-\begin_inset Formula 
+\begin_inset Formula
 \[
 u(c)=\frac{c^{1-\theta}-1}{1-\theta}
 \]
 
 \end_inset
 
-の相対的危険回避度 
+の相対的危険回避度
 \begin_inset Formula $-cu''/u'$
 \end_inset
 
@@ -2675,16 +2675,16 @@ equation*
 \end_layout
 
 \begin_layout Standard
-シンボリックな関数に数値を代入したいときがある。例えば，ソロー・モデルの定常状態を考えてみよう。コブ=ダグラス型 
+シンボリックな関数に数値を代入したいときがある。例えば，ソロー・モデルの定常状態を考えてみよう。コブ=ダグラス型
 \begin_inset Formula $f(k)=k^{\alpha}$
 \end_inset
 
-を仮定すると，定常状態の効率労働あたり資本 
+を仮定すると，定常状態の効率労働あたり資本
 \begin_inset Formula $k^{*}$
 \end_inset
 
  が満たす方程式は
-\begin_inset Formula 
+\begin_inset Formula
 \[
 sk^{\alpha}-(\delta+g+n+gn)k=0
 \]
@@ -2695,7 +2695,7 @@ sk^{\alpha}-(\delta+g+n+gn)k=0
 \series bold
 SymPy
 \series default
- では次のように求める。解きたい方程式を 
+ では次のように求める。解きたい方程式を
 \begin_inset Formula $(\text{式)}=0$
 \end_inset
 
@@ -2730,27 +2730,27 @@ equation*
 \end_layout
 
 \begin_layout Standard
-ここで，パラメータ 
+ここで，パラメータ
 \begin_inset Formula $\alpha$
 \end_inset
 
-, 
+,
 \begin_inset Formula $s$
 \end_inset
 
-, 
+,
 \begin_inset Formula $\delta$
 \end_inset
 
-, 
+,
 \begin_inset Formula $g$
 \end_inset
 
-, 
+,
 \begin_inset Formula $n$
 \end_inset
 
- を代入した値を計算したければ，次のように 
+ を代入した値を計算したければ，次のように
 \begin_inset Flex Code
 status open
 
@@ -2803,7 +2803,7 @@ status open
 \end_layout
 
 \begin_layout Standard
-すべてのパラメータに数値を代入するのではなく，例えば，パラメータ 
+すべてのパラメータに数値を代入するのではなく，例えば，パラメータ
 \begin_inset Formula $s$
 \end_inset
 
@@ -2842,11 +2842,11 @@ equation*
 \end_layout
 
 \begin_layout Standard
-このオブジェクトを 
+このオブジェクトを
 \begin_inset Formula $s$
 \end_inset
 
- の関数として扱いたいなら， 
+ の関数として扱いたいなら，
 \series bold
 SymPy
 \series default
@@ -2871,7 +2871,7 @@ https://docs.sympy.org/latest/modules/plotting.html
 
 \end_inset
 
-。これには 
+。これには
 \begin_inset Flex Code
 status open
 
@@ -2949,7 +2949,7 @@ centering
 \backslash
 includegraphics[height=0.3
 \backslash
-textheight]{Figure/ch07/lambdify-plot-1}
+textheight]{Figures/ch07/lambdify-plot-1}
 \end_layout
 
 \end_inset
@@ -2964,7 +2964,7 @@ textheight]{Figure/ch07/lambdify-plot-1}
 \begin_inset Formula $s$
 \end_inset
 
- と 
+ と
 \begin_inset Formula $k^{*}$
 \end_inset
 
@@ -3003,7 +3003,7 @@ name "exa:ch07/lagrange"
 \end_inset
 
 次の最大化問題を解いてみよう。
-\begin_inset Formula 
+\begin_inset Formula
 \begin{align*}
  & \max x^{1/2}y^{1/2}\\
  & \text{subject to}\\
@@ -3013,7 +3013,7 @@ name "exa:ch07/lagrange"
 \end_inset
 
 ラグランジアン
-\begin_inset Formula 
+\begin_inset Formula
 \[
 \mathcal{L}=x^{1/2}y^{1/2}+\lambda(100-x-3y)
 \]
@@ -3021,14 +3021,14 @@ name "exa:ch07/lagrange"
 \end_inset
 
 として，
-\begin_inset Formula 
+\begin_inset Formula
 \[
 \frac{\partial\mathcal{L}}{\partial x}=0,\quad\frac{\partial\mathcal{L}}{\partial y}=0,\quad\frac{\partial\mathcal{L}}{\partial\lambda}=0
 \]
 
 \end_inset
 
-となる 
+となる
 \begin_inset Formula $(x,y,\lambda)$
 \end_inset
 
@@ -3092,7 +3092,7 @@ reference "exa:ch07/lagrange"
 \series bold
 SymPy
 \series default
- では有理数は 
+ では有理数は
 \begin_inset Flex Code
 status open
 
@@ -3143,14 +3143,14 @@ status open
 \end_inset
 
 シンボリックな計算が適用できる状況は限られているが，私たちがモデル構築に用いるような普通の関数の微分計算は安全に行える。例えば，
-\begin_inset Formula 
+\begin_inset Formula
 \[
 f(x)=\sin3x+e^{x/2}
 \]
 
 \end_inset
 
-を 
+を
 \begin_inset Formula $x=x_{0}$
 \end_inset
 
@@ -3186,7 +3186,7 @@ equation*
 
 \begin_layout Example
 2次までテイラー展開の公式は次の通りである。。
-\begin_inset Formula 
+\begin_inset Formula
 \[
 f(x)\approx f(x_{0})+f'(x_{0})(x-x_{0})+\frac{1}{2}f''(x_{0})(x-x_{0})^{2}
 \]
@@ -3232,7 +3232,7 @@ equation*
 \series bold
 SymPy
 \series default
- の 
+ の
 \begin_inset Flex Code
 status open
 
@@ -3350,7 +3350,7 @@ centering
 \backslash
 includegraphics[height=0.3
 \backslash
-textheight]{Figure/ch07/approximation-plot-1}
+textheight]{Figures/ch07/approximation-plot-1}
 \end_layout
 
 \end_inset
@@ -3403,31 +3403,31 @@ reference "fig:ch07/ニュートン・ラフソン法"
 
 \end_inset
 
-の太実線で描かれた曲線が 
+の太実線で描かれた曲線が
 \begin_inset Formula $f(x)=0$
 \end_inset
 
- になる 
+ になる
 \begin_inset Formula $x$
 \end_inset
 
- を探したい関数であるとする。適当な初期値 
+ を探したい関数であるとする。適当な初期値
 \begin_inset Formula $x_{0}$
 \end_inset
 
- を設定する。この点で 
+ を設定する。この点で
 \begin_inset Formula $f(x)$
 \end_inset
 
  の接線を引く。接線の方程式は，
-\begin_inset Formula 
+\begin_inset Formula
 \[
 y=f(x_{0})+f'(x_{0})(x-x_{0})
 \]
 
 \end_inset
 
-である。この接線の方程式の 
+である。この接線の方程式の
 \begin_inset Formula $x$
 \end_inset
 
@@ -3435,16 +3435,16 @@ y=f(x_{0})+f'(x_{0})(x-x_{0})
 \begin_inset Formula $y=0$
 \end_inset
 
- となる 
+ となる
 \begin_inset Formula $x$
 \end_inset
 
- を探す。この点を 
+ を探す。この点を
 \begin_inset Formula $x_{1}$
 \end_inset
 
  と記すとすれば，
-\begin_inset Formula 
+\begin_inset Formula
 \[
 x_{1}=x_{0}-\frac{f(x_{0})}{f'(x_{0})}
 \]
@@ -3455,12 +3455,12 @@ x_{1}=x_{0}-\frac{f(x_{0})}{f'(x_{0})}
 \begin_inset Formula $(x_{1},f(x_{1}))$
 \end_inset
 
- で 
+ で
 \begin_inset Formula $f(x)$
 \end_inset
 
  の接線を引いて同じことをすると，
-\begin_inset Formula 
+\begin_inset Formula
 \[
 x_{2}=x_{1}-\frac{f(x_{1})}{f'(x_{1})}
 \]
@@ -3474,28 +3474,28 @@ reference "fig:ch07/ニュートン・ラフソン法"
 
 \end_inset
 
-では徐々に 
+では徐々に
 \begin_inset Formula $f(x_{*})=0$
 \end_inset
 
- なる 
+ なる
 \begin_inset Formula $x_{*}$
 \end_inset
 
  に近づいている。これをさらに繰り返して，
-\begin_inset Formula 
+\begin_inset Formula
 \[
 x_{n}=x_{n-1}-\frac{f(x_{n-1})}{f'(x_{n-1})},\qquad n=1,2,\dots
 \]
 
 \end_inset
 
-を定義すると，関数 
+を定義すると，関数
 \begin_inset Formula $f$
 \end_inset
 
  に対する適切な仮定のもとで
-\begin_inset Formula 
+\begin_inset Formula
 \[
 \lim_{n\to\infty}x_{n}=x_{*}
 \]
@@ -3532,7 +3532,7 @@ centering
 \backslash
 includegraphics[height=0.3
 \backslash
-textheight]{Images/07-two-period-Newton}
+textheight]{Diagrams/ch07-two-period-Newton}
 \end_layout
 
 \end_inset
@@ -3581,7 +3581,7 @@ reference "fig:ch07/ニュートン・ラフソン法"
 
 \end_inset
 
-の原点の左にあるもう1つの解は見つけられない。逆に初期値をもっと左の方に取ると 
+の原点の左にあるもう1つの解は見つけられない。逆に初期値をもっと左の方に取ると
 \begin_inset Formula $x_{*}$
 \end_inset
 
@@ -3589,7 +3589,7 @@ reference "fig:ch07/ニュートン・ラフソン法"
 \end_layout
 
 \begin_layout Itemize
-実はニュートン・ラフソン法で求めた数列 
+実はニュートン・ラフソン法で求めた数列
 \begin_inset Formula $(x_{n})_{n\ge0}$
 \end_inset
 
@@ -3632,7 +3632,7 @@ https://www.quora.com/When-does-Newton-Raphson-fail
 \end_layout
 
 \begin_layout Standard
-Python で数値的に求解したいときは 
+Python で数値的に求解したいときは
 \series bold
 SciPy
 \series default
@@ -3646,7 +3646,7 @@ newton()
 
 \end_inset
 
- と 
+ と
 \begin_inset Flex Code
 status open
 
@@ -3692,11 +3692,11 @@ newton()
 \end_layout
 
 \begin_layout Standard
-1変数関数 
+1変数関数
 \begin_inset Formula $f:\mathbb{R}\to\mathbb{R}$
 \end_inset
 
- のゼロ点を探すときには 
+ のゼロ点を探すときには
 \begin_inset Flex Code
 status open
 
@@ -3726,7 +3726,7 @@ https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.newton.html
 
 \end_inset
 
-。引数はゼロを探したい関数 
+。引数はゼロを探したい関数
 \begin_inset Flex Code
 status open
 
@@ -3736,7 +3736,7 @@ func
 
 \end_inset
 
-，初期値 
+，初期値
 \begin_inset Flex Code
 status open
 
@@ -3746,7 +3746,7 @@ x0
 
 \end_inset
 
-，導関数 
+，導関数
 \begin_inset Flex Code
 status open
 
@@ -3757,7 +3757,7 @@ fprime
 \end_inset
 
 　である。簡単な例
-\begin_inset Formula 
+\begin_inset Formula
 \[
 f(x)=x^{2}-3,\qquad f'(x)=2x
 \]
@@ -3794,7 +3794,7 @@ status open
 \end_layout
 
 \begin_layout Standard
-初期値 
+初期値
 \begin_inset Flex Code
 status open
 
@@ -3804,7 +3804,7 @@ x0
 
 \end_inset
 
-に 
+に
 \series bold
 NumPy
 \series default
@@ -3844,11 +3844,11 @@ fsolve()
 \end_layout
 
 \begin_layout Standard
-ベクトル値関数 
+ベクトル値関数
 \begin_inset Formula $f:\mathbb{R}^{n}\to\mathbb{R}^{n}$
 \end_inset
 
- のゼロ点（ベクトルすべての要素がゼロになる点）を探すときには 
+ のゼロ点（ベクトルすべての要素がゼロになる点）を探すときには
 \begin_inset Flex Code
 status open
 
@@ -3886,7 +3886,7 @@ https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.fsolve.html
 \end_layout
 
 \begin_layout Standard
-\begin_inset Formula 
+\begin_inset Formula
 \begin{align*}
  & \max\left[\log c_{1}+\beta\log c_{2}\right]\\
  & \text{subject to}\\
@@ -3899,12 +3899,12 @@ https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.fsolve.html
 \begin_inset Formula $\beta=0.95$
 \end_inset
 
-, 
+,
 \begin_inset Formula $r=0.05$
 \end_inset
 
  とする。ラグランジアン
-\begin_inset Formula 
+\begin_inset Formula
 \[
 \mathcal{L}=\log c_{1}+\beta\log c_{2}+\lambda\left(1000-c_{1}-\frac{c_{2}}{1+r}\right)
 \]
@@ -3912,19 +3912,19 @@ https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.fsolve.html
 \end_inset
 
 を用いて，
-\begin_inset Formula 
+\begin_inset Formula
 \[
 \frac{\partial\mathcal{L}}{\partial c_{1}}=0,\quad\frac{\partial\mathcal{L}}{\partial c_{2}}=0,\quad\frac{\partial\mathcal{L}}{\partial\lambda}=0
 \]
 
 \end_inset
 
-なる点 
+なる点
 \begin_inset Formula $(c_{1},c_{2},\lambda)$
 \end_inset
 
  を探したい。最適のための1階条件は
-\begin_inset Formula 
+\begin_inset Formula
 \begin{align*}
 \frac{1}{c_{1}}-\lambda & =0\\
 \frac{\beta}{c_{2}}-\frac{\lambda}{1+r} & =0\\
@@ -3934,7 +3934,7 @@ https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.fsolve.html
 \end_inset
 
 である。したがって，
-\begin_inset Formula 
+\begin_inset Formula
 \begin{equation}
 f(c_{1},c_{2},\lambda)=\begin{bmatrix}\frac{1}{c_{1}}-\lambda\\
 \frac{\beta}{c_{2}}-\frac{\lambda}{1+r}\\
@@ -3948,12 +3948,12 @@ f(c_{1},c_{2},\lambda)=\begin{bmatrix}\frac{1}{c_{1}}-\lambda\\
 \end_layout
 
 \begin_layout Standard
-実はこの問題は数値計算をするまでもなく厳密に答えを見つけることができて，最適 
+実はこの問題は数値計算をするまでもなく厳密に答えを見つけることができて，最適
 \begin_inset Formula $(c_{1}^{*},c_{2}^{*},\lambda^{*})$
 \end_inset
 
  は
-\begin_inset Formula 
+\begin_inset Formula
 \begin{align*}
 c_{1}^{*} & =\frac{1000}{1+\beta}\approx512.821\\
 c_{2}^{*} & =\beta(1+r)c_{1}^{*}\approx511.538\\
@@ -3972,7 +3972,7 @@ status open
 
 \begin_layout Plain Layout
 ベクトル関数
-\begin_inset Formula 
+\begin_inset Formula
 \[
 f(x_{1},x_{2},x_{3})=\begin{bmatrix}f_{1}(x_{1},x_{2},x_{3})\\
 f_{2}(x_{1},x_{2},x_{3})\\
@@ -3982,12 +3982,12 @@ f_{3}(x_{1},x_{2},x_{3})
 
 \end_inset
 
-に対して，ヤコビアン 
+に対して，ヤコビアン
 \begin_inset Formula $Df$
 \end_inset
 
  は次のように定義される。
-\begin_inset Formula 
+\begin_inset Formula
 \[
 Df(x_{1},x_{2},x_{3})=\begin{bmatrix}\partial f_{1}/\partial x_{1} & \partial f_{1}/\partial x_{2} & \partial f_{1}/\partial x_{3}\\
 \partial f_{2}/\partial x_{1} & \partial f_{2}/\partial x_{2} & \partial f_{2}/\partial x_{3}\\
@@ -4001,23 +4001,23 @@ Df(x_{1},x_{2},x_{3})=\begin{bmatrix}\partial f_{1}/\partial x_{1} & \partial f_
 \end_layout
 
 \begin_layout Plain Layout
-本文の最適化問題では 
+本文の最適化問題では
 \begin_inset Formula $f$
 \end_inset
 
- 自体もラグランジアン 
+ 自体もラグランジアン
 \begin_inset Formula $\mathcal{L}$
 \end_inset
 
- の微分（勾配）によって定義される。これを 
+ の微分（勾配）によって定義される。これを
 \begin_inset Formula $\nabla\mathcal{L}$
 \end_inset
 
- と書く，そのヤコビアンは 
+ と書く，そのヤコビアンは
 \begin_inset Formula $\mathcal{L}$
 \end_inset
 
- のヘッセ行列であり， 
+ のヘッセ行列であり，
 \begin_inset Formula $\nabla^{2}\mathcal{L}$
 \end_inset
 
@@ -4031,7 +4031,7 @@ Df(x_{1},x_{2},x_{3})=\begin{bmatrix}\partial f_{1}/\partial x_{1} & \partial f_
 \end_inset
 
 。
-\begin_inset Formula 
+\begin_inset Formula
 \begin{equation}
 Df(c_{1},c_{2},\lambda)=\begin{bmatrix}-\frac{1}{c_{1}^{2}} & 0 & -1\\
 0 & -\frac{\beta}{c_{2}^{2}} & -\frac{1}{1+r}\\
@@ -4045,7 +4045,7 @@ Df(c_{1},c_{2},\lambda)=\begin{bmatrix}-\frac{1}{c_{1}^{2}} & 0 & -1\\
 \end_layout
 
 \begin_layout Itemize
-関数 
+関数
 \begin_inset Flex Code
 status open
 
@@ -4066,12 +4066,12 @@ reference "eq:ch07/fsolve-f"
 \end_layout
 
 \begin_layout Itemize
-関数 
+関数
 \begin_inset Flex Code
 status open
 
 \begin_layout Plain Layout
-df 
+df
 \end_layout
 
 \end_inset
@@ -4087,7 +4087,7 @@ reference "eq:ch07/fsolve-df"
 \end_layout
 
 \begin_layout Itemize
-関数 
+関数
 \begin_inset Flex Code
 status open
 
@@ -4097,7 +4097,7 @@ fsolve
 
 \end_inset
 
- に渡している 
+ に渡している
 \begin_inset Flex Code
 status open
 
@@ -4107,7 +4107,7 @@ x0=[100, 100, 0.1]
 
 \end_inset
 
- は 
+ は
 \begin_inset Formula $(c_{1},c_{2},\lambda)$
 \end_inset
 
@@ -4146,7 +4146,7 @@ Python を使って最適化問題を解く手順は次のようになる。
 \series bold
 SymPy
 \series default
- と 
+ と
 \series bold
 SciPy
 \series default
@@ -4158,7 +4158,7 @@ SciPy
 \end_layout
 
 \begin_layout Enumerate
-ラグランジアン 
+ラグランジアン
 \begin_inset Formula $\mathcal{L}$
 \end_inset
 
@@ -4166,11 +4166,11 @@ SciPy
 \end_layout
 
 \begin_layout Enumerate
-ラグランジアンの勾配 
+ラグランジアンの勾配
 \begin_inset Formula $f=\nabla\mathcal{L}$
 \end_inset
 
- と，そのヤコビアン 
+ と，そのヤコビアン
 \begin_inset Formula $Df=\nabla^{2}\mathcal{L}$
 \end_inset
 
@@ -4186,7 +4186,7 @@ SymPy
 \begin_inset Formula $f=\nabla\mathcal{L}$
 \end_inset
 
- と 
+ と
 \begin_inset Formula $Df=\nabla^{2}\mathcal{L}$
 \end_inset
 
@@ -4198,7 +4198,7 @@ SymPy
 \end_layout
 
 \begin_layout Enumerate
-適当な初期値と 
+適当な初期値と
 \begin_inset Formula $Df=\nabla^{2}\mathcal{L}$
 \end_inset
 
@@ -4218,7 +4218,7 @@ SciPy
 \series bold
 NumPy
 \series default
-, 
+,
 \series bold
 Pandas
 \series default
@@ -4241,7 +4241,7 @@ Step 1
 \end_layout
 
 \begin_layout Standard
-\begin_inset Formula 
+\begin_inset Formula
 \begin{align*}
  & \max\left[\left(\frac{c_{1}^{1-\theta}-1}{1-\theta}\right)+\beta\left(\frac{c_{2}^{1-\theta}-1}{1-\theta}\right)\right]\\
  & \text{subject to}\\
@@ -4290,7 +4290,7 @@ Step 2
 \end_inset
 
  が正になるように制約条件の扱い方に気をつけよう。
-\begin_inset Formula 
+\begin_inset Formula
 \[
 \mathcal{L}=\left(\frac{c_{1}^{1-\theta}-1}{1-\theta}\right)+\beta\left(\frac{c_{2}^{1-\theta}-1}{1-\theta}\right)+\lambda\left(1000-c_{1}-\frac{c_{2}}{1+r}\right)
 \]
@@ -4332,11 +4332,11 @@ Step 3
 \end_layout
 
 \begin_layout Standard
-微分 
+微分
 \begin_inset Formula $\nabla\mathcal{L}$
 \end_inset
 
- と 
+ と
 \begin_inset Formula $\nabla^{2}\mathcal{L}$
 \end_inset
 
@@ -4344,14 +4344,14 @@ Step 3
 \end_layout
 
 \begin_layout Standard
-\begin_inset Formula 
+\begin_inset Formula
 \[
 \nabla\mathcal{L}=0
 \]
 
 \end_inset
 
- となる点を探したいのと，最適化ルーチーン 
+ となる点を探したいのと，最適化ルーチーン
 \begin_inset Formula $\nabla^{2}\mathcal{L}$
 \end_inset
 
@@ -4383,7 +4383,7 @@ status open
 
 \end_inset
 
- は 
+ は
 \begin_inset Flex Code
 status open
 
@@ -4424,11 +4424,11 @@ equation*
 \end_layout
 
 \begin_layout Standard
-続いて 
+続いて
 \begin_inset Formula $Df=\nabla^{2}\mathcal{L}$
 \end_inset
 
- の計算。これも 
+ の計算。これも
 \begin_inset Flex Code
 status open
 
@@ -4477,11 +4477,11 @@ Step 4
 \begin_inset Formula $\beta=0.9$
 \end_inset
 
-, 
+,
 \begin_inset Formula $\theta=0.3$
 \end_inset
 
-, 
+,
 \begin_inset Formula $r=0.1$
 \end_inset
 
@@ -4505,7 +4505,7 @@ np.squeeze()
 
 \end_inset
 
- をかぶせているのは，shape が 
+ をかぶせているのは，shape が
 \begin_inset Flex Code
 status open
 
@@ -4542,7 +4542,7 @@ Step 5
 \end_layout
 
 \begin_layout Standard
-最後に 
+最後に
 \begin_inset Flex Code
 status open
 
@@ -4606,7 +4606,7 @@ status open
 \end_layout
 
 \begin_layout Standard
-例えば，次のコードは 
+例えば，次のコードは
 \begin_inset Formula $\theta=0.3,1,5$
 \end_inset
 
@@ -4614,7 +4614,7 @@ status open
 \begin_inset Formula $r$
 \end_inset
 
- と 消費の変化率 
+ と 消費の変化率
 \begin_inset Formula $(c_{2}^{*}-c_{1}^{*})/c_{1}^{*}$
 \end_inset
 
@@ -4671,7 +4671,7 @@ centering
 \backslash
 includegraphics[height=0.35
 \backslash
-textheight]{Figure/ch07/full-workflow-loop-1}
+textheight]{Figures/ch07/full-workflow-loop-1}
 \end_layout
 
 \end_inset
@@ -4686,7 +4686,7 @@ textheight]{Figure/ch07/full-workflow-loop-1}
 \begin_inset Formula $\theta$
 \end_inset
 
-, 
+,
 \begin_inset Formula $r$
 \end_inset
 
@@ -4708,11 +4708,11 @@ textheight]{Figure/ch07/full-workflow-loop-1}
 \end_layout
 
 \begin_layout Standard
-なお，ここで考えている最適化問題は実質利子率が変わっても生涯所得には変化がないことに注意しよう。問題 
+なお，ここで考えている最適化問題は実質利子率が変わっても生涯所得には変化がないことに注意しよう。問題
 \begin_inset Formula $(P2)$
 \end_inset
 
- をきちんと解く代わりに少し簡単な問題を解いたのである。問題 
+ をきちんと解く代わりに少し簡単な問題を解いたのである。問題
 \begin_inset Formula $(P2)$
 \end_inset
 
@@ -4732,8 +4732,8 @@ status open
 \begin_inset CommandInset bibtex
 LatexCommand bibtex
 btprint "btPrintCited"
-bibfiles "../Bibliography/ref,../Bibliography/software"
-options "../styles/jecon"
+bibfiles "References/ref,References/software"
+options "Include/jecon"
 
 \end_inset
 

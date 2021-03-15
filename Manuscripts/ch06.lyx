@@ -6,11 +6,11 @@
 \origin unavailable
 \textclass scrbook
 \begin_preamble
-\input{Include/preamble.tex}
+\input{Include/ch-preamble.tex}
 \end_preamble
 \options dvipdfmx,paper=a5,9pt
 \use_default_options true
-\master _main.lyx
+\master all.lyx
 \begin_modules
 knitr
 theorems-ams-chap-bytype
@@ -238,7 +238,7 @@ reference "chap:変化率と複利計算"
 \end_inset
 
 章において成長率（変化率）の定義と次の近似公式について説明した。
-\begin_inset Formula 
+\begin_inset Formula
 \[
 \frac{y_{t}-y_{t-1}}{y_{t-1}}\approx\log y_{t}-\log y_{t-1}
 \]
@@ -285,11 +285,11 @@ reference "chap:変化率と複利計算"
 \begin_inset Formula $y$
 \end_inset
 
- の 
+ の
 \begin_inset Formula $t$
 \end_inset
 
-期の前期比成長率を 
+期の前期比成長率を
 \begin_inset Formula $g_{t}^{y}$
 \end_inset
 
@@ -297,16 +297,16 @@ reference "chap:変化率と複利計算"
 \begin_inset Formula $x_{t}$
 \end_inset
 
- と 
+ と
 \begin_inset Formula $y_{t}$
 \end_inset
 
- という2つの時系列があったとき，その積 
+ という2つの時系列があったとき，その積
 \begin_inset Formula $x_{t}y_{t}$
 \end_inset
 
  の成長率は
-\begin_inset Formula 
+\begin_inset Formula
 \[
 g_{t}^{xy}=\log x_{t}y_{t}-\log x_{t-1}y_{t-1}=\left(\log x_{t}-\log x_{t-1}\right)+\left(\log y_{t}-\log y_{t-1}\right)=g_{t}^{x}+g_{t}^{y}
 \]
@@ -321,11 +321,11 @@ g_{t}^{xy}=\log x_{t}y_{t}-\log x_{t-1}y_{t-1}=\left(\log x_{t}-\log x_{t-1}\rig
 \begin_inset Formula $g^{xyz}$
 \end_inset
 
- や 
+ や
 \begin_inset Formula $g^{x^{\alpha}}$
 \end_inset
 
- はそれぞれ 
+ はそれぞれ
 \begin_inset Formula $xyz$
 \end_inset
 
@@ -345,7 +345,7 @@ g_{t}^{xy}=\log x_{t}y_{t}-\log x_{t-1}y_{t-1}=\left(\log x_{t}-\log x_{t-1}\rig
 \begin_inset Formula $\beta$
 \end_inset
 
-, 
+,
 \begin_inset Formula $\gamma$
 \end_inset
 
@@ -412,15 +412,15 @@ baselineskip}
 \end_layout
 
 \begin_layout Standard
-マクロ経済の総生産（実質GDP） 
+マクロ経済の総生産（実質GDP）
 \begin_inset Formula $Y$
 \end_inset
 
- が，資本 
+ が，資本
 \begin_inset Formula $K$
 \end_inset
 
- と労働 
+ と労働
 \begin_inset Formula $L$
 \end_inset
 
@@ -428,26 +428,26 @@ baselineskip}
 \begin_inset Formula $(K,L)$
 \end_inset
 
- から 
+ から
 \begin_inset Formula $Y$
 \end_inset
 
  を作るという生産過程の効率性を「技術」という言葉で表現しよう。技術は公共的な性質を持つもの（例えば微積分の公式）もあれば，各企業が独自で持っている場合（いわゆ
 る，企業秘密，コカ・コーラのレシピなど）も，特許などで守られている場合もあるだろう。理論的な分析を簡単にするために，これらはひとまず無償で利用可能な共有知識であ
-るとして，すべてひっくるめて 
+るとして，すべてひっくるめて
 \begin_inset Formula $A$
 \end_inset
 
- で表す。生産における投入，産出の関係 
+ で表す。生産における投入，産出の関係
 \begin_inset Formula $(K,L,A)\mapsto Y$
 \end_inset
 
- を総生産関数（aggregate production function） 
+ を総生産関数（aggregate production function）
 \begin_inset Formula $F$
 \end_inset
 
  を使って次のように書くことができる。
-\begin_inset Formula 
+\begin_inset Formula
 \[
 Y=F(K,L,A)
 \]
@@ -458,7 +458,7 @@ Y=F(K,L,A)
 \end_layout
 
 \begin_layout Standard
-一般的な表現では分析を先にすすめるのが難しいので，パラメータ 
+一般的な表現では分析を先にすすめるのが難しいので，パラメータ
 \begin_inset Formula $0<\alpha<1$
 \end_inset
 
@@ -467,14 +467,14 @@ Y=F(K,L,A)
 コブ=ダグラス型
 \series default
 と呼ばれる次の形式で総生産関数を特定化する。
-\begin_inset Formula 
+\begin_inset Formula
 \[
 Y=AK^{\alpha}L^{1-\alpha}
 \]
 
 \end_inset
 
-上記の形式で生産関数に組み込まれた技術水準 
+上記の形式で生産関数に組み込まれた技術水準
 \begin_inset Formula $A$
 \end_inset
 
@@ -494,11 +494,11 @@ Y=AK^{\alpha}L^{1-\alpha}
 \end_layout
 
 \begin_layout Standard
-投入要素を 
+投入要素を
 \begin_inset Formula $c$
 \end_inset
 
- 倍にすると，生産物も 
+ 倍にすると，生産物も
 \begin_inset Formula $c$
 \end_inset
 
@@ -511,7 +511,7 @@ Y=AK^{\alpha}L^{1-\alpha}
 \end_inset
 
  のとき，
-\begin_inset Formula 
+\begin_inset Formula
 \begin{align*}
 Y' & =A\left(cK\right)^{\alpha}\left(cL\right)^{1-\alpha}\\
  & =c^{\alpha+(1-\alpha)}AK^{\alpha}L^{1-\alpha}\\
@@ -529,19 +529,19 @@ Y' & =A\left(cK\right)^{\alpha}\left(cL\right)^{1-\alpha}\\
 
 \begin_layout Standard
 資本の限界生産性（marginal product of capital, MPK) は次のように定義される。
-\begin_inset Formula 
+\begin_inset Formula
 \[
 MPK=\frac{\partial Y}{\partial K}
 \]
 
 \end_inset
 
-平均生産性は 
+平均生産性は
 \begin_inset Formula $Y/K$
 \end_inset
 
  で定義される。コブ=ダグラス型生産関数を偏微分して，2つの生産性の関係を見てみよう。
-\begin_inset Formula 
+\begin_inset Formula
 \[
 MPK=\frac{\partial Y}{\partial K}=\alpha AK^{\alpha-1}L^{1-\alpha}=\alpha\frac{AK^{\alpha}L^{1-\alpha}}{K}=\alpha\frac{Y}{K}
 \]
@@ -552,7 +552,7 @@ MPK=\frac{\partial Y}{\partial K}=\alpha AK^{\alpha-1}L^{1-\alpha}=\alpha\frac{A
 \end_layout
 
 \begin_layout Problem
-労働の限界生産性（marginal product of labor, MPL）と労働の平均生産性 
+労働の限界生産性（marginal product of labor, MPL）と労働の平均生産性
 \begin_inset Formula $Y/L$
 \end_inset
 
@@ -585,14 +585,14 @@ baselineskip}
 
 \begin_layout Standard
 企業が次の利潤最大化問題を解いて資本と労働の需要を決定するとしよう。
-\begin_inset Formula 
+\begin_inset Formula
 \[
 \max_{K,L}Y-rK-wL
 \]
 
 \end_inset
 
-ここで 
+ここで
 \begin_inset Formula $r$
 \end_inset
 
@@ -601,11 +601,11 @@ baselineskip}
 status open
 
 \begin_layout Plain Layout
-ソロー・モデルの節で出てくる 
+ソロー・モデルの節で出てくる
 \begin_inset Formula $r$
 \end_inset
 
- と定義が少し異なっている。ここの 
+ と定義が少し異なっている。ここの
 \begin_inset Formula $r$
 \end_inset
 
@@ -613,7 +613,7 @@ status open
 \begin_inset Formula $\delta$
 \end_inset
 
- を含んでいるが，ソロー・モデルの節では 
+ を含んでいるが，ソロー・モデルの節では
 \begin_inset Formula $\delta$
 \end_inset
 
@@ -635,7 +635,7 @@ status open
 
 \begin_layout Standard
 利潤最大化のための1階条件は
-\begin_inset Formula 
+\begin_inset Formula
 \[
 MPK=r,\qquad MPL=w
 \]
@@ -643,7 +643,7 @@ MPK=r,\qquad MPL=w
 \end_inset
 
 である。つまり，
-\begin_inset Formula 
+\begin_inset Formula
 \[
 \alpha\frac{Y}{K}=r,\qquad(1-\alpha)\frac{Y}{L}=w
 \]
@@ -651,7 +651,7 @@ MPK=r,\qquad MPL=w
 \end_inset
 
 が成り立つ。もう少し整理すると，
-\begin_inset Formula 
+\begin_inset Formula
 \[
 rK=\alpha Y,\qquad wL=(1-\alpha)Y
 \]
@@ -666,7 +666,7 @@ rK=\alpha Y,\qquad wL=(1-\alpha)Y
 \begin_inset Formula $wL$
 \end_inset
 
- は労働力に対して支払われる報酬額である。資本は総生産の 
+ は労働力に対して支払われる報酬額である。資本は総生産の
 \begin_inset Formula $\alpha$
 \end_inset
 
@@ -678,7 +678,7 @@ rK=\alpha Y,\qquad wL=(1-\alpha)Y
 \series bold
 資本分配率
 \series default
-（capital share）と呼ぶ。同様に 
+（capital share）と呼ぶ。同様に
 \begin_inset Formula $1-\alpha=wL/Y$
 \end_inset
 
@@ -691,7 +691,7 @@ rK=\alpha Y,\qquad wL=(1-\alpha)Y
 
 \begin_layout Standard
 これらの報酬を合算すると企業の費用になるのだが，企業の売上と一致することに注意しよう。
-\begin_inset Formula 
+\begin_inset Formula
 \[
 rK+wL=\alpha Y+(1-\alpha)Y=Y
 \]
@@ -768,16 +768,16 @@ baselineskip}
 \end_layout
 
 \begin_layout Standard
-2時点における，生産活動のデータ 
+2時点における，生産活動のデータ
 \begin_inset Formula $(Y_{t-1},K_{t-1},L_{t-1})$
 \end_inset
 
-, 
+,
 \begin_inset Formula $(Y_{t},K_{t},L_{t})$
 \end_inset
 
  を手に入れたとしよう。
-\begin_inset Formula 
+\begin_inset Formula
 \begin{align*}
 Y_{t} & =A_{t}K_{t}^{\alpha}L_{t}^{1-\alpha}\\
 Y_{t-1} & =A_{t-1}K_{t-1}^{\alpha}L_{t-1}^{1-\alpha}
@@ -789,7 +789,7 @@ Y_{t-1} & =A_{t-1}K_{t-1}^{\alpha}L_{t-1}^{1-\alpha}
 \begin_inset Formula $A_{t-1}$
 \end_inset
 
-, 
+,
 \begin_inset Formula $A_{t}$
 \end_inset
 
@@ -798,7 +798,7 @@ Y_{t-1} & =A_{t-1}K_{t-1}^{\alpha}L_{t-1}^{1-\alpha}
 
 \begin_layout Standard
 上式の対数差を取ると，
-\begin_inset Formula 
+\begin_inset Formula
 \begin{multline*}
 \log Y_{t}-\log Y_{t-1}=\left(\log A_{t}-\log A_{t-1}\right)\\
 +\alpha\left(\log K_{t}-\log K_{t-1}\right)+(1-\alpha)\left(\log L_{t}-\log L_{t-1}\right)
@@ -806,7 +806,7 @@ Y_{t-1} & =A_{t-1}K_{t-1}^{\alpha}L_{t-1}^{1-\alpha}
 
 \end_inset
 
-と書ける。対数差は成長率なので，節 
+と書ける。対数差は成長率なので，節
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "subsec:成長率公式"
@@ -814,7 +814,7 @@ reference "subsec:成長率公式"
 \end_inset
 
  の記法にならえば，
-\begin_inset Formula 
+\begin_inset Formula
 \[
 g_{t}^{Y}=g_{t}^{A}+\alpha g_{t}^{K}+(1-\alpha)g_{t}^{L}
 \]
@@ -858,16 +858,16 @@ g_{t}^{Y}=g_{t}^{A}+\alpha g_{t}^{K}+(1-\alpha)g_{t}^{L}
 \begin_inset Formula $g_{t}^{Y}$
 \end_inset
 
-, 
+,
 \begin_inset Formula $g_{t}^{K}$
 \end_inset
 
-, 
+,
 \begin_inset Formula $g_{t}^{L}$
 \end_inset
 
  の情報はデータから計算可能であるので，観測されない技術の成長率を次のように逆算できる。
-\begin_inset Formula 
+\begin_inset Formula
 \[
 g_{t}^{A}=g_{t}^{Y}-\alpha g_{t}^{K}-(1-\alpha)g_{t}^{L}
 \]
@@ -903,19 +903,19 @@ noprefix "false"
 
 \end_inset
 
-章で，GDP の支出面の恒等式 
+章で，GDP の支出面の恒等式
 \begin_inset Formula $Y=C+I+G+NX$
 \end_inset
 
- を使って寄与度を計算したことを思い出そう。寄与度は 
+ を使って寄与度を計算したことを思い出そう。寄与度は
 \begin_inset Formula $C$
 \end_inset
 
- や 
+ や
 \begin_inset Formula $I$
 \end_inset
 
- の差分を 
+ の差分を
 \begin_inset Formula $Y$
 \end_inset
 
@@ -923,7 +923,7 @@ noprefix "false"
 \begin_inset Formula $C$
 \end_inset
 
- や 
+ や
 \begin_inset Formula $I$
 \end_inset
 
@@ -1605,16 +1605,16 @@ JIP データベースでは産業部門ごとに成長会計を行っている�
 \end_layout
 
 \begin_layout Standard
-労働 
+労働
 \begin_inset Formula $L$
 \end_inset
 
- と技術 
+ と技術
 \begin_inset Formula $A$
 \end_inset
 
  は以下の成長ルールに従う。
-\begin_inset Formula 
+\begin_inset Formula
 \begin{align*}
 L_{t} & =(1+n)L_{t-1}\\
 A_{t} & =(1+g)A_{t-1}
@@ -1634,16 +1634,16 @@ A_{t} & =(1+g)A_{t-1}
 \end_layout
 
 \begin_layout Standard
-資本の変化は投資と資本減耗によって引き起こされる。企業が行う粗投資を 
+資本の変化は投資と資本減耗によって引き起こされる。企業が行う粗投資を
 \begin_inset Formula $I_{t}$
 \end_inset
 
- と書く。生産のために利用された資本は一定の割合 
+ と書く。生産のために利用された資本は一定の割合
 \begin_inset Formula $0<\delta<1$
 \end_inset
 
  だけ減耗すると仮定すると，次の方程式が得られる。
-\begin_inset Formula 
+\begin_inset Formula
 \begin{equation}
 K_{t}-K_{t-1}=I_{t-1}-\delta K_{t-1}\label{eq:CA}
 \end{equation}
@@ -1654,15 +1654,15 @@ K_{t}-K_{t-1}=I_{t-1}-\delta K_{t-1}\label{eq:CA}
 \end_layout
 
 \begin_layout Standard
-所得 
+所得
 \begin_inset Formula $Y_{t}=F(K_{t},L_{t},A_{t})$
 \end_inset
 
- の一定割合 
+ の一定割合
 \begin_inset Formula $0<s<1$
 \end_inset
 
- が貯蓄されるとする。貸付資金の市場が均衡しているとき貯蓄 
+ が貯蓄されるとする。貸付資金の市場が均衡しているとき貯蓄
 \begin_inset Formula $sY_{t}$
 \end_inset
 
@@ -1671,7 +1671,7 @@ K_{t}-K_{t-1}=I_{t-1}-\delta K_{t-1}\label{eq:CA}
 \end_inset
 
  は一致するので，
-\begin_inset Formula 
+\begin_inset Formula
 \[
 I_{t}=sY_{t}=sF(K_{t},L_{t},A_{t})
 \]
@@ -1682,36 +1682,36 @@ I_{t}=sY_{t}=sF(K_{t},L_{t},A_{t})
 \end_layout
 
 \begin_layout Remark
-変数の初期値 
+変数の初期値
 \begin_inset Formula $K_{0}$
 \end_inset
 
-, 
+,
 \begin_inset Formula $L_{0}$
 \end_inset
 
-, 
+,
 \begin_inset Formula $A_{0}$
 \end_inset
 
-, パラメータ 
+, パラメータ
 \begin_inset Formula $s$
 \end_inset
 
-, 
+,
 \begin_inset Formula $\delta$
 \end_inset
 
- および生産関数 
+ および生産関数
 \begin_inset Formula $F$
 \end_inset
 
- を与えればシミュレーションは実行可能である。これは，下式右辺が 
+ を与えればシミュレーションは実行可能である。これは，下式右辺が
 \begin_inset Formula $t$
 \end_inset
 
  期の変数とパラメータのみで表現されていることから分かる。
-\begin_inset Formula 
+\begin_inset Formula
 \begin{align}
 K_{t} & =sF(K_{t-1},L_{t-1},A_{t-1})+(1-\delta)K_{t-1}\label{eq:K}\\
 L_{t} & =(1+n)L_{t-1}\label{eq:L}\\
@@ -1735,12 +1735,12 @@ A_{t} & =(1+g)A_{t-1}\label{eq:A}
 \end_layout
 
 \begin_layout Standard
-総生産関数 
+総生産関数
 \begin_inset Formula $F$
 \end_inset
 
  は次の形式を持つとする。
-\begin_inset Formula 
+\begin_inset Formula
 \[
 Y=F(K,AL)
 \]
@@ -1751,7 +1751,7 @@ Y=F(K,AL)
 \begin_inset Formula $A$
 \end_inset
 
-, 
+,
 \begin_inset Formula $L$
 \end_inset
 
@@ -1768,7 +1768,7 @@ Y=F(K,AL)
 \end_inset
 
  は規模に関して収穫一定である。つまり，
-\begin_inset Formula 
+\begin_inset Formula
 \[
 F(cK,cAL)=cF(K,AL),\qquad c>0.
 \]
@@ -1776,35 +1776,35 @@ F(cK,cAL)=cF(K,AL),\qquad c>0.
 \end_inset
 
 収穫一定なので，次のように変形できる。
-\begin_inset Formula 
+\begin_inset Formula
 \[
 Y=F(K,AL)=AL\cdot F\left(\frac{K}{AL},1\right)
 \]
 
 \end_inset
 
-両辺を 
+両辺を
 \begin_inset Formula $AL$
 \end_inset
 
  で割って，
-\begin_inset Formula 
+\begin_inset Formula
 \[
 \frac{Y}{AL}=F\left(\frac{K}{AL},1\right)
 \]
 
 \end_inset
 
-つまり，効率労働1単位当たりの生産 
+つまり，効率労働1単位当たりの生産
 \begin_inset Formula $y=Y/(AL)$
 \end_inset
 
- は効率労働1単位当たりの資本 
+ は効率労働1単位当たりの資本
 \begin_inset Formula $k=K/(AL)$
 \end_inset
 
  には，
-\begin_inset Formula 
+\begin_inset Formula
 \[
 y=F(k,1)=f(k)
 \]
@@ -1870,7 +1870,7 @@ name "assu:ch06/f"
 
 \end_deeper
 \begin_layout Problem
-コブ=ダグラス型 
+コブ=ダグラス型
 \begin_inset Formula $F(K,AL)=K^{\alpha}(AL)^{1-\alpha}$
 \end_inset
 
@@ -1904,7 +1904,7 @@ name "prop:fprime"
 \end_inset
 
  のとき，
-\begin_inset Formula 
+\begin_inset Formula
 \[
 f'(k)=\frac{\partial F}{\partial K}
 \]
@@ -1916,7 +1916,7 @@ f'(k)=\frac{\partial F}{\partial K}
 
 \begin_layout Proof
 定義に忠実に計算すればよい。
-\begin_inset Formula 
+\begin_inset Formula
 \begin{align*}
 \frac{\partial F}{\partial K} & =\lim_{\Delta K\to0}\frac{F(K+\Delta K,AL)-F(K,AL)}{\Delta K}\\
  & =\lim_{\Delta K\to0}\frac{F\left(\frac{K}{AL}+\frac{\Delta K}{AL},1\right)-F\left(\frac{K}{AL},1\right)}{\frac{\Delta K}{AL}}\\
@@ -1945,19 +1945,19 @@ reference "eq:CA"
 \end_inset
 
 ) を効率労働当たりの変数を用いて書き直そう。
-\begin_inset Formula 
+\begin_inset Formula
 \[
 K_{t+1}=sF(K_{t},A_{t}L_{t})+(1-\delta)K_{t}
 \]
 
 \end_inset
 
-両辺を 
+両辺を
 \begin_inset Formula $A_{t}L_{t}$
 \end_inset
 
  で割ると，
-\begin_inset Formula 
+\begin_inset Formula
 \[
 \frac{K_{t+1}}{A_{t}L_{t}}=s\frac{F(K_{t},A_{t}L_{t})}{A_{t}L_{t}}+(1-\delta)\frac{K_{t}}{A_{t}L_{t}}
 \]
@@ -1965,7 +1965,7 @@ K_{t+1}=sF(K_{t},A_{t}L_{t})+(1-\delta)K_{t}
 \end_inset
 
 
-\begin_inset Formula 
+\begin_inset Formula
 \[
 \frac{A_{t+1}L_{t+1}}{A_{t}L_{t}}\frac{K_{t+1}}{A_{t+1}L_{t+1}}=sf\left(k_{t}\right)+\left(1-\delta\right)k_{t}
 \]
@@ -1977,7 +1977,7 @@ K_{t+1}=sF(K_{t},A_{t}L_{t})+(1-\delta)K_{t}
 \end_inset
 
  の変化を表現する次の差分方程式を得る。
-\begin_inset Formula 
+\begin_inset Formula
 \[
 k_{t+1}=\frac{sf\left(k_{t}\right)+\left(1-\delta\right)k_{t}}{\left(1+g\right)\left(1+n\right)}
 \]
@@ -1988,12 +1988,12 @@ k_{t+1}=\frac{sf\left(k_{t}\right)+\left(1-\delta\right)k_{t}}{\left(1+g\right)\
 \end_layout
 
 \begin_layout Proposition
-ソローモデルの効率労働1単位あたりの資本 
+ソローモデルの効率労働1単位あたりの資本
 \begin_inset Formula $k_{t}$
 \end_inset
 
  は差分方程式
-\begin_inset Formula 
+\begin_inset Formula
 \begin{equation}
 k_{t}=\frac{sf\left(k_{t-1}\right)+\left(1-\delta\right)k_{t-1}}{\left(1+g\right)\left(1+n\right)},\qquad t=1,2,\dots\label{eq:ch06/solow}
 \end{equation}
@@ -2001,7 +2001,7 @@ k_{t}=\frac{sf\left(k_{t-1}\right)+\left(1-\delta\right)k_{t-1}}{\left(1+g\right
 \end_inset
 
 に従って変化する。ただし，
-\begin_inset Formula 
+\begin_inset Formula
 \[
 k_{0}=\frac{K_{0}}{A_{0}L_{0}}
 \]
@@ -2023,7 +2023,7 @@ k_{0}=\frac{K_{0}}{A_{0}L_{0}}
 \end_layout
 
 \begin_layout Standard
-\begin_inset Formula 
+\begin_inset Formula
 \[
 G(k)=\frac{sf\left(k\right)+\left(1-\delta\right)k}{\left(1+g\right)\left(1+n\right)}
 \]
@@ -2037,7 +2037,7 @@ reference "eq:ch06/solow"
 
 \end_inset
 
-) は 
+) は
 \begin_inset Formula $k_{t}=G(k_{t-1})$
 \end_inset
 
@@ -2046,7 +2046,7 @@ reference "eq:ch06/solow"
 \end_inset
 
  のグラフは単調増加になる。
-\begin_inset Formula 
+\begin_inset Formula
 \[
 G'\left(k\right)=\frac{sf'\left(k\right)+\left(1-\delta\right)}{\left(1+g\right)\left(1+n\right)}>0
 \]
@@ -2064,11 +2064,11 @@ reference "fig:ch06/graph-g"
 
 \end_inset
 
- は 
+ は
 \begin_inset Formula $k_{t}=G(k_{t-1})$
 \end_inset
 
- を作図したものである。45° の直線は 
+ を作図したものである。45° の直線は
 \begin_inset Formula $k_{t}=k_{t-1}$
 \end_inset
 
@@ -2076,11 +2076,11 @@ reference "fig:ch06/graph-g"
 \begin_inset Formula $k_{0}$
 \end_inset
 
-, 
+,
 \begin_inset Formula $k_{1}$
 \end_inset
 
-, 
+,
 \begin_inset Formula $k_{2}$
 \end_inset
 
@@ -2110,7 +2110,7 @@ centering
 \backslash
 includegraphics[height=0.2
 \backslash
-textheight]{Images/06-solow-G-Phase}
+textheight]{Diagrams/ch06-solow-graph}
 \end_layout
 
 \end_inset
@@ -2154,7 +2154,7 @@ reference "fig:ch06/graph-g"
 \end_inset
 
  では，
-\begin_inset Formula 
+\begin_inset Formula
 \begin{align*}
 k_{t} & =G(k_{t-1})\\
 k_{t} & =k_{t-1}
@@ -2162,11 +2162,11 @@ k_{t} & =k_{t-1}
 
 \end_inset
 
-の交点（この点を 
+の交点（この点を
 \begin_inset Formula $k_{t-1}=k_{t}=k^{*}$
 \end_inset
 
-としよう）に徐々に近づいていくことが分かる。このような収束性は 
+としよう）に徐々に近づいていくことが分かる。このような収束性は
 \begin_inset Formula $f$
 \end_inset
 
@@ -2177,7 +2177,7 @@ reference "assu:ch06/f"
 
 \end_inset
 
- から導かれるものである。詳細は省略するが 
+ から導かれるものである。詳細は省略するが
 \begin_inset Formula $G$
 \end_inset
 
@@ -2228,12 +2228,12 @@ reference "assu:ch06/f"
 \begin_inset Formula $k$
 \end_inset
 
- の時間変化を見るには， 
+ の時間変化を見るには，
 \begin_inset Formula $k_{t+1}-k_{t}$
 \end_inset
 
  を調べるとよい。
-\begin_inset Formula 
+\begin_inset Formula
 \begin{align*}
 k_{t+1}-k_{t} & =\frac{sf(k_{t})+(1-\delta)k_{t}-(1+g)(1+n)k_{t}}{(1+g)(1+n)}\\
  & =\frac{sf(k_{t})-(\delta+g+n+gn)k_{t}}{(1+g)(1+n)}
@@ -2242,7 +2242,7 @@ k_{t+1}-k_{t} & =\frac{sf(k_{t})+(1-\delta)k_{t}-(1+g)(1+n)k_{t}}{(1+g)(1+n)}\\
 \end_inset
 
 したがって，
-\begin_inset Formula 
+\begin_inset Formula
 \[
 k_{t+1}>k_{t}\Longleftrightarrow sf(k_{t})>(\delta+g+n+gn)k_{t}
 \]
@@ -2250,7 +2250,7 @@ k_{t+1}>k_{t}\Longleftrightarrow sf(k_{t})>(\delta+g+n+gn)k_{t}
 \end_inset
 
 
-\begin_inset Formula 
+\begin_inset Formula
 \[
 k_{t+1}<k_{t}\Longleftrightarrow sf(k_{t})<(\delta+g+n+gn)k_{t}
 \]
@@ -2258,7 +2258,7 @@ k_{t+1}<k_{t}\Longleftrightarrow sf(k_{t})<(\delta+g+n+gn)k_{t}
 \end_inset
 
 
-\begin_inset Formula 
+\begin_inset Formula
 \[
 k_{t+1}=k_{t}\Longleftrightarrow sf(k_{t})=(\delta+g+n+gn)k_{t}
 \]
@@ -2286,7 +2286,7 @@ k_{t+1}=k_{t}\Longleftrightarrow sf(k_{t})=(\delta+g+n+gn)k_{t}
 \end_inset
 
 が
-\begin_inset Formula 
+\begin_inset Formula
 \[
 sf(k^{*})=(\delta+g+n+gn)k^{*}
 \]
@@ -2297,7 +2297,7 @@ sf(k^{*})=(\delta+g+n+gn)k^{*}
 \begin_inset Formula $k_{t}=k_{t+1}=k^{*}$
 \end_inset
 
-が成り立つ。この 
+が成り立つ。この
 \begin_inset Formula $k_{t}=k^{*}$
 \end_inset
 
@@ -2305,8 +2305,8 @@ sf(k^{*})=(\delta+g+n+gn)k^{*}
 \series bold
 定常状態
 \series default
-（steady state）と呼ばれる。 
-\begin_inset Formula 
+（steady state）と呼ばれる。
+\begin_inset Formula
 \[
 \left[\left(1+g\right)\left(1+n\right)-(1-\delta)\right]k^{*}=sf(k^{*})
 \]
@@ -2314,7 +2314,7 @@ sf(k^{*})=(\delta+g+n+gn)k^{*}
 \end_inset
 
 
-\begin_inset Formula 
+\begin_inset Formula
 \[
 \left(g+n+\delta+gn\right)k^{*}=sf(k^{*})
 \]
@@ -2325,23 +2325,23 @@ sf(k^{*})=(\delta+g+n+gn)k^{*}
 \end_layout
 
 \begin_layout Standard
-定常状態 
+定常状態
 \begin_inset Formula $k^{*}$
 \end_inset
 
- はパラメータ 
+ はパラメータ
 \begin_inset Formula $\delta$
 \end_inset
 
-, 
+,
 \begin_inset Formula $g$
 \end_inset
 
-, 
+,
 \begin_inset Formula $n$
 \end_inset
 
-, 
+,
 \begin_inset Formula $s$
 \end_inset
 
@@ -2350,7 +2350,7 @@ sf(k^{*})=(\delta+g+n+gn)k^{*}
 \end_inset
 
  によっても変化する）。
-\begin_inset Formula 
+\begin_inset Formula
 \[
 k^{*}=k^{*}\left(\delta,g,n,s\right)
 \]
@@ -2358,7 +2358,7 @@ k^{*}=k^{*}\left(\delta,g,n,s\right)
 \end_inset
 
 と書くとすれば，
-\begin_inset Formula 
+\begin_inset Formula
 \[
 \frac{\partial k^{*}}{\partial\delta}<0,\quad\frac{\partial k^{*}}{\partial g}<0,\quad\frac{\partial k^{*}}{\partial n}<0,\quad\frac{\partial k^{*}}{\partial s}>0
 \]
@@ -2400,7 +2400,7 @@ baselineskip}
 \end_layout
 
 \begin_layout Standard
-初期状態が 
+初期状態が
 \begin_inset Formula $0<k_{0}<k^{*}$
 \end_inset
 
@@ -2408,7 +2408,7 @@ baselineskip}
 \begin_inset Formula $k_{t}$
 \end_inset
 
- は単調増加しながら 
+ は単調増加しながら
 \begin_inset Formula $k^{*}$
 \end_inset
 
@@ -2416,15 +2416,15 @@ baselineskip}
 \begin_inset Formula $k_{0}>k^{*}$
 \end_inset
 
- なら 
+ なら
 \begin_inset Formula $k_{t}$
 \end_inset
 
- は単調減少しながら 
+ は単調減少しながら
 \begin_inset Formula $k^{*}$
 \end_inset
 
- に収束する。いずれの場合でも 
+ に収束する。いずれの場合でも
 \begin_inset Formula $\lim_{t\to\infty}k_{t}\to k^{*}$
 \end_inset
 
@@ -2440,11 +2440,11 @@ baselineskip}
 \end_layout
 
 \begin_layout Standard
-長期均衡に収束した後の経済を考えよう。効率労働あたりの資本は 
+長期均衡に収束した後の経済を考えよう。効率労働あたりの資本は
 \begin_inset Formula $k^{*}$
 \end_inset
 
- となっている。このとき，効率労働あたりの生産は 
+ となっている。このとき，効率労働あたりの生産は
 \begin_inset Formula $y^{*}=f(k^{*})$
 \end_inset
 
@@ -2452,11 +2452,11 @@ baselineskip}
 \end_layout
 
 \begin_layout Standard
-しかし，私たちが本当に知りたいのは総所得 
+しかし，私たちが本当に知りたいのは総所得
 \begin_inset Formula $Y$
 \end_inset
 
- や一人あたりの総所得 
+ や一人あたりの総所得
 \begin_inset Formula $Y/L$
 \end_inset
 
@@ -2464,7 +2464,7 @@ baselineskip}
 \begin_inset Formula $k^{*}$
 \end_inset
 
- や 
+ や
 \begin_inset Formula $y^{*}$
 \end_inset
 
@@ -2472,12 +2472,12 @@ baselineskip}
 \begin_inset Formula $Y$
 \end_inset
 
- や 
+ や
 \begin_inset Formula $Y/L$
 \end_inset
 
  の情報は簡単に復元できる。
-\begin_inset Formula 
+\begin_inset Formula
 \begin{align*}
 Y_{t} & =A_{t}L_{t}y^{*}=A_{t}L_{t}f(k^{*})\\
 \frac{Y_{t}}{L_{t}} & =A_{t}f(k^{*})
@@ -2489,16 +2489,16 @@ Y_{t} & =A_{t}L_{t}y^{*}=A_{t}L_{t}f(k^{*})\\
 \end_layout
 
 \begin_layout Standard
-この関係から 
+この関係から
 \begin_inset Formula $Y$
 \end_inset
 
- や 
+ や
 \begin_inset Formula $Y/L$
 \end_inset
 
  の成長率を計算することができる。
-\begin_inset Formula 
+\begin_inset Formula
 \[
 \frac{Y_{t}-Y_{t-1}}{Y_{t-1}}=\frac{A_{t}L_{t}f(k^{*})-A_{t-1}L_{t-1}f(k^{*})}{A_{t-1}L_{t-1}f(k^{*})}=g+n+gn
 \]
@@ -2506,7 +2506,7 @@ Y_{t} & =A_{t}L_{t}y^{*}=A_{t}L_{t}f(k^{*})\\
 \end_inset
 
 
-\begin_inset Formula 
+\begin_inset Formula
 \[
 \frac{\left(Y_{t}/L_{t}\right)-\left(Y_{t-1}/L_{t-1}\right)}{\left(Y_{t-1}/L_{t-1}\right)}=\frac{A_{t}f(k^{*})-A_{t-1}f(k^{*})}{A_{t-1}f(k^{*})}=g
 \]
@@ -2523,43 +2523,43 @@ name "prop:ch06/bgp"
 
 \end_inset
 
-ソローモデルの定常状態では，総生産 
+ソローモデルの定常状態では，総生産
 \begin_inset Formula $Y$
 \end_inset
 
-, 総消費 
+, 総消費
 \begin_inset Formula $C=(1-s)Y$
 \end_inset
 
-, 総投資 
+, 総投資
 \begin_inset Formula $I=sY$
 \end_inset
 
-, 資本ストック 
+, 資本ストック
 \begin_inset Formula $K$
 \end_inset
 
- の成長率は 
+ の成長率は
 \begin_inset Formula $g+n+gn\approx g+n$
 \end_inset
 
- となる。一人あたりの総生産 
+ となる。一人あたりの総生産
 \begin_inset Formula $Y/L$
 \end_inset
 
-, 一人あたりの総消費 
+, 一人あたりの総消費
 \begin_inset Formula $C/L$
 \end_inset
 
-, 一人あたりの総投資 
+, 一人あたりの総投資
 \begin_inset Formula $I/L$
 \end_inset
 
-,一人あたりの資本ストック 
+,一人あたりの資本ストック
 \begin_inset Formula $K/L$
 \end_inset
 
- の成長率は 
+ の成長率は
 \begin_inset Formula $g$
 \end_inset
 
@@ -2645,7 +2645,7 @@ reference "prop:ch06/bgp"
 
 \begin_layout Standard
 マクロ経済には代表的な企業が一社あって，その企業が利潤最大化問題を解いていると考える。市場は完全競争的である。
-\begin_inset Formula 
+\begin_inset Formula
 \[
 \max_{K,L}F\left(K,AL\right)-\left(r+\delta\right)K-wL
 \]
@@ -2657,24 +2657,24 @@ reference "prop:ch06/bgp"
 status open
 
 \begin_layout Plain Layout
-資本を所有する家計は1単位の資本を貸し出すかわりに，市場で決まる実質利子率 
+資本を所有する家計は1単位の資本を貸し出すかわりに，市場で決まる実質利子率
 \begin_inset Formula $r$
 \end_inset
 
- を要求する。さらに，資本の減耗分 
+ を要求する。さらに，資本の減耗分
 \begin_inset Formula $\delta$
 \end_inset
 
- も補填した上で1単位の資本を返さないといけないので，企業にとってのコストは 
+ も補填した上で1単位の資本を返さないといけないので，企業にとってのコストは
 \begin_inset Formula $r+\delta$
 \end_inset
 
- となる。要するに 
+ となる。要するに
 \begin_inset Formula $\delta$
 \end_inset
 
  は原状回復のためのコストである。ゼロ利潤条件は
-\begin_inset Formula 
+\begin_inset Formula
 \[
 Y=wL+rK+\delta K
 \]
@@ -2691,7 +2691,7 @@ Y=wL+rK+\delta K
 \end_inset
 
 。利潤最大化のための1階条件は
-\begin_inset Formula 
+\begin_inset Formula
 \[
 \frac{\partial F}{\partial K}=r+\delta,\qquad\frac{\partial F}{\partial L}=w
 \]
@@ -2705,12 +2705,12 @@ reference "prop:fprime"
 
 \end_inset
 
-で説明したとおり 
+で説明したとおり
 \begin_inset Formula $\partial F/\partial K=f'(k)$
 \end_inset
 
  なので，均整成長経路上では
-\begin_inset Formula 
+\begin_inset Formula
 \[
 r=f'(k^{*})-\delta
 \]
@@ -2724,20 +2724,20 @@ reference "prob:zero-profit"
 
 \end_inset
 
-），労働所得について， 
-\begin_inset Formula 
+），労働所得について，
+\begin_inset Formula
 \[
 wL=Y-(r+\delta)K
 \]
 
 \end_inset
 
-が成り立つ。両辺を 
+が成り立つ。両辺を
 \begin_inset Formula $L$
 \end_inset
 
  で割ってやると，
-\begin_inset Formula 
+\begin_inset Formula
 \begin{align*}
 w & =A\left[y-(r+\delta)k\right]\\
  & =A\left[f(k)-f'(k)k\right]
@@ -2746,7 +2746,7 @@ w & =A\left[y-(r+\delta)k\right]\\
 \end_inset
 
 均整成長経路上では，
-\begin_inset Formula 
+\begin_inset Formula
 \[
 w=A\left[f(k^{*})-f'(k^{*})k^{*}\right]
 \]
@@ -2757,7 +2757,7 @@ w=A\left[f(k^{*})-f'(k^{*})k^{*}\right]
 \begin_inset Formula $w$
 \end_inset
 
- は 
+ は
 \begin_inset Formula $A$
 \end_inset
 
@@ -2785,7 +2785,7 @@ w=A\left[f(k^{*})-f'(k^{*})k^{*}\right]
 \end_layout
 
 \begin_layout Itemize
-積極的な移民政策によって 
+積極的な移民政策によって
 \begin_inset Formula $n$
 \end_inset
 
@@ -2793,7 +2793,7 @@ w=A\left[f(k^{*})-f'(k^{*})k^{*}\right]
 \end_layout
 
 \begin_layout Itemize
-子育て支援策を縮小して 
+子育て支援策を縮小して
 \begin_inset Formula $n$
 \end_inset
 
@@ -2801,7 +2801,7 @@ w=A\left[f(k^{*})-f'(k^{*})k^{*}\right]
 \end_layout
 
 \begin_layout Itemize
-技術開発を支援する政策によって 
+技術開発を支援する政策によって
 \begin_inset Formula $g$
 \end_inset
 
@@ -2809,7 +2809,7 @@ w=A\left[f(k^{*})-f'(k^{*})k^{*}\right]
 \end_layout
 
 \begin_layout Itemize
-資本ストックの保全技術が向上して 
+資本ストックの保全技術が向上して
 \begin_inset Formula $\delta$
 \end_inset
 
@@ -2825,7 +2825,7 @@ w=A\left[f(k^{*})-f'(k^{*})k^{*}\right]
 \begin_inset Formula $n$
 \end_inset
 
- の上昇に伴う均衡の移行を分析してみよう。経済は最初の定常状態 
+ の上昇に伴う均衡の移行を分析してみよう。経済は最初の定常状態
 \begin_inset Formula $k_{1}^{*}$
 \end_inset
 
@@ -2834,7 +2834,7 @@ w=A\left[f(k^{*})-f'(k^{*})k^{*}\right]
 \end_inset
 
  の上昇にともなって，定常状態の効率労働あたり資本ストックは減少する。
-\begin_inset Formula 
+\begin_inset Formula
 \[
 k_{2}^{*}<k_{1}^{*}
 \]
@@ -2856,7 +2856,7 @@ reference "eq:ch06/solow"
 \begin_inset Formula $t>0$
 \end_inset
 
- の効率労働あたり資本ストックが単調に減少し，長期的には 
+ の効率労働あたり資本ストックが単調に減少し，長期的には
 \begin_inset Formula $k_{2}^{*}$
 \end_inset
 
@@ -2868,15 +2868,15 @@ reference "eq:ch06/solow"
 \end_layout
 
 \begin_layout Standard
-動き続けるアナログ時計をイメージしてほしい。経済活動は連続的に流れる時間の中で行われている。しかし，モデル分析上の都合で離散時間的な変数 
+動き続けるアナログ時計をイメージしてほしい。経済活動は連続的に流れる時間の中で行われている。しかし，モデル分析上の都合で離散時間的な変数
 \begin_inset Formula $Y_{t-1},Y_{t}$
 \end_inset
 
-, 
+,
 \begin_inset Formula $K_{t-1}$
 \end_inset
 
-, 
+,
 \begin_inset Formula $K_{t}$
 \end_inset
 
@@ -2907,7 +2907,7 @@ status open
 \begin_inset Formula $t$
 \end_inset
 
-期の始まり（期首）は 
+期の始まり（期首）は
 \begin_inset Formula $t-1$
 \end_inset
 
@@ -2931,15 +2931,15 @@ status open
 \end_layout
 
 \begin_layout Standard
-資本 
+資本
 \begin_inset Formula $K$
 \end_inset
 
- や労働力 
+ や労働力
 \begin_inset Formula $L$
 \end_inset
 
-，技術 
+，技術
 \begin_inset Formula $A$
 \end_inset
 
@@ -2951,11 +2951,11 @@ reference "fig:ch06/graph-g-time"
 
 \end_inset
 
-の 
+の
 \begin_inset Formula $K_{t-1}$
 \end_inset
 
- が 
+ が
 \begin_inset Formula $t-1$
 \end_inset
 
@@ -2968,7 +2968,7 @@ status open
 \begin_inset Formula $K_{t-1}$
 \end_inset
 
- を 
+ を
 \begin_inset Formula $t-1$
 \end_inset
 
@@ -2976,7 +2976,7 @@ status open
 \begin_inset Formula $t$
 \end_inset
 
- 期期首の資本ストック）と定義したが，同じ量を表すのに 
+ 期期首の資本ストック）と定義したが，同じ量を表すのに
 \begin_inset Formula $K_{t}$
 \end_inset
 
@@ -2989,15 +2989,15 @@ status open
 \end_layout
 
 \begin_layout Standard
-生産 
+生産
 \begin_inset Formula $Y$
 \end_inset
 
-, 消費 
+, 消費
 \begin_inset Formula $C$
 \end_inset
 
-, 投資 
+, 投資
 \begin_inset Formula $I$
 \end_inset
 
@@ -3039,7 +3039,7 @@ centering
 \backslash
 includegraphics[width=
 \backslash
-textwidth]{Images/06-solow-G-Time}
+textwidth]{Diagrams/ch06-solow-flow}
 \end_layout
 
 \end_inset
@@ -3083,7 +3083,7 @@ reference "sec:growth-accounting"
 
 \end_inset
 
- では 
+ では
 \begin_inset Formula $Y=AK^{\alpha}L^{1-\alpha}$
 \end_inset
 
@@ -3103,7 +3103,7 @@ reference "sec:growth-accounting"
 \end_layout
 
 \begin_layout Standard
-\begin_inset Formula 
+\begin_inset Formula
 \begin{align*}
 Y & =AK^{\alpha}L^{1-\alpha}\\
  & =K^{\alpha}\left(A^{\frac{1}{1-\alpha}}L\right)^{1-\alpha}
@@ -3116,7 +3116,7 @@ Y & =AK^{\alpha}L^{1-\alpha}\\
 \end_inset
 
 という変数変換をすれば，
-\begin_inset Formula 
+\begin_inset Formula
 \[
 Y=K^{\alpha}\left(BL\right)^{1-\alpha}
 \]
@@ -3131,7 +3131,7 @@ Y=K^{\alpha}\left(BL\right)^{1-\alpha}
 \begin_inset Formula $Y=AK^{\alpha}L^{1-\alpha}$
 \end_inset
 
- なるソロー・モデルでは，均整成長経路の1人当たり実質GDP 成長率が 
+ なるソロー・モデルでは，均整成長経路の1人当たり実質GDP 成長率が
 \begin_inset Formula $A$
 \end_inset
 
@@ -3166,7 +3166,7 @@ reference "tab:日本経済の成長会計（ソース：JIPデータベース-2
 \end_inset
 
  （よく使われる資本分配率の近似値）とおくと
-\begin_inset Formula 
+\begin_inset Formula
 \[
 g^{B}=\frac{0.58}{1-(1/3)}\approx0.87
 \]
@@ -3313,7 +3313,7 @@ status open
 \end_layout
 
 \begin_layout Standard
-Python における関数定義の基本は 
+Python における関数定義の基本は
 \begin_inset Flex Code
 status open
 
@@ -3346,7 +3346,7 @@ status open
 \end_layout
 
 \begin_layout Standard
-この関数は数学的な関数 
+この関数は数学的な関数
 \begin_inset Formula $f(x)=x^{3}-10x$
 \end_inset
 
@@ -3363,7 +3363,7 @@ for
 
 \end_inset
 
- や 
+ や
 \begin_inset Flex Code
 status open
 
@@ -3400,7 +3400,7 @@ return
 status open
 
 \begin_layout Plain Layout
-R や Julia とは異なり，Python では明示的な 
+R や Julia とは異なり，Python では明示的な
 \begin_inset Flex Code
 status open
 
@@ -3615,7 +3615,7 @@ centering
 \backslash
 includegraphics[height=0.3
 \backslash
-textheight]{Figure/ch06/function-np-1}
+textheight]{Figures/ch06/function-np-1}
 \end_layout
 
 \end_inset
@@ -3651,7 +3651,7 @@ name "fig:fのグラフ"
 \end_layout
 
 \begin_layout Standard
-複数の引数を取る関数を定義することもできる。次のコードは 
+複数の引数を取る関数を定義することもできる。次のコードは
 \begin_inset Formula $\alpha=0.3$
 \end_inset
 
@@ -3782,7 +3782,7 @@ def
 
 \end_inset
 
- を使える局面でも 
+ を使える局面でも
 \begin_inset Flex Code
 status open
 
@@ -3801,7 +3801,7 @@ lambda
 \end_layout
 
 \begin_layout Standard
-Python ではどこでも 
+Python ではどこでも
 \begin_inset Flex Code
 status open
 
@@ -3828,7 +3828,7 @@ lambda
 
 \end_inset
 
- は Python のキーワードなので，変数名として使うことができない。数理モデルの分析では 
+ は Python のキーワードなので，変数名として使うことができない。数理モデルの分析では
 \begin_inset Formula $\lambda$
 \end_inset
 
@@ -3843,11 +3843,11 @@ lambda
 \end_layout
 
 \begin_layout Standard
-ラムダ式を使うべき局面は，例えば 
+ラムダ式を使うべき局面は，例えば
 \series bold
 Pandas
 \series default
- のデータフレームや列の 
+ のデータフレームや列の
 \begin_inset Flex Code
 status open
 
@@ -3915,7 +3915,7 @@ cd(2, 3)
 
 \end_inset
 
- という関数呼び出しは実引数を書いた位置によって，どの仮引数に代入されるかが決まる。上で 
+ という関数呼び出しは実引数を書いた位置によって，どの仮引数に代入されるかが決まる。上で
 \begin_inset Flex Code
 status open
 
@@ -3935,7 +3935,7 @@ x=2
 
 \end_inset
 
-, 
+,
 \begin_inset Flex Code
 status open
 
@@ -3953,7 +3953,7 @@ y=3
 \end_layout
 
 \begin_layout Standard
-関数と引数の関係についてはもう少し話しておくべきことがある。すでに実例では使用しているのだが，関数呼び出しの際に 
+関数と引数の関係についてはもう少し話しておくべきことがある。すでに実例では使用しているのだが，関数呼び出しの際に
 \begin_inset Flex Code
 status open
 
@@ -3963,7 +3963,7 @@ x=2
 
 \end_inset
 
-, 
+,
 \begin_inset Flex Code
 status open
 
@@ -4179,7 +4179,7 @@ args
 
 \end_inset
 
- という名前は重要ではない。その前に付記された 
+ という名前は重要ではない。その前に付記された
 \begin_inset Flex Code
 status open
 
@@ -4200,7 +4200,7 @@ status open
 \end_inset
 
  を付記された変を関数定義の仮引数リストに書くと，ゼロ個以上不定個の引数を受け付ける関数を書くことができる。（いくつあるかは事前には分からない）引数は，関数本体
-の中では 
+の中では
 \begin_inset Flex Code
 status open
 
@@ -4214,7 +4214,7 @@ args
 \end_layout
 
 \begin_layout Standard
-位置引数だけでなくキーワード引数も可変長にできる。これには 
+位置引数だけでなくキーワード引数も可変長にできる。これには
 \begin_inset Flex Code
 status open
 
@@ -4258,7 +4258,7 @@ status open
 
 \end_inset
 
- と 
+ と
 \begin_inset Flex Code
 status open
 
@@ -4291,7 +4291,7 @@ status open
 \end_layout
 
 \begin_layout Standard
-さて，関数定義の可変長位置引数を示す 
+さて，関数定義の可変長位置引数を示す
 \begin_inset Flex Code
 status open
 
@@ -4321,7 +4321,7 @@ status open
 
 \end_inset
 
- や 
+ や
 \begin_inset Flex Code
 status open
 
@@ -4491,7 +4491,7 @@ status open
 \end_layout
 
 \begin_layout Enumerate
-引数 
+引数
 \begin_inset Flex Code
 status open
 
@@ -4501,7 +4501,7 @@ x
 
 \end_inset
 
- には変更を加えたくないので，結果の配列 
+ には変更を加えたくないので，結果の配列
 \begin_inset Flex Code
 status open
 
@@ -4511,7 +4511,7 @@ y
 
 \end_inset
 
- を 
+ を
 \begin_inset Flex Code
 status open
 
@@ -4607,7 +4607,7 @@ y = x
 
 \end_inset
 
- という代入文で 
+ という代入文で
 \begin_inset Flex Code
 status open
 
@@ -4660,7 +4660,7 @@ https://kjst.jp/t0i
 
 \end_inset
 
-）を較べてみよう。深くネストされたリストの完全なコピーを作るには 
+）を較べてみよう。深くネストされたリストの完全なコピーを作るには
 \begin_inset Flex Code
 status open
 
@@ -4716,7 +4716,7 @@ a
 
 \end_inset
 
- という変数が関数の外側と内側で2回定義されている。(3) の関数呼び出しのときに (2) 
+ という変数が関数の外側と内側で2回定義されている。(3) の関数呼び出しのときに (2)
 \begin_inset Flex Code
 status open
 
@@ -4726,7 +4726,7 @@ a = 0
 
 \end_inset
 
- が実行される。関数呼び出しの結果は 
+ が実行される。関数呼び出しの結果は
 \begin_inset Flex Code
 status open
 
@@ -4736,7 +4736,7 @@ a = 0
 
 \end_inset
 
- の影響を受けている。しかし，関数呼び出しが終わった後に 
+ の影響を受けている。しかし，関数呼び出しが終わった後に
 \begin_inset Flex Code
 status open
 
@@ -4770,7 +4770,7 @@ status open
 
 \begin_layout Standard
 \paragraph_spacing double
-関数の内側 (2) で定義された 
+関数の内側 (2) で定義された
 \begin_inset Flex Code
 status open
 
@@ -4780,7 +4780,7 @@ a
 
 \end_inset
 
- と外側 (1) で定義された 
+ と外側 (1) で定義された
 \begin_inset Flex Code
 status open
 
@@ -4836,7 +4836,7 @@ return
 
 \end_inset
 
- を書かなかった，書き忘れた場合は 
+ を書かなかった，書き忘れた場合は
 \begin_inset Flex Code
 status open
 
@@ -4863,11 +4863,11 @@ Python では関数も普通のオブジェクトなので，
 \end_layout
 
 \begin_layout Itemize
-関数を引数にする関数（上で 
+関数を引数にする関数（上で
 \series bold
 pandas
 \series default
- データフレームの 
+ データフレームの
 \begin_inset Flex Code
 status open
 
@@ -4894,14 +4894,14 @@ apply()
 
 \begin_layout Standard
 ソロー・モデルで用いたコブ=ダグラス型生産関数　
-\begin_inset Formula 
+\begin_inset Formula
 \[
 F(K,L,A)=K^{\alpha}(AL)^{1-\alpha}
 \]
 
 \end_inset
 
-は 
+は
 \begin_inset Formula $\alpha$
 \end_inset
 
@@ -4909,7 +4909,7 @@ F(K,L,A)=K^{\alpha}(AL)^{1-\alpha}
 \begin_inset Formula $\alpha$
 \end_inset
 
- を決めれば 
+ を決めれば
 \begin_inset Formula $F$
 \end_inset
 
@@ -4952,8 +4952,8 @@ status open
 \end_layout
 
 \begin_layout Standard
-漸化式 
-\begin_inset Formula 
+漸化式
+\begin_inset Formula
 \[
 y_{t}=ay_{t-1}+b,\qquad t=1,2,\dots,T-1
 \]
@@ -4965,7 +4965,7 @@ y_{t}=ay_{t-1}+b,\qquad t=1,2,\dots,T-1
 
 \begin_layout Standard
 まず，次のように書き換えると，漸化式の右辺（更新ルール）が高階関数（関数を返す関数）であることが分かる。
-\begin_inset Formula 
+\begin_inset Formula
 \begin{align*}
 y_{t} & =G(y_{t-1}),\qquad G(y)=ay+b
 \end{align*}
@@ -4973,7 +4973,7 @@ y_{t} & =G(y_{t-1}),\qquad G(y)=ay+b
 \end_inset
 
 すなわち，
-\begin_inset Formula 
+\begin_inset Formula
 \[
 (a,b)\mapsto G
 \]
@@ -5010,15 +5010,15 @@ status open
 \end_layout
 
 \begin_layout Standard
-シミュレーションは更新ルール 
+シミュレーションは更新ルール
 \begin_inset Formula $G$
 \end_inset
 
- と，初期値 
+ と，初期値
 \begin_inset Formula $y_{0}$
 \end_inset
 
-と，シミュレーションの長さ 
+と，シミュレーションの長さ
 \begin_inset Formula $T$
 \end_inset
 
@@ -5027,7 +5027,7 @@ status open
 \end_inset
 
  を返す高階関数（関数を引数とする関数）として理解できる。
-\begin_inset Formula 
+\begin_inset Formula
 \[
 (G,y_{0},T)\mapsto(y_{0},y_{1},y_{2},\dots,y_{T-1})
 \]
@@ -5051,7 +5051,7 @@ y0 = np.asarray(y0)
 
 \end_inset
 
-：入力された初期値 
+：入力された初期値
 \begin_inset Flex Code
 status open
 
@@ -5074,7 +5074,7 @@ y = np.empty((T, *y0.shape))
 
 \end_inset
 
-：初期値 
+：初期値
 \begin_inset Flex Code
 status open
 
@@ -5084,7 +5084,7 @@ y0
 
 \end_inset
 
- のシェイプが 
+ のシェイプが
 \begin_inset Flex Code
 status open
 
@@ -5094,7 +5094,7 @@ status open
 
 \end_inset
 
- なら，結果を格納する配列のシェイプは 
+ なら，結果を格納する配列のシェイプは
 \begin_inset Flex Code
 status open
 
@@ -5144,7 +5144,7 @@ status open
 \end_layout
 
 \begin_layout Standard
-先程の 
+先程の
 \begin_inset Formula $G$
 \end_inset
 
@@ -5153,7 +5153,7 @@ status open
 \end_layout
 
 \begin_layout Standard
-\begin_inset Formula 
+\begin_inset Formula
 \begin{align*}
 G(y) & =ay+b\\
  & \downarrow\\
@@ -5162,11 +5162,11 @@ G_{\varepsilon}(y) & =G(y)+\varepsilon
 
 \end_inset
 
-これは関数 
+これは関数
 \begin_inset Formula $G$
 \end_inset
 
- を受け取って関数 
+ を受け取って関数
 \begin_inset Formula $G_{\varepsilon}$
 \end_inset
 
@@ -5174,11 +5174,11 @@ G_{\varepsilon}(y) & =G(y)+\varepsilon
 \end_layout
 
 \begin_layout Standard
-われわれは 
+われわれは
 \begin_inset Formula $G$
 \end_inset
 
- は引数を1つだけ受け取ることを知っているが，これは修正を施したい関数 
+ は引数を1つだけ受け取ることを知っているが，これは修正を施したい関数
 \begin_inset Formula $G$
 \end_inset
 
@@ -5321,7 +5321,7 @@ status open
 \end_layout
 
 \begin_layout Standard
-シミュレーションはすでに作っておいた 
+シミュレーションはすでに作っておいた
 \begin_inset Flex Code
 status open
 
@@ -5331,7 +5331,7 @@ simulate()
 
 \end_inset
 
- 関数を使えば良い。初期値は適当に 
+ 関数を使えば良い。初期値は適当に
 \begin_inset Flex Code
 status open
 
@@ -5341,7 +5341,7 @@ status open
 
 \end_inset
 
- にしておいた。シミュレーション期間は 
+ にしておいた。シミュレーション期間は
 \begin_inset Flex Code
 status open
 
@@ -5446,7 +5446,7 @@ centering
 \backslash
 includegraphics[width=
 \backslash
-textwidth]{Figure/ch06/simulate-solow-1}
+textwidth]{Figures/ch06/simulate-solow-1}
 \end_layout
 
 \end_inset
@@ -5549,7 +5549,7 @@ centering
 \backslash
 includegraphics[height=0.3
 \backslash
-textheight]{Figure/ch06/small-k-1}
+textheight]{Figures/ch06/small-k-1}
 \end_layout
 
 \end_inset
@@ -5590,7 +5590,7 @@ name "fig:効率労働あたりの資本"
 \end_layout
 
 \begin_layout Itemize
-貯蓄率の上昇が効率労働当たりの消費 
+貯蓄率の上昇が効率労働当たりの消費
 \begin_inset Formula $c=C/(AL)$
 \end_inset
 
@@ -5602,19 +5602,19 @@ name "fig:効率労働あたりの資本"
 \end_layout
 
 \begin_layout Standard
-実際に関心があるのは総所得 
+実際に関心があるのは総所得
 \begin_inset Formula $Y$
 \end_inset
 
-, 消費 
+, 消費
 \begin_inset Formula $C$
 \end_inset
 
- など，および 1人あたりの平均値 
+ など，および 1人あたりの平均値
 \begin_inset Formula $Y/L$
 \end_inset
 
- や 
+ や
 \begin_inset Formula $C/L$
 \end_inset
 
@@ -5661,7 +5661,7 @@ status open
 \begin_inset Formula $Y$
 \end_inset
 
- や 
+ や
 \begin_inset Formula $C$
 \end_inset
 
@@ -5834,7 +5834,7 @@ centering
 \backslash
 includegraphics[height=0.3
 \backslash
-textheight]{Figure/ch06/saving-change-1}
+textheight]{Figures/ch06/saving-change-1}
 \end_layout
 
 \end_inset
@@ -5894,8 +5894,8 @@ status open
 \begin_inset CommandInset bibtex
 LatexCommand bibtex
 btprint "btPrintCited"
-bibfiles "../Bibliography/ref,../Bibliography/software"
-options "../styles/jecon"
+bibfiles "References/ref,References/software"
+options "Include/jecon"
 
 \end_inset
 

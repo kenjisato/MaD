@@ -6,11 +6,11 @@
 \origin unavailable
 \textclass scrbook
 \begin_preamble
-\input{Include/preamble.tex}
+\input{Include/ch-preamble.tex}
 \end_preamble
 \options dvipdfmx,paper=a5,base=9pt, twoside, openany
 \use_default_options true
-\master _main.lyx
+\master all.lyx
 \begin_modules
 knitr
 theorems-ams-chap-bytype
@@ -219,7 +219,7 @@ GDP は生産された価値の合計であるから，合計する前の GDP �
 加価値生産額 1兆円の小さな産業である。補助金の投入によって産業の成長率を 10% → 11% に加速することができたとして，GDP 全体の成長に対する貢献がど
 の程度になるかを計算してみよう。補助金を投入しなければ 1.1兆円を次年度に生産していたところ，補助金の投入によって 1.11兆円に生産額が増える。増分は
  0.01 兆円であるから，現在の GDP 全体に占める増分の比率は
-\begin_inset Formula 
+\begin_inset Formula
 \[
 0.01\text{兆円}/500\text{兆円}=0.002\%
 \]
@@ -332,7 +332,7 @@ if-elif-else
 \begin_layout Standard
 GDP（Gross Domestic Product, 国内総生産）は，ある期間において（通常は，1年または四半期），各生産者が生産した付加価値をすべて合計した
 ものである。付加価値とは，
-\begin_inset Formula 
+\begin_inset Formula
 \[
 \text{付加価値}=\text{生産物の価値}-\text{投入中間財の価値}
 \]
@@ -375,11 +375,11 @@ GDP（Gross Domestic Product, 国内総生産）は，ある期間において�
 \end_layout
 
 \begin_layout Itemize
-消費 
+消費
 \begin_inset Formula $=$
 \end_inset
 
- 民間消費 
+ 民間消費
 \begin_inset Formula $+$
 \end_inset
 
@@ -387,11 +387,11 @@ GDP（Gross Domestic Product, 国内総生産）は，ある期間において�
 \end_layout
 
 \begin_layout Itemize
-投資 
+投資
 \begin_inset Formula $=$
 \end_inset
 
- 民間投資 
+ 民間投資
 \begin_inset Formula $+$
 \end_inset
 
@@ -430,7 +430,7 @@ status open
 
 \begin_layout Standard
 純輸出は
-\begin_inset Formula 
+\begin_inset Formula
 \[
 \text{純輸出}=\text{輸出（Export）}-\text{輸入（Import）}
 \]
@@ -475,18 +475,18 @@ status open
 \end_layout
 
 \begin_layout Standard
-\begin_inset Formula 
+\begin_inset Formula
 \[
 Y=C+I+G+NX
 \]
 
 \end_inset
 
-輸出を 
+輸出を
 \begin_inset Formula $EX$
 \end_inset
 
-，輸入を 
+，輸入を
 \begin_inset Formula $IM$
 \end_inset
 
@@ -498,7 +498,7 @@ Y=C+I+G+NX
 \end_layout
 
 \begin_layout Standard
-\begin_inset Formula 
+\begin_inset Formula
 \[
 Y=C+I+G+EX-IM
 \]
@@ -509,7 +509,7 @@ Y=C+I+G+EX-IM
 \end_layout
 
 \begin_layout Itemize
-消費 
+消費
 \begin_inset Formula $C$
 \end_inset
 
@@ -517,7 +517,7 @@ Y=C+I+G+EX-IM
 \end_layout
 
 \begin_layout Itemize
-投資 
+投資
 \begin_inset Formula $I$
 \end_inset
 
@@ -525,7 +525,7 @@ Y=C+I+G+EX-IM
 \end_layout
 
 \begin_layout Itemize
-政府購入 
+政府購入
 \begin_inset Formula $G$
 \end_inset
 
@@ -534,15 +534,15 @@ Y=C+I+G+EX-IM
 \end_layout
 
 \begin_layout Itemize
-純輸出 
+純輸出
 \begin_inset Formula $NX$
 \end_inset
 
- は外国経済との関わりを表す部分である。輸出 
+ は外国経済との関わりを表す部分である。輸出
 \begin_inset Formula $EX$
 \end_inset
 
- から輸入 
+ から輸入
 \begin_inset Formula $IM$
 \end_inset
 
@@ -558,7 +558,7 @@ Y=C+I+G+EX-IM
 
 \begin_layout Standard
 経済の生産規模を測る GDP ではあるが，米 800万トンと自動車 70万台を単純に足すことはできないので，貨幣の単位で測った価値を用いて生産規模を計算する。
-\begin_inset Formula 
+\begin_inset Formula
 \[
 \text{価値}=\text{価格}\times\text{数量}
 \]
@@ -599,7 +599,7 @@ nominal GDP
 
 \begin_layout Standard
 名目 GDP の計算の基礎となる価値の式に，時間のインデックスを付記しておこう。
-\begin_inset Formula 
+\begin_inset Formula
 \begin{align*}
 \text{価値}_{t} & =\text{価格}_{t}\times\text{数量}_{t}\\
 \text{価値}_{t+1} & =\text{価格}_{t+1}\times\text{数量}_{t+1}
@@ -608,7 +608,7 @@ nominal GDP
 \end_inset
 
 特定の財について，生産物の価値の上昇は 2つの原因によって起こる。つまり，価格が上昇するか，生産数量が拡大するかだ。
-\begin_inset Formula 
+\begin_inset Formula
 \begin{align*}
 (\text{価値の粗変化率}) & =\frac{\text{価値}_{t+1}}{\text{価値}_{t}}=\frac{\text{価格}_{t+1}}{\text{価格}_{t}}\times\frac{\text{数量}_{t+1}}{\text{数量}_{t}}\\
  & =(\text{価格の粗変化率})\times(\text{数量の粗変化率})
@@ -634,7 +634,7 @@ status open
 
 \begin_layout Standard
 そこで，豊かさを測る指標として，成長率
-\begin_inset Formula 
+\begin_inset Formula
 \[
 \frac{\text{数量}_{t+1}}{\text{数量}_{t}}=\frac{\text{価値}_{t+1}/\text{価値}_{t}}{\text{価格}_{t+1}/\text{価格}_{t}}
 \]
@@ -661,11 +661,11 @@ reference "chap:物価指数とインフレーション"
 \begin_inset Formula $t$
 \end_inset
 
- 期における生産量を並べたベクトルを 
+ 期における生産量を並べたベクトルを
 \begin_inset Formula $\boldsymbol{x}_{t}$
 \end_inset
 
- ，価格ベクトルを 
+ ，価格ベクトルを
 \begin_inset Formula $\boldsymbol{p}_{t}$
 \end_inset
 
@@ -673,15 +673,15 @@ reference "chap:物価指数とインフレーション"
 \begin_inset Formula $\boldsymbol{x}_{t}$
 \end_inset
 
- の第 
+ の第
 \begin_inset Formula $i$
 \end_inset
 
- 要素 
+ 要素
 \begin_inset Formula $x_{t,i}$
 \end_inset
 
- は財 
+ は財
 \begin_inset Formula $i$
 \end_inset
 
@@ -689,11 +689,11 @@ reference "chap:物価指数とインフレーション"
 \begin_inset Formula $\boldsymbol{p}_{t}$
 \end_inset
 
- の対応する要素 
+ の対応する要素
 \begin_inset Formula $p_{t,i}$
 \end_inset
 
- が財 
+ が財
 \begin_inset Formula $i$
 \end_inset
 
@@ -701,12 +701,12 @@ reference "chap:物価指数とインフレーション"
 \begin_inset Formula $t$
 \end_inset
 
- 期の名目GDP, 
+ 期の名目GDP,
 \begin_inset Formula $Y_{t}$
 \end_inset
 
 , は
-\begin_inset Formula 
+\begin_inset Formula
 \[
 Y_{t}=\text{名目GDP}_{t}=\boldsymbol{p}_{t}\cdot\boldsymbol{x}_{t}
 \]
@@ -717,23 +717,23 @@ Y_{t}=\text{名目GDP}_{t}=\boldsymbol{p}_{t}\cdot\boldsymbol{x}_{t}
 \begin_inset Formula $t-1$
 \end_inset
 
- 期から 
+ 期から
 \begin_inset Formula $t$
 \end_inset
 
- 期にかけての経済成長率 
+ 期にかけての経済成長率
 \begin_inset Formula $g_{t}$
 \end_inset
 
  は
-\begin_inset Formula 
+\begin_inset Formula
 \[
 \text{（粗）経済成長率}_{t}=1+g_{t}=\frac{\boldsymbol{p}_{t-1}\cdot\boldsymbol{x}_{t}}{\boldsymbol{p}_{t-1}\cdot\boldsymbol{x}_{t-1}}
 \]
 
 \end_inset
 
-と定義する。ベクトルを数値化するベクトルとして過去の情報 
+と定義する。ベクトルを数値化するベクトルとして過去の情報
 \begin_inset Formula $\boldsymbol{p}_{t-1}$
 \end_inset
 
@@ -746,14 +746,14 @@ Y_{t}=\text{名目GDP}_{t}=\boldsymbol{p}_{t}\cdot\boldsymbol{x}_{t}
 
 \begin_layout Standard
 参照年を 0期とする。0 期においては
-\begin_inset Formula 
+\begin_inset Formula
 \[
 \text{実質GDP}_{0}=\text{名目GDP}_{0}\qquad\text{あるいは}\qquad y_{0}=Y_{0}
 \]
 
 \end_inset
 
-が成り立つとする。比較年 
+が成り立つとする。比較年
 \begin_inset Formula $t$
 \end_inset
 
@@ -762,7 +762,7 @@ Y_{t}=\text{名目GDP}_{t}=\boldsymbol{p}_{t}\cdot\boldsymbol{x}_{t}
 実質GDP
 \series default
 （連鎖方式）は次のように定義される。
-\begin_inset Formula 
+\begin_inset Formula
 \begin{align}
 y_{t} & =\prod_{i=1}^{t}\left(1+g_{i}\right)\times y_{0}\nonumber \\
  & =\left(1+g_{t}\right)\left(1+g_{t-1}\right)\times\cdots\times\left(1+g_{1}\right)\times y_{0}\nonumber \\
@@ -782,12 +782,12 @@ reference "eq:laspeyres-quantity-gdp"
 
 \end_inset
 
-) において，0 期の実質GDP が 
+) において，0 期の実質GDP が
 \begin_inset Formula $y_{0}=\boldsymbol{p}_{0}\cdot\boldsymbol{x}_{0}$
 \end_inset
 
  であることに注意すれば，異なる表現が得られる。
-\begin_inset Formula 
+\begin_inset Formula
 \begin{align*}
 y_{t} & =\frac{\boldsymbol{p}_{t-1}\cdot\boldsymbol{x}_{t}}{\boldsymbol{p}_{t-1}\cdot\boldsymbol{x}_{t-1}}\times\frac{\boldsymbol{p}_{t-2}\cdot\boldsymbol{x}_{t-1}}{\boldsymbol{p}_{t-2}\cdot\boldsymbol{x}_{t-2}}\times\cdots\times\frac{\boldsymbol{p}_{0}\cdot\boldsymbol{x}_{1}}{\boldsymbol{p}_{0}\cdot\boldsymbol{x}_{0}}\times\boldsymbol{p}_{0}\cdot\boldsymbol{x}_{0}\\
  & =\boldsymbol{p}_{t}\cdot\boldsymbol{x}_{t}\times\frac{\boldsymbol{p}_{t-1}\cdot\boldsymbol{x}_{t}}{\boldsymbol{p}_{t}\cdot\boldsymbol{x}_{t}}\times\frac{\boldsymbol{p}_{t-2}\cdot\boldsymbol{x}_{t-1}}{\boldsymbol{p}_{t-1}\cdot\boldsymbol{x}_{t-1}}\times\cdots\times\frac{\boldsymbol{p}_{0}\cdot\boldsymbol{x}_{1}}{\boldsymbol{p}_{1}\cdot\boldsymbol{x}_{1}}
@@ -795,7 +795,7 @@ y_{t} & =\frac{\boldsymbol{p}_{t-1}\cdot\boldsymbol{x}_{t}}{\boldsymbol{p}_{t-1}
 
 \end_inset
 
-右辺の最初の項に余分な項 
+右辺の最初の項に余分な項
 \begin_inset Formula $\boldsymbol{p}_{t}\cdot\boldsymbol{x}_{t}/\boldsymbol{p}_{t}\cdot\boldsymbol{x}_{t}$
 \end_inset
 
@@ -804,7 +804,7 @@ y_{t} & =\frac{\boldsymbol{p}_{t-1}\cdot\boldsymbol{x}_{t}}{\boldsymbol{p}_{t-1}
 \end_inset
 
  を消去した。分母を1つずつずらしていることにも注意しよう。これは，さらに
-\begin_inset Formula 
+\begin_inset Formula
 \[
 y_{t}=\frac{\boldsymbol{p}_{t}\cdot\boldsymbol{x}_{t}}{\frac{\boldsymbol{p}_{t}\cdot\boldsymbol{x}_{t}}{\boldsymbol{p}_{t-1}\cdot\boldsymbol{x}_{t}}\times\frac{\boldsymbol{p}_{t-1}\cdot\boldsymbol{x}_{t-1}}{\boldsymbol{p}_{t-2}\cdot\boldsymbol{x}_{t-1}}\times\cdots\times\frac{\boldsymbol{p}_{1}\cdot\boldsymbol{x}_{1}}{\boldsymbol{p}_{0}\cdot\boldsymbol{x}_{1}}}
 \]
@@ -812,7 +812,7 @@ y_{t}=\frac{\boldsymbol{p}_{t}\cdot\boldsymbol{x}_{t}}{\frac{\boldsymbol{p}_{t}\
 \end_inset
 
 と書き直すことができる。分母がパーシェ式連鎖指数となっていることに注意する。すなわち，
-\begin_inset Formula 
+\begin_inset Formula
 \begin{align}
 \text{DFL}_{0} & =1\nonumber \\
 \text{DFL}_{i} & =\frac{\boldsymbol{p}_{i}\cdot\boldsymbol{x}_{i}}{\boldsymbol{p}_{i-1}\cdot\boldsymbol{x}_{i}}\times\text{DFL}_{i-1},\quad i=1,2,\dots,t\label{eq:ch03-dfl}
@@ -821,7 +821,7 @@ y_{t}=\frac{\boldsymbol{p}_{t}\cdot\boldsymbol{x}_{t}}{\frac{\boldsymbol{p}_{t}\
 \end_inset
 
 と定義すれば，
-\begin_inset Formula 
+\begin_inset Formula
 \[
 y_{t}=\frac{\boldsymbol{p}_{t}\cdot\boldsymbol{x}_{t}}{\text{DFL}_{t}}
 \]
@@ -832,11 +832,11 @@ y_{t}=\frac{\boldsymbol{p}_{t}\cdot\boldsymbol{x}_{t}}{\text{DFL}_{t}}
 \begin_inset Formula $\text{DFL}_{t}$
 \end_inset
 
- は当期の価格指数として用いることができる。このように定義される価格指数 
+ は当期の価格指数として用いることができる。このように定義される価格指数
 \begin_inset Formula $\text{DFL}$
 \end_inset
 
- が連鎖方式の 
+ が連鎖方式の
 \series bold
 GDPデフレータ
 \series default
@@ -870,7 +870,7 @@ reference "eq:laspeyres-quantity-gdp"
 \end_inset
 
 ) で実質GDPを計算してからデフレーターを計算することもできる。実務上は，実質GDP を先に計算しているようだ。
-\begin_inset Formula 
+\begin_inset Formula
 \[
 \text{デフレーター}=\frac{\text{名目値}}{\text{実質値}}
 \]
@@ -886,7 +886,7 @@ reference "eq:laspeyres-quantity-gdp"
 \end_layout
 
 \begin_layout Standard
-\begin_inset Formula 
+\begin_inset Formula
 \[
 \text{実質GDP}=\frac{\text{名目GDP}}{\text{GDP デフレータ}}
 \]
@@ -955,11 +955,11 @@ contribution
 \end_layout
 
 \begin_layout Standard
-成長率 
+成長率
 \begin_inset Formula $t$
 \end_inset
 
- 期の GDP を 
+ 期の GDP を
 \begin_inset Formula $Y_{t}$
 \end_inset
 
@@ -967,7 +967,7 @@ contribution
 \begin_inset Formula $t+1$
 \end_inset
 
- 期）の GDP を 
+ 期）の GDP を
 \begin_inset Formula $Y_{t+1}$
 \end_inset
 
@@ -982,7 +982,7 @@ status open
 \end_inset
 
 。経済成長率は GDP の変化率
-\begin_inset Formula 
+\begin_inset Formula
 \[
 \frac{\Delta Y_{t+1}}{Y_{t}}=\frac{Y_{t+1}-Y_{t}}{Y_{t}}=\frac{Y_{t+1}}{Y_{t}}-1
 \]
@@ -993,7 +993,7 @@ status open
 \begin_inset Formula $Y_{t}$
 \end_inset
 
-, 
+,
 \begin_inset Formula $Y_{t+1}$
 \end_inset
 
@@ -1001,7 +1001,7 @@ status open
 \end_layout
 
 \begin_layout Standard
-\begin_inset Formula 
+\begin_inset Formula
 \begin{align*}
 Y_{t} & =C_{t}+I_{t}+G_{t}+NX_{t}\\
 Y_{t+1} & =C_{t+1}+I_{t+1}+G_{t+1}+NX_{t+1}
@@ -1009,19 +1009,19 @@ Y_{t+1} & =C_{t+1}+I_{t+1}+G_{t+1}+NX_{t+1}
 
 \end_inset
 
-GDP が成長するためには 
+GDP が成長するためには
 \begin_inset Formula $C$
 \end_inset
 
-, 
+,
 \begin_inset Formula $I$
 \end_inset
 
-, 
+,
 \begin_inset Formula $G$
 \end_inset
 
-, 
+,
 \begin_inset Formula $NX$
 \end_inset
 
@@ -1037,7 +1037,7 @@ GDP が成長するためには
 \end_layout
 
 \begin_layout Standard
-\begin_inset Formula 
+\begin_inset Formula
 \begin{align*}
 \frac{\Delta Y_{t+1}}{Y_{t}} & =\frac{Y_{t+1}-Y_{t}}{Y_{t}}\\
  & =\frac{\left(C_{t+1}+I_{t+1}+G_{t+1}+NX_{t+1}\right)-\left(C_{t}+I_{t}+G_{t}+NX_{t}\right)}{Y_{t}}\\
@@ -1048,7 +1048,7 @@ GDP が成長するためには
 
 \end_inset
 
-ここで，例えば 
+ここで，例えば
 \begin_inset Formula $\Delta I_{t+1}/Y_{t}$
 \end_inset
 
@@ -1057,7 +1057,7 @@ GDP が成長するためには
 
 \begin_layout Standard
 GDP に限らず加法的に分解できる指標であれば同様の公式で寄与度を計算出来る。例えば，
-\begin_inset Formula 
+\begin_inset Formula
 \[
 X_{t}=X_{t,1}+X_{t,2}+\cdots+X_{t,N-1}+X_{t,N}=\sum_{n=1}^{N}X_{t,n}
 \]
@@ -1065,7 +1065,7 @@ X_{t}=X_{t,1}+X_{t,2}+\cdots+X_{t,N-1}+X_{t,N}=\sum_{n=1}^{N}X_{t,n}
 \end_inset
 
 とすれば，
-\begin_inset Formula 
+\begin_inset Formula
 \[
 \frac{\Delta X_{t+1}}{X_{t}}=\sum_{n=1}^{N}\frac{\Delta X_{t+1,n}}{X_{t}}\Longrightarrow\text{項目}n\text{ の寄与度}=\frac{\Delta X_{t+1,n}}{X_{t}}
 \]
@@ -1086,15 +1086,15 @@ name "prob:寄与度1"
 \begin_inset Formula $X_{t}$
 \end_inset
 
-, 
+,
 \begin_inset Formula $t=2000,2001$
 \end_inset
 
-, の加法分解 
+, の加法分解
 \begin_inset Formula $X_{t}=X_{t,1}+X_{t,2}+X_{t,3}$
 \end_inset
 
- が下の表で与えられている。2000年から2001年にかける 
+ が下の表で与えられている。2000年から2001年にかける
 \begin_inset Formula $X$
 \end_inset
 
@@ -1341,7 +1341,7 @@ baselineskip}
 
 \begin_layout Standard
 加法分解に控除項目が入る場合には，控除項目を負数として扱えばよい。
-\begin_inset Formula 
+\begin_inset Formula
 \begin{align*}
 Y_{t} & =C_{t}+I_{t}+G_{t}+EX_{t}-IM_{t}\\
  & =C_{t}+I_{t}+G_{t}+EX_{t}+\left(-IM_{t}\right)
@@ -1350,7 +1350,7 @@ Y_{t} & =C_{t}+I_{t}+G_{t}+EX_{t}-IM_{t}\\
 \end_inset
 
 
-\begin_inset Formula 
+\begin_inset Formula
 \[
 \frac{\Delta Y_{t+1}}{Y_{t}}=\frac{\Delta C_{t+1}}{Y_{t}}+\frac{\Delta I_{t+1}}{Y_{t}}+\frac{\Delta G_{t+1}}{Y_{t}}+\frac{\Delta EX_{t+1}}{Y_{t}}+\frac{\Delta\left(-IM_{t+1}\right)}{Y_{t}}.
 \]
@@ -1669,14 +1669,14 @@ baselineskip}
 
 \begin_layout Standard
 GDP 成長率を 1 （100%）に基準化したときの寄与度の大きさが寄与率である。例えば，GDP の支出面の分解であれば，寄与度の計算式
-\begin_inset Formula 
+\begin_inset Formula
 \[
 \frac{\Delta Y_{t+1}}{Y_{t}}=\frac{\Delta C_{t+1}}{Y_{t}}+\frac{\Delta I_{t+1}}{Y_{t}}+\frac{\Delta G_{t+1}}{Y_{t}}+\frac{\Delta NX_{t+1}}{Y_{t}}
 \]
 
 \end_inset
 
-の両辺を全体の成長率 
+の両辺を全体の成長率
 \begin_inset Formula $\Delta Y_{t+1}/Y_{t}$
 \end_inset
 
@@ -1684,7 +1684,7 @@ GDP 成長率を 1 （100%）に基準化したときの寄与度の大きさが
 \end_layout
 
 \begin_layout Standard
-\begin_inset Formula 
+\begin_inset Formula
 \begin{align*}
 1 & =\frac{\left(\Delta C_{t+1}/Y_{t}\right)+\left(\Delta I_{t+1}/Y_{t}\right)+\left(\Delta G_{t+1}/Y_{t}\right)+\left(\Delta NX_{t+1}/Y_{t}\right)}{\left(\Delta Y_{t+1}/Y_{t}\right)}\\
  & =\frac{\Delta C_{t+1}}{\Delta Y_{t+1}}+\frac{\Delta I_{t+1}}{\Delta Y_{t+1}}+\frac{\Delta G_{t+1}}{\Delta Y_{t+1}}+\frac{\Delta NX_{t+1}}{\Delta Y_{t+1}}
@@ -1703,7 +1703,7 @@ reference "prob:寄与度1"
 
 \end_inset
 
-, 
+,
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "prob:寄与度2"
@@ -1769,7 +1769,7 @@ status open
 \end_layout
 
 \begin_layout Standard
-順序に意味のない 
+順序に意味のない
 \begin_inset Formula $n$
 \end_inset
 
@@ -1777,7 +1777,7 @@ status open
 \end_layout
 
 \begin_layout Standard
-\begin_inset Formula 
+\begin_inset Formula
 \[
 x_{1},x_{2},x_{3},\dots,x_{n}
 \]
@@ -1785,7 +1785,7 @@ x_{1},x_{2},x_{3},\dots,x_{n}
 \end_inset
 
 を小さい順に並べ替える。新しい記号を導入したくないので，下付き添字に括弧を付けて順位を表すものとする。すなわち，
-\begin_inset Formula 
+\begin_inset Formula
 \begin{align*}
 x_{(1)} & =\text{1番目に小さいデータ}\text{　}\\
 x_{(2)} & =\text{2番目に小さいデータ}\\
@@ -1799,7 +1799,7 @@ x_{(n)} & =n\text{番目に小さいデータ}
 \begin_inset Formula $x_{i}$
 \end_inset
 
- と書いたときの 
+ と書いたときの
 \begin_inset Formula $i$
 \end_inset
 
@@ -1807,11 +1807,11 @@ x_{(n)} & =n\text{番目に小さいデータ}
 \begin_inset Formula $x_{(j)}$
 \end_inset
 
- と書いたときの 
+ と書いたときの
 \begin_inset Formula $j$
 \end_inset
 
- はデータを小さい順に並べて 
+ はデータを小さい順に並べて
 \begin_inset Formula $j$
 \end_inset
 
@@ -1819,12 +1819,12 @@ x_{(n)} & =n\text{番目に小さいデータ}
 \begin_inset Formula $x_{(j)}$
 \end_inset
 
-, 
+,
 \begin_inset Formula $j=1,\dots,n$
 \end_inset
 
 , の作り方から，次の不等式が成り立つ。
-\begin_inset Formula 
+\begin_inset Formula
 \[
 x_{(1)}\le x_{(2)}\le\cdots\le x_{(n-1)}\le x_{(n)}
 \]
@@ -1839,7 +1839,7 @@ x_{(1)}\le x_{(2)}\le\cdots\le x_{(n-1)}\le x_{(n)}
 \end_layout
 
 \begin_layout Standard
-データ 
+データ
 \begin_inset Formula $\{x_{1},\dots,x_{n}\}$
 \end_inset
 
@@ -1867,7 +1867,7 @@ x_{(1)}\le x_{(2)}\le\cdots\le x_{(n-1)}\le x_{(n)}
 \end_layout
 
 \begin_layout Standard
-データ 
+データ
 \begin_inset Formula $\{x_{1},\dots,x_{n}\}$
 \end_inset
 
@@ -1880,7 +1880,7 @@ x_{(1)}\le x_{(2)}\le\cdots\le x_{(n-1)}\le x_{(n)}
 median
 \series default
 ） を次のように定義する。
-\begin_inset Formula 
+\begin_inset Formula
 \[
 \mathop{\text{med}}(\{x_{1},\dots,x_{n}\})=\begin{cases}
 x_{(\frac{n+1}{2})} & n\text{ が奇数のとき}\\
@@ -1909,19 +1909,19 @@ status open
 \begin_inset Formula $a\in[0,1]$
 \end_inset
 
- は 
+ は
 \begin_inset Formula $0\le a\le1$
 \end_inset
 
-, 
+,
 \begin_inset Formula $a\in(0,1)$
 \end_inset
 
- は 
+ は
 \begin_inset Formula $0<a<1$
 \end_inset
 
- という意味である。丸括弧と角括弧を組み合わせて 
+ という意味である。丸括弧と角括弧を組み合わせて
 \begin_inset Formula $a\in[0,1)\Leftrightarrow0\le a<1$
 \end_inset
 
@@ -1938,23 +1938,23 @@ status open
 \series bold
 -分位数
 \series default
-と呼ばれる統計量 
+と呼ばれる統計量
 \begin_inset Formula $Q_{q}$
 \end_inset
 
  は次のように定義される。
-\begin_inset Formula 
+\begin_inset Formula
 \[
 \frac{x_{(i)}\le Q_{q}\text{ を満たす }i\text{ の数}}{n}=q
 \]
 
 \end_inset
 
-中央値は 
+中央値は
 \begin_inset Formula $Q_{1/2}$
 \end_inset
 
- である。厳密な定義は難しいので省略する。詳細は 
+ である。厳密な定義は難しいので省略する。詳細は
 \begin_inset CommandInset citation
 LatexCommand citet
 key "KawakuboKunitomo2016"
@@ -2016,7 +2016,7 @@ status open
 \end_inset
 
 を以下のように計算する。
-\begin_inset Formula 
+\begin_inset Formula
 \[
 \text{個人の等価可処分所得}=\frac{\text{属する世帯の可処分所得の総額}}{\sqrt{\text{属する世帯の人員数}}}
 \]
@@ -2573,7 +2573,7 @@ status open
 \end_inset
 
 と定義する。上の例には7人の個人がいるので，大きい順にならべて4番目にあたる所得が中央値である。
-\begin_inset Formula 
+\begin_inset Formula
 \[
 \text{上の例の中央値}=404.1452
 \]
@@ -2581,7 +2581,7 @@ status open
 \end_inset
 
 さらにこれを半分にしたものが相対的貧困線である。
-\begin_inset Formula 
+\begin_inset Formula
 \[
 \text{相対的貧困線 }\text{RPL}=\frac{404.1452}{2}=202.0726
 \]
@@ -2971,7 +2971,7 @@ True
 
 \begin_layout Standard
 True となる個人の割合が相対的貧困率である。
-\begin_inset Formula 
+\begin_inset Formula
 \[
 \text{相対的貧困率}=\frac{\text{等価可処分所得が中位点所得の半分未満である人の数}}{\text{総人口数}}
 \]
@@ -3074,24 +3074,24 @@ status open
 
 \end_inset
 
-がよく使われている。データ 
+がよく使われている。データ
 \begin_inset Formula $\{y_{1},y_{2},\dots,y_{n}\}$
 \end_inset
 
  を個人の所得（等価可処分所得）であるとしよう。各個人の所得を小さい順に並び替えた
-\begin_inset Formula 
+\begin_inset Formula
 \[
 y_{(1)},y_{(2)},\dots,y_{(n-1)},y_{(n)}
 \]
 
 \end_inset
 
-をもとに次のようなデータを構築する。所得順位が下から 
+をもとに次のようなデータを構築する。所得順位が下から
 \begin_inset Formula $i$
 \end_inset
 
  番目の個人までの所得の合計を
-\begin_inset Formula 
+\begin_inset Formula
 \[
 \hat{y}_{i}=y_{(1)}+y_{(2)}+\cdots+y_{(i)}
 \]
@@ -3102,32 +3102,32 @@ y_{(1)},y_{(2)},\dots,y_{(n-1)},y_{(n)}
 \begin_inset Formula $\hat{y}_{0}=0$
 \end_inset
 
-とする。国民の総所得は 
-\begin_inset Formula 
+とする。国民の総所得は
+\begin_inset Formula
 \[
 \hat{y}=\hat{y}_{n}=y_{(1)}+y_{(2)}+\cdots+y_{(n)}
 \]
 
 \end_inset
 
-第 
+第
 \begin_inset Formula $i$
 \end_inset
 
- 番目の個人までの所得 
+ 番目の個人までの所得
 \begin_inset Formula $\hat{y}_{i}$
 \end_inset
 
- が総所得 
+ が総所得
 \begin_inset Formula $\hat{y}$
 \end_inset
 
- にしめる割合 
+ にしめる割合
 \begin_inset Formula $Y_{i}=\hat{y}_{i}/\hat{y}$
 \end_inset
 
  のベクトル
-\begin_inset Formula 
+\begin_inset Formula
 \begin{align*}
 \boldsymbol{Y} & =\left(Y_{0},Y_{1},\dots,Y_{n-1},Y_{n}\right)\\
  & =\left(\frac{\hat{y}_{0}}{\hat{y}},\frac{\hat{y}_{1}}{\hat{y}},\dots,\frac{\hat{y}_{n-1}}{\hat{y}},\frac{\hat{y}_{n}}{\hat{y}}\right)\\
@@ -3140,27 +3140,27 @@ y_{(1)},y_{(2)},\dots,y_{(n-1)},y_{(n)}
 \begin_inset Formula $i$
 \end_inset
 
- 番目までの個人の全体の総人口 
+ 番目までの個人の全体の総人口
 \begin_inset Formula $n$
 \end_inset
 
- に占める割合 
+ に占める割合
 \begin_inset Formula $i/n$
 \end_inset
 
  を並べたベクトルも構築する。
-\begin_inset Formula 
+\begin_inset Formula
 \[
 \boldsymbol{X}=\left(0,\frac{1}{n},\frac{2}{n},\frac{3}{n},\dots,\frac{n-1}{n},1\right).
 \]
 
 \end_inset
 
-このようにして構築した 
+このようにして構築した
 \begin_inset Formula $\boldsymbol{X}$
 \end_inset
 
-, 
+,
 \begin_inset Formula $\boldsymbol{Y}$
 \end_inset
 
@@ -3188,7 +3188,7 @@ name "prob:lorenz-equality"
 
 \end_inset
 
-すべての個人が同じ所得を受け取っているとき，すなわち完全な平等が達成されているとき，ローレンツ曲線は 
+すべての個人が同じ所得を受け取っているとき，すなわち完全な平等が達成されているとき，ローレンツ曲線は
 \begin_inset Formula $Y=X$
 \end_inset
 
@@ -3252,7 +3252,7 @@ status open
 \end_inset
 
 。
-\begin_inset Formula 
+\begin_inset Formula
 \[
 G=\text{ジニ係数}=2\times\left(\text{ローレンツ曲線と完全平等線を囲む領域の面積}\right)
 \]
@@ -3304,7 +3304,7 @@ centering
 \backslash
 includegraphics[height=0.3
 \backslash
-textheight]{Figure/ch03/plot-lorenz-1}
+textheight]{Figures/ch03/plot-lorenz-1}
 \end_layout
 
 \end_inset
@@ -3338,7 +3338,7 @@ name "fig:ローレンツ曲線"
 
 \begin_layout Standard
 定義より次の関係が成り立つ。
-\begin_inset Formula 
+\begin_inset Formula
 \[
 0\le G<1
 \]
@@ -3353,7 +3353,7 @@ name "fig:ローレンツ曲線"
 \begin_inset Formula $G=1$
 \end_inset
 
- にもっとも近づくのは一人の個人が全所得を独占している場合である。完全な不平等を保った状態で総人口について 
+ にもっとも近づくのは一人の個人が全所得を独占している場合である。完全な不平等を保った状態で総人口について
 \begin_inset Formula $n\to\infty$
 \end_inset
 
@@ -3372,7 +3372,7 @@ name "prob:lorenz-inequality"
 \end_inset
 
  を稼ぐ個人を除いて所得がゼロであるとする。すなわち，
-\begin_inset Formula 
+\begin_inset Formula
 \[
 0=y_{(1)}=y_{(2)}=\cdots=y_{(n-1)}<y_{(n)}
 \]
@@ -3419,7 +3419,7 @@ baselineskip}
 \end_layout
 
 \begin_layout Remark
-個人の所得データからではなく，集計データ（例えば，所得階級ごと相対度数）からジニ係数を計算することも多い。詳細は 
+個人の所得データからではなく，集計データ（例えば，所得階級ごと相対度数）からジニ係数を計算することも多い。詳細は
 \begin_inset CommandInset citation
 LatexCommand citet
 key "KawakuboKunitomo2016"
@@ -3450,7 +3450,7 @@ literal "false"
 \end_layout
 
 \begin_layout Standard
-便宜上 
+便宜上
 \begin_inset Formula $y_{(0)}=0$
 \end_inset
 
@@ -3459,7 +3459,7 @@ literal "false"
 \end_inset
 
  個の台形の面積を足し上げればよいので，
-\begin_inset Formula 
+\begin_inset Formula
 \[
 \text{ローレンツ曲線の下側の面積}=\sum_{i=1}^{n}\left[\sum_{j=1}^{i}\frac{Y_{j-1}+Y_{j}}{2n}\right]
 \]
@@ -3467,7 +3467,7 @@ literal "false"
 \end_inset
 
 となる。したがって，ジニ係数は
-\begin_inset Formula 
+\begin_inset Formula
 \begin{align}
 G & =1-\sum_{i=1}^{n}\sum_{j=1}^{i}\frac{Y_{j-1}+Y_{j}}{n}\nonumber \\
  & =1-\frac{\sum_{i=1}^{n}Y_{j-1}+\sum_{j=1}Y_{j}}{n}\nonumber \\
@@ -3477,12 +3477,12 @@ G & =1-\sum_{i=1}^{n}\sum_{j=1}^{i}\frac{Y_{j-1}+Y_{j}}{n}\nonumber \\
 
 \end_inset
 
-とできる。総和記号 
+とできる。総和記号
 \begin_inset Formula $\sum$
 \end_inset
 
  の部分は
-\begin_inset Formula 
+\begin_inset Formula
 \[
 \sum_{j=1}^{n}Y_{j}=\sum_{j=1}^{n}\left(\frac{y_{(1)}+y_{(2)}+\cdots+y_{(j)}}{y_{(1)}+y_{(2)}+\cdots+y_{(j)}+y_{(j+1)}+\cdots+y_{(n)}}\right)
 \]
@@ -3516,7 +3516,7 @@ top percentile income share
 
 \begin_layout Standard
 上位 1% は下位 99% と同じなので，0.99-分位点以上の所得を合計すればよい。すなわち，
-\begin_inset Formula 
+\begin_inset Formula
 \[
 (\text{Top percentile income share})=\frac{\sum_{i:y_{i}\ge Q_{0.99}}y_{i}}{\sum_{i}y_{i}}
 \]
@@ -3555,7 +3555,7 @@ baselineskip}
 \end_layout
 
 \begin_layout Standard
-テキストファイルに書き込んだプログラムは基本的には上から順に実行される。例えば，次のコードは (1) 関数 
+テキストファイルに書き込んだプログラムは基本的には上から順に実行される。例えば，次のコードは (1) 関数
 \begin_inset Flex Code
 status open
 
@@ -3565,7 +3565,7 @@ f()
 
 \end_inset
 
- を呼び出す，(2) 関数 
+ を呼び出す，(2) 関数
 \begin_inset Flex Code
 status open
 
@@ -3575,7 +3575,7 @@ g()
 
 \end_inset
 
- を呼び出す，(3) 関数 
+ を呼び出す，(3) 関数
 \begin_inset Flex Code
 status open
 
@@ -3617,7 +3617,7 @@ f()
 
 \end_inset
 
-, 
+,
 \begin_inset Flex Code
 status open
 
@@ -3627,7 +3627,7 @@ g()
 
 \end_inset
 
-, 
+,
 \begin_inset Flex Code
 status open
 
@@ -3735,7 +3735,7 @@ for
 
 \end_inset
 
- ループと 
+ ループと
 \begin_inset Flex Code
 status open
 
@@ -3749,7 +3749,7 @@ while
 \end_layout
 
 \begin_layout Standard
-次のコードは同じコマンド 
+次のコードは同じコマンド
 \begin_inset Flex Code
 status open
 
@@ -3822,14 +3822,14 @@ status open
 \end_layout
 
 \begin_layout Standard
-図 
+図
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:forループの文法"
 
 \end_inset
 
- に 
+ に
 \begin_inset Flex Code
 status open
 
@@ -3870,7 +3870,7 @@ centering
 \backslash
 includegraphics[height=0.25
 \backslash
-textheight]{images/03-for-loop}
+textheight]{Diagrams/ch03-for-loop}
 \end_layout
 
 \end_inset
@@ -3916,7 +3916,7 @@ name "fig:forループの文法"
 \end_layout
 
 \begin_layout Standard
-上の Code 
+上の Code
 \begin_inset ERT
 status open
 
@@ -3929,7 +3929,7 @@ ref{code:ch03/for-loop}
 
 \end_inset
 
- は 
+ は
 \begin_inset Flex Code
 status open
 
@@ -3962,7 +3962,7 @@ status open
 \end_layout
 
 \begin_layout Standard
-使用されないカウンター 
+使用されないカウンター
 \begin_inset Flex Code
 status open
 
@@ -3972,7 +3972,7 @@ i
 
 \end_inset
 
- に代入する処理が増えたせいで，元のコード（Code 
+ に代入する処理が増えたせいで，元のコード（Code
 \begin_inset ERT
 status open
 
@@ -4009,7 +4009,7 @@ print()
 
 \end_inset
 
- 関数はオブジェクトの情報を画面に表示する関数である。IPython や Jupyter を使っている場合に 
+ 関数はオブジェクトの情報を画面に表示する関数である。IPython や Jupyter を使っている場合に
 \begin_inset Flex Code
 status open
 
@@ -4047,7 +4047,7 @@ status open
 \end_layout
 
 \begin_layout Problem
-Code 
+Code
 \begin_inset ERT
 status open
 
@@ -4060,7 +4060,7 @@ ref{code:ch03/for-loop-print}
 
 \end_inset
 
- を 
+ を
 \begin_inset Flex Code
 status open
 
@@ -4105,7 +4105,7 @@ range()
 \end_layout
 
 \begin_layout Standard
-上のコードには問題がある。 
+上のコードには問題がある。
 \begin_inset Flex Code
 status open
 
@@ -4135,7 +4135,7 @@ range()
 
 \end_inset
 
- 関数を使って解決できる。繰り返し回数が 
+ 関数を使って解決できる。繰り返し回数が
 \begin_inset Flex Code
 status open
 
@@ -4145,7 +4145,7 @@ n
 
 \end_inset
 
- であれば， 
+ であれば，
 \begin_inset Flex Code
 status open
 
@@ -4155,7 +4155,7 @@ in
 
 \end_inset
 
- の後ろに 
+ の後ろに
 \begin_inset Flex Code
 status open
 
@@ -4197,7 +4197,7 @@ range(n)
 
 \end_inset
 
-は 
+は
 \begin_inset Flex Code
 status open
 
@@ -4217,7 +4217,7 @@ status open
 
 \end_inset
 
- と書くと整数 
+ と書くと整数
 \begin_inset Flex Code
 status open
 
@@ -4280,11 +4280,11 @@ for
 \end_layout
 
 \begin_layout Problem
-整数 
+整数
 \begin_inset Formula $i=0,1,\dots,9,10$
 \end_inset
 
- について 
+ について
 \begin_inset Formula $i^{3}$
 \end_inset
 
@@ -4322,7 +4322,7 @@ baselineskip}
 \begin_inset Formula $m<n$
 \end_inset
 
- なる整数 
+ なる整数
 \begin_inset Formula $m,n$
 \end_inset
 
@@ -4394,7 +4394,7 @@ for
 
 \end_inset
 
- と 
+ と
 \begin_inset Flex Code
 status open
 
@@ -4404,7 +4404,7 @@ while
 
 \end_inset
 
- に関するこのような切り分けは プログラミング言語一般に成り立つものではない。Python の 
+ に関するこのような切り分けは プログラミング言語一般に成り立つものではない。Python の
 \begin_inset Flex Code
 status open
 
@@ -4437,7 +4437,7 @@ while
 \end_layout
 
 \begin_layout Standard
-Python では 
+Python では
 \begin_inset Flex Code
 status open
 
@@ -4447,7 +4447,7 @@ True
 
 \end_inset
 
-, 
+,
 \begin_inset Flex Code
 status open
 
@@ -4493,7 +4493,7 @@ true
 
 \end_inset
 
-, 
+,
 \begin_inset Flex Code
 status open
 
@@ -4503,7 +4503,7 @@ false
 
 \end_inset
 
-, 
+,
 \begin_inset Flex Code
 status open
 
@@ -4513,7 +4513,7 @@ TRUE
 
 \end_inset
 
-, 
+,
 \begin_inset Flex Code
 status open
 
@@ -4563,7 +4563,7 @@ True
 
 \end_inset
 
-は「条件が成り立つ（真である）」ことを意味する値， 
+は「条件が成り立つ（真である）」ことを意味する値，
 \begin_inset Flex Code
 status open
 
@@ -4583,7 +4583,7 @@ and
 
 \end_inset
 
-（かつ）, 
+（かつ）,
 \begin_inset Flex Code
 status open
 
@@ -4752,7 +4752,7 @@ x
 
 \end_inset
 
- と 
+ と
 \begin_inset Flex Code
 status open
 
@@ -4800,7 +4800,7 @@ x
 
 \end_inset
 
- は 
+ は
 \begin_inset Flex Code
 status open
 
@@ -4848,7 +4848,7 @@ x
 
 \end_inset
 
- は 
+ は
 \begin_inset Flex Code
 status open
 
@@ -4896,7 +4896,7 @@ x
 
 \end_inset
 
- は 
+ は
 \begin_inset Flex Code
 status open
 
@@ -4944,7 +4944,7 @@ x
 
 \end_inset
 
- は 
+ は
 \begin_inset Flex Code
 status open
 
@@ -5004,7 +5004,7 @@ status open
 \begin_inset Formula $x\ge y$
 \end_inset
 
- または 
+ または
 \begin_inset Formula $x\ge z$
 \end_inset
 
@@ -5062,7 +5062,7 @@ True
 
 \end_inset
 
- 
+
 \begin_inset Formula $\longrightarrow1$
 \end_inset
 
@@ -5079,7 +5079,7 @@ False
 
 \end_inset
 
- 
+
 \begin_inset Formula $\longrightarrow0$
 \end_inset
 
@@ -5087,7 +5087,7 @@ False
 \end_layout
 
 \begin_layout Standard
-に勝手に変換される。この性質を使うと，リストや配列の中の 
+に勝手に変換される。この性質を使うと，リストや配列の中の
 \begin_inset Flex Code
 status open
 
@@ -5152,7 +5152,7 @@ status open
 \end_layout
 
 \begin_layout Standard
-浮動小数点数が計算に現れる場合，数値が近似的に等しいことを 
+浮動小数点数が計算に現れる場合，数値が近似的に等しいことを
 \begin_inset Flex Code
 status open
 
@@ -5206,7 +5206,7 @@ while ループ
 \end_layout
 
 \begin_layout Standard
-繰り返し処理の継続条件が条件式で表されているときには 
+繰り返し処理の継続条件が条件式で表されているときには
 \begin_inset Flex Code
 status open
 
@@ -5216,7 +5216,7 @@ while
 
 \end_inset
 
- ループを使う。基本は次のような形式になる。処理の本体にあたる部分をスペース 4つ分のインデントで区別する点などは 
+ ループを使う。基本は次のような形式になる。処理の本体にあたる部分をスペース 4つ分のインデントで区別する点などは
 \begin_inset Flex Code
 status open
 
@@ -5249,7 +5249,7 @@ status open
 \end_layout
 
 \begin_layout Standard
-ここで 
+ここで
 \begin_inset Flex Code
 status open
 
@@ -5272,7 +5272,7 @@ condition
 
 \end_inset
 
- が 
+ が
 \begin_inset Flex Code
 status open
 
@@ -5295,7 +5295,7 @@ condition
 
 \end_inset
 
-が 
+が
 \begin_inset Flex Code
 status open
 
@@ -5319,7 +5319,7 @@ while
 
 \end_inset
 
-ループが正しく終了するためには，各回の処理のたびに条件式が変わっていく必要がある。例えば次のコードは，Code 
+ループが正しく終了するためには，各回の処理のたびに条件式が変わっていく必要がある。例えば次のコードは，Code
 \begin_inset ERT
 status open
 
@@ -5332,7 +5332,7 @@ ref{code:ch03/for-loop}
 
 \end_inset
 
- を 
+ を
 \begin_inset Flex Code
 status open
 
@@ -5352,7 +5352,7 @@ i += 1
 
 \end_inset
 
- は 
+ は
 \begin_inset Flex Code
 status open
 
@@ -5451,7 +5451,7 @@ while
 
 \end_inset
 
-ループは非常に複雑なループ処理もできるが，本章では使わないので，紹介はこれくらいにしておく。もっと実用的な 
+ループは非常に複雑なループ処理もできるが，本章では使わないので，紹介はこれくらいにしておく。もっと実用的な
 \begin_inset Flex Code
 status open
 
@@ -5478,7 +5478,7 @@ if
 
 \end_inset
 
- 文を使うと，指定した条件が成り立つときにだけ実行される処理を指定することができる。条件が成り立たない場合の処理は 
+ 文を使うと，指定した条件が成り立つときにだけ実行される処理を指定することができる。条件が成り立たない場合の処理は
 \begin_inset Flex Code
 status open
 
@@ -5488,7 +5488,7 @@ else
 
 \end_inset
 
- ブロックで指定する。実行条件が 2つ以上ある場合には 
+ ブロックで指定する。実行条件が 2つ以上ある場合には
 \begin_inset Flex Code
 status open
 
@@ -5508,7 +5508,7 @@ elif
 
 \end_inset
 
- ブロックは複数書くことができる。処理の本体にあたる部分をスペース 4つ分のインデントで区別する点などは 
+ ブロックは複数書くことができる。処理の本体にあたる部分をスペース 4つ分のインデントで区別する点などは
 \begin_inset Flex Code
 status open
 
@@ -5742,7 +5742,7 @@ baselineskip}
 \end_layout
 
 \begin_layout Standard
-Code 
+Code
 \begin_inset ERT
 status open
 
@@ -5779,7 +5779,7 @@ status open
 \end_layout
 
 \begin_layout Standard
-もちろん， 
+もちろん，
 \begin_inset Flex Code
 status open
 
@@ -5838,7 +5838,7 @@ status open
 \end_layout
 
 \begin_layout Standard
-要素取得の角括弧の中に真偽値の配列を入れる。結果は 
+要素取得の角括弧の中に真偽値の配列を入れる。結果は
 \begin_inset Flex Code
 status open
 
@@ -6430,15 +6430,15 @@ C
 \end_layout
 
 \begin_layout Standard
-名目 GDP，GDP デフレータ，実質GDP の順に計算しよう。3群 
+名目 GDP，GDP デフレータ，実質GDP の順に計算しよう。3群
 \begin_inset Formula $\times$
 \end_inset
 
- 4年分の人工的なデータを用いたが，適切な形式でデータを格納していれば 
+ 4年分の人工的なデータを用いたが，適切な形式でデータを格納していれば
 \begin_inset Formula $3$
 \end_inset
 
- とか 
+ とか
 \begin_inset Formula $4$
 \end_inset
 
@@ -6480,7 +6480,7 @@ status open
 \end_layout
 
 \begin_layout Standard
-名目GDPを計算するためには，この表を成分ごとにかけてから（演算子は 
+名目GDPを計算するためには，この表を成分ごとにかけてから（演算子は
 \begin_inset Flex Code
 status open
 
@@ -6531,7 +6531,7 @@ reference "eq:ch03-dfl"
 \end_inset
 
 ) に基づいてデフレータを計算するのが次のコードだ。前章で学んだコード（連鎖方式のラスパイレス指数を計算したことを思い出そう）とこの章で学んだ
- 
+
 \begin_inset Flex Code
 status open
 
@@ -6603,7 +6603,7 @@ reference "tab:実質GDPの計算例"
 \end_inset
 
 の例を使って計算しよう。ここでは，名目価値の成長要因を分析する。実質変数の場合も，各項目の実質値の推計が手に入れば同じように実行できる。使うデータは
- 
+
 \begin_inset Flex Code
 status open
 
@@ -6985,7 +6985,7 @@ GDP
 \end_layout
 
 \begin_layout Standard
-各行の総和はすでに計算した 
+各行の総和はすでに計算した
 \begin_inset Flex Code
 status open
 
@@ -7028,7 +7028,7 @@ np.diff()
 
 \end_inset
 
- は隣接する要素の差を計算する関数である。デフォルトでは元の変数よりも1つ長さが短いベクトルが出力される。この振る舞いを 
+ は隣接する要素の差を計算する関数である。デフォルトでは元の変数よりも1つ長さが短いベクトルが出力される。この振る舞いを
 \begin_inset Flex Code
 status open
 
@@ -7045,7 +7045,7 @@ status collapsed
 \begin_layout Plain Layout
 
 \series bold
-NumPy 
+NumPy
 \series default
 のバージョンが v1.16.0 よりも古い場合，
 \begin_inset Flex Code
@@ -7057,7 +7057,7 @@ prepend=np.nan
 
 \end_inset
 
- が使えない。この場合は 
+ が使えない。この場合は
 \series bold
 NumPy
 \series default
@@ -7081,7 +7081,7 @@ np.r_[[np.nan], np.diff(nominal_gdp)] / nominal_gdp
 status collapsed
 
 \begin_layout Plain Layout
-本来，NaN は 
+本来，NaN は
 \begin_inset Flex Code
 status open
 
@@ -7095,16 +7095,16 @@ status open
 \series bold
 NumPy
 \series default
- や 
+ や
 \series bold
 math
 \series default
  ライブラリがサポートする NaN を欠損に転用している。しかし，R や Julia のように言語レベルで欠損をサポートするプログラミング言語と違って，欠損値と
-して一貫性のある振る舞いは期待できない。Python 用のデータ分析ライブラリである 
+して一貫性のある振る舞いは期待できない。Python 用のデータ分析ライブラリである
 \series bold
 pandas
 \series default
- には 
+ には
 \begin_inset Flex Code
 status open
 
@@ -7142,7 +7142,7 @@ status open
 \end_layout
 
 \begin_layout Standard
-寄与度を計算するためには，まず各項目の増分を計算しないといけない。これにはデータ行列 
+寄与度を計算するためには，まず各項目の増分を計算しないといけない。これにはデータ行列
 \begin_inset Flex Code
 status open
 
@@ -7152,7 +7152,7 @@ value
 
 \end_inset
 
- に対して 
+ に対して
 \begin_inset Flex Code
 status open
 
@@ -7189,7 +7189,7 @@ status open
 \begin_layout Plain Layout
 
 \series bold
-NumPy 
+NumPy
 \series default
 のバージョンが v1.16.0 よりも古い場合，
 \begin_inset Flex Code
@@ -7201,7 +7201,7 @@ prepend=np.nan
 
 \end_inset
 
- が使えない。この場合は 
+ が使えない。この場合は
 \series bold
 NumPy
 \series default
@@ -7215,7 +7215,7 @@ np.diff(..., prepend=np.nan)
 
 \end_inset
 
- の部分を 
+ の部分を
 \begin_inset Flex Code
 status open
 
@@ -7230,7 +7230,7 @@ np.r_[[[np.nan] * value.shape[1]], np.diff(value, axis=0)]
 
 \end_inset
 
-。これを名目GDP で除したものが寄与度である。単純に 
+。これを名目GDP で除したものが寄与度である。単純に
 \begin_inset Flex Code
 status open
 
@@ -7244,7 +7244,7 @@ nominal_gdp
 \begin_inset Formula $4\times1$
 \end_inset
 
- 配列であることを明示するために 
+ 配列であることを明示するために
 \begin_inset Flex Code
 status open
 
@@ -7254,7 +7254,7 @@ nominal_gdp.reshape(4, 1)
 
 \end_inset
 
- で割るとよさそうだ。しかし，これでは 
+ で割るとよさそうだ。しかし，これでは
 \begin_inset Formula $\Delta X_{t+1}/Y_{t+1}$
 \end_inset
 
@@ -7268,7 +7268,7 @@ np.roll(nominal_gdp, shift=1)
 
 \end_inset
 
- を先に 
+ を先に
 \end_layout
 
 \begin_layout Standard
@@ -7322,7 +7322,7 @@ status open
 \end_layout
 
 \begin_layout Standard
-相対的貧困線の計算に必要な中央値は 
+相対的貧困線の計算に必要な中央値は
 \begin_inset Flex Code
 status open
 
@@ -7378,7 +7378,7 @@ status open
 \end_layout
 
 \begin_layout Standard
-このデータのうち 
+このデータのうち
 \begin_inset Flex Code
 status open
 
@@ -7474,7 +7474,7 @@ status open
 status open
 
 \begin_layout Plain Layout
-中央値の計算のためにも並べ替えは必要だが 
+中央値の計算のためにも並べ替えは必要だが
 \begin_inset Flex Code
 status open
 
@@ -7583,7 +7583,7 @@ status open
 \begin_inset Formula $Q_{q}$
 \end_inset
 
- 統計量は 
+ 統計量は
 \begin_inset Flex Code
 status open
 
@@ -7613,16 +7613,16 @@ q
 
 \end_inset
 
- は下側 
+ は下側
 \begin_inset Formula $100q$
 \end_inset
 
- % を表す 
+ % を表す
 \begin_inset Formula $[0,1]$
 \end_inset
 
 の数字である。トップ 1% の所得水準以上の所得というのは，
-\begin_inset Formula 
+\begin_inset Formula
 \[
 \text{所得}\ge Q_{0.99}
 \]
@@ -7683,8 +7683,8 @@ status open
 \begin_inset CommandInset bibtex
 LatexCommand bibtex
 btprint "btPrintCited"
-bibfiles "../Bibliography/ref,../Bibliography/software"
-options "Styles/jecon"
+bibfiles "References/ref,References/software"
+options "Include/jecon"
 
 \end_inset
 

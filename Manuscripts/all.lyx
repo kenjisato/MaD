@@ -6,7 +6,7 @@
 \origin unavailable
 \textclass scrbook
 \begin_preamble
-\input{Include/preamble.tex}
+\input{Include/ch-preamble.tex}
 \end_preamble
 \options dvipdfmx,paper=a5,fontsize=9pt
 \use_default_options true
@@ -278,8 +278,8 @@ status open
 \begin_inset CommandInset bibtex
 LatexCommand bibtex
 btprint "btPrintCited"
-bibfiles "../Bibliography/ref,../Bibliography/software"
-options "bibtotoc,Styles/jecon"
+bibfiles "References/ref,References/software"
+options "bibtotoc,Include/jecon"
 
 \end_inset
 

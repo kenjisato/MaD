@@ -6,10 +6,11 @@
 \origin unavailable
 \textclass scrbook
 \begin_preamble
-\input{Include/preamble.tex}
+\input{Include/ch-preamble.tex}
 \end_preamble
 \options dvipdfmx,paper=a5,9pt
 \use_default_options true
+\master all.lyx
 \begin_modules
 knitr
 logicalmkup
@@ -123,7 +124,7 @@ status open
 
 \begin_layout Plain Layout
 
-<<setup-01, include=FALSE>>= 
+<<setup-01, include=FALSE>>=
 \end_layout
 
 \begin_layout Plain Layout
@@ -237,7 +238,7 @@ reference "chap:GDPの成長と格差"
 \end_inset
 
 。2017年から2018年にかけての GDP の成長は
-\begin_inset Formula 
+\begin_inset Formula
 \[
 \frac{510-500}{500}=\frac{10}{500}=0.02
 \]
@@ -246,7 +247,7 @@ reference "chap:GDPの成長と格差"
 
 によって計算できる。少し視点を変えてみよう。2017年の 500兆円と，2018年の前年度からの成長率が 2% であることが分かっていれば，2018年のGDPは
 次のようにして計算できる。
-\begin_inset Formula 
+\begin_inset Formula
 \[
 500\times(1+0.02)=510
 \]
@@ -257,16 +258,16 @@ reference "chap:GDPの成長と格差"
 \end_layout
 
 \begin_layout Standard
-ここでちょっとした記号を導入する。少しずつ抽象化していくので，まずは腕試しだ。2017年のGDPを 
+ここでちょっとした記号を導入する。少しずつ抽象化していくので，まずは腕試しだ。2017年のGDPを
 \begin_inset Formula $\text{GDP}_{17}$
 \end_inset
 
-, 2018年のGDP を 
+, 2018年のGDP を
 \begin_inset Formula $\text{GDP}_{18}$
 \end_inset
 
  と書くことにする。
-\begin_inset Formula 
+\begin_inset Formula
 \begin{align*}
 \text{GDP}_{17} & =500,\qquad\text{GDP}_{18}=510
 \end{align*}
@@ -287,12 +288,12 @@ status open
 
 \end_inset
 
-を 
+を
 \begin_inset Formula $g_{18/17}$
 \end_inset
 
  と書くと，
-\begin_inset Formula 
+\begin_inset Formula
 \[
 g_{18/17}=\frac{\text{GDP}_{18}-\text{GDP}_{17}}{\text{GDP}_{17}}=\frac{\text{GDP}_{18}}{\text{GDP}_{17}}-1
 \]
@@ -300,7 +301,7 @@ g_{18/17}=\frac{\text{GDP}_{18}-\text{GDP}_{17}}{\text{GDP}_{17}}=\frac{\text{GD
 \end_inset
 
 および
-\begin_inset Formula 
+\begin_inset Formula
 \[
 \text{GDP}_{18}=\left(1+g_{18/17}\right)\text{GDP}_{17}
 \]
@@ -321,7 +322,7 @@ g_{18/17}=\frac{\text{GDP}_{18}-\text{GDP}_{17}}{\text{GDP}_{17}}=\frac{\text{GD
 
 \begin_layout Standard
 数学モデルを構築するときにはさらに簡略化した表記が便利である。言語的な表現から離れるので，記号が何を意味しているかを常に意識しながら読む必要が生じるものの，コン
-パクトな表現が数式の操作を容易にしてくれるというご利益がある。時間を表現する変数には 
+パクトな表現が数式の操作を容易にしてくれるというご利益がある。時間を表現する変数には
 \begin_inset Formula $t$
 \end_inset
 
@@ -334,7 +335,7 @@ g_{18/17}=\frac{\text{GDP}_{18}-\text{GDP}_{17}}{\text{GDP}_{17}}=\frac{\text{GD
 \end_inset
 
  と数字が増えるにつれて特定の定まった間隔で時間が進行する。例えば，2010年を分析の起点として，1年毎の観測をもとに分析を進めるとすれば，
-\begin_inset Formula 
+\begin_inset Formula
 \[
 t=0\Leftrightarrow\text{2010年},\quad t=1\Leftrightarrow\text{2011年},\quad\cdots
 \]
@@ -359,7 +360,7 @@ status open
 \end_layout
 
 \begin_layout Standard
-GDP に対して記号 
+GDP に対して記号
 \begin_inset Formula $y$
 \end_inset
 
@@ -372,7 +373,7 @@ GDP に対して記号
 \end_inset
 
 は 2011年の GDP のように理解される。この記法を用いれば，前述の数値例は
-\begin_inset Formula 
+\begin_inset Formula
 \begin{align*}
 y_{7} & =500,\qquad y_{8}=510
 \end{align*}
@@ -383,7 +384,7 @@ y_{7} & =500,\qquad y_{8}=510
 \begin_inset Formula $7$
 \end_inset
 
-期のGDPは 500」という。特定の期を固定することなく，一般の 
+期のGDPは 500」という。特定の期を固定することなく，一般の
 \begin_inset Formula $t$
 \end_inset
 
@@ -391,7 +392,7 @@ y_{7} & =500,\qquad y_{8}=510
 \begin_inset Formula $t$
 \end_inset
 
- 期の GDP は 
+ 期の GDP は
 \begin_inset Formula $y_{t}$
 \end_inset
 
@@ -399,7 +400,7 @@ y_{7} & =500,\qquad y_{8}=510
 \begin_inset Formula $(t+1)$
 \end_inset
 
- 期の GDP は 
+ 期の GDP は
 \begin_inset Formula $y_{t+1}$
 \end_inset
 
@@ -407,11 +408,11 @@ y_{7} & =500,\qquad y_{8}=510
 \begin_inset Formula $t=10$
 \end_inset
 
- でも 
+ でも
 \begin_inset Formula $t=208$
 \end_inset
 
- でも何でもよいと考えているのである。普通は 
+ でも何でもよいと考えているのである。普通は
 \begin_inset Formula $t$
 \end_inset
 
@@ -419,11 +420,11 @@ y_{7} & =500,\qquad y_{8}=510
 \begin_inset Formula $y_{t}$
 \end_inset
 
-, 
+,
 \begin_inset Formula $t=0,1,2,\dots,$
 \end_inset
 
- は 
+ は
 \begin_inset Formula $t$
 \end_inset
 
@@ -436,11 +437,11 @@ status open
 \begin_inset Formula $t=0,1,2,\dots$
 \end_inset
 
- のようにピリオドを3つ並べた記法は以下略という意味である，省略されている内容が文脈から読み取れるとき以外には使わない。ある特定の 
+ のようにピリオドを3つ並べた記法は以下略という意味である，省略されている内容が文脈から読み取れるとき以外には使わない。ある特定の
 \begin_inset Formula $T$
 \end_inset
 
- が 
+ が
 \begin_inset Formula $t$
 \end_inset
 
@@ -500,11 +501,11 @@ status open
 \end_layout
 
 \begin_layout Enumerate
-一般の 
+一般の
 \begin_inset Formula $t$
 \end_inset
 
- 期は西暦何年か？ 
+ 期は西暦何年か？
 \begin_inset Formula $t$
 \end_inset
 
@@ -531,11 +532,11 @@ baselineskip}
 
 \end_deeper
 \begin_layout Remark
-分析の開始期を 
+分析の開始期を
 \begin_inset Formula $t=0$
 \end_inset
 
- としたが，これを 
+ としたが，これを
 \begin_inset Formula $t=1$
 \end_inset
 
@@ -543,7 +544,7 @@ baselineskip}
 \begin_inset Formula $t=3$
 \end_inset
 
- とか 
+ とか
 \begin_inset Formula $t=2000$
 \end_inset
 
@@ -618,7 +619,7 @@ status open
 
 \end_inset
 
-3 月期）を分析の起点 
+3 月期）を分析の起点
 \begin_inset Formula $t=0$
 \end_inset
 
@@ -630,7 +631,7 @@ status open
 \begin_inset Formula $t=1,2,\dots$
 \end_inset
 
- と四半期GDP 
+ と四半期GDP
 \begin_inset Formula $y_{1},y_{2},\dots$
 \end_inset
 
@@ -853,7 +854,7 @@ status open
 \begin_inset Formula $t=10$
 \end_inset
 
-, 
+,
 \begin_inset Formula $t=35$
 \end_inset
 
@@ -939,15 +940,15 @@ qed
 \end_layout
 
 \begin_layout Standard
-変数 
+変数
 \begin_inset Formula $y$
 \end_inset
 
- の， 
+ の，
 \begin_inset Formula $t$
 \end_inset
 
-期から 
+期から
 \begin_inset Formula $(t+1)$
 \end_inset
 
@@ -975,8 +976,8 @@ difference
 
 \end_inset
 
-) を取ることである。 
-\begin_inset Formula 
+) を取ることである。
+\begin_inset Formula
 \[
 \Delta y_{t+1}=y_{t+1}-y_{t}.
 \]
@@ -987,11 +988,11 @@ difference
 \end_layout
 
 \begin_layout Standard
-しかし，冒頭で述べたように 
+しかし，冒頭で述べたように
 \begin_inset Formula $\Delta y_{t+1}$
 \end_inset
 
- の大きさが意味する内容（容易に起こりそうな変化か，なかなか起こりそうにない変化か）は 
+ の大きさが意味する内容（容易に起こりそうな変化か，なかなか起こりそうにない変化か）は
 \begin_inset Formula $y_{t}$
 \end_inset
 
@@ -999,11 +1000,11 @@ difference
 \begin_inset Formula $t$
 \end_inset
 
- 期から 
+ 期から
 \begin_inset Formula $(t+1)$
 \end_inset
 
- 期にかけての 
+ 期にかけての
 \begin_inset Formula $y$
 \end_inset
 
@@ -1027,12 +1028,12 @@ status open
 
 \end_inset
 
-）を 
+）を
 \begin_inset Formula $g_{t+1}$
 \end_inset
 
  と書くことにしよう。これは，
-\begin_inset Formula 
+\begin_inset Formula
 \[
 g_{t+1}=\frac{\Delta y_{t+1}}{y_{t}}=\frac{y_{t+1}-y_{t}}{y_{t}}=\frac{y_{t+1}}{y_{t}}-1
 \]
@@ -1040,19 +1041,19 @@ g_{t+1}=\frac{\Delta y_{t+1}}{y_{t}}=\frac{y_{t+1}-y_{t}}{y_{t}}=\frac{y_{t+1}}{
 \end_inset
 
 と定義される。もちろん，
-\begin_inset Formula 
+\begin_inset Formula
 \[
 y_{t+1}=(1+g_{t+1})y_{t}
 \]
 
 \end_inset
 
- である。変数 
+ である。変数
 \begin_inset Formula $y$
 \end_inset
 
  が前節のGDPを表すとすれば，
-\begin_inset Formula 
+\begin_inset Formula
 \[
 g_{8}=0.02
 \]
@@ -1064,7 +1065,7 @@ g_{8}=0.02
 \end_inset
 
  は 8期のGDP の前年度からの成長率と解釈される。なお，
-\begin_inset Formula 
+\begin_inset Formula
 \[
 1+g_{t+1}=\frac{y_{t+1}}{y_{t}}
 \]
@@ -1100,7 +1101,7 @@ gross growth rate
 
 \begin_layout Remark
 記号の定義は毎回必ずチェックする必要があることに注意しよう。例えば，
-\begin_inset Formula 
+\begin_inset Formula
 \[
 g_{t}=\frac{y_{t+1}-y_{t}}{y_{t}}
 \]
@@ -1141,11 +1142,11 @@ status open
 
 \begin_layout Remark
 ただし，定義しさえすればどんな記号を使ってもよいという訳ではない。慣例的に使われている記号から逸脱することは避けたほうがよい。例えば，GDP を
- 
+
 \begin_inset Formula $g$
 \end_inset
 
- として，GDP 成長率を 
+ として，GDP 成長率を
 \begin_inset Formula $r$
 \end_inset
 
@@ -1153,11 +1154,11 @@ status open
 \end_layout
 
 \begin_layout Problem
-ある連続する2期の四半期GDPの原系列 
+ある連続する2期の四半期GDPの原系列
 \begin_inset Formula $y_{t}$
 \end_inset
 
-, 
+,
 \begin_inset Formula $y_{t+1}$
 \end_inset
 
@@ -1172,7 +1173,7 @@ status open
 \end_inset
 
 。この2期間に渡って「成長率」
-\begin_inset Formula 
+\begin_inset Formula
 \[
 \frac{y_{t+1}-y_{t}}{y_{t}}
 \]
@@ -1247,7 +1248,7 @@ literal "false"
 \begin_inset Formula $y_{t}$
 \end_inset
 
- を 
+ を
 \begin_inset Formula $t$
 \end_inset
 
@@ -1260,14 +1261,14 @@ literal "false"
 \end_inset
 
  期間の成長は次のように計算される。
-\begin_inset Formula 
+\begin_inset Formula
 \[
 \frac{y_{t+n}-y_{t}}{y_{t}}=\frac{y_{t+n}}{y_{t}}-1
 \]
 
 \end_inset
 
-これは 
+これは
 \begin_inset Formula $n$
 \end_inset
 
@@ -1300,16 +1301,16 @@ status open
 \end_layout
 
 \begin_layout Example
-ある 
+ある
 \begin_inset Formula $y_{t}$
 \end_inset
 
- の水準から，年率 2% の成長が3年間続いたとすれば（1年を1期としている），3年後のGDP, 
+ の水準から，年率 2% の成長が3年間続いたとすれば（1年を1期としている），3年後のGDP,
 \begin_inset Formula $y_{t+3}$
 \end_inset
 
 , は次のように計算できる。
-\begin_inset Formula 
+\begin_inset Formula
 \[
 y_{t+1}=1.02y_{t},\quad y_{t+2}=1.02y_{t+1},\quad y_{t+3}=1.02y_{t+2}
 \]
@@ -1317,7 +1318,7 @@ y_{t+1}=1.02y_{t},\quad y_{t+2}=1.02y_{t+1},\quad y_{t+3}=1.02y_{t+2}
 \end_inset
 
 だから，
-\begin_inset Formula 
+\begin_inset Formula
 \[
 y_{t+3}=1.02^{3}y_{t}\approx1.061y_{t}
 \]
@@ -1348,7 +1349,7 @@ qed
 \end_layout
 
 \begin_layout Example
-国民経済計算（GDP統計）の四半期GDP速報では季節調整済み前期比が公開される。前期比の成長率が 
+国民経済計算（GDP統計）の四半期GDP速報では季節調整済み前期比が公開される。前期比の成長率が
 \begin_inset Formula $g$
 \end_inset
 
@@ -1356,12 +1357,12 @@ qed
 \begin_inset Formula $g=0.01$
 \end_inset
 
- とか 
+ とか
 \begin_inset Formula $g=0.005$
 \end_inset
 
 ）のとき，年率換算した GDP 成長率は次のように計算される。
-\begin_inset Formula 
+\begin_inset Formula
 \[
 \text{四半期GDP成長率（季節調整済み前期比）の年率換算値}=(1+g)^{4}-1
 \]
@@ -1422,12 +1423,12 @@ qed
 \end_layout
 
 \begin_layout Standard
-粗成長率 
+粗成長率
 \begin_inset Formula $y_{t+n}/y_{t}$
 \end_inset
 
  を次のように書き換える。
-\begin_inset Formula 
+\begin_inset Formula
 \begin{align*}
 \frac{y_{t+n}}{y_{t}} & =\frac{y_{t+n}}{y_{t+n-1}}\times\frac{y_{t+n-1}}{y_{t+n-2}}\times\cdots\times\frac{y_{t+2}}{y_{t+1}}\times\frac{y_{t+1}}{y_{t}}\\
  & =\underbrace{\left(1+g_{t+n}\right)\times\left(1+g_{t+n-1}\right)\times\cdots\times\left(1+g_{t+2}\right)\times\left(1+g_{t+1}\right)}_{n\text{ 個}}.
@@ -1439,11 +1440,11 @@ qed
 \begin_inset Formula $t$
 \end_inset
 
- 期と 
+ 期と
 \begin_inset Formula $t+n$
 \end_inset
 
- 期の間の 
+ 期の間の
 \begin_inset Formula $y$
 \end_inset
 
@@ -1475,7 +1476,7 @@ status open
 
 \end_inset
 
-とは，当該期間で一定の期間変化率を保って 
+とは，当該期間で一定の期間変化率を保って
 \begin_inset Formula $y_{t}$
 \end_inset
 
@@ -1483,12 +1484,12 @@ status open
 \begin_inset Formula $y_{t+n}$
 \end_inset
 
- に変化するとしたときの，その一定の期間変化率のことである。平均成長率 
+ に変化するとしたときの，その一定の期間変化率のことである。平均成長率
 \begin_inset Formula $\bar{g}$
 \end_inset
 
  は次の性質を持つ。
-\begin_inset Formula 
+\begin_inset Formula
 \[
 \frac{y_{t+n}}{y_{t}}=\underbrace{\left(1+\bar{g}\right)\times\left(1+\bar{g}\right)\times\cdots\times\left(1+\bar{g}\right)\times\left(1+\bar{g}\right)}_{n\text{ 個}}=\left(1+\bar{g}\right)^{n}.
 \]
@@ -1500,19 +1501,19 @@ status open
 \end_inset
 
  は次のように計算できる。
-\begin_inset Formula 
+\begin_inset Formula
 \begin{align*}
 \bar{g} & =\left(\frac{y_{t+n}}{y_{t}}\right)^{\frac{1}{n}}-1
 \end{align*}
 
 \end_inset
 
-あるいは，隣接する2期の間の成長率 
+あるいは，隣接する2期の間の成長率
 \begin_inset Formula $g_{t+1},g_{t+2},\dots,g_{t+n}$
 \end_inset
 
 を用いると，
-\begin_inset Formula 
+\begin_inset Formula
 \begin{equation}
 \bar{g}=\left\{ \left(1+g_{t+n}\right)\left(1+g_{t+n-1}\right)\cdots\left(1+g_{t+2}\right)\left(1+g_{t+1}\right)\right\} ^{\frac{1}{n}}-1.\label{eq:avg-growth-rate}
 \end{equation}
@@ -1530,7 +1531,7 @@ status open
 \begin_inset Formula $i=1,2,\dots,n$
 \end_inset
 
- でインデックス付けしたものを 
+ でインデックス付けしたものを
 \begin_inset Formula $x_{1},x_{2},\dots,x_{n}$
 \end_inset
 
@@ -1539,7 +1540,7 @@ status open
 \end_inset
 
  を使って次のように書く。
-\begin_inset Formula 
+\begin_inset Formula
 \[
 \sum_{i=1}^{n}x_{i}=x_{1}+x_{2}+\cdots+x_{n}.
 \]
@@ -1547,7 +1548,7 @@ status open
 \end_inset
 
 この記法を使った次の等式を示しなさい。
-\begin_inset Formula 
+\begin_inset Formula
 \[
 y_{t+n}-y_{t}=\sum_{i=1}^{n}\Delta y_{t+i}.
 \]
@@ -1585,16 +1586,16 @@ baselineskip}
 \end_layout
 
 \begin_layout Problem
-加算記号 
+加算記号
 \begin_inset Formula $\sum$
 \end_inset
 
- の乗算バージョンは 
+ の乗算バージョンは
 \begin_inset Formula $\prod$
 \end_inset
 
  である。この記号は指定されたすべての数の積を表す。
-\begin_inset Formula 
+\begin_inset Formula
 \[
 \prod_{i=1}^{n}x_{i}=x_{1}x_{2}\times\cdots\times x_{n}.
 \]
@@ -1639,7 +1640,7 @@ baselineskip}
 \begin_inset Formula $b>0$
 \end_inset
 
- かつ 
+ かつ
 \begin_inset Formula $b\neq1$
 \end_inset
 
@@ -1647,7 +1648,7 @@ baselineskip}
 \begin_inset Formula $b$
 \end_inset
 
- を底とする対数関数 
+ を底とする対数関数
 \begin_inset Formula $\log_{b}(\cdot)$
 \end_inset
 
@@ -1665,12 +1666,12 @@ status open
 \end_layout
 
 \begin_layout Enumerate
-任意の 
+任意の
 \begin_inset Formula $x,y>0$
 \end_inset
 
  について，
-\begin_inset Formula 
+\begin_inset Formula
 \[
 \log_{b}xy=\log_{b}x+\log_{b}y,\qquad\log_{b}\frac{x}{y}=\log_{b}x-\log_{b}y
 \]
@@ -1681,11 +1682,11 @@ status open
 \end_layout
 
 \begin_layout Enumerate
-任意の 
+任意の
 \begin_inset Formula $x>0$
 \end_inset
 
- と任意の実数 
+ と任意の実数
 \begin_inset Formula $z$
 \end_inset
 
@@ -1697,7 +1698,7 @@ status open
 \end_layout
 
 \begin_layout Enumerate
-任意の 
+任意の
 \begin_inset Formula $x>0$
 \end_inset
 
@@ -1730,7 +1731,7 @@ status open
 \end_layout
 
 \begin_layout Standard
-底 
+底
 \begin_inset Formula $b$
 \end_inset
 
@@ -1741,16 +1742,16 @@ status open
 \begin_inset Formula $b,c>0$
 \end_inset
 
-, 
+,
 \begin_inset Formula $b\neq1\neq c$
 \end_inset
 
- とする。任意の 
+ とする。任意の
 \begin_inset Formula $x>0$
 \end_inset
 
  に対して，
-\begin_inset Formula 
+\begin_inset Formula
 \[
 \log_{b}x=\log_{b}c\times\log_{c}x.
 \]
@@ -1762,23 +1763,23 @@ status open
 
 \begin_layout Proof
 これを示すには，
-\begin_inset Formula 
+\begin_inset Formula
 \[
 b^{\log_{b}x}=b^{\log_{b}c\times\log_{c}x}
 \]
 
 \end_inset
 
-を示せばよい。対数関数の性質から左辺は 
+を示せばよい。対数関数の性質から左辺は
 \begin_inset Formula $x$
 \end_inset
 
- である。右辺の方も 
+ である。右辺の方も
 \begin_inset Formula $x$
 \end_inset
 
  と一致することを次のようにして確認できる。
-\begin_inset Formula 
+\begin_inset Formula
 \[
 b^{\log_{b}c\times\log_{c}x}=\left(b^{\log_{b}c}\right)^{\log_{c}x}=c^{\log_{c}x}=x.
 \]
@@ -1789,11 +1790,11 @@ b^{\log_{b}c\times\log_{c}x}=\left(b^{\log_{b}c}\right)^{\log_{c}x}=c^{\log_{c}x
 \end_layout
 
 \begin_layout Standard
-底としてよく使われるのは， 
+底としてよく使われるのは，
 \begin_inset Formula $b=2$
 \end_inset
 
- や 
+ や
 \begin_inset Formula $10$
 \end_inset
 
@@ -1819,12 +1820,12 @@ status open
 \end_layout
 
 \begin_layout Example
-変数を2倍にすると 
+変数を2倍にすると
 \begin_inset Formula $\log_{2}(\cdot)$
 \end_inset
 
  を取った値は 1だけ大きくなる。なぜなら，
-\begin_inset Formula 
+\begin_inset Formula
 \[
 \log_{2}2x=\log_{2}2+\log_{2}x=1+\log_{2}x.
 \]
@@ -1862,7 +1863,7 @@ qed
 \begin_inset Formula $\log_{2}(\cdot)$
 \end_inset
 
- や 
+ や
 \begin_inset Formula $\log(\cdot)$
 \end_inset
 
@@ -1880,11 +1881,11 @@ status open
 
 \end_inset
 
- 
+
 \begin_inset Formula $\log_{e}(\cdot)$
 \end_inset
 
- である。底 
+ である。底
 \begin_inset Formula $e$
 \end_inset
 
@@ -1917,14 +1918,14 @@ status open
 \end_inset
 
 と呼ばれ，次のように定義される。
-\begin_inset Formula 
+\begin_inset Formula
 \begin{equation}
 e=\lim_{n\to+\infty}\left(1+\frac{1}{n}\right)^{n}.\label{eq:napier}
 \end{equation}
 
 \end_inset
 
-自然対数 
+自然対数
 \begin_inset Formula $\log_{e}(\cdot)$
 \end_inset
 
@@ -1932,7 +1933,7 @@ e=\lim_{n\to+\infty}\left(1+\frac{1}{n}\right)^{n}.\label{eq:napier}
 \begin_inset Formula $\log(\cdot)$
 \end_inset
 
- のように 
+ のように
 \begin_inset Formula $e$
 \end_inset
 
@@ -1940,7 +1941,7 @@ e=\lim_{n\to+\infty}\left(1+\frac{1}{n}\right)^{n}.\label{eq:napier}
 \begin_inset Formula $\ln(\cdot)$
 \end_inset
 
- という特別な記号を用いて表現する。この講義では 
+ という特別な記号を用いて表現する。この講義では
 \begin_inset Formula $\log(\cdot)$
 \end_inset
 
@@ -1949,7 +1950,7 @@ e=\lim_{n\to+\infty}\left(1+\frac{1}{n}\right)^{n}.\label{eq:napier}
 
 \begin_layout Standard
 自然対数の微分
-\begin_inset Formula 
+\begin_inset Formula
 \[
 \left(\log x\right)'=\frac{1}{x}
 \]
@@ -1966,12 +1967,12 @@ status open
 
 \end_inset
 
-。正値関数 
+。正値関数
 \begin_inset Formula $f(\cdot)$
 \end_inset
 
  の自然対数の微分もよく使われるので，覚えておこう。
-\begin_inset Formula 
+\begin_inset Formula
 \[
 \left(\log f(x)\right)'=\frac{f'(x)}{f(x)}.
 \]
@@ -2001,7 +2002,7 @@ name "prop:log(1+x)-approx"
 status open
 
 \begin_layout Plain Layout
-「十分近い」とか「十分大きい」という数学的な表現はよく使うので意味するところを覚えておこう。ここでは 
+「十分近い」とか「十分大きい」という数学的な表現はよく使うので意味するところを覚えておこう。ここでは
 \begin_inset Formula $|x|\to0$
 \end_inset
 
@@ -2015,7 +2016,7 @@ status open
 \end_inset
 
 。
-\begin_inset Formula 
+\begin_inset Formula
 \[
 \log\left(1+x\right)\approx x
 \]
@@ -2071,11 +2072,11 @@ reference "fig:対数関数の近似"
 
 \end_inset
 
- には 
+ には
 \begin_inset Formula $y=x$
 \end_inset
 
- と 
+ と
 \begin_inset Formula $y=\log\left(1+x\right)$
 \end_inset
 
@@ -2143,7 +2144,7 @@ centering
 \backslash
 includegraphics[height=0.4
 \backslash
-textheight]{Figure/ch01/plot-log-approx-1}
+textheight]{Figures/ch01/plot-log-approx-1}
 \end_layout
 
 \end_inset
@@ -2194,12 +2195,12 @@ name "prop:log-approx"
 \begin_inset Formula $y_{t}>0$
 \end_inset
 
- と 
+ と
 \begin_inset Formula $y_{t+1}>0$
 \end_inset
 
  が十分近ければ，次の近似公式が成り立つ。
-\begin_inset Formula 
+\begin_inset Formula
 \[
 \Delta\log y_{t+1}=\log y_{t+1}-\log y_{t}\approx\frac{\Delta y_{t+1}}{y_{t}}
 \]
@@ -2211,7 +2212,7 @@ name "prop:log-approx"
 
 \begin_layout Proof
 対数の差が商の対数になることに注意すると，
-\begin_inset Formula 
+\begin_inset Formula
 \begin{align*}
 \Delta\log y_{t+1} & =\log y_{t+1}-\log y_{t}\\
  & =\log\frac{y_{t+1}}{y_{t}}\\
@@ -2235,16 +2236,16 @@ Rule of 70
 
 \end_inset
 
-年率 
+年率
 \begin_inset Formula $x$
 \end_inset
 
- %で成長している変数が 2倍になるために必要な年数はおよそ 
+ %で成長している変数が 2倍になるために必要な年数はおよそ
 \begin_inset Formula $70/x$
 \end_inset
 
  年である。これは 「Rule of 70」 と呼ばれる近似公式である。例えば，年率 2% で成長している変数は，35年で2倍になる。証明を与えておこう。当初
- 
+
 \begin_inset Formula $y$
 \end_inset
 
@@ -2252,7 +2253,7 @@ Rule of 70
 \begin_inset Formula $x$
 \end_inset
 
-% で成長して 
+% で成長して
 \begin_inset Formula $T$
 \end_inset
 
@@ -2261,7 +2262,7 @@ Rule of 70
 \end_inset
 
  について次の式が成り立つ。
-\begin_inset Formula 
+\begin_inset Formula
 \[
 \left(1+\frac{x}{100}\right)^{T}y=2y
 \]
@@ -2269,7 +2270,7 @@ Rule of 70
 \end_inset
 
 両辺の対数を取ると，
-\begin_inset Formula 
+\begin_inset Formula
 \[
 T\log\left(1+\frac{x}{100}\right)+\log y=\log2+\log y
 \]
@@ -2277,7 +2278,7 @@ T\log\left(1+\frac{x}{100}\right)+\log y=\log2+\log y
 \end_inset
 
 したがって，
-\begin_inset Formula 
+\begin_inset Formula
 \[
 T=\frac{\log2}{\log\left(1+\frac{x}{100}\right)}\approx\frac{\log2}{x/100},
 \]
@@ -2296,7 +2297,7 @@ reference "prop:log-approx"
 \end_inset
 
  なので，
-\begin_inset Formula 
+\begin_inset Formula
 \[
 T\approx\frac{69.3}{x}
 \]
@@ -2349,11 +2350,11 @@ qed
 \begin_inset Formula $t=1,2,3,\dots$
 \end_inset
 
-) の預金残高は 
+) の預金残高は
 \begin_inset Formula $1.06^{t}\times100$
 \end_inset
 
- 万円である。受け取った利息にも利息が付くので， 
+ 万円である。受け取った利息にも利息が付くので，
 \begin_inset Formula $t$
 \end_inset
 
@@ -2399,11 +2400,11 @@ status open
 \begin_inset Formula $t$
 \end_inset
 
- 年後の資産残高（銀行 
+ 年後の資産残高（銀行
 \begin_inset Formula $+$
 \end_inset
 
- タンス）は 
+ タンス）は
 \begin_inset Formula $(100+6t)$
 \end_inset
 
@@ -2469,7 +2470,7 @@ centering
 \backslash
 includegraphics[height=0.4
 \backslash
-textheight]{Figure/ch01/plot-compounding-1}
+textheight]{Figures/ch01/plot-compounding-1}
 \end_layout
 
 \end_inset
@@ -2517,43 +2518,43 @@ GDP 成長率の国際比較をするときに見かけ上は小さな差（例�
 
 \begin_layout Standard
 各回の利息を計算するための基本の計算式は
-\begin_inset Formula 
+\begin_inset Formula
 \[
 \text{各回の利率}=\text{年率}\div\text{年間の受取回数}
 \]
 
 \end_inset
 
-となる。つまり，年率 
+となる。つまり，年率
 \begin_inset Formula $6\%$
 \end_inset
 
- の預金で毎月1回利息を受け取れるとすれば，月率は 
+ の預金で毎月1回利息を受け取れるとすれば，月率は
 \begin_inset Formula $6\%\div12=0.5\%$
 \end_inset
 
- となる。初期預金残高を 100万円とすれば，1年後， 12回目の利息を受け取った後には 
+ となる。初期預金残高を 100万円とすれば，1年後， 12回目の利息を受け取った後には
 \begin_inset Formula $1.005^{12}\times100=106.1677\cdots$
 \end_inset
 
- 万円になっている。年率 6% の預金で毎日1回利息を受け取る場合1年後には， 
+ 万円になっている。年率 6% の預金で毎日1回利息を受け取る場合1年後には，
 \begin_inset Formula $(1+6\%\div365)^{365}\times100=1.06183\cdots$
 \end_inset
 
- 万円になる。当初資産額を 
+ 万円になる。当初資産額を
 \begin_inset Formula $S_{0}$
 \end_inset
 
-，利子率の年率を 
+，利子率の年率を
 \begin_inset Formula $r$
 \end_inset
 
-，受け取り回数を 
+，受け取り回数を
 \begin_inset Formula $N$
 \end_inset
 
  とすれば 1年後の資産残高は
-\begin_inset Formula 
+\begin_inset Formula
 \[
 \left(1+\frac{r}{N}\right)^{N}S_{0}
 \]
@@ -2565,14 +2566,14 @@ GDP 成長率の国際比較をするときに見かけ上は小さな差（例�
 \end_inset
 
  にかかる式を次のように変形する。
-\begin_inset Formula 
+\begin_inset Formula
 \[
 \left(1+\frac{r}{N}\right)^{N}=\left(1+\frac{1}{N/r}\right)^{N}=\left[\left(1+\frac{1}{N/r}\right)^{N/r}\right]^{r}
 \]
 
 \end_inset
 
-最右辺で 
+最右辺で
 \begin_inset Formula $r$
 \end_inset
 
@@ -2584,7 +2585,7 @@ reference "eq:napier"
 \end_inset
 
 ) と同じ形であることに注意してほしい：
-\begin_inset Formula 
+\begin_inset Formula
 \begin{align*}
 n & \longleftrightarrow\frac{N}{r}\\
 \left(1+\frac{1}{n}\right)^{n} & \longleftrightarrow\left(1+\frac{1}{N/r}\right)^{N/r}
@@ -2597,7 +2598,7 @@ n & \longleftrightarrow\frac{N}{r}\\
 \end_inset
 
  だから，
-\begin_inset Formula 
+\begin_inset Formula
 \[
 \lim_{N\to\infty}\left(1+\frac{r}{N}\right)^{N}=\lim_{N/r\to\infty}\left[\left(1+\frac{1}{N/r}\right)^{N/r}\right]^{r}=e^{r}
 \]
@@ -2612,12 +2613,12 @@ n & \longleftrightarrow\frac{N}{r}\\
 \series bold
 連続複利計算
 \series default
-と呼ぶ。1年後の資産残高は無限に大きくなる訳ではなく 
+と呼ぶ。1年後の資産残高は無限に大きくなる訳ではなく
 \begin_inset Formula $e^{r}$
 \end_inset
 
  倍になることに注意しよう。なお，この1年間の変化
-\begin_inset Formula 
+\begin_inset Formula
 \[
 S_{0}\longrightarrow S_{0}e^{r}
 \]
@@ -2625,7 +2626,7 @@ S_{0}\longrightarrow S_{0}e^{r}
 \end_inset
 
 について，対数差分を用いて変化率を求めると，
-\begin_inset Formula 
+\begin_inset Formula
 \begin{align*}
 \log\left(S_{0}e^{r}\right)-\log S_{0} & =\log S_{0}+\log e^{r}-\log S_{0}\\
  & =\log e^{r}\\
@@ -2638,11 +2639,11 @@ S_{0}\longrightarrow S_{0}e^{r}
 \begin_inset Formula $r$
 \end_inset
 
- であるとき（この利子率を「瞬時変化率」と呼んでおこう），1年毎に資産は 
+ であるとき（この利子率を「瞬時変化率」と呼んでおこう），1年毎に資産は
 \begin_inset Formula $e^{r}$
 \end_inset
 
-倍になる。対数差分は瞬時変化率 
+倍になる。対数差分は瞬時変化率
 \begin_inset Formula $r$
 \end_inset
 
@@ -2665,32 +2666,32 @@ status open
 \end_inset
 
 」という。本書は主に離散時間モデルを扱うが，連続時間モデルの方が数学的な扱いが容易になることも多いため，離散時間・連続時間が状況に応じて使い分けられている。例え
-ば，とある離散時間データの 
+ば，とある離散時間データの
 \begin_inset Formula $y_{t}$
 \end_inset
 
- から 
+ から
 \begin_inset Formula $y_{t+1}$
 \end_inset
 
  への変化率を
-\begin_inset Formula 
+\begin_inset Formula
 \[
 \log y_{t+1}-\log y_{t}
 \]
 
 \end_inset
 
-で近似するのは，あたかも連続の時間軸上で成長したものと近似的に解釈して，瞬時変化率を計算していることになる。なお，瞬時変化率 
+で近似するのは，あたかも連続の時間軸上で成長したものと近似的に解釈して，瞬時変化率を計算していることになる。なお，瞬時変化率
 \begin_inset Formula $r$
 \end_inset
 
-， あるいは同じことだが，離散時間の変化率 
+， あるいは同じことだが，離散時間の変化率
 \begin_inset Formula $e^{r}$
 \end_inset
 
  が十分小さいときには，連続時間モデルと離散時間モデルの違いは無視できるほどに小さくなる。なぜなら，
-\begin_inset Formula 
+\begin_inset Formula
 \[
 e^{r}=\sum_{n=0}^{\infty}\frac{r^{n}}{n!}=1+r+\frac{r^{2}}{2!}+\frac{r^{3}}{3!}+\cdots\approx1+r
 \]
@@ -2705,19 +2706,19 @@ e^{r}=\sum_{n=0}^{\infty}\frac{r^{n}}{n!}=1+r+\frac{r^{2}}{2!}+\frac{r^{3}}{3!}+
 \end_layout
 
 \begin_layout Fact
-変数 
+変数
 \begin_inset Formula $x$
 \end_inset
 
- と 
+ と
 \begin_inset Formula $y$
 \end_inset
 
- はそれぞれ瞬時的に 
+ はそれぞれ瞬時的に
 \begin_inset Formula $g_{x}$
 \end_inset
 
-, 
+,
 \begin_inset Formula $g_{y}$
 \end_inset
 
@@ -2726,11 +2727,11 @@ e^{r}=\sum_{n=0}^{\infty}\frac{r^{n}}{n!}=1+r+\frac{r^{2}}{2!}+\frac{r^{3}}{3!}+
 
 \begin_deeper
 \begin_layout Enumerate
-積 
+積
 \begin_inset Formula $xy$
 \end_inset
 
- の瞬時変化率は 
+ の瞬時変化率は
 \begin_inset Formula $g_{x}+g_{y}$
 \end_inset
 
@@ -2738,11 +2739,11 @@ e^{r}=\sum_{n=0}^{\infty}\frac{r^{n}}{n!}=1+r+\frac{r^{2}}{2!}+\frac{r^{3}}{3!}+
 \end_layout
 
 \begin_layout Enumerate
-商 
+商
 \begin_inset Formula $x/y$
 \end_inset
 
- の瞬時変化率は 
+ の瞬時変化率は
 \begin_inset Formula $g_{x}-g_{y}$
 \end_inset
 
@@ -2750,15 +2751,15 @@ e^{r}=\sum_{n=0}^{\infty}\frac{r^{n}}{n!}=1+r+\frac{r^{2}}{2!}+\frac{r^{3}}{3!}+
 \end_layout
 
 \begin_layout Enumerate
-任意の実数 
+任意の実数
 \begin_inset Formula $\alpha$
 \end_inset
 
- に対して，べき 
+ に対して，べき
 \begin_inset Formula $x^{\alpha}$
 \end_inset
 
- の瞬時変化率は 
+ の瞬時変化率は
 \begin_inset Formula $\alpha g_{x}$
 \end_inset
 
@@ -2771,27 +2772,27 @@ e^{r}=\sum_{n=0}^{\infty}\frac{r^{n}}{n!}=1+r+\frac{r^{2}}{2!}+\frac{r^{3}}{3!}+
 \begin_inset Formula $x_{t+1}=(1+r_{x})x_{t}$
 \end_inset
 
-, 
+,
 \begin_inset Formula $y_{t+1}=(1+r_{y})y_{t}$
 \end_inset
 
  とすると，
-\begin_inset Formula 
+\begin_inset Formula
 \[
 \frac{x_{t+1}y_{t+1}-x_{t}y_{t}}{x_{t}y_{t}}=r_{x}+r_{y}+r_{x}r_{y}
 \]
 
 \end_inset
 
-となり，余分な項 
+となり，余分な項
 \begin_inset Formula $r_{x}r_{y}$
 \end_inset
 
- が現れる。この余分な項は 
+ が現れる。この余分な項は
 \begin_inset Formula $r_{x}$
 \end_inset
 
-, 
+,
 \begin_inset Formula $r_{y}$
 \end_inset
 
@@ -2873,7 +2874,7 @@ ipython
 \end_layout
 
 \begin_layout Standard
-次のような表示が見えれば成功だ。IPython のプロンプトは 
+次のような表示が見えれば成功だ。IPython のプロンプトは
 \begin_inset Flex Code
 status open
 
@@ -2883,7 +2884,7 @@ In [n]:
 
 \end_inset
 
- という形式になっている。本書ではIPython のプロンプトを省略している。 
+ という形式になっている。本書ではIPython のプロンプトを省略している。
 \begin_inset Flex Code
 status open
 
@@ -2907,12 +2908,12 @@ status open
 
 \begin_layout Plain Layout
 
-Python 3.7.5 (default, Nov  1 2019, 02:16:23)  Type 'copyright', 
+Python 3.7.5 (default, Nov  1 2019, 02:16:23)  Type 'copyright',
 \end_layout
 
 \begin_layout Plain Layout
 
-'credits' or 'license' for more information IPython 7.11.0 -- 
+'credits' or 'license' for more information IPython 7.11.0 --
 \end_layout
 
 \begin_layout Plain Layout
@@ -2951,7 +2952,7 @@ status open
 
 \end_inset
 
- 
+
 \begin_inset Flex Code
 status open
 
@@ -2971,7 +2972,7 @@ status open
 
 \end_inset
 
- 
+
 \begin_inset Flex Code
 status open
 
@@ -3011,7 +3012,7 @@ status open
 
 \end_inset
 
- 
+
 \begin_inset Flex Code
 status open
 
@@ -3021,7 +3022,7 @@ status open
 
 \end_inset
 
- の記号は使ったことがあるだろう。これらは 
+ の記号は使ったことがあるだろう。これらは
 \begin_inset Flex Code
 status open
 
@@ -3088,7 +3089,7 @@ status open
 
 \end_inset
 
-はそれぞれ二項演算子 
+はそれぞれ二項演算子
 \begin_inset Flex Code
 status open
 
@@ -3098,7 +3099,7 @@ status open
 
 \end_inset
 
-, 
+,
 \begin_inset Flex Code
 status open
 
@@ -3145,7 +3146,7 @@ status open
 
 \end_inset
 
-（unary operator）は1つの数の前に置く。代表的なものには，負数を作る 
+（unary operator）は1つの数の前に置く。代表的なものには，負数を作る
 \begin_inset Flex Code
 status open
 
@@ -3226,7 +3227,7 @@ https://docs.python.org/ja/3/reference/expressions.html#operator-precedence
 
 \end_inset
 
-」の項を見てほしい。計算順序を変えたいときは丸括弧 
+」の項を見てほしい。計算順序を変えたいときは丸括弧
 \begin_inset Flex Code
 status open
 
@@ -3260,7 +3261,7 @@ status open
 \end_layout
 
 \begin_layout Standard
-べき乗 
+べき乗
 \begin_inset Flex Code
 status open
 
@@ -3270,7 +3271,7 @@ status open
 
 \end_inset
 
-，負符号 
+，負符号
 \begin_inset Flex Code
 status open
 
@@ -3280,7 +3281,7 @@ status open
 
 \end_inset
 
-，積 
+，積
 \begin_inset Flex Code
 status open
 
@@ -3351,7 +3352,7 @@ status open
 \end_layout
 
 \begin_layout Standard
-同じ目的を達成するために括弧を使わず，バックスラッシュ 
+同じ目的を達成するために括弧を使わず，バックスラッシュ
 \begin_inset Flex Code
 status open
 
@@ -3363,7 +3364,7 @@ status open
 
 \end_inset
 
- （日本語の環境では円マーク 
+ （日本語の環境では円マーク
 \begin_inset Flex Code
 status open
 
@@ -3400,7 +3401,7 @@ status open
 
 \begin_layout Plain Layout
 
-1 + 2 + 3 + 4 + 5 
+1 + 2 + 3 + 4 + 5
 \backslash
 
 \end_layout
@@ -3482,7 +3483,7 @@ status open
 \series bold
 名前
 \series default
-（name）である。しばしば「変数に値を代入する」と表現される操作には 
+（name）である。しばしば「変数に値を代入する」と表現される操作には
 \begin_inset Flex Code
 status open
 
@@ -3504,7 +3505,7 @@ status open
 \end_layout
 
 \begin_layout Enumerate
-「10」という数字（整数）に 
+「10」という数字（整数）に
 \begin_inset Flex Code
 status open
 
@@ -3560,7 +3561,7 @@ x
 
 \end_inset
 
- の中身である 10 が表示された。Python を実行している環境によっては，明示的に 
+ の中身である 10 が表示された。Python を実行している環境によっては，明示的に
 \begin_inset Flex Code
 status open
 
@@ -3570,7 +3571,7 @@ print()
 
 \end_inset
 
- 関数を呼び出さないといけないかもしれない。 
+ 関数を呼び出さないといけないかもしれない。
 \end_layout
 
 \begin_layout Standard
@@ -3625,7 +3626,7 @@ status open
 
 \begin_layout Standard
 分析開始時点の GDP が500で，毎年 2% ずつ成長する経済を考えよう。3年後のGDPを計算したい。
-\begin_inset Formula 
+\begin_inset Formula
 \[
 g=0.02,\quad y_{0}=500,\quad t=3
 \]
@@ -3633,7 +3634,7 @@ g=0.02,\quad y_{0}=500,\quad t=3
 \end_inset
 
 として，
-\begin_inset Formula 
+\begin_inset Formula
 \[
 y_{t}=(1+g)^{t}y_{0}
 \]
@@ -3703,7 +3704,7 @@ Python のオブジェクト名には次のルールがある。
 \end_layout
 
 \begin_layout Itemize
-使える記号はアンダースコア 
+使える記号はアンダースコア
 \begin_inset Flex Code
 status open
 
@@ -3741,7 +3742,7 @@ True
 
 \end_inset
 
- , 
+ ,
 \begin_inset Flex Code
 status open
 
@@ -3751,7 +3752,7 @@ False
 
 \end_inset
 
-, 
+,
 \begin_inset Flex Code
 status open
 
@@ -3761,7 +3762,7 @@ import
 
 \end_inset
 
-, 
+,
 \begin_inset Flex Code
 status open
 
@@ -3771,7 +3772,7 @@ from
 
 \end_inset
 
-, 
+,
 \begin_inset Flex Code
 status open
 
@@ -3781,7 +3782,7 @@ as
 
 \end_inset
 
-, 
+,
 \begin_inset Flex Code
 status open
 
@@ -3791,7 +3792,7 @@ if
 
 \end_inset
 
-, 
+,
 \begin_inset Flex Code
 status open
 
@@ -3801,7 +3802,7 @@ else
 
 \end_inset
 
-, 
+,
 \begin_inset Flex Code
 status open
 
@@ -3811,7 +3812,7 @@ for
 
 \end_inset
 
-, 
+,
 \begin_inset Flex Code
 status open
 
@@ -3821,7 +3822,7 @@ in
 
 \end_inset
 
- など。全キーワードはPython の公式ドキュメントを参照のこと。 
+ など。全キーワードはPython の公式ドキュメントを参照のこと。
 \begin_inset Flex URL
 status open
 
@@ -3849,14 +3850,14 @@ https://docs.python.org/ja/3/reference/lexical_analysis.html#keywords
 
 \begin_layout Problem
 ネイピア数の定義
-\begin_inset Formula 
+\begin_inset Formula
 \[
 e=\lim_{n\to\infty}\left(1+\frac{1}{n}\right)^{n}
 \]
 
 \end_inset
 
-に基づいて，近似的に 
+に基づいて，近似的に
 \begin_inset Formula $e$
 \end_inset
 
@@ -3864,7 +3865,7 @@ e=\lim_{n\to\infty}\left(1+\frac{1}{n}\right)^{n}
 \begin_inset Formula $n$
 \end_inset
 
- を 
+ を
 \begin_inset Formula $n=100,1000,10000$
 \end_inset
 
@@ -3961,21 +3962,21 @@ begin{lstlisting}[style=Source]
 
 \begin_layout Plain Layout
 
-print(abcde) 
+print(abcde)
 \end_layout
 
 \begin_layout Plain Layout
 
 
 \backslash
-end{lstlisting} 
+end{lstlisting}
 \end_layout
 
 \begin_layout Plain Layout
 
 
 \backslash
-begin{lstlisting}[style=Result] 
+begin{lstlisting}[style=Result]
 \end_layout
 
 \begin_layout Plain Layout
@@ -3985,7 +3986,7 @@ begin{lstlisting}[style=Result]
 
 \begin_layout Plain Layout
 
-NameError                                 
+NameError
 \end_layout
 
 \begin_layout Plain Layout
@@ -3995,7 +3996,7 @@ Traceback (most recent call last)
 
 \begin_layout Plain Layout
 
-<ipython-input-17-e8409d1cf4b6> in <module> 
+<ipython-input-17-e8409d1cf4b6> in <module>
 \end_layout
 
 \begin_layout Plain Layout
@@ -4012,7 +4013,7 @@ NameError: name 'abcde' is not defined
 
 
 \backslash
-end{lstlisting} 
+end{lstlisting}
 \end_layout
 
 \begin_layout Plain Layout
@@ -4172,7 +4173,7 @@ True = 0
 
 \end_inset
 
- 
+
 \end_layout
 
 \begin_layout Enumerate
@@ -4206,7 +4207,7 @@ print(abcde)
 status open
 
 \begin_layout Plain Layout
-{3 * (2 + 4)} * 3 
+{3 * (2 + 4)} * 3
 \end_layout
 
 \end_inset
@@ -4272,7 +4273,7 @@ function_name(obj)
 
 \end_inset
 
- 
+
 \end_layout
 
 \end_deeper
@@ -4301,13 +4302,13 @@ obj.function_name(other_obj)
 
 \end_inset
 
- 
+
 \end_layout
 
 \end_deeper
 \begin_layout Standard
 「オブジェクトとは何か」というような質問に対する正確な回答を本書には期待しないでほしいのだけれど，おおざっぱに言えば
-\begin_inset Formula 
+\begin_inset Formula
 \[
 \text{「オブジェクト」}=\text{「データ」}+\text{「データに定義された動作」}
 \]
@@ -4401,11 +4402,11 @@ NumPy
 status collapsed
 
 \begin_layout Plain Layout
-Python をインストールすると必ずインストールされる標準ライブラリにも 
+Python をインストールすると必ずインストールされる標準ライブラリにも
 \series bold
 math
 \series default
- や 
+ や
 \series bold
 statistics
 \series default
@@ -4436,7 +4437,7 @@ import
 
 \end_inset
 
-文を書く。いくつかの書き方があるが，多くの人は 
+文を書く。いくつかの書き方があるが，多くの人は
 \series bold
 NumPy
 \series default
@@ -4467,7 +4468,7 @@ status open
 \series bold
 NumPy
 \series default
- の関数を 
+ の関数を
 \begin_inset Flex Code
 status open
 
@@ -4477,7 +4478,7 @@ np.function_name()
 
 \end_inset
 
- の形式で呼び出すことができるようになる。例えば，自然対数は 
+ の形式で呼び出すことができるようになる。例えば，自然対数は
 \begin_inset Flex Code
 status open
 
@@ -4487,7 +4488,7 @@ np.log()
 
 \end_inset
 
- ，指数関数は 
+ ，指数関数は
 \begin_inset Flex Code
 status open
 
@@ -4520,7 +4521,7 @@ status open
 \end_layout
 
 \begin_layout Standard
-ここで 
+ここで
 \series bold
 NumPy
 \series default
@@ -4573,7 +4574,7 @@ name "exa:growth-rate-log"
 
 \end_inset
 
-成長率の近似公式（命題 
+成長率の近似公式（命題
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "prop:log-approx"
@@ -4581,7 +4582,7 @@ reference "prop:log-approx"
 \end_inset
 
 ）を確認してみよう。ここでは，
-\begin_inset Formula 
+\begin_inset Formula
 \[
 y_{0}=300,\quad y_{1}=306
 \]
@@ -4631,11 +4632,11 @@ reference "exa:growth-rate-log"
 \begin_inset Formula $y_{0}$
 \end_inset
 
- から 
+ から
 \begin_inset Formula $y_{1}$
 \end_inset
 
- への変化率がどの程度の大きさであれば，命題 
+ への変化率がどの程度の大きさであれば，命題
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "prop:log-approx"
@@ -4674,8 +4675,8 @@ status open
 \begin_inset CommandInset bibtex
 LatexCommand bibtex
 btprint "btPrintCited"
-bibfiles "../Bibliography/ref,../Bibliography/software"
-options "Styles/jecon"
+bibfiles "References/ref,References/software"
+options "Include/jecon"
 
 \end_inset
 

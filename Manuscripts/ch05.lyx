@@ -6,11 +6,11 @@
 \origin unavailable
 \textclass scrbook
 \begin_preamble
-\input{Include/preamble.tex}
+\input{Include/ch-preamble.tex}
 \end_preamble
 \options dvipdfmx,paper=a5,fontsize=9pt
 \use_default_options true
-\master _main.lyx
+\master all.lyx
 \begin_modules
 knitr
 theorems-ams-chap-bytype
@@ -232,23 +232,23 @@ Pandas のような進化の早いライブラリは使用法が比較的早く�
 \end_layout
 
 \begin_layout Standard
-ある変数 
+ある変数
 \begin_inset Formula $y>0$
 \end_inset
 
  の変化を次のように表現する。
-\begin_inset Formula 
+\begin_inset Formula
 \[
 y_{t}=(1+g_{t})y_{t-1}
 \]
 
 \end_inset
 
-ここで 
+ここで
 \begin_inset Formula $g$
 \end_inset
 
- は 
+ は
 \begin_inset Formula $y$
 \end_inset
 
@@ -257,7 +257,7 @@ y_{t}=(1+g_{t})y_{t-1}
 \end_inset
 
 ）であり，時間変化する可能性がある。対数値を取ると，
-\begin_inset Formula 
+\begin_inset Formula
 \begin{align*}
 \log y_{t} & =\log(1+g_{t})+\log y_{t-1}\\
  & =\log(1+g_{t})+\log(1+g_{t-1})+\log y_{t-2}\\
@@ -272,22 +272,22 @@ y_{t}=(1+g_{t})y_{t-1}
 \end_inset
 
  と定数であるとすれば，
-\begin_inset Formula 
+\begin_inset Formula
 \[
 \log y_{t}=t\log(1+g)+\log y_{0}
 \]
 
 \end_inset
 
-横軸を 
+横軸を
 \begin_inset Formula $t$
 \end_inset
 
-，縦軸を 
+，縦軸を
 \begin_inset Formula $\log y_{t}$
 \end_inset
 
- としてグラフを書くと，傾きが 
+ としてグラフを書くと，傾きが
 \begin_inset Formula $\log(1+g)\approx g$
 \end_inset
 
@@ -295,7 +295,7 @@ y_{t}=(1+g_{t})y_{t-1}
 \begin_inset Formula $y_{0}=1$
 \end_inset
 
-, 
+,
 \begin_inset Formula $g_{t}\equiv g=0.02$
 \end_inset
 
@@ -374,7 +374,7 @@ centering
 \backslash
 includegraphics[width=
 \backslash
-textwidth, trim = 0mm 13mm 0mm 15mm, clip]{Figure/ch05/growth-graph-1}
+textwidth, trim = 0mm 13mm 0mm 15mm, clip]{Figures/ch05/growth-graph-1}
 \end_layout
 
 \end_inset
@@ -455,7 +455,7 @@ centering
 \backslash
 includegraphics[width=
 \backslash
-textwidth, trim = 0mm 13mm 0mm 15mm, clip]{Figure/ch05/growth-graph-log-1}
+textwidth, trim = 0mm 13mm 0mm 15mm, clip]{Figures/ch05/growth-graph-log-1}
 \end_layout
 
 \end_inset
@@ -537,15 +537,15 @@ status open
 \begin_inset Formula $t<50$
 \end_inset
 
- に対して 
+ に対して
 \begin_inset Formula $g_{t}=0.02$
 \end_inset
 
-, 
+,
 \begin_inset Formula $t\ge50$
 \end_inset
 
- に対して 
+ に対して
 \begin_inset Formula $g_{t}=0.04$
 \end_inset
 
@@ -624,7 +624,7 @@ centering
 \backslash
 includegraphics[width=
 \backslash
-textwidth, trim = 0mm 13mm 0mm 15mm, clip]{Figure/ch05/growth-change-1}
+textwidth, trim = 0mm 13mm 0mm 15mm, clip]{Figures/ch05/growth-change-1}
 \end_layout
 
 \end_inset
@@ -709,7 +709,7 @@ centering
 \backslash
 includegraphics[width=
 \backslash
-textwidth, trim = 0mm 13mm 0mm 15mm, clip]{Figure/ch05/growth-change-log-1}
+textwidth, trim = 0mm 13mm 0mm 15mm, clip]{Figures/ch05/growth-change-log-1}
 \end_layout
 
 \end_inset
@@ -837,7 +837,7 @@ centering
 \backslash
 includegraphics[width=0.48
 \backslash
-textwidth, trim = 0mm 13mm 0mm 15mm, clip]{Figure/ch05/growth-log-scale-1}
+textwidth, trim = 0mm 13mm 0mm 15mm, clip]{Figures/ch05/growth-log-scale-1}
 \end_layout
 
 \end_inset
@@ -908,12 +908,12 @@ name "fig:ch05-5"
 \end_layout
 
 \begin_layout Standard
-非常に変動が激しいデータ 
+非常に変動が激しいデータ
 \begin_inset Formula $x$
 \end_inset
 
  が手元にあるとしよう。このとき，隣り合う時点間の変化
-\begin_inset Formula 
+\begin_inset Formula
 \[
 \Delta x_{t+1}=x_{t+1}-x_{t}
 \]
@@ -924,16 +924,16 @@ name "fig:ch05-5"
 \begin_inset Formula $\bar{x}_{t}$
 \end_inset
 
- を観測できない本質的な変動要因であるとして（例：企業の生産性が上がるから株価が上がる），観測可能なデータ 
+ を観測できない本質的な変動要因であるとして（例：企業の生産性が上がるから株価が上がる），観測可能なデータ
 \begin_inset Formula $x_{t}$
 \end_inset
 
- はあまり本質的でない要因 
+ はあまり本質的でない要因
 \begin_inset Formula $\varepsilon_{t}$
 \end_inset
 
  （例：政治スキャンダルで株価が下がる）によって撹乱されてしまうとする。
-\begin_inset Formula 
+\begin_inset Formula
 \[
 x_{t}=\bar{x}_{t}+\varepsilon_{t}
 \]
@@ -944,11 +944,11 @@ x_{t}=\bar{x}_{t}+\varepsilon_{t}
 \begin_inset Formula $\varepsilon_{t}$
 \end_inset
 
- と異なる時点の 
+ と異なる時点の
 \begin_inset Formula $s$
 \end_inset
 
- の 
+ の
 \begin_inset Formula $\varepsilon_{s}$
 \end_inset
 
@@ -957,7 +957,7 @@ x_{t}=\bar{x}_{t}+\varepsilon_{t}
 \end_inset
 
  と仮定しよう。本来，
-\begin_inset Formula 
+\begin_inset Formula
 \[
 \bar{x}_{t+1}-\bar{x}_{t}
 \]
@@ -969,7 +969,7 @@ x_{t}=\bar{x}_{t}+\varepsilon_{t}
 \end_inset
 
  を使うのだが，
-\begin_inset Formula 
+\begin_inset Formula
 \[
 x_{t+1}-x_{t}=\left(\bar{x}_{t+1}-\bar{x}_{t}\right)+\left(\varepsilon_{t+1}-\varepsilon_{t}\right)
 \]
@@ -977,7 +977,7 @@ x_{t+1}-x_{t}=\left(\bar{x}_{t+1}-\bar{x}_{t}\right)+\left(\varepsilon_{t+1}-\va
 \end_inset
 
 
-\begin_inset Formula 
+\begin_inset Formula
 \[
 \Longrightarrow\mathrm{Var}\left((x_{t+1}-x_{t})-(\bar{x}_{t+1}-\bar{x}_{t})\right)=2\sigma^{2}
 \]
@@ -1008,7 +1008,7 @@ status open
 \begin_inset Formula $t$
 \end_inset
 
- 期の移動平均の値を 
+ 期の移動平均の値を
 \begin_inset Formula $t$
 \end_inset
 
@@ -1019,7 +1019,7 @@ status open
 \begin_inset Formula $t$
 \end_inset
 
- 期の移動平均の値を 
+ 期の移動平均の値を
 \begin_inset Formula $t$
 \end_inset
 
@@ -1030,7 +1030,7 @@ status open
 \begin_inset Formula $t$
 \end_inset
 
- 期の移動平均の値を 
+ 期の移動平均の値を
 \begin_inset Formula $t$
 \end_inset
 
@@ -1040,7 +1040,7 @@ status open
 \end_inset
 
 。
-\begin_inset Formula 
+\begin_inset Formula
 \[
 x_{t}^{(2)}=\frac{x_{t-1}+x_{t}}{2}
 \]
@@ -1048,7 +1048,7 @@ x_{t}^{(2)}=\frac{x_{t-1}+x_{t}}{2}
 \end_inset
 
 分散にどのように影響するかを見てみよう。
-\begin_inset Formula 
+\begin_inset Formula
 \begin{align*}
 x_{t+1}^{(2)}-x_{t}^{(2)} & =\frac{x_{t}+x_{t+1}}{2}-\frac{x_{t-1}+x_{t}}{2}\\
  & =\frac{x_{t+1}-x_{t-1}}{2}\\
@@ -1058,14 +1058,14 @@ x_{t+1}^{(2)}-x_{t}^{(2)} & =\frac{x_{t}+x_{t+1}}{2}-\frac{x_{t-1}+x_{t}}{2}\\
 \end_inset
 
 
-\begin_inset Formula 
+\begin_inset Formula
 \[
 \Longrightarrow\mathrm{Var}\left(\left(x_{t+1}^{(2)}-x_{t}^{(2)}\right)-\left(\frac{\bar{x}_{t+1}-\bar{x}_{t-1}}{2}\right)\right)=\frac{\sigma^{2}}{2}
 \]
 
 \end_inset
 
-移動平均を計算することで，本質的な変動要因 
+移動平均を計算することで，本質的な変動要因
 \begin_inset Formula $\bar{x}$
 \end_inset
 
@@ -1451,7 +1451,7 @@ centering
 \backslash
 includegraphics[height=0.35
 \backslash
-textheight]{Figure/ch05/fred-gdp-1}
+textheight]{Figures/ch05/fred-gdp-1}
 \end_layout
 
 \end_inset
@@ -1463,7 +1463,7 @@ textheight]{Figure/ch05/fred-gdp-1}
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-アメリカの実質GDPと潜在GDP（Source: FRED） 
+アメリカの実質GDPと潜在GDP（Source: FRED）
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:ch05-fred"
@@ -1496,7 +1496,7 @@ reference "fig:ch05-fred-1"
 \end_inset
 
  は GDPギャップを潜在GDPで除した値（GDPギャップ率）
-\begin_inset Formula 
+\begin_inset Formula
 \[
 \text{GDPギャップ率}=\frac{\text{実質GDP}-\text{潜在GDP}}{\text{潜在GDP}}
 \]
@@ -1567,7 +1567,7 @@ centering
 \backslash
 includegraphics[height=0.35
 \backslash
-textheight]{Figure/ch05/gdp-gap-1}
+textheight]{Figures/ch05/gdp-gap-1}
 \end_layout
 
 \end_inset
@@ -1579,7 +1579,7 @@ textheight]{Figure/ch05/gdp-gap-1}
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-GDPギャップ（Source: FRED） 
+GDPギャップ（Source: FRED）
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:ch05-fred-1"
@@ -1660,7 +1660,7 @@ centering
 \backslash
 includegraphics[height=0.35
 \backslash
-textheight]{Figure/ch05/fred-umemployment-1}
+textheight]{Figures/ch05/fred-umemployment-1}
 \end_layout
 
 \end_inset
@@ -1672,7 +1672,7 @@ textheight]{Figure/ch05/fred-umemployment-1}
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-GDPギャップ（Source: FRED） 
+GDPギャップ（Source: FRED）
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:ch05-fred-3"
@@ -1783,7 +1783,7 @@ centering
 \backslash
 includegraphics[height=0.35
 \backslash
-textheight]{Figure/ch05/fred-inflation-1}
+textheight]{Figures/ch05/fred-inflation-1}
 \end_layout
 
 \end_inset
@@ -1795,7 +1795,7 @@ textheight]{Figure/ch05/fred-inflation-1}
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-GDPギャップとインフレーション（Source: FRED） 
+GDPギャップとインフレーション（Source: FRED）
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:ch05-fred-2"
@@ -1862,27 +1862,27 @@ name "fig:ch05-fred-2"
 \begin_inset Formula $t$
 \end_inset
 
- 期のインフレ率を 
+ 期のインフレ率を
 \begin_inset Formula $\pi_{t}$
 \end_inset
 
-, 
+,
 \begin_inset Formula $(t-1)$
 \end_inset
 
- 期に形成された 
+ 期に形成された
 \begin_inset Formula $t$
 \end_inset
 
- 期のインフレ率に関する予想を 
+ 期のインフレ率に関する予想を
 \begin_inset Formula $\mathbb{E}_{t-1}\pi_{t}$
 \end_inset
 
-，実質GDPを 
+，実質GDPを
 \begin_inset Formula $Y_{t}$
 \end_inset
 
-, 潜在GDPを 
+, 潜在GDPを
 \begin_inset Formula $\bar{Y}_{t}$
 \end_inset
 
@@ -1890,7 +1890,7 @@ name "fig:ch05-fred-2"
 \end_layout
 
 \begin_layout Standard
-\begin_inset Formula 
+\begin_inset Formula
 \[
 \pi_{t}-\mathbb{E}_{t-1}\pi_{t}=\alpha\left(Y_{t}-\bar{Y}_{t}\right),\qquad\alpha>0
 \]
@@ -2086,7 +2086,7 @@ status open
 \end_layout
 
 \begin_layout Standard
-このような変換が必要なときに自動的に行われていると考えてよい。文字列の中に含まれる各文字を走査する 
+このような変換が必要なときに自動的に行われていると考えてよい。文字列の中に含まれる各文字を走査する
 \begin_inset Flex Code
 status open
 
@@ -2123,7 +2123,7 @@ status open
 status open
 
 \begin_layout Plain Layout
-enumerate() 
+enumerate()
 \end_layout
 
 \end_inset
@@ -2160,7 +2160,7 @@ baselineskip}
 
 \begin_layout Standard
 f-string という便利な記法がある。f-string を使えば文字列定義の中で式を使うことができる。次の使用例を見れば使い方は明らかだろう。クォーテーショ
-ンマークの前の 
+ンマークの前の
 \begin_inset Flex Code
 status open
 
@@ -2198,7 +2198,7 @@ status open
 status open
 
 \begin_layout Plain Layout
-詳細は 
+詳細は
 \begin_inset Flex URL
 status open
 
@@ -2242,7 +2242,7 @@ status open
 
 \begin_layout Standard
 辞書（dictionary）というデータ構造が非常によく用いられるので覚えておこう。普通の辞書は「見出し語」と「定義」の多数の組合せから構成されている。Pyth
-on の辞書も同じような構成になっている。「キー」と「値」のペアが辞書である。次の辞書 
+on の辞書も同じような構成になっている。「キー」と「値」のペアが辞書である。次の辞書
 \begin_inset Flex Code
 status open
 
@@ -2252,7 +2252,7 @@ d
 
 \end_inset
 
- には3つのキー, 
+ には3つのキー,
 \begin_inset Flex Code
 status open
 
@@ -2262,7 +2262,7 @@ status open
 
 \end_inset
 
-, 
+,
 \begin_inset Flex Code
 status open
 
@@ -2272,7 +2272,7 @@ status open
 
 \end_inset
 
-, 
+,
 \begin_inset Flex Code
 status open
 
@@ -2292,7 +2292,7 @@ status open
 
 \end_inset
 
-, 
+,
 \begin_inset Flex Code
 status open
 
@@ -2302,7 +2302,7 @@ status open
 
 \end_inset
 
-, 
+,
 \begin_inset Flex Code
 status open
 
@@ -2399,17 +2399,17 @@ status open
 status open
 
 \begin_layout Plain Layout
-順序が意味をもつ場合には 
+順序が意味をもつ場合には
 \begin_inset Flex Code
 status open
 
 \begin_layout Plain Layout
-OrderedDict 
+OrderedDict
 \end_layout
 
 \end_inset
 
-型を用いる。詳細は 
+型を用いる。詳細は
 \begin_inset Flex URL
 status open
 
@@ -2485,7 +2485,7 @@ Pandas 入門
 \end_layout
 
 \begin_layout Standard
-Python で表形式のデータを扱うときは 
+Python で表形式のデータを扱うときは
 \series bold
 pandas
 \series default
@@ -2519,11 +2519,11 @@ NumPy
 \begin_inset Formula $4\times3$
 \end_inset
 
- 行列をもとに 
+ 行列をもとに
 \series bold
 pandas
 \series default
- の 
+ の
 \begin_inset Flex Code
 status open
 
@@ -2613,7 +2613,7 @@ status open
 \series bold
 pandas
 \series default
- の 
+ の
 \begin_inset Flex Code
 status open
 
@@ -2623,7 +2623,7 @@ DataFrame
 
 \end_inset
 
- オブジェクトには時系列データを扱うための便利なメソッドが定義されている。差分を計算する 
+ オブジェクトには時系列データを扱うための便利なメソッドが定義されている。差分を計算する
 \begin_inset Flex Code
 status open
 
@@ -2633,7 +2633,7 @@ diff()
 
 \end_inset
 
- や変化率を計算する 
+ や変化率を計算する
 \begin_inset Flex Code
 status open
 
@@ -2794,11 +2794,11 @@ status open
 \end_layout
 
 \begin_layout Standard
-データを 
+データを
 \series bold
 pandas
 \series default
- の 
+ の
 \begin_inset Flex Code
 status open
 
@@ -2808,7 +2808,7 @@ DataFrame
 
 \end_inset
 
- にしておくと簡便な記法で可視化ができる。基本の 
+ にしておくと簡便な記法で可視化ができる。基本の
 \begin_inset Flex Code
 status open
 
@@ -2870,7 +2870,7 @@ centering
 \backslash
 includegraphics[width=0.6
 \backslash
-textwidth, trim = 0mm 13mm 0mm 15mm, clip]{Figure/ch05/pandas-plot-1}
+textwidth, trim = 0mm 13mm 0mm 15mm, clip]{Figures/ch05/pandas-plot-1}
 \end_layout
 
 \end_inset
@@ -2907,7 +2907,7 @@ name "fig:ch05-pandas-plot-1"
 \end_layout
 
 \begin_layout Standard
-散布図を描くには 
+散布図を描くには
 \begin_inset Flex Code
 status open
 
@@ -2969,7 +2969,7 @@ centering
 \backslash
 includegraphics[width=0.6
 \backslash
-textwidth, trim = 0mm 13mm 0mm 15mm, clip]{Figure/ch05/pandas-scatter-1}
+textwidth, trim = 0mm 13mm 0mm 15mm, clip]{Figures/ch05/pandas-scatter-1}
 \end_layout
 
 \end_inset
@@ -3015,7 +3015,7 @@ plot.bar()
 
 \end_inset
 
-, 
+,
 \begin_inset Flex Code
 status open
 
@@ -3094,7 +3094,7 @@ centering
 \backslash
 includegraphics[width=0.6
 \backslash
-textwidth, trim = 0mm 13mm 0mm 15mm, clip]{Figure/ch05/pandas-bar-1}
+textwidth, trim = 0mm 13mm 0mm 15mm, clip]{Figures/ch05/pandas-bar-1}
 \end_layout
 
 \end_inset
@@ -3172,7 +3172,7 @@ centering
 \backslash
 includegraphics[width=0.6
 \backslash
-textwidth, trim = 0mm 13mm 0mm 15mm, clip]{Figure/ch05/pandas-barh-1}
+textwidth, trim = 0mm 13mm 0mm 15mm, clip]{Figures/ch05/pandas-barh-1}
 \end_layout
 
 \end_inset
@@ -3284,7 +3284,7 @@ pandas-datareader
 \series bold
 pandas-datareader
 \series default
- はデータ提供者ごとのクエリ記法に変換し，データの取得を行う。取得されたデータはデータ提供者が使用しているフォーマット方式から 
+ はデータ提供者ごとのクエリ記法に変換し，データの取得を行う。取得されたデータはデータ提供者が使用しているフォーマット方式から
 \series bold
 pandas
 \series default
@@ -3296,7 +3296,7 @@ pandas
 \series bold
 pandas-datareader
 \series default
- を使うとインターネット上で公開されているデータをダウンロードして 
+ を使うとインターネット上で公開されているデータをダウンロードして
 \series bold
 pandas
 \series default
@@ -3354,7 +3354,7 @@ FRED (St.
 
 \begin_layout Standard
 FRED はセントルイス連邦準備銀行が提供する経済時系列データのデータベースである。アメリカのデータだけでなく世界各国の情報も手に入れることができる。ウェブサイ
-ト 
+ト
 \begin_inset Flex URL
 status open
 
@@ -3404,7 +3404,7 @@ centering
 \backslash
 includegraphics[height=0.3
 \backslash
-textheight]{Images/05-fed}
+textheight]{Images/ch05-fed}
 \end_layout
 
 \end_inset
@@ -3452,7 +3452,7 @@ pdr.get_data_fred()
 status open
 
 \begin_layout Plain Layout
-多くのデータソースに対して 
+多くのデータソースに対して
 \begin_inset Flex Code
 status open
 
@@ -3467,7 +3467,7 @@ pdr.get_data_*()
 
 \end_inset
 
-。1つ目の引数としてリスト 
+。1つ目の引数としてリスト
 \begin_inset Flex Code
 status open
 
@@ -3477,7 +3477,7 @@ status open
 
 \end_inset
 
- を書いて，ダウンロード対象が GDPPOT（潜在GDP）と GDPC1（実質GDP）であることを指定する。結果に 
+ を書いて，ダウンロード対象が GDPPOT（潜在GDP）と GDPC1（実質GDP）であることを指定する。結果に
 \begin_inset Flex Code
 status open
 
@@ -3487,7 +3487,7 @@ gdp
 
 \end_inset
 
- という名前を付けた。これは 
+ という名前を付けた。これは
 \series bold
 pandas
 \series default
@@ -3559,7 +3559,7 @@ centering
 \backslash
 includegraphics[height=0.3
 \backslash
-textheight]{Figure/ch05/pandas-fred-1}
+textheight]{Figures/ch05/pandas-fred-1}
 \end_layout
 
 \end_inset
@@ -3670,7 +3670,7 @@ status open
 \end_layout
 
 \begin_layout Standard
-インフレ率を見るために 
+インフレ率を見るために
 \begin_inset Flex Code
 status open
 
@@ -3725,7 +3725,7 @@ centering
 \backslash
 includegraphics[height=0.35
 \backslash
-textheight]{Figure/ch05/pandas-fred-inflation-1}
+textheight]{Figures/ch05/pandas-fred-inflation-1}
 \end_layout
 
 \end_inset
@@ -3836,7 +3836,7 @@ centering
 \backslash
 includegraphics[height=0.35
 \backslash
-textheight]{Figure/ch05/pandas-fred-ma-plot-1}
+textheight]{Figures/ch05/pandas-fred-ma-plot-1}
 \end_layout
 
 \end_inset
@@ -3884,7 +3884,7 @@ from pandas_datareader import wb
 
 \end_inset
 
- というコードで世界銀行のデータベースにアクセスするための特別なモジュール 
+ というコードで世界銀行のデータベースにアクセスするための特別なモジュール
 \begin_inset Flex Code
 status open
 
@@ -3921,7 +3921,7 @@ status open
 \series bold
 pandas
 \series default
- を使ったデータ加工の詳細は McKinney 
+ を使ったデータ加工の詳細は McKinney
 \begin_inset CommandInset citation
 LatexCommand citeyearpar
 key "wes"
@@ -4021,7 +4021,7 @@ centering
 \backslash
 includegraphics[height=0.35
 \backslash
-textheight]{Figure/ch05/wb-gdp-density-1}
+textheight]{Figures/ch05/wb-gdp-density-1}
 \end_layout
 
 \end_inset
@@ -4074,7 +4074,7 @@ name "fig:pdr-wb-density"
 \end_layout
 
 \begin_layout Problem
-1人あたり名目GDPをダウンロードするときに NY.GDP.PCAP.CD というコードを使った。World Bank Open Data 
+1人あたり名目GDPをダウンロードするときに NY.GDP.PCAP.CD というコードを使った。World Bank Open Data
 \begin_inset Flex URL
 status open
 
@@ -4128,8 +4128,8 @@ status open
 \begin_inset CommandInset bibtex
 LatexCommand bibtex
 btprint "btPrintCited"
-bibfiles "../Bibliography/ref,../Bibliography/software"
-options "styles/jecon"
+bibfiles "References/ref,References/software"
+options "Include/jecon"
 
 \end_inset
 

@@ -6,11 +6,11 @@
 \origin unavailable
 \textclass scrbook
 \begin_preamble
-\input{Include/preamble.tex}
+\input{Include/ch-preamble.tex}
 \end_preamble
 \options dvipdfmx,a5paper,9pt
 \use_default_options true
-\master _main.lyx
+\master all.lyx
 \begin_modules
 knitr
 theorems-ams-chap-bytype
@@ -190,7 +190,7 @@ LatexCommand tableofcontents
 \end_layout
 
 \begin_layout Standard
-無限期間生きる代表的消費者を考える。消費者は現在 0 期の期末にいて，1期以降の消費の計画を立てている。1期以降の労働所得が 
+無限期間生きる代表的消費者を考える。消費者は現在 0 期の期末にいて，1期以降の消費の計画を立てている。1期以降の労働所得が
 \begin_inset Formula $y_{1},y_{2},\dots$
 \end_inset
 
@@ -198,19 +198,19 @@ LatexCommand tableofcontents
 \begin_inset Formula $(t-1)$
 \end_inset
 
- 期末の貯蓄残高 
+ 期末の貯蓄残高
 \begin_inset Formula $s_{t-1}$
 \end_inset
 
- に対しては，利子所得 
+ に対しては，利子所得
 \begin_inset Formula $r_{t}s_{t-1}$
 \end_inset
 
- を 
+ を
 \begin_inset Formula $t$
 \end_inset
 
- 期に受け取る。毎期の消費から期間効用 
+ 期に受け取る。毎期の消費から期間効用
 \begin_inset Formula $u(c_{t})$
 \end_inset
 
@@ -218,7 +218,7 @@ LatexCommand tableofcontents
 \begin_inset Formula $u(c)$
 \end_inset
 
- はその期に消費していたら得たであろう効用の水準である。0期末で消費計画を立てている消費者は将来の効用を 
+ はその期に消費していたら得たであろう効用の水準である。0期末で消費計画を立てている消費者は将来の効用を
 \begin_inset Formula $\beta=1/(1+\rho)$
 \end_inset
 
@@ -226,15 +226,15 @@ LatexCommand tableofcontents
 \begin_inset Formula $t$
 \end_inset
 
- 期の消費 
+ 期の消費
 \begin_inset Formula $c_{t}$
 \end_inset
 
- の現在効用は 
+ の現在効用は
 \begin_inset Formula $\beta^{t}u(c_{t})$
 \end_inset
 
- となる。効用関数 
+ となる。効用関数
 \begin_inset Formula $u$
 \end_inset
 
@@ -246,7 +246,7 @@ status open
 \begin_inset Formula $u'(\cdot)>0$
 \end_inset
 
-, 
+,
 \begin_inset Formula $u''(\cdot)<0$
 \end_inset
 
@@ -263,7 +263,7 @@ status open
 \end_layout
 
 \begin_layout Standard
-\begin_inset Formula 
+\begin_inset Formula
 \begin{align*}
  & \max_{(c_{t})_{t\ge1}}U=\sum_{t=1}^{\infty}\beta^{t}u(c_{t})\\
  & \text{subject to}\\
@@ -277,7 +277,7 @@ status open
 \begin_inset Formula $w_{t}$
 \end_inset
 
-, 
+,
 \begin_inset Formula $r_{t}$
 \end_inset
 
@@ -285,7 +285,7 @@ status open
 \begin_inset Formula $t=1,2,\dots)$
 \end_inset
 
- と 
+ と
 \begin_inset Formula $s_{0}$
 \end_inset
 
@@ -301,7 +301,7 @@ status open
 \end_layout
 
 \begin_layout Standard
-\begin_inset Formula 
+\begin_inset Formula
 \begin{equation}
 c_{t}+(s_{t}-s_{t-1})=w_{t}+r_{t}s_{t-1}\label{eq:ch08/flow-budget}
 \end{equation}
@@ -309,7 +309,7 @@ c_{t}+(s_{t}-s_{t-1})=w_{t}+r_{t}s_{t-1}\label{eq:ch08/flow-budget}
 \end_inset
 
 から生涯消費と生涯所得の関係式を導出しよう。記号を簡単にするため，
-\begin_inset Formula 
+\begin_inset Formula
 \[
 1+R_{t}=(1+r_{1})(1+r_{2})\times\cdots\times(1+r_{t})
 \]
@@ -324,7 +324,7 @@ c_{t}+(s_{t}-s_{t-1})=w_{t}+r_{t}s_{t-1}\label{eq:ch08/flow-budget}
 \begin_inset Formula $R_{t}$
 \end_inset
 
- は 
+ は
 \begin_inset Formula $t$
 \end_inset
 
@@ -340,7 +340,7 @@ reference "eq:ch08/flow-budget"
 \end_inset
 
 ) を
-\begin_inset Formula 
+\begin_inset Formula
 \[
 c_{t}+s_{t}=w_{t}+(1+r_{t})s_{t-1}
 \]
@@ -352,19 +352,19 @@ c_{t}+s_{t}=w_{t}+(1+r_{t})s_{t-1}
 \end_inset
 
  期分割り戻す。
-\begin_inset Formula 
+\begin_inset Formula
 \[
 \frac{c_{t}}{1+R_{t}}+\frac{s_{t}}{1+R_{t}}=\frac{w_{t}}{1+R_{t}}+\frac{s_{t-1}}{1+R_{t-1}}
 \]
 
 \end_inset
 
-これを 
+これを
 \begin_inset Formula $t=1,2,\dots$
 \end_inset
 
  で足し上げる。左辺と右辺に同じ式がある場合はキャンセルされる。
-\begin_inset Formula 
+\begin_inset Formula
 \begin{align*}
 \frac{c_{1}}{1+R_{1}}+\cancel{\frac{s_{1}}{1+R_{1}}} & =\frac{w_{1}}{1+R_{1}}+\frac{s_{0}}{1+R_{0}}\\
 \frac{c_{2}}{1+R_{2}}+\cancel{\frac{s_{2}}{1+R_{2}}} & =\frac{w_{2}}{1+R_{2}}+\cancel{\frac{s_{1}}{1+R_{1}}}\\
@@ -382,7 +382,7 @@ c_{t}+s_{t}=w_{t}+(1+r_{t})s_{t-1}
 \end_layout
 
 \begin_layout Standard
-\begin_inset Formula 
+\begin_inset Formula
 \[
 \sum_{t=1}^{T}\frac{c_{t}}{1+R_{t}}+\frac{s_{T}}{1+R_{T}}=\sum_{t=1}^{T}\frac{w_{t}}{1+R_{t}}+s_{0}
 \]
@@ -394,7 +394,7 @@ c_{t}+s_{t}=w_{t}+(1+r_{t})s_{t-1}
 \end_inset
 
  の極限を取ると，
-\begin_inset Formula 
+\begin_inset Formula
 \begin{equation}
 \sum_{t=1}^{\infty}\frac{c_{t}}{1+R_{t}}+\lim_{t\to\infty}\frac{s_{t}}{1+R_{t}}=\sum_{t=1}^{\infty}\frac{w_{t}}{1+R_{t}}+s_{0}\label{eq:ch08/budget-0}
 \end{equation}
@@ -406,7 +406,7 @@ c_{t}+s_{t}=w_{t}+(1+r_{t})s_{t-1}
 \end_inset
 
  は仮定しなければならない。このことは，
-\begin_inset Formula 
+\begin_inset Formula
 \[
 \lim_{t\to\infty}\frac{y_{t}}{1+R_{t}}=0
 \]
@@ -418,7 +418,7 @@ c_{t}+s_{t}=w_{t}+(1+r_{t})s_{t-1}
 
 \begin_layout Standard
 仮に，無限期先の将来の貯蓄残高の割引現在価値を負にすること，つまり，
-\begin_inset Formula 
+\begin_inset Formula
 \[
 \lim_{t\to\infty}\frac{s_{t}}{1+R_{t}}<0
 \]
@@ -426,7 +426,7 @@ c_{t}+s_{t}=w_{t}+(1+r_{t})s_{t-1}
 \end_inset
 
 が許されるとしてみよう。このとき，生涯所得よりも大きな消費ができる。つまり，
-\begin_inset Formula 
+\begin_inset Formula
 \[
 \sum_{t=1}^{\infty}\frac{c_{t}}{1+R_{t}}>\sum_{t=1}^{\infty}\frac{w_{t}}{1+R_{t}}+s_{0}
 \]
@@ -443,7 +443,7 @@ c_{t}+s_{t}=w_{t}+(1+r_{t})s_{t-1}
 \end_inset
 
 　は下限を持つ必要がある。通常，
-\begin_inset Formula 
+\begin_inset Formula
 \begin{equation}
 \lim_{t\to\infty}\frac{s_{t}}{1+R_{t}}\ge0\label{eq:ch08/npg}
 \end{equation}
@@ -500,7 +500,7 @@ status open
 \end_layout
 
 \begin_layout Standard
-\begin_inset Formula 
+\begin_inset Formula
 \begin{align*}
  & \max_{(c_{t})_{t\ge1}}U=\sum_{t=1}^{\infty}\beta^{t}u(c_{t})\\
  & \text{subject to}\\
@@ -512,12 +512,12 @@ status open
 \end_inset
 
 あるいは生涯所得制約で置き換えて，
-\begin_inset Formula 
+\begin_inset Formula
 \begin{align}
  & \max_{(c_{t})_{t\ge1}}U=\sum_{t=1}^{\infty}\beta^{t}u(c_{t})\label{eq:ch08/utility}\\
  & \text{subject to}\nonumber \\
  & \qquad\sum_{t=1}^{\infty}\frac{c_{t}}{1+R_{t}}\le\sum_{t=1}^{\infty}\frac{w_{t}}{1+R_{t}}+s_{0}\label{eq:ch08/budget-constraint}\\
- & \qquad s_{0}:\ \text{given.}\nonumber 
+ & \qquad s_{0}:\ \text{given.}\nonumber
 \end{align}
 
 \end_inset
@@ -526,14 +526,14 @@ status open
 \end_layout
 
 \begin_layout Assumption
-効用最大化問題 
+効用最大化問題
 \begin_inset CommandInset ref
 LatexCommand eqref
 reference "eq:ch08/budget-constraint"
 
 \end_inset
 
-, 
+,
 \begin_inset CommandInset ref
 LatexCommand eqref
 reference "eq:ch08/budget-constraint"
@@ -555,15 +555,15 @@ reference "eq:ch08/budget-constraint"
 \end_layout
 
 \begin_layout Standard
-効用関数 
+効用関数
 \begin_inset Formula $u$
 \end_inset
 
- が 
+ が
 \begin_inset Formula $u'>0$
 \end_inset
 
-, 
+,
 \begin_inset Formula $u''<0$
 \end_inset
 
@@ -571,20 +571,20 @@ reference "eq:ch08/budget-constraint"
 \begin_inset Formula $u$
 \end_inset
 
- は厳密に凹な関数である。すなわち，任意の 
+ は厳密に凹な関数である。すなわち，任意の
 \begin_inset Formula $x$
 \end_inset
 
-, 
+,
 \begin_inset Formula $y$
 \end_inset
 
- と 
+ と
 \begin_inset Formula $0<\lambda<1$
 \end_inset
 
  に対して，
-\begin_inset Formula 
+\begin_inset Formula
 \[
 u\left(\lambda x+(1-\lambda)y\right)>\lambda u(x)+(1-\lambda)u(y)
 \]
@@ -595,21 +595,21 @@ u\left(\lambda x+(1-\lambda)y\right)>\lambda u(x)+(1-\lambda)u(y)
 \end_layout
 
 \begin_layout Proposition
-効用最大化問題 
+効用最大化問題
 \begin_inset CommandInset ref
 LatexCommand eqref
 reference "eq:ch08/budget-constraint"
 
 \end_inset
 
-, 
+,
 \begin_inset CommandInset ref
 LatexCommand eqref
 reference "eq:ch08/budget-constraint"
 
 \end_inset
 
- の解は 
+ の解は
 \begin_inset Formula $s_{0}$
 \end_inset
 
@@ -627,7 +627,7 @@ reference "eq:ch08/budget-constraint"
 \begin_inset Formula $(c_{t}^{'})_{t\ge1}$
 \end_inset
 
- と 
+ と
 \begin_inset Formula $(c_{t}'')_{t\ge1}$
 \end_inset
 
@@ -635,7 +635,7 @@ reference "eq:ch08/budget-constraint"
 \begin_inset Formula $\sum_{t=1}^{\infty}\beta^{t}u(c_{t}')=\sum_{t=1}^{\infty}\beta^{t}u(c_{t}'')$
 \end_inset
 
- が成り立ち，少なくとも1つの 
+ が成り立ち，少なくとも1つの
 \begin_inset Formula $t\ge1$
 \end_inset
 
@@ -647,20 +647,20 @@ reference "eq:ch08/budget-constraint"
 \end_layout
 
 \begin_layout Proof
-任意に 
+任意に
 \begin_inset Formula $0<\lambda<1$
 \end_inset
 
- を選ぶ。 
+ を選ぶ。
 \begin_inset Formula $(c_{t}^{'})_{t\ge1}$
 \end_inset
 
- と 
+ と
 \begin_inset Formula $(c_{t}'')_{t\ge1}$
 \end_inset
 
  はどちらも制約条件を満たすので，
-\begin_inset Formula 
+\begin_inset Formula
 \[
 \sum_{t=1}^{\infty}\frac{\lambda c_{t}'}{1+R_{t}}\le\sum_{t=1}^{\infty}\frac{\lambda w_{t}}{1+R_{t}}+\lambda s_{0}
 \]
@@ -668,7 +668,7 @@ reference "eq:ch08/budget-constraint"
 \end_inset
 
 
-\begin_inset Formula 
+\begin_inset Formula
 \[
 \sum_{t=1}^{\infty}\frac{(1-\lambda)c_{t}''}{1+R_{t}}\le\sum_{t=1}^{\infty}\frac{(1-\lambda)w_{t}}{1+R_{t}}+(1-\lambda)s_{0}
 \]
@@ -676,7 +676,7 @@ reference "eq:ch08/budget-constraint"
 \end_inset
 
 が成り立つ。辺々足すと，
-\begin_inset Formula 
+\begin_inset Formula
 \[
 \sum_{t=1}^{\infty}\frac{\lambda c_{t}'+(1-\lambda)c_{t}''}{1+R_{t}}\le\sum_{t=1}^{\infty}\frac{w_{t}}{1+R_{t}}+s_{0}
 \]
@@ -695,12 +695,12 @@ reference "eq:ch08/budget-constraint"
 \begin_inset Formula $c_{t}'\neq c_{t}''$
 \end_inset
 
- なる 
+ なる
 \begin_inset Formula $t$
 \end_inset
 
  については，
-\begin_inset Formula 
+\begin_inset Formula
 \[
 u\left(\lambda c_{t}'+(1-\lambda)c_{t}\right)>\lambda u\left(c_{t}'\right)+(1-\lambda)u\left(c_{t}''\right)
 \]
@@ -708,18 +708,18 @@ u\left(\lambda c_{t}'+(1-\lambda)c_{t}\right)>\lambda u\left(c_{t}'\right)+(1-\l
 \end_inset
 
 が成り立っている。したがって，
-\begin_inset Formula 
+\begin_inset Formula
 \[
 \sum_{t=1}^{\infty}\beta^{t}u\left(\lambda c_{t}'+(1-\lambda)c_{t}''\right)>\sum_{t=1}^{\infty}\beta^{t}u(c_{t}')=\sum_{t=1}^{\infty}\beta^{t}u(c_{t}'')
 \]
 
 \end_inset
 
-となる。これは，最初に解として選んだはずの 
+となる。これは，最初に解として選んだはずの
 \begin_inset Formula $(c_{t}^{'})_{t\ge1}$
 \end_inset
 
- と 
+ と
 \begin_inset Formula $(c_{t}'')_{t\ge1}$
 \end_inset
 
@@ -736,7 +736,7 @@ u\left(\lambda c_{t}'+(1-\lambda)c_{t}\right)>\lambda u\left(c_{t}'\right)+(1-\l
 \begin_inset Formula $t$
 \end_inset
 
- 期と 
+ 期と
 \begin_inset Formula $(t+1)$
 \end_inset
 
@@ -748,7 +748,7 @@ reference "eq:ch08/utility"
 \end_inset
 
 ) から，
-\begin_inset Formula 
+\begin_inset Formula
 \[
 MRS_{t,t+1}=\frac{\partial U/\partial c_{t}}{\partial U/\partial c_{t+1}}=\frac{\beta^{t}u'(c_{t})}{\beta^{t+1}u'(c_{t+1})}=\frac{u'(c_{t})}{\beta u'(c_{t+1})}
 \]
@@ -762,16 +762,16 @@ reference "eq:ch08/budget-constraint"
 
 \end_inset
 
-) の 
+) の
 \begin_inset Formula $c_{t-1}$
 \end_inset
 
-, 
+,
 \begin_inset Formula $c_{t}$
 \end_inset
 
  に掛かる係数を見ればよい。
-\begin_inset Formula 
+\begin_inset Formula
 \[
 \text{相対価格}=\frac{1/(1+R_{t})}{1/(1+R_{t+1})}=1+r_{t+1}
 \]
@@ -779,7 +779,7 @@ reference "eq:ch08/budget-constraint"
 \end_inset
 
 したがって，最適に選ばれた消費計画は
-\begin_inset Formula 
+\begin_inset Formula
 \begin{equation}
 \frac{u'(c_{t})}{u'(c_{t+1})}=\beta(1+r_{t+1})\label{eq:ch08/euler}
 \end{equation}
@@ -828,7 +828,7 @@ reference "chap:2期間最適消費モデル"
 \end_inset
 
 と特定できるので，
-\begin_inset Formula 
+\begin_inset Formula
 \begin{equation}
 c_{t+1}=\left[\beta(1+r_{t+1})\right]^{1/\theta}c_{t}\label{eq:ch08/euler-crra}
 \end{equation}
@@ -858,13 +858,13 @@ reference "eq:ch08/euler-crra"
 \end_inset
 
 ) は今期の消費から次期の消費を作る方程式になっている。しかし，これだけではシミュレーションを実行することはできない。なぜなら，消費系列の初期値
- 
+
 \begin_inset Formula $c_{1}$
 \end_inset
 
  は問題定式化時点では与えられておらず，効用最大化問題の解として定まるものだからである。シミュレーションを行うには，
 \series bold
-どうにかして 
+どうにかして
 \begin_inset Formula $c_{1}$
 \end_inset
 
@@ -880,7 +880,7 @@ reference "eq:ch08/budget-0"
 \end_inset
 
 ) をもう一度見てみよう。無限期先の将来の貯蓄残高
-\begin_inset Formula 
+\begin_inset Formula
 \[
 \lim_{t\to\infty}\frac{s_{t}}{1+R_{t}}
 \]
@@ -888,7 +888,7 @@ reference "eq:ch08/budget-0"
 \end_inset
 
 の割引現在価値は非ポンジー・ゲーム条件によって非負であることが分かっている。果たして，正の値を取ることはあるだろうか？
-\begin_inset Formula 
+\begin_inset Formula
 \[
 \lim_{t\to\infty}\frac{s_{t}}{1+R_{t}}>0\Longrightarrow\sum_{t=1}^{\infty}\frac{c_{t}}{1+R_{t}}<\sum_{t=1}^{\infty}\frac{w_{t}}{1+R_{t}}+s_{0}
 \]
@@ -900,7 +900,7 @@ reference "eq:ch08/budget-0"
 \begin_inset Formula $\lim_{t\to\infty}\frac{s_{t}}{1+R_{t}}>0$
 \end_inset
 
- となるような消費計画は最適ではありえない。オイラー条件と 
+ となるような消費計画は最適ではありえない。オイラー条件と
 \begin_inset Formula $\lim_{t\to\infty}\frac{s_{t}}{1+R_{t}}\le0$
 \end_inset
 
@@ -913,7 +913,7 @@ reference "eq:ch08/budget-0"
 \end_layout
 
 \begin_layout Proposition
-オイラー条件 
+オイラー条件
 \begin_inset CommandInset ref
 LatexCommand eqref
 reference "eq:ch08/euler"
@@ -924,7 +924,7 @@ noprefix "false"
 \end_inset
 
  と横断性条件
-\begin_inset Formula 
+\begin_inset Formula
 \begin{equation}
 \lim_{t\to\infty}\frac{s_{t}}{1+R_{t}}=0\label{eq:ch08/tvc}
 \end{equation}
@@ -953,7 +953,7 @@ reference "eq:ch08/tvc"
 \end_layout
 
 \begin_layout Standard
-\begin_inset Formula 
+\begin_inset Formula
 \begin{align*}
 \lim_{t\to\infty}\frac{s_{t}}{1+R_{t}} & =\lim_{t\to\infty}\frac{w_{t}-c_{t}+(1+r_{t})s_{t-1}}{1+R_{t}}\\
  & =\lim_{t\to\infty}\frac{w_{t}-c_{t}}{1+R_{t}}+\lim_{t\to\infty}\frac{s_{t-1}}{1+R_{t-1}}
@@ -962,7 +962,7 @@ reference "eq:ch08/tvc"
 \end_inset
 
 より，
-\begin_inset Formula 
+\begin_inset Formula
 \[
 \lim_{t\to\infty}\frac{w_{t}-c_{t}}{1+R_{t}}=0
 \]
@@ -974,7 +974,7 @@ reference "eq:ch08/tvc"
 \end_layout
 
 \begin_layout Standard
-オイラー条件 
+オイラー条件
 \begin_inset CommandInset ref
 LatexCommand eqref
 reference "eq:ch08/euler"
@@ -985,7 +985,7 @@ noprefix "false"
 \end_inset
 
  より，
-\begin_inset Formula 
+\begin_inset Formula
 \[
 \frac{1}{1+r_{t+1}}=\frac{\beta u'(c_{t+1})}{u'(c_{t})}
 \]
@@ -993,7 +993,7 @@ noprefix "false"
 \end_inset
 
 したがって，
-\begin_inset Formula 
+\begin_inset Formula
 \begin{align*}
 \frac{1}{1+R_{t}} & =\left(\frac{1}{1+r_{1}}\right)\left(\frac{1}{1+r_{2}}\right)\left(\frac{1}{1+r_{3}}\right)\times\cdots\times\left(\frac{1}{1+r_{t}}\right)\\
  & =\left(\frac{1}{1+r_{1}}\right)\left(\frac{\beta u'(c_{2})}{u'(c_{1})}\right)\left(\frac{\beta u'(c_{3})}{u'(c_{2})}\right)\times\cdots\times\left(\frac{\beta u'(c_{t})}{u'(c_{t-1})}\right)\\
@@ -1003,7 +1003,7 @@ noprefix "false"
 \end_inset
 
 横断性条件は次のように書き換えることができる。
-\begin_inset Formula 
+\begin_inset Formula
 \[
 \lim_{t\to\infty}\beta^{t-1}u'(c_{t})s_{t}=0
 \]
@@ -1050,23 +1050,23 @@ status open
 \end_inset
 
 として眺めてみよう。
-\begin_inset Formula 
+\begin_inset Formula
 \[
 (1+r_{1})u'(c_{1})=(1+R_{t})\beta^{t-1}u'(c_{t})
 \]
 
 \end_inset
 
-この式が任意の 
+この式が任意の
 \begin_inset Formula $t$
 \end_inset
 
- で成り立つので 
+ で成り立つので
 \begin_inset Formula $t\to\infty$
 \end_inset
 
  としても成り立つはずだ。すなわち，
-\begin_inset Formula 
+\begin_inset Formula
 \begin{equation}
 (1+r_{1})u'(c_{1})=\lim_{t\to\infty}(1+R_{t})\beta^{t-1}u'(c_{t})\label{eq:initial}
 \end{equation}
@@ -1102,7 +1102,7 @@ reference "eq:initial"
 
 \end_inset
 
-) の右辺が収束して初期値 
+) の右辺が収束して初期値
 \begin_inset Formula $c_{1}$
 \end_inset
 
@@ -1114,7 +1114,7 @@ To be completed。
 \end_layout
 
 \begin_layout Proof
-\begin_inset Formula 
+\begin_inset Formula
 \[
 (1+r_{1})u'(c_{1})=\lim_{t\to\infty}(1+R_{t})\beta^{t-1}u'(c_{t})\frac{s_{t}}{s_{t}}=\lim_{t\to\infty}\frac{\beta^{t-1}u'(c_{t})s_{t}}{s_{t}/(1+R_{t})}
 \]
@@ -1147,7 +1147,7 @@ status open
 \end_layout
 
 \begin_layout Plain Layout
-\begin_inset Formula 
+\begin_inset Formula
 \[
 \frac{(1+R_{t})\beta^{t-1}u'(c_{t})}{1+r_{1}}-\frac{(1+R_{s})\beta^{s-1}u'(c_{s})}{1+r_{1}}=\frac{(1+R_{s})\beta^{s-1}}{1+r_{1}}\left[\beta^{t-s}\left(\frac{1+R_{t}}{1+R_{s}}\right)u'(c_{t})-u'(c_{s})\right]
 \]
@@ -1158,7 +1158,7 @@ status open
 \end_layout
 
 \begin_layout Plain Layout
-\begin_inset Formula 
+\begin_inset Formula
 \begin{align*}
 (1+r_{1})u'(c_{1}) & =\lim_{t\to\infty}(1+R_{t})\beta^{t-1}u'(c_{t})\frac{s_{t}}{s_{t}}\\
  & =\lim_{t\to\infty}\frac{\beta^{t-1}u'(c_{t})s_{t}}{s_{t}/(1+R_{t})}
@@ -1167,7 +1167,7 @@ status open
 \end_inset
 
 
-\begin_inset Formula 
+\begin_inset Formula
 \[
 \frac{\beta^{t-1}u'(c_{t})s_{t}}{s_{t}/(1+R_{t})}
 \]
@@ -1203,7 +1203,7 @@ status open
 
 \begin_layout Standard
 企業行動はソローモデルとほとんど同じである。総生産は
-\begin_inset Formula 
+\begin_inset Formula
 \[
 Y_{t}=F(K_{t-1},A_{t-1}L_{t-1})
 \]
@@ -1218,11 +1218,11 @@ Y_{t}=F(K_{t-1},A_{t-1}L_{t-1})
 \begin_inset Formula $K_{t}$
 \end_inset
 
-, 
+,
 \begin_inset Formula $L_{t}$
 \end_inset
 
-, 
+,
 \begin_inset Formula $A_{t}$
 \end_inset
 
@@ -1230,7 +1230,7 @@ Y_{t}=F(K_{t-1},A_{t-1}L_{t-1})
 \begin_inset Formula $t$
 \end_inset
 
- 期の生産，資本ストック，労働需要，技術水準である。 
+ 期の生産，資本ストック，労働需要，技術水準である。
 \begin_inset Formula $F$
 \end_inset
 
@@ -1238,16 +1238,16 @@ Y_{t}=F(K_{t-1},A_{t-1}L_{t-1})
 \end_layout
 
 \begin_layout Assumption
-労働 
+労働
 \begin_inset Formula $L$
 \end_inset
 
- と技術 
+ と技術
 \begin_inset Formula $A$
 \end_inset
 
  は以下の外生的な成長ルールに従うと仮定する。
-\begin_inset Formula 
+\begin_inset Formula
 \begin{align*}
 L_{t} & =(1+n)L_{t-1}\\
 A_{t} & =(1+g)A_{t-1}
@@ -1296,7 +1296,7 @@ status open
 
 \begin_layout Standard
 利潤最大化条件により，
-\begin_inset Formula 
+\begin_inset Formula
 \begin{align*}
 \frac{\partial F}{\partial K}(K_{t-1},A_{t-1}L_{t-1}) & =r_{t}+\delta\\
 \frac{\partial F}{\partial L}(K_{t-1},A_{t-1}L_{t-1}) & =w_{t}
@@ -1308,11 +1308,11 @@ status open
 \begin_inset Formula $r_{t}$
 \end_inset
 
-, 
+,
 \begin_inset Formula $w_{t}$
 \end_inset
 
-, 
+,
 \begin_inset Formula $\delta$
 \end_inset
 
@@ -1321,7 +1321,7 @@ status open
 
 \begin_layout Standard
 資本蓄積の方程式は，
-\begin_inset Formula 
+\begin_inset Formula
 \[
 K_{t}-K_{t-1}=Y_{t}-C_{t}-\delta K_{t-1}
 \]
@@ -1336,7 +1336,7 @@ K_{t}-K_{t-1}=Y_{t}-C_{t}-\delta K_{t-1}
 \begin_inset Formula $Y_{t}-C_{t}$
 \end_inset
 
- は 
+ は
 \begin_inset Formula $t$
 \end_inset
 
@@ -1344,16 +1344,16 @@ K_{t}-K_{t-1}=Y_{t}-C_{t}-\delta K_{t-1}
 \begin_inset Formula $t$
 \end_inset
 
- 気に起こる資本ストックの変化 
+ 気に起こる資本ストックの変化
 \begin_inset Formula $K_{t}-K_{t-1}$
 \end_inset
 
- は粗投資から資本減耗を差し引いたものになる。資本蓄積方程式を 
+ は粗投資から資本減耗を差し引いたものになる。資本蓄積方程式を
 \begin_inset Formula $A_{t}L_{t}$
 \end_inset
 
  で除すと
-\begin_inset Formula 
+\begin_inset Formula
 \[
 \frac{K_{t}}{A_{t}L_{t}}=\frac{Y_{t}}{A_{t}L_{t}}-\frac{C_{t}}{A_{t}L_{t}}+(1-\delta)\frac{K_{t-1}}{A_{t}L_{t}}
 \]
@@ -1361,7 +1361,7 @@ K_{t}-K_{t-1}=Y_{t}-C_{t}-\delta K_{t-1}
 \end_inset
 
 ここで，効率労働あたりの資本，生産，消費
-\begin_inset Formula 
+\begin_inset Formula
 \[
 k_{t}=\frac{K_{t}}{A_{t}L_{t}},\quad y_{t}=f(k_{t-1})=\frac{Y_{t}}{A_{t-1}L_{t-1}},\quad c_{t}=\frac{C_{t}}{A_{t-1}L_{t-1}}
 \]
@@ -1369,7 +1369,7 @@ k_{t}=\frac{K_{t}}{A_{t}L_{t}},\quad y_{t}=f(k_{t-1})=\frac{Y_{t}}{A_{t-1}L_{t-1
 \end_inset
 
  を導入すると，資本蓄積方程式は，
-\begin_inset Formula 
+\begin_inset Formula
 \begin{equation}
 k_{t}=\frac{f(k_{t-1})-c_{t}+(1-\delta)k_{t-1}}{(1+g)(1+n)}\label{eq:ch08/dynamics-of-k}
 \end{equation}
@@ -1381,7 +1381,7 @@ k_{t}=\frac{f(k_{t-1})-c_{t}+(1-\delta)k_{t-1}}{(1+g)(1+n)}\label{eq:ch08/dynami
 status open
 
 \begin_layout Plain Layout
-自分に対するコメント：フロー変数の効率労働あたりの量を 
+自分に対するコメント：フロー変数の効率労働あたりの量を
 \begin_inset Formula $A_{t-1}L_{t-1}$
 \end_inset
 
@@ -1402,19 +1402,19 @@ status open
 \end_layout
 
 \begin_layout Standard
-家計の行動はラムゼー問題の解によって定まるとする。ここでは，経済のすべての経済主体が1つの家計に属していると考えよう。個々の経済主体は 
+家計の行動はラムゼー問題の解によって定まるとする。ここでは，経済のすべての経済主体が1つの家計に属していると考えよう。個々の経済主体は
 \begin_inset Formula $t$
 \end_inset
 
  期に
-\begin_inset Formula 
+\begin_inset Formula
 \[
 \bar{c}_{t}=\frac{C_{t}}{L_{t-1}}
 \]
 
 \end_inset
 
-を消費し，その消費によって 
+を消費し，その消費によって
 \begin_inset Formula $u(\bar{c}_{t})$
 \end_inset
 
@@ -1426,7 +1426,7 @@ status open
 \begin_inset Formula $t$
 \end_inset
 
- 期に生まれる個人は 
+ 期に生まれる個人は
 \begin_inset Formula $t$
 \end_inset
 
@@ -1436,7 +1436,7 @@ status open
 \end_inset
 
 。家計全体の効用は時間方向には割引現在効用の総和，空間方向には総人口についての総和を取ったものとなる。したがって，家計は目的関数
-\begin_inset Formula 
+\begin_inset Formula
 \[
 \sum_{t=1}^{\infty}\beta^{t-1}L_{t-1}u(\bar{c}_{t})
 \]
@@ -1448,7 +1448,7 @@ status open
 \end_inset
 
  であることに注意すると，
-\begin_inset Formula 
+\begin_inset Formula
 \[
 \sum_{t=1}^{\infty}\left\{ \beta(1+n)\right\} ^{t-1}u(\bar{c}_{t})
 \]
@@ -1459,16 +1459,16 @@ status open
 \end_layout
 
 \begin_layout Assumption
-割引因子 
+割引因子
 \begin_inset Formula $\beta$
 \end_inset
 
- と人口成長率 
+ と人口成長率
 \begin_inset Formula $n$
 \end_inset
 
  は以下の関係を満たす。
-\begin_inset Formula 
+\begin_inset Formula
 \[
 \beta<1+n.
 \]
@@ -1494,7 +1494,7 @@ status open
 \end_layout
 
 \begin_layout Standard
-\begin_inset Formula 
+\begin_inset Formula
 \[
 \bar{c}_{t}L_{t-1}+(S_{t}-S_{t-1})=r_{t}S_{t-1}+w_{t}L_{t-1}
 \]
@@ -1506,7 +1506,7 @@ status open
 \end_inset
 
  と置く），
-\begin_inset Formula 
+\begin_inset Formula
 \[
 \bar{c}_{t}+\frac{S_{t}}{L_{t-1}}=\frac{(1+r_{t})S_{t-1}}{L_{t-1}}+w_{t}
 \]
@@ -1514,7 +1514,7 @@ status open
 \end_inset
 
 
-\begin_inset Formula 
+\begin_inset Formula
 \[
 \bar{c}_{t}+\bar{s}_{t}=\left(\frac{1+r_{t}}{1+n}\right)\bar{s}_{t-1}+w_{t}
 \]
@@ -1522,14 +1522,14 @@ status open
 \end_inset
 
 累積的な利子率を
-\begin_inset Formula 
+\begin_inset Formula
 \[
 1+R_{t}=\left(\frac{1+r_{1}}{1+n}\right)\left(\frac{1+r_{2}}{1+n}\right)\times\cdots\times\left(\frac{1+r_{t}}{1+n}\right)
 \]
 
 \end_inset
 
-と定義すれば，前節の問題と同じように扱える。割引現在価値を 
+と定義すれば，前節の問題と同じように扱える。割引現在価値を
 \begin_inset Formula $t=T$
 \end_inset
 
@@ -1537,7 +1537,7 @@ status open
 \end_layout
 
 \begin_layout Standard
-\begin_inset Formula 
+\begin_inset Formula
 \[
 \sum_{t=1}^{T}\frac{\bar{c}_{t}}{1+R_{t}}+\frac{\bar{s}_{T}}{1+R_{T}}=\sum_{t=1}^{T}\frac{w_{t}}{1+R_{t}}+\bar{s}_{0}
 \]
@@ -1549,7 +1549,7 @@ status open
 \end_inset
 
  の極限を取ると，
-\begin_inset Formula 
+\begin_inset Formula
 \begin{equation}
 \sum_{t=1}^{\infty}\frac{\bar{c}_{t}}{1+R_{t}}+\lim_{t\to\infty}\frac{\bar{s}_{t}}{1+R_{t}}=\sum_{t=1}^{\infty}\frac{w_{t}}{1+R_{t}}+\bar{s}_{0}\label{eq:ch08/budget2}
 \end{equation}
@@ -1557,7 +1557,7 @@ status open
 \end_inset
 
 非ポンジー・ゲーム条件を課すと，次の生涯の制約条件を得る。
-\begin_inset Formula 
+\begin_inset Formula
 \[
 \sum_{t=1}^{\infty}\frac{\bar{c}_{t}}{1+R_{t}}\le\sum_{t=1}^{\infty}\frac{w_{t}}{1+R_{t}}+\bar{s}_{0}
 \]
@@ -1569,7 +1569,7 @@ status open
 
 \begin_layout Standard
 したがって，家計は次の制約条件付き最大化問題を解いて消費計画を立てる。
-\begin_inset Formula 
+\begin_inset Formula
 \begin{align*}
  & \max\sum_{t=1}^{\infty}\left\{ \beta(1+n)\right\} ^{t-1}u(\bar{c}_{t})\\
  & \text{subject to}\\
@@ -1579,7 +1579,7 @@ status open
 \end_inset
 
 この問題のオイラー条件は
-\begin_inset Formula 
+\begin_inset Formula
 \[
 \frac{\left\{ \beta(1+n)\right\} ^{t}u'(\bar{c}_{t})}{\left\{ \beta(1+n)\right\} ^{t+1}u'(\bar{c}_{t+1})}=\frac{1/(1+R_{t})}{1/(1+R_{t+1})}
 \]
@@ -1587,7 +1587,7 @@ status open
 \end_inset
 
 すなわち，
-\begin_inset Formula 
+\begin_inset Formula
 \begin{equation}
 \frac{u'(\bar{c}_{t})}{u'(\bar{c}_{t+1})}=\beta(1+r_{t+1})\label{eq:ch08/ramsey-growth-euler}
 \end{equation}
@@ -1598,19 +1598,19 @@ status open
 \end_layout
 
 \begin_layout Standard
-ここで，CRRA型の効用関数を仮定しよう。相対的危険回避度のパラメータを 
+ここで，CRRA型の効用関数を仮定しよう。相対的危険回避度のパラメータを
 \begin_inset Formula $\theta>0$
 \end_inset
 
  とすると，
-\begin_inset Formula 
+\begin_inset Formula
 \[
 u'(c)=c^{-\theta}
 \]
 
 \end_inset
 
- である。したがって， 
+ である。したがって，
 \begin_inset CommandInset ref
 LatexCommand eqref
 reference "eq:ch08/ramsey-growth-euler"
@@ -1618,7 +1618,7 @@ reference "eq:ch08/ramsey-growth-euler"
 \end_inset
 
  は次のように変形できる。
-\begin_inset Formula 
+\begin_inset Formula
 \[
 \frac{\bar{c}_{t+1}}{\bar{c}_{t}}=\left\{ \beta(1+r_{t+1})\right\} ^{1/\theta}
 \]
@@ -1629,12 +1629,12 @@ reference "eq:ch08/ramsey-growth-euler"
 \begin_inset Formula $c_{t}=\bar{c}_{t}/A_{t-1}$
 \end_inset
 
- と 
+ と
 \begin_inset Formula $A_{t}=(1+g)A_{t-1}$
 \end_inset
 
  に注意して効率労働あたりの式に変形すると，
-\begin_inset Formula 
+\begin_inset Formula
 \[
 \frac{\bar{c}_{t+1}/A_{t}}{\bar{c}_{t}/A_{t}}=\left\{ \beta(1+r_{t+1})\right\} ^{1/\theta}
 \]
@@ -1642,7 +1642,7 @@ reference "eq:ch08/ramsey-growth-euler"
 \end_inset
 
 したがって，
-\begin_inset Formula 
+\begin_inset Formula
 \begin{align}
 \frac{c_{t+1}}{c_{t}} & =\frac{\left\{ \beta(1+r_{t+1})\right\} ^{1/\theta}}{1+g}\label{eq:ch08/ramsey-growth-euler2}
 \end{align}
@@ -1681,7 +1681,7 @@ reference "eq:ch08/ramsey-growth-euler"
 
 \begin_layout Theorem
 最適成長モデルの均衡（あるいは，最適経路，optimal path）は次の動学方程式で特徴付けられる。
-\begin_inset Formula 
+\begin_inset Formula
 \begin{align}
 k_{t} & =\frac{f(k_{t-1})-c_{t}+(1-\delta)k_{t-1}}{(1+g)(1+n)}\label{eq:ch08/dyanamics-k}\\
 \frac{c_{t+1}}{c_{t}} & =\frac{\left[\beta\left\{ f'(k_{t})+1-\delta\right\} \right]^{1/\theta}}{1+g}\label{eq:ch08/dynamics-c}
@@ -1698,7 +1698,7 @@ k_{t} & =\frac{f(k_{t-1})-c_{t}+(1-\delta)k_{t-1}}{(1+g)(1+n)}\label{eq:ch08/dya
 \end_inset
 
  は横断性条件
-\begin_inset Formula 
+\begin_inset Formula
 \[
 \lim_{t\to\infty}\frac{k_{t}}{1+R_{t}}=0
 \]
@@ -1716,21 +1716,21 @@ k_{t} & =\frac{f(k_{t-1})-c_{t}+(1-\delta)k_{t-1}}{(1+g)(1+n)}\label{eq:ch08/dya
 \end_layout
 
 \begin_layout Proof
-式 
+式
 \begin_inset CommandInset ref
 LatexCommand eqref
 reference "eq:ch08/dynamics-of-k"
 
 \end_inset
 
-, 
+,
 \begin_inset CommandInset ref
 LatexCommand eqref
 reference "eq:ch08/ramsey-growth-euler2"
 
 \end_inset
 
- および資本の限界生産性が利子率と一致することを用いている。資本市場精算条件より 
+ および資本の限界生産性が利子率と一致することを用いている。資本市場精算条件より
 \begin_inset Formula $S_{t}=K_{t}$
 \end_inset
 
@@ -1745,7 +1745,7 @@ reference "eq:ch08/ramsey-growth-euler2"
 \end_layout
 
 \begin_layout Standard
-もし，初期値 
+もし，初期値
 \begin_inset Formula $(k_{0},c_{1})$
 \end_inset
 
@@ -1763,7 +1763,7 @@ reference "eq:ch08/dyanamics-k"
 
 \end_inset
 
-) より 
+) より
 \begin_inset Formula $k_{1}$
 \end_inset
 
@@ -1792,7 +1792,7 @@ reference "eq:ch08/dyanamics-k"
 
 \end_inset
 
-) より 
+) より
 \begin_inset Formula $k_{2}$
 \end_inset
 
@@ -1822,18 +1822,18 @@ reference "eq:ch08/dyanamics-k"
 
 \end_inset
 
-, 
+,
 \begin_inset CommandInset ref
 LatexCommand eqref
 reference "eq:ch08/dynamics-c"
 
 \end_inset
 
- は初期値 
+ は初期値
 \begin_inset Formula $k_{0}=K_{0}/(A_{0}L_{0})$
 \end_inset
 
- のみ与えられており，消費の初期値 
+ のみ与えられており，消費の初期値
 \begin_inset Formula $c_{1}$
 \end_inset
 
@@ -1845,7 +1845,7 @@ reference "eq:ch08/dynamics-c"
 \end_layout
 
 \begin_layout Standard
-この問題の設定では，定常状態 
+この問題の設定では，定常状態
 \begin_inset Formula $(k^{*},c^{*})$
 \end_inset
 
@@ -1857,7 +1857,7 @@ reference "eq:ch08/dynamics-c"
 \end_layout
 
 \begin_layout Standard
-\begin_inset Formula 
+\begin_inset Formula
 \begin{align*}
 k^{*} & =\frac{f(k^{*})-c^{*}+(1-\delta)k^{*}}{(1+g)(1+n)}\\
 1 & =\frac{\left[\beta\left\{ f'(k^{*})+1-\delta\right\} \right]^{1/\theta}}{1+g}.
@@ -1869,23 +1869,23 @@ k^{*} & =\frac{f(k^{*})-c^{*}+(1-\delta)k^{*}}{(1+g)(1+n)}\\
 \begin_inset Formula $f$
 \end_inset
 
-, 
+,
 \begin_inset Formula $\delta$
 \end_inset
 
-, 
+,
 \begin_inset Formula $\beta$
 \end_inset
 
-, 
+,
 \begin_inset Formula $g$
 \end_inset
 
-, 
+,
 \begin_inset Formula $\theta$
 \end_inset
 
-）が与えられれば，コンピュータを用いて数値的に解 
+）が与えられれば，コンピュータを用いて数値的に解
 \begin_inset Formula $(k^{*},c^{*})$
 \end_inset
 
@@ -1893,12 +1893,12 @@ k^{*} & =\frac{f(k^{*})-c^{*}+(1-\delta)k^{*}}{(1+g)(1+n)}\\
 \end_layout
 
 \begin_layout Standard
-最適成長モデルの最適経路 
+最適成長モデルの最適経路
 \begin_inset Formula $\left\{ (k_{t},c_{t+1})\right\} _{t=0}^{\infty}$
 \end_inset
 
  は，
-\begin_inset Formula 
+\begin_inset Formula
 \[
 \lim_{t\to\infty}k_{t}=k^{*},\qquad\lim_{t\to\infty}c_{t}=c^{*}
 \]
@@ -1911,7 +1911,7 @@ k^{*} & =\frac{f(k^{*})-c^{*}+(1-\delta)k^{*}}{(1+g)(1+n)}\\
 
 \begin_layout Standard
 マクロレベルの集計変数については，長期では
-\begin_inset Formula 
+\begin_inset Formula
 \[
 K_{t}\approx A_{t}L_{t}k^{*},\quad C_{t}\approx A_{t-1}L_{t-1}c^{*}
 \]
@@ -1919,7 +1919,7 @@ K_{t}\approx A_{t}L_{t}k^{*},\quad C_{t}\approx A_{t-1}L_{t-1}c^{*}
 \end_inset
 
 などが成り立つ。また，1人あたりの変数については
-\begin_inset Formula 
+\begin_inset Formula
 \[
 \frac{K_{t}}{L_{t}}\approx A_{t}k^{*},\quad\frac{C_{t}}{L_{t-1}}\approx A_{t-1}c^{*}
 \]
@@ -1939,7 +1939,7 @@ K_{t}\approx A_{t}L_{t}k^{*},\quad C_{t}\approx A_{t-1}L_{t-1}c^{*}
 \end_layout
 
 \begin_layout Itemize
-1人あたりの変数は 
+1人あたりの変数は
 \begin_inset Formula $g$
 \end_inset
 
@@ -1947,7 +1947,7 @@ K_{t}\approx A_{t}L_{t}k^{*},\quad C_{t}\approx A_{t-1}L_{t-1}c^{*}
 \end_layout
 
 \begin_layout Itemize
-集計量は 
+集計量は
 \begin_inset Formula $g+n+gn$
 \end_inset
 
@@ -1972,7 +1972,7 @@ K_{t}\approx A_{t}L_{t}k^{*},\quad C_{t}\approx A_{t-1}L_{t-1}c^{*}
 \end_layout
 
 \begin_layout Itemize
-賃金は 
+賃金は
 \begin_inset Formula $g$
 \end_inset
 
@@ -2002,7 +2002,7 @@ reference "eq:ch08/dyanamics-k"
 
 \end_inset
 
-, 
+,
 \begin_inset CommandInset ref
 LatexCommand eqref
 reference "eq:ch08/dynamics-c"
@@ -2024,23 +2024,23 @@ noprefix "false"
 \begin_inset Formula $c_{1}$
 \end_inset
 
- は横断性条件を用いなければ決まらない。つまり，適当に 
+ は横断性条件を用いなければ決まらない。つまり，適当に
 \begin_inset Formula $c_{1}$
 \end_inset
 
- を選んでシミュレーションして 
+ を選んでシミュレーションして
 \begin_inset Formula $k_{t}\to k^{*}$
 \end_inset
 
- と 
+ と
 \begin_inset Formula $c_{t}\to c^{*}$
 \end_inset
 
- が成り立っていることを確認して，ようやくそれが最適経路であるとわかる。手当たりしだいに 
+ が成り立っていることを確認して，ようやくそれが最適経路であるとわかる。手当たりしだいに
 \begin_inset Formula $c_{1}$
 \end_inset
 
- を変化させてシミュレーションすることもできるが効率がよくないので，ここでは 
+ を変化させてシミュレーションすることもできるが効率がよくないので，ここでは
 \begin_inset CommandInset citation
 LatexCommand citet
 key "RHasumi"
@@ -2053,7 +2053,7 @@ literal "false"
 
 \begin_layout Standard
 動学方程式は
-\begin_inset Formula 
+\begin_inset Formula
 \[
 k_{t}=\frac{f(k_{t-1})-c_{t}+(1-\delta)k_{t-1}}{(1+g)(1+n)}\qquad c_{t+1}=\frac{c_{t}\left[\beta\left\{ f'(k_{t})+1-\delta\right\} \right]^{1/\theta}}{1+g}
 \]
@@ -2065,7 +2065,7 @@ k_{t}=\frac{f(k_{t-1})-c_{t}+(1-\delta)k_{t-1}}{(1+g)(1+n)}\qquad c_{t+1}=\frac{
 \end_inset
 
  に対して，
-\begin_inset Formula 
+\begin_inset Formula
 \[
 k_{1}=\frac{f(k_{0})-c_{1}+(1-\delta)k_{0}}{(1+g)(1+n)}\qquad c_{2}=\frac{c_{1}\left[\beta\left\{ f'(k_{1})+1-\delta\right\} \right]^{1/\theta}}{1+g}
 \]
@@ -2080,7 +2080,7 @@ k_{1}=\frac{f(k_{0})-c_{1}+(1-\delta)k_{0}}{(1+g)(1+n)}\qquad c_{2}=\frac{c_{1}\
 \end_layout
 
 \begin_layout Standard
-\begin_inset Formula 
+\begin_inset Formula
 \[
 k_{2}=\frac{f(k_{1})-c_{2}+(1-\delta)k_{1}}{(1+g)(1+n)}\qquad c_{3}=\frac{c_{2}\left[\beta\left\{ f'(k_{2})+1-\delta\right\} \right]^{1/\theta}}{1+g}
 \]
@@ -2091,7 +2091,7 @@ k_{2}=\frac{f(k_{1})-c_{2}+(1-\delta)k_{1}}{(1+g)(1+n)}\qquad c_{3}=\frac{c_{2}\
 \end_layout
 
 \begin_layout Standard
-\begin_inset Formula 
+\begin_inset Formula
 \[
 k_{3}=\frac{f(k_{2})-c_{3}+(1-\delta)k_{2}}{(1+g)(1+n)}\qquad c_{4}=\frac{c_{3}\left[\beta\left\{ f'(k_{3})+1-\delta\right\} \right]^{1/\theta}}{1+g}
 \]
@@ -2099,7 +2099,7 @@ k_{3}=\frac{f(k_{2})-c_{3}+(1-\delta)k_{2}}{(1+g)(1+n)}\qquad c_{4}=\frac{c_{3}\
 \end_inset
 
 
-\begin_inset Formula 
+\begin_inset Formula
 \[
 \vdots
 \]
@@ -2110,7 +2110,7 @@ k_{3}=\frac{f(k_{2})-c_{3}+(1-\delta)k_{2}}{(1+g)(1+n)}\qquad c_{4}=\frac{c_{3}\
 \end_layout
 
 \begin_layout Standard
-\begin_inset Formula 
+\begin_inset Formula
 \[
 k_{T}=\frac{f(k_{T-1})-c_{T}+(1-\delta)k_{T-1}}{(1+g)(1+n)}\qquad c_{T+1}=\frac{c_{T}\left[\beta\left\{ f'(k_{T})+1-\delta\right\} \right]^{1/\theta}}{1+g}
 \]
@@ -2124,11 +2124,11 @@ k_{T}=\frac{f(k_{T-1})-c_{T}+(1-\delta)k_{T-1}}{(1+g)(1+n)}\qquad c_{T+1}=\frac{
 \begin_inset Formula $t=0$
 \end_inset
 
- から 
+ から
 \begin_inset Formula $t=T-1$
 \end_inset
 
- までの 
+ までの
 \begin_inset Formula $2T$
 \end_inset
 
@@ -2143,7 +2143,7 @@ k_{T}=\frac{f(k_{T-1})-c_{T}+(1-\delta)k_{T-1}}{(1+g)(1+n)}\qquad c_{T+1}=\frac{
 \begin_inset Formula $k_{0},k_{1},\dots k_{T}$
 \end_inset
 
- で 
+ で
 \begin_inset Formula $T+1$
 \end_inset
 
@@ -2154,7 +2154,7 @@ k_{T}=\frac{f(k_{T-1})-c_{T}+(1-\delta)k_{T-1}}{(1+g)(1+n)}\qquad c_{T+1}=\frac{
 \begin_inset Formula $c_{1},c_{2},\dots,c_{T+1}$
 \end_inset
 
- で 
+ で
 \begin_inset Formula $T+1$
 \end_inset
 
@@ -2162,15 +2162,15 @@ k_{T}=\frac{f(k_{T-1})-c_{T}+(1-\delta)k_{T-1}}{(1+g)(1+n)}\qquad c_{T+1}=\frac{
 \end_layout
 
 \begin_layout Standard
-初期条件 
+初期条件
 \begin_inset Formula $k_{0}$
 \end_inset
 
- と，終端条件 
+ と，終端条件
 \begin_inset Formula $c_{T+1}=c^{*}$
 \end_inset
 
- を代入することで，未知変数の数を 
+ を代入することで，未知変数の数を
 \begin_inset Formula $2T$
 \end_inset
 
@@ -2238,14 +2238,14 @@ status open
 \end_layout
 
 \begin_layout Standard
-動学方程式 
+動学方程式
 \begin_inset CommandInset ref
 LatexCommand eqref
 reference "eq:ch08/dynamics-of-k"
 
 \end_inset
 
-, 
+,
 \begin_inset CommandInset ref
 LatexCommand eqref
 reference "eq:ch08/dynamics-c"
@@ -2313,7 +2313,7 @@ equation*
 \end_layout
 
 \begin_layout Standard
-動学方程式 
+動学方程式
 \begin_inset CommandInset ref
 LatexCommand eqref
 reference "eq:ch08/dyanamics-k"
@@ -2323,7 +2323,7 @@ noprefix "false"
 
 \end_inset
 
-, 
+,
 \begin_inset CommandInset ref
 LatexCommand eqref
 reference "eq:ch08/ramsey-growth-euler2"
@@ -2392,7 +2392,7 @@ equation*
 \end_layout
 
 \begin_layout Standard
-定常状態 
+定常状態
 \begin_inset Formula $(k^{*},c^{*})$
 \end_inset
 
@@ -2556,7 +2556,7 @@ cstar <- py$ss[[2]]
 \end_layout
 
 \begin_layout Standard
-定常状態の値は 
+定常状態の値は
 \begin_inset Formula $(k^{*},c^{*})\approx(\Sexpr{round(kstar,3)},\Sexpr{round(cstar,3)})$
 \end_inset
 
@@ -2587,7 +2587,7 @@ c[0]
 
 \end_inset
 
-。シンボルのタプルが生成される。負数のインデックスを使うと「最後から 
+。シンボルのタプルが生成される。負数のインデックスを使うと「最後から
 \begin_inset Formula $n$
 \end_inset
 
@@ -2694,11 +2694,11 @@ equation*
 \end_layout
 
 \begin_layout Standard
-初期値 
+初期値
 \begin_inset Formula $k_{0}$
 \end_inset
 
- と終端条件 
+ と終端条件
 \begin_inset Formula $c_{T+1}=c^{*}$
 \end_inset
 
@@ -2735,11 +2735,11 @@ status open
 \end_layout
 
 \begin_layout Standard
-得られた結果には 
+得られた結果には
 \begin_inset Formula $k_{0}$
 \end_inset
 
- と 
+ と
 \begin_inset Formula $c_{T+1}$
 \end_inset
 
@@ -2818,7 +2818,7 @@ centering
 \backslash
 includegraphics[height=0.3
 \backslash
-textheight]{Figure/ch08/show-1}
+textheight]{Figures/ch08/show-1}
 \end_layout
 
 \end_inset
@@ -2872,7 +2872,7 @@ solve_ss
 
 \end_inset
 
-: 資本蓄積方程式およびオイラー条件のシンボリックな表現，モデルのパラメータを引数に取り，定常状態 
+: 資本蓄積方程式およびオイラー条件のシンボリックな表現，モデルのパラメータを引数に取り，定常状態
 \begin_inset Formula $(k^{*},c^{*})$
 \end_inset
 
@@ -2897,7 +2897,7 @@ solve_optimal_growth
 \begin_inset Formula $c$
 \end_inset
 
- の終端条件，モデルのパラメータを引数に取り，最適経路 
+ の終端条件，モデルのパラメータを引数に取り，最適経路
 \begin_inset Formula $\left(\{k_{t}\}_{t=0}^{T},\{c_{t}\}_{t=1}^{T+1}\right)$
 \end_inset
 
@@ -2961,7 +2961,7 @@ eqm_k
 
 \end_inset
 
-: 均衡条件 
+: 均衡条件
 \begin_inset CommandInset ref
 LatexCommand eqref
 reference "eq:ch08/dynamics-of-k"
@@ -2981,7 +2981,7 @@ eqm_c
 
 \end_inset
 
-: 均衡条件 
+: 均衡条件
 \begin_inset CommandInset ref
 LatexCommand eqref
 reference "eq:ch08/dynamics-c"
@@ -3081,7 +3081,7 @@ eqm_k
 
 \end_inset
 
-: 均衡条件 
+: 均衡条件
 \begin_inset CommandInset ref
 LatexCommand eqref
 reference "eq:ch08/dynamics-of-k"
@@ -3101,7 +3101,7 @@ eqm_c
 
 \end_inset
 
-: 均衡条件 
+: 均衡条件
 \begin_inset CommandInset ref
 LatexCommand eqref
 reference "eq:ch08/dynamics-c"
@@ -3124,7 +3124,7 @@ k_init
 
 \end_inset
 
-: 
+:
 \begin_inset Formula $k$
 \end_inset
 
@@ -3238,7 +3238,7 @@ centering
 \backslash
 includegraphics[height=0.3
 \backslash
-textheight]{Figure/ch08/example-1}
+textheight]{Figures/ch08/example-1}
 \end_layout
 
 \end_inset
@@ -3291,7 +3291,7 @@ name "fig:最適成長経路-1"
 \begin_inset Formula $g$
 \end_inset
 
- が 0.02 から 0.03 に上昇した。 
+ が 0.02 から 0.03 に上昇した。
 \end_layout
 
 \begin_layout Standard
@@ -3434,7 +3434,7 @@ centering
 \backslash
 includegraphics[height=0.3
 \backslash
-textheight]{Figure/ch08/transition-plot-1}
+textheight]{Figures/ch08/transition-plot-1}
 \end_layout
 
 \end_inset
@@ -3477,7 +3477,7 @@ name "fig:移行過程"
 \end_layout
 
 \begin_layout Standard
-フォワード・ルッキングなモデルの解法はこの章で紹介した方法がベストという訳ではない。うまく行かない例を見つけるには，さきほどのコードを 
+フォワード・ルッキングなモデルの解法はこの章で紹介した方法がベストという訳ではない。うまく行かない例を見つけるには，さきほどのコードを
 \begin_inset Flex Code
 status open
 
@@ -3492,7 +3492,7 @@ T
 \begin_inset Formula $c_{T+1}=c^{*}$
 \end_inset
 
- が成り立つなら必ず 
+ が成り立つなら必ず
 \begin_inset Formula $k_{T}\neq k^{*}$
 \end_inset
 
@@ -3502,7 +3502,7 @@ T
 \begin_layout Standard
 この章で用いた解法は理論的に高度なことが要求されないという大きな利点があるものの，定常状態の周りで不安定になるので，少し使いにくいケースもある。マクロ経済分析の
 多くは定常状態の周りの状況を分析することを主眼としているからだ。定常状態の周りの分析をきちんと実行するためには，別の手法を用いる方がよい。非線形性と真っ向勝負す
-るなら動的計画法を用いる 
+るなら動的計画法を用いる
 \begin_inset CommandInset citation
 LatexCommand citep
 key "Stachurski2009"
@@ -3511,7 +3511,7 @@ literal "false"
 \end_inset
 
 。関数解析の入門的な知識が必要になるのでじっくり取り組もう。非線形性が強くない場合や，おおよその傾向を掴むことが目的であれば，定常状態周りの線形近似を用いること
-もできる 
+もできる
 \begin_inset CommandInset citation
 LatexCommand citep
 key "Kato2006"
@@ -3539,8 +3539,8 @@ status open
 \begin_inset CommandInset bibtex
 LatexCommand bibtex
 btprint "btPrintCited"
-bibfiles "../Bibliography/ref,../Bibliography/software"
-options "Styles/jecon"
+bibfiles "References/ref,References/software"
+options "Include/jecon"
 
 \end_inset
 

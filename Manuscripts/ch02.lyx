@@ -6,11 +6,11 @@
 \origin unavailable
 \textclass scrbook
 \begin_preamble
-\input{Include/preamble.tex}
+\input{Include/ch-preamble.tex}
 \end_preamble
 \options dvipdfmx,a5paper,9pt
 \use_default_options true
-\master _main.lyx
+\master all.lyx
 \begin_modules
 knitr
 theorems-ams-chap-bytype
@@ -100,12 +100,12 @@ status open
 
 \begin_layout Plain Layout
 
-<<setup-02, include=FALSE>>= 
+<<setup-02, include=FALSE>>=
 \end_layout
 
 \begin_layout Plain Layout
 
-source('Knitr/setup.R') 
+source('Knitr/setup.R')
 \end_layout
 
 \begin_layout Plain Layout
@@ -159,7 +159,7 @@ LatexCommand tableofcontents
 \end_layout
 
 \begin_layout Chapter
-物価指数とインフレーション 
+物価指数とインフレーション
 \begin_inset CommandInset label
 LatexCommand label
 name "chap:物価指数とインフレーション"
@@ -245,12 +245,12 @@ Matplotlib
 \end_layout
 
 \begin_layout Standard
-数の集合として実数全体の集合 
+数の集合として実数全体の集合
 \begin_inset Formula $\mathbb{R}$
 \end_inset
 
  を考える。ひとまず，ベクトルとは一定の個数分だけ数字を並べたものと考えておこう。
-\begin_inset Formula 
+\begin_inset Formula
 \[
 \begin{bmatrix}x_{1}\\
 x_{2}\\
@@ -261,29 +261,29 @@ x_{d}
 
 \end_inset
 
-自然数 
+自然数
 \begin_inset Formula $d$
 \end_inset
 
  は並べた数字の個数を表す。これは状況に応じて必要な数を固定する。縦に並べると余白が増えてしまうので，横に並べて省スペース化できる方が便利である。
-\begin_inset Formula 
+\begin_inset Formula
 \[
 \boldsymbol{x}=(x_{1},x_{2},\dots,x_{d}).
 \]
 
 \end_inset
 
-縦に数字を並べると要素ごとの足し算が見やすくなったり，サイズが 
+縦に数字を並べると要素ごとの足し算が見やすくなったり，サイズが
 \begin_inset Formula $n\times1$
 \end_inset
 
  である行列と同一視できるので行列との積の計算に大変都合がよかったりといった利点がある。本書では，状況に応じて都合のよい方を使う。どうしても「数を横に並べたベク
-トル（サイズが 
+トル（サイズが
 \begin_inset Formula $1\times n$
 \end_inset
 
  の行列）」を書く必要があるときには，
-\begin_inset Formula 
+\begin_inset Formula
 \[
 \begin{bmatrix}x_{1} & x_{2} & \cdots & x_{n}\end{bmatrix}
 \]
@@ -294,7 +294,7 @@ x_{d}
 \end_layout
 
 \begin_layout Standard
-固定した 
+固定した
 \begin_inset Formula $d$
 \end_inset
 
@@ -306,7 +306,7 @@ x_{d}
 \begin_inset Formula $\mathbb{R}$
 \end_inset
 
- に含まれる数字が 
+ に含まれる数字が
 \begin_inset Formula $d$
 \end_inset
 
@@ -342,7 +342,7 @@ x_{d}
 \begin_inset Formula $\boldsymbol{x}$
 \end_inset
 
-, 
+,
 \begin_inset Formula $\boldsymbol{y}\in\mathbb{R}^{d}$
 \end_inset
 
@@ -351,7 +351,7 @@ x_{d}
 \end_inset
 
  に対して，
-\begin_inset Formula 
+\begin_inset Formula
 \[
 \alpha\boldsymbol{x}+\beta\boldsymbol{y}=\alpha\begin{bmatrix}x_{1}\\
 x_{2}\\
@@ -370,7 +370,7 @@ y_{d}
 
 \end_inset
 
-と定義する。最右辺も数字を 
+と定義する。最右辺も数字を
 \begin_inset Formula $d$
 \end_inset
 
@@ -390,7 +390,7 @@ y_{d}
 \end_inset
 
  としよう。
-\begin_inset Formula 
+\begin_inset Formula
 \[
 \boldsymbol{x}=\begin{bmatrix}1\\
 3\\
@@ -404,7 +404,7 @@ y_{d}
 \end_inset
 
 に対して，
-\begin_inset Formula 
+\begin_inset Formula
 \[
 \boldsymbol{x}+\boldsymbol{y}=\begin{bmatrix}3\\
 3\\
@@ -419,7 +419,7 @@ y_{d}
 \end_inset
 
  であれば，
-\begin_inset Formula 
+\begin_inset Formula
 \[
 \alpha\boldsymbol{x}=\begin{bmatrix}-1\\
 -3\\
@@ -441,7 +441,7 @@ y_{d}
 
 \begin_layout Standard
 ベクトル同士の引き算は，和とスカラー倍を組み合わせて，
-\begin_inset Formula 
+\begin_inset Formula
 \[
 \boldsymbol{x}-\boldsymbol{y}=\boldsymbol{x}+(-1)\boldsymbol{y}
 \]
@@ -460,19 +460,19 @@ y_{d}
 \begin_inset Formula $\boldsymbol{x}$
 \end_inset
 
-, 
+,
 \begin_inset Formula $\boldsymbol{y}\in\mathbb{R}^{d}$
 \end_inset
 
  に対して，
-\begin_inset Formula 
+\begin_inset Formula
 \[
 \boldsymbol{x}\cdot\boldsymbol{y}=x_{1}y_{1}+x_{2}y_{2}+\cdots+x_{d}y_{d}=\sum_{i=1}^{d}x_{i}y_{i}
 \]
 
 \end_inset
 
-で定義される 
+で定義される
 \begin_inset Formula $\boldsymbol{x}\cdot\boldsymbol{y}\in\mathbb{R}$
 \end_inset
 
@@ -485,11 +485,11 @@ status open
 \begin_inset Formula $(\boldsymbol{x},\boldsymbol{y})$
 \end_inset
 
-, 
+,
 \begin_inset Formula $\langle\boldsymbol{x},\boldsymbol{y}\rangle$
 \end_inset
 
-, あるいは 
+, あるいは
 \begin_inset Formula $\langle\boldsymbol{x}|\boldsymbol{y}\rangle$
 \end_inset
 
@@ -506,12 +506,12 @@ status open
 \begin_inset Formula $\boldsymbol{p}=(p_{1},p_{2},p_{3})$
 \end_inset
 
-，取引量を 
+，取引量を
 \begin_inset Formula $\boldsymbol{x}=(x_{1},x_{2},x_{3})$
 \end_inset
 
  とする。このとき，取引総額は
-\begin_inset Formula 
+\begin_inset Formula
 \[
 \boldsymbol{p}\cdot\boldsymbol{x}=p_{1}x_{1}+p_{2}x_{2}+p_{3}x_{3}
 \]
@@ -552,7 +552,7 @@ status open
 \series bold
 NumPy
 \series default
- のベクトル（後述）同士では乗算・除算が定義されていて，通常の乗算記号 
+ のベクトル（後述）同士では乗算・除算が定義されていて，通常の乗算記号
 \begin_inset Flex Code
 status open
 
@@ -562,7 +562,7 @@ status open
 
 \end_inset
 
- や除算記号 
+ や除算記号
 \begin_inset Flex Code
 status open
 
@@ -588,11 +588,11 @@ status open
 \end_layout
 
 \begin_layout Standard
-財・サービスの種類を 
+財・サービスの種類を
 \begin_inset Formula $i=1,2,\dots,N$
 \end_inset
 
- の 
+ の
 \begin_inset Formula $N$
 \end_inset
 
@@ -611,11 +611,11 @@ status open
 \begin_inset Formula $t$
 \end_inset
 
- 期の財グループ 
+ 期の財グループ
 \begin_inset Formula $i$
 \end_inset
 
- の価格を 
+ の価格を
 \begin_inset Formula $p_{t,i}$
 \end_inset
 
@@ -624,7 +624,7 @@ status open
 \end_inset
 
  時点からの価格の粗変化率は
-\begin_inset Formula 
+\begin_inset Formula
 \[
 \frac{p_{t,i}}{p_{0,i}}
 \]
@@ -637,7 +637,7 @@ status open
 \begin_layout Standard
 複数の財が存在する経済で，マクロ経済の価格を代表する「物価」，あるいはその変化，をどのように定義すればよいだろうか。ベクトルとベクトルの割り算は定義していないの
 で，
-\begin_inset Formula 
+\begin_inset Formula
 \begin{align*}
  & \frac{\boldsymbol{p}_{t}}{\boldsymbol{p}_{0}} & (\text{誤り！})
 \end{align*}
@@ -645,7 +645,7 @@ status open
 \end_inset
 
 とする訳にはいかないし，単純に算術平均
-\begin_inset Formula 
+\begin_inset Formula
 \begin{align*}
  & \frac{1}{N}\sum_{i=1}^{N}\frac{p_{t,i}}{p_{0,i}} & (\text{一般的には正しくない！})
 \end{align*}
@@ -657,28 +657,28 @@ status open
 \end_layout
 
 \begin_layout Standard
-すべての財に共通の重み 
+すべての財に共通の重み
 \begin_inset Formula $1/N$
 \end_inset
 
  をかけていることが問題なので，マーケットの大きさに応じた重みを掛ければよい。つまり，
-\begin_inset Formula 
+\begin_inset Formula
 \[
 \sum_{i=1}^{N}w_{i}\frac{p_{t,i}}{p_{0,i}}
 \]
 
 \end_inset
 
-のように計算すればよい。なお，重み 
+のように計算すればよい。なお，重み
 \begin_inset Formula $w_{i}$
 \end_inset
 
-, 
+,
 \begin_inset Formula $i=1,\dots,N$
 \end_inset
 
 , は次の性質を満たす。
-\begin_inset Formula 
+\begin_inset Formula
 \[
 \sum_{i=1}^{N}w_{i}=1.
 \]
@@ -693,15 +693,15 @@ status open
 \end_layout
 
 \begin_layout Standard
-財 
+財
 \begin_inset Formula $i$
 \end_inset
 
- の 
+ の
 \begin_inset Formula $t=0$
 \end_inset
 
- 時点における取引量を 
+ 時点における取引量を
 \begin_inset Formula $x_{0,i}$
 \end_inset
 
@@ -709,20 +709,20 @@ status open
 \begin_inset Formula $i=1,\dots,N$
 \end_inset
 
- についてベクトルにまとめて 
+ についてベクトルにまとめて
 \begin_inset Formula $\boldsymbol{x}_{0}=(x_{0,1},\dots,x_{0,N})$
 \end_inset
 
- と書く。この当時の 財 
+ と書く。この当時の 財
 \begin_inset Formula $i$
 \end_inset
 
- の市場価値（取引額）は 
+ の市場価値（取引額）は
 \begin_inset Formula $p_{0,i}x_{0,i}$
 \end_inset
 
  だった。すべての財について価値を合計したものは，内積を用いて次のように書くことができる。
-\begin_inset Formula 
+\begin_inset Formula
 \[
 \sum_{j=1}^{N}p_{0,j}x_{0,j}=\boldsymbol{p}_{0}\cdot\boldsymbol{x}_{0}
 \]
@@ -734,20 +734,20 @@ status open
 
 \begin_layout Standard
 \noindent
-これは，分析対象とするすべての財について 
+これは，分析対象とするすべての財について
 \begin_inset Formula $t=0$
 \end_inset
 
- 期の総取引額を計算したものである。この総取引額に占める財 
+ 期の総取引額を計算したものである。この総取引額に占める財
 \begin_inset Formula $i$
 \end_inset
 
- のシェアを 
+ のシェアを
 \begin_inset Formula $w_{i}^{L}$
 \end_inset
 
  としよう。すなわち，
-\begin_inset Formula 
+\begin_inset Formula
 \[
 w_{i}^{L}=\frac{p_{0,i}x_{0,i}}{\sum_{j=1}^{N}p_{0,j}x_{0,j}}=\frac{p_{0,i}x_{0,i}}{\boldsymbol{p}_{0}\cdot\boldsymbol{x}_{0}}
 \]
@@ -759,12 +759,12 @@ w_{i}^{L}=\frac{p_{0,i}x_{0,i}}{\sum_{j=1}^{N}p_{0,j}x_{0,j}}=\frac{p_{0,i}x_{0,
 
 \begin_layout Standard
 \noindent
-この 
+この
 \begin_inset Formula $w_{i}^{L}$
 \end_inset
 
  は「重み」が持つべき性質を持っている。なぜなら，
-\begin_inset Formula 
+\begin_inset Formula
 \[
 \sum_{i=1}^{N}w_{i}^{L}=\sum_{i=1}^{N}\left(\frac{p_{0,i}x_{0,i}}{\boldsymbol{p}_{0}\cdot\boldsymbol{x}_{0}}\right)=\frac{\boldsymbol{p}_{0}\cdot\boldsymbol{x}_{0}}{\boldsymbol{p}_{0}\cdot\boldsymbol{x}_{0}}=1.
 \]
@@ -776,7 +776,7 @@ w_{i}^{L}=\frac{p_{0,i}x_{0,i}}{\sum_{j=1}^{N}p_{0,j}x_{0,j}}=\frac{p_{0,i}x_{0,
 
 \begin_layout Standard
 \noindent
-このように定義される重み 
+このように定義される重み
 \begin_inset Formula $\boldsymbol{w}^{L}=(w_{1}^{L},\dots,w_{N}^{L})$
 \end_inset
 
@@ -795,7 +795,7 @@ status open
 \end_inset
 
  (Laspeyres index) と呼ぶ。
-\begin_inset Formula 
+\begin_inset Formula
 \begin{align}
 (\text{ラスパイレス指数}) & =\sum_{i=1}^{N}w_{i}^{L}\frac{p_{t,i}}{p_{0,i}}\nonumber \\
  & =\sum_{i=1}^{N}\left(\frac{p_{0,i}x_{0,i}}{\boldsymbol{p}_{0}\cdot\boldsymbol{x}_{0}}\right)\frac{p_{t,i}}{p_{0,i}}\nonumber \\
@@ -827,15 +827,15 @@ name "subsec:パーシェ指数"
 \end_layout
 
 \begin_layout Standard
-財 
+財
 \begin_inset Formula $i$
 \end_inset
 
- の 
+ の
 \begin_inset Formula $t$
 \end_inset
 
- 期における取引量を 
+ 期における取引量を
 \begin_inset Formula $x_{t,i}$
 \end_inset
 
@@ -844,30 +844,30 @@ name "subsec:パーシェ指数"
 \end_inset
 
  とする。 次に考える重みは次のようなものである。
-\begin_inset Formula 
+\begin_inset Formula
 \[
 w_{i}^{P}=\frac{p_{0,i}x_{t,i}}{\sum_{j=1}^{N}p_{0,j}x_{t,j}}=\frac{p_{0,i}x_{t,i}}{\boldsymbol{p}_{0}\cdot\boldsymbol{x}_{t}}.
 \]
 
 \end_inset
 
-これは 
+これは
 \begin_inset Formula $t$
 \end_inset
 
- 期における市場の規模を，0 期の価格で評価したものになっている。この 
+ 期における市場の規模を，0 期の価格で評価したものになっている。この
 \begin_inset Formula $w_{i}^{P}$
 \end_inset
 
  は「重み」が持つべき性質を持っている。すなわち，
-\begin_inset Formula 
+\begin_inset Formula
 \[
 \sum_{i=1}^{N}w_{i}^{P}=\sum_{i=1}^{N}\left(\frac{p_{0,i}x_{t,i}}{\boldsymbol{p}_{0}\cdot\boldsymbol{x}_{t}}\right)=\frac{\boldsymbol{p}_{0}\cdot\boldsymbol{x}_{t}}{\boldsymbol{p}_{0}\cdot\boldsymbol{x}_{t}}=1.
 \]
 
 \end_inset
 
-このように定義される重み 
+このように定義される重み
 \begin_inset Formula $\boldsymbol{w}^{P}=(w_{1}^{P},\dots,w_{N}^{P})$
 \end_inset
 
@@ -889,7 +889,7 @@ status open
 \end_layout
 
 \begin_layout Standard
-\begin_inset Formula 
+\begin_inset Formula
 \begin{align}
 (\text{パーシェ指数}) & =\sum_{i=1}^{N}w_{i}^{P}\frac{p_{t,i}}{p_{0,i}}\nonumber \\
  & =\sum_{i=1}^{N}\left(\frac{p_{0,i}x_{t,i}}{\boldsymbol{p}_{0}\cdot\boldsymbol{x}_{t}}\right)\frac{p_{t,i}}{p_{0,i}}\nonumber \\
@@ -914,7 +914,7 @@ status open
 \end_layout
 
 \begin_layout Standard
-\begin_inset Formula 
+\begin_inset Formula
 \[
 \text{物価変化率}=\frac{\boldsymbol{p}_{t}\cdot\text{\fbox{\ensuremath{\phantom{\boldsymbol{x}_{t}}}}}}{\boldsymbol{p}_{0}\cdot\fbox{\ensuremath{\phantom{\boldsymbol{x}_{t}}}}}
 \]
@@ -925,7 +925,7 @@ status open
 \end_layout
 
 \begin_layout Standard
-パーシェ式の物価指数は 
+パーシェ式の物価指数は
 \begin_inset Formula $\fbox{\ensuremath{\phantom{\boldsymbol{x}_{t}}}}$
 \end_inset
 
@@ -933,7 +933,7 @@ status open
 \begin_inset Formula $t$
 \end_inset
 
-）の数量を用いる。一方，ラスパイレス式の物価指数は 
+）の数量を用いる。一方，ラスパイレス式の物価指数は
 \begin_inset Formula $\fbox{\ensuremath{\phantom{\boldsymbol{x}_{t}}}}$
 \end_inset
 
@@ -947,7 +947,7 @@ status open
 
 \begin_layout Plain Layout
 E.
- Wayne Nafziger, 
+ Wayne Nafziger,
 \emph on
 Economic Development
 \end_layout
@@ -1135,12 +1135,12 @@ baselineskip}
 \end_layout
 
 \begin_layout Standard
-ある財 
+ある財
 \begin_inset Formula $i$
 \end_inset
 
  が急激に値上がりしたとして，その財から別の財への代替が進んだとする。ラスパイレス指数の重み
-\begin_inset Formula 
+\begin_inset Formula
 \[
 w_{i}^{L}=\frac{p_{0,i}x_{0,i}}{\boldsymbol{p}_{0}\cdot\boldsymbol{x}_{0}}
 \]
@@ -1152,26 +1152,26 @@ w_{i}^{L}=\frac{p_{0,i}x_{0,i}}{\boldsymbol{p}_{0}\cdot\boldsymbol{x}_{0}}
 \end_inset
 
  の影響が大きく残る。一方，パーシェ指数の重み
-\begin_inset Formula 
+\begin_inset Formula
 \[
 w_{i}^{P}=\frac{p_{0,i}x_{t,i}}{\boldsymbol{p}_{0}\cdot\boldsymbol{x}_{t}}
 \]
 
 \end_inset
 
-は，財 
+は，財
 \begin_inset Formula $i$
 \end_inset
 
- の価格 
+ の価格
 \begin_inset Formula $p_{t,i}$
 \end_inset
 
- が上昇したことで起こる需要減で 
+ が上昇したことで起こる需要減で
 \begin_inset Formula $x_{t,i}$
 \end_inset
 
- が減少する効果は反映するものの，重みを計算する価格は 
+ が減少する効果は反映するものの，重みを計算する価格は
 \begin_inset Formula $p_{0,i}$
 \end_inset
 
@@ -1202,7 +1202,7 @@ status open
 \end_inset
 
 はパーシェ式とラスパイレス式の相乗平均を用いて，次のように定義される。
-\begin_inset Formula 
+\begin_inset Formula
 \[
 (\text{フィッシャー指数})=\sqrt{\underbrace{\frac{\boldsymbol{p}_{t}\cdot\boldsymbol{x}_{t}}{\boldsymbol{p}_{0}\cdot\boldsymbol{x}_{t}}}_{\text{パーシェ}}\times\underbrace{\frac{\boldsymbol{p}_{t}\cdot\boldsymbol{x}_{0}}{\boldsymbol{p}_{0}\cdot\boldsymbol{x}_{0}}}_{\text{ラスパイレス}}}.
 \]
@@ -1217,11 +1217,11 @@ status open
 \end_layout
 
 \begin_layout Standard
-ここまでに計算した物価指数，時点 
+ここまでに計算した物価指数，時点
 \begin_inset Formula $0$
 \end_inset
 
- を基準にして，時点 
+ を基準にして，時点
 \begin_inset Formula $t$
 \end_inset
 
@@ -1229,16 +1229,16 @@ status open
 \begin_inset Formula $\boldsymbol{x}_{*}=\boldsymbol{x}_{0}$
 \end_inset
 
- or 
+ or
 \begin_inset Formula $\boldsymbol{x}_{t}$
 \end_inset
 
- として，価格指数を 
+ として，価格指数を
 \begin_inset Formula $P_{t}$
 \end_inset
 
  と書こう。
-\begin_inset Formula 
+\begin_inset Formula
 \[
 P_{t}=\frac{\boldsymbol{p}_{t}\cdot\boldsymbol{x}_{*}}{\boldsymbol{p}_{0}\cdot\boldsymbol{x}_{*}}
 \]
@@ -1246,7 +1246,7 @@ P_{t}=\frac{\boldsymbol{p}_{t}\cdot\boldsymbol{x}_{*}}{\boldsymbol{p}_{0}\cdot\b
 \end_inset
 
 このようにすれば，平均物価の変遷を表す時系列を作ることが出来る。
-\begin_inset Formula 
+\begin_inset Formula
 \[
 P_{0}=1,\quad P_{1},\quad P_{2},\quad\cdots,\quad P_{t},\quad\cdots
 \]
@@ -1304,7 +1304,7 @@ status open
 \end_inset
 
 ）
-\begin_inset Formula 
+\begin_inset Formula
 \[
 \frac{\Delta P_{t}}{P_{t-1}}=\frac{P_{t}-P_{t-1}}{P_{t-1}}=\frac{P_{t}}{P_{t-1}}-1
 \]
@@ -1329,56 +1329,56 @@ status open
 \end_layout
 
 \begin_layout Standard
-上のように定義した 
+上のように定義した
 \begin_inset Formula $P_{t}$
 \end_inset
 
- は 
+ は
 \begin_inset Formula $t$
 \end_inset
 
  が大きくなるにつれて，経済活動の実態に合わなくなってくる。例えば，ラスパイレス指数の場合，
-\begin_inset Formula 
+\begin_inset Formula
 \[
 P_{t}^{\text{Laspeyres}}=\frac{\boldsymbol{p}_{t}\cdot\boldsymbol{x}_{0}}{\boldsymbol{p}_{0}\cdot\boldsymbol{x}_{0}}
 \]
 
 \end_inset
 
-の分子にある 
+の分子にある
 \begin_inset Formula $\boldsymbol{p}_{t}\cdot\boldsymbol{x}_{0}$
 \end_inset
 
- は価格 
+ は価格
 \begin_inset Formula $\boldsymbol{p}_{t}$
 \end_inset
 
- のもとでは全く現実味のない数量ベクトル 
+ のもとでは全く現実味のない数量ベクトル
 \begin_inset Formula $\boldsymbol{x}_{0}$
 \end_inset
 
  を使ってしまっているかもしれない。パーシェ指数の場合にも，
-\begin_inset Formula 
+\begin_inset Formula
 \[
 P_{t}^{\text{Paasche}}=\frac{\boldsymbol{p}_{t}\cdot\boldsymbol{x}_{t}}{\boldsymbol{p}_{0}\cdot\boldsymbol{x}_{t}}
 \]
 
 \end_inset
 
-の分母にある 
+の分母にある
 \begin_inset Formula $\boldsymbol{p}_{0}\cdot\boldsymbol{x}_{t}$
 \end_inset
 
- が価格 
+ が価格
 \begin_inset Formula $\boldsymbol{p}_{0}$
 \end_inset
 
  のもとでの経済活動では起こりそうにもない水準になるかもしれない。経済に新しい財がどんどん追加されたり，財の質的な向上と価格下落が著しい時代にあっては，このよう
-な問題が深刻になる。基準数量 
+な問題が深刻になる。基準数量
 \begin_inset Formula $\boldsymbol{x}_{0}$
 \end_inset
 
- や基準価格 
+ や基準価格
 \begin_inset Formula $\boldsymbol{p}_{0}$
 \end_inset
 
@@ -1396,7 +1396,7 @@ status open
 
 \end_inset
 
-と呼ぶ。このような問題に対処する1つの方法は，数量ベクトル 
+と呼ぶ。このような問題に対処する1つの方法は，数量ベクトル
 \begin_inset Formula $\boldsymbol{x}_{0}$
 \end_inset
 
@@ -1416,7 +1416,7 @@ status open
 \end_inset
 
 と呼ばれる算式が用いられることもある。連鎖方式の指数は，前年度の連鎖指数に前年度基準の価格指数を掛けることで計算される。つまり，
-\begin_inset Formula 
+\begin_inset Formula
 \begin{align*}
 \text{ラスパイレス式連鎖指数}_{t} & =\text{ラスパイレス式連鎖指数}_{t-1}\times\frac{\boldsymbol{p}_{t}\cdot\boldsymbol{x}_{t-1}}{\boldsymbol{p}_{t-1}\cdot\boldsymbol{x}_{t-1}}\\
 \text{パーシェ式連鎖指数}_{t} & =\text{パーシェ式連鎖指数}_{t-1}\times\frac{\boldsymbol{p}_{t}\cdot\boldsymbol{x}_{t}}{\boldsymbol{p}_{t-1}\cdot\boldsymbol{x}_{t}}\\
@@ -1435,7 +1435,7 @@ GDPデフレーターはパーシェ式の連鎖指数である。なお，連�
 \end_inset
 
  の値）は 1 と設定する（指数を100で基準化する場合は 100）。
-\begin_inset Formula 
+\begin_inset Formula
 \[
 \text{連鎖指数}_{0}=1
 \]
@@ -1450,7 +1450,7 @@ GDPデフレーターはパーシェ式の連鎖指数である。なお，連�
 \end_layout
 
 \begin_layout Description
-比較年 物価の水準を観察したい年のこと。上の式では 
+比較年 物価の水準を観察したい年のこと。上の式では
 \begin_inset Formula $t$
 \end_inset
 
@@ -1467,7 +1467,6 @@ GDPデフレーターはパーシェ式の連鎖指数である。なお，連�
 
 \begin_layout Description
 基準年 比較年の物価上昇率を計算するための基準となる年のこと。固定基準年方式の場合は参照年と同じで，0期を指す。連鎖方式の場合は比較年の前年，つまり
- 
 \begin_inset Formula $t-1$
 \end_inset
 
@@ -1484,15 +1483,15 @@ GDP 統計には，さらに，体系基準年という概念がある。GDP 統
 \end_layout
 
 \begin_layout Standard
-この章では，複数の数字をまとめたオブジェクトである，リストとタプルを導入し，その後 
+この章では，複数の数字をまとめたオブジェクトである，リストとタプルを導入し，その後
 \series bold
 NumPy
 \series default
- の 
+ の
 \series bold
 ndarray
 \series default
- オブジェクトを説明する。数学的なベクトルや行列を 
+ オブジェクトを説明する。数学的なベクトルや行列を
 \series bold
 ndarray
 \series default
@@ -1684,7 +1683,7 @@ status open
 \end_layout
 
 \begin_layout Standard
-上で定義したリスト 
+上で定義したリスト
 \begin_inset Flex Code
 status open
 
@@ -1698,7 +1697,7 @@ y
 \end_layout
 
 \begin_layout Itemize
-左から1つ目の要素は，整数 
+左から1つ目の要素は，整数
 \begin_inset Flex Code
 status open
 
@@ -1712,7 +1711,7 @@ status open
 \end_layout
 
 \begin_layout Itemize
-2つ目の要素は小数 
+2つ目の要素は小数
 \begin_inset Flex Code
 status open
 
@@ -1726,7 +1725,7 @@ status open
 \end_layout
 
 \begin_layout Itemize
-3つ目の要素はテキスト 
+3つ目の要素はテキスト
 \begin_inset Flex Code
 status open
 
@@ -1740,7 +1739,7 @@ status open
 \end_layout
 
 \begin_layout Itemize
-4つ目の要素はリスト 
+4つ目の要素はリスト
 \begin_inset Flex Code
 status open
 
@@ -1807,7 +1806,7 @@ status open
 
 \end_inset
 
-, 
+,
 \begin_inset Flex Code
 status open
 
@@ -1822,7 +1821,7 @@ status open
 \end_layout
 
 \begin_layout Itemize
-リストの長さは 
+リストの長さは
 \begin_inset Flex Code
 status open
 
@@ -1902,7 +1901,7 @@ x
 
 \end_inset
 
- や 
+ や
 \begin_inset Flex Code
 status open
 
@@ -1912,7 +1911,7 @@ y
 
 \end_inset
 
-という記号は，オブジェクトそのものではなくオブジェクトを呼びだすための名前に過ぎない。これは次のような実験からよく分かる。オリジナルの 
+という記号は，オブジェクトそのものではなくオブジェクトを呼びだすための名前に過ぎない。これは次のような実験からよく分かる。オリジナルの
 \begin_inset Flex Code
 status open
 
@@ -1922,7 +1921,7 @@ x
 
 \end_inset
 
- には手を触れずにコピーした 
+ には手を触れずにコピーした
 \begin_inset Flex Code
 status open
 
@@ -2144,11 +2143,11 @@ NumPy の配列
 \end_layout
 
 \begin_layout Standard
-Python で数値計算をするときには 
+Python で数値計算をするときには
 \series bold
 NumPy
 \series default
- の 
+ の
 \series bold
 ndarray
 \series default
@@ -2233,7 +2232,7 @@ ndarray
 \end_layout
 
 \begin_layout Standard
-のようになる。数学的に 
+のようになる。数学的に
 \begin_inset Formula $N$
 \end_inset
 
@@ -2241,11 +2240,11 @@ ndarray
 \series bold
 NumPy
 \series default
- では要素数 
+ では要素数
 \begin_inset Formula $N$
 \end_inset
 
- の1次元配列を用いて表現できる。配列の次元は 
+ の1次元配列を用いて表現できる。配列の次元は
 \begin_inset Flex Code
 status open
 
@@ -2255,7 +2254,7 @@ ndim
 
 \end_inset
 
-, 数学的な次元（サイズ）は 
+, 数学的な次元（サイズ）は
 \begin_inset Flex Code
 status open
 
@@ -2336,7 +2335,7 @@ attribute
 \series bold
 ndarray
 \series default
- の 
+ の
 \series bold
 shape
 \series default
@@ -2531,7 +2530,7 @@ status open
 \end_layout
 
 \begin_layout Standard
-1つ目のタイプの関数には 
+1つ目のタイプの関数には
 \begin_inset Flex Code
 status open
 
@@ -2541,7 +2540,7 @@ np.log()
 
 \end_inset
 
- や 
+ や
 \begin_inset Flex Code
 status open
 
@@ -2574,7 +2573,7 @@ status open
 \end_layout
 
 \begin_layout Standard
-2つ目のタイプの関数の代表例は 
+2つ目のタイプの関数の代表例は
 \begin_inset Flex Code
 status open
 
@@ -2584,7 +2583,7 @@ np.sum()
 
 \end_inset
 
- や 
+ や
 \begin_inset Flex Code
 status open
 
@@ -2707,7 +2706,7 @@ status open
 \end_layout
 
 \begin_layout Standard
-3つ目のタイプの関数には，累積和 
+3つ目のタイプの関数には，累積和
 \begin_inset Flex Code
 status open
 
@@ -2717,7 +2716,7 @@ cumsum()
 
 \end_inset
 
-，累積積 
+，累積積
 \begin_inset Flex Code
 status open
 
@@ -2798,7 +2797,7 @@ x
 
 \end_inset
 
-, 
+,
 \begin_inset Flex Code
 status open
 
@@ -2809,7 +2808,7 @@ y
 \end_inset
 
  が同じシェイプを持つ 2次元配列（ベクトル）になっている場合には，行列の積を計算しようとして失敗する。私はこのような振る舞いに使いにくさを感じているし，行列積
-を計算するだけなら 
+を計算するだけなら
 \begin_inset Flex Code
 status open
 
@@ -2819,7 +2818,7 @@ status open
 
 \end_inset
 
- 演算子を使う方が美しく書ける。今後本書で 
+ 演算子を使う方が美しく書ける。今後本書で
 \begin_inset Flex Code
 status open
 
@@ -2958,7 +2957,7 @@ np.ones_like()
 
 \end_inset
 
-, 
+,
 \begin_inset Flex Code
 status open
 
@@ -2968,7 +2967,7 @@ np.zeros_like()
 
 \end_inset
 
-, 
+,
 \begin_inset Flex Code
 status open
 
@@ -2979,7 +2978,7 @@ np.empty_like()
 \end_inset
 
 はどのように使用するか。使用方法を調べて使ってみなさい。そして，それぞれの用途，使用方法を自分の言葉で説明しなさい。ヒント： IPython では関数名の前か後
-に 
+に
 \begin_inset Flex Code
 status open
 
@@ -3222,7 +3221,7 @@ status open
 \end_layout
 
 \begin_layout Standard
-対角成分だけを指定して対角行列を作るには 
+対角成分だけを指定して対角行列を作るには
 \begin_inset Flex Code
 status open
 
@@ -3380,7 +3379,7 @@ hstack()
 
 \end_inset
 
-, 
+,
 \begin_inset Flex Code
 status open
 
@@ -3390,7 +3389,7 @@ vstack()
 
 \end_inset
 
-, 
+,
 \begin_inset Flex Code
 status open
 
@@ -3432,7 +3431,7 @@ status open
 \end_layout
 
 \begin_layout Standard
-配列の変形を自由自在に行えると，後々都合がよいので，ここで説明しておこう。次のベクトル（1次元配列） 
+配列の変形を自由自在に行えると，後々都合がよいので，ここで説明しておこう。次のベクトル（1次元配列）
 \begin_inset Flex Code
 status open
 
@@ -3442,7 +3441,7 @@ a
 
 \end_inset
 
- を 
+ を
 \begin_inset Formula $2\times4$
 \end_inset
 
@@ -3550,7 +3549,7 @@ transpose()
 
 \end_inset
 
- あるいは 
+ あるいは
 \begin_inset Flex Code
 status open
 
@@ -3583,7 +3582,7 @@ status open
 \end_layout
 
 \begin_layout Standard
-サイズが1の次元を除去するメソッド 
+サイズが1の次元を除去するメソッド
 \begin_inset Flex Code
 status open
 
@@ -3594,7 +3593,7 @@ squeeze()
 \end_inset
 
  は多用される（私が多用する）ので，覚えておいてほしい。以下の例は，3つのベクトル時系列
-\begin_inset Formula 
+\begin_inset Formula
 \[
 b_{1}=\begin{bmatrix}0\\
 1
@@ -3607,11 +3606,11 @@ b_{1}=\begin{bmatrix}0\\
 
 \end_inset
 
-をシェイプが 
+をシェイプが
 \begin_inset Formula $(3,2,1)$
 \end_inset
 
- であるような3次元配列として表現した 
+ であるような3次元配列として表現した
 \begin_inset Flex Code
 status open
 
@@ -3673,7 +3672,7 @@ status open
 \end_layout
 
 \begin_layout Standard
-可視化にも様々な方法があるが，もっともよく用いられるのは 
+可視化にも様々な方法があるが，もっともよく用いられるのは
 \series bold
 Matplotlib
 \series default
@@ -3731,7 +3730,7 @@ status open
 \series bold
 Matplotlib
 \series default
- のもっとも初歩的な使い方を用いれば，次のようになる（図 
+ のもっとも初歩的な使い方を用いれば，次のようになる（図
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:Maplotlib-の使用例"
@@ -3793,7 +3792,7 @@ centering
 \backslash
 includegraphics[trim = 0mm 10mm 0mm 22mm, clip, height=0.25
 \backslash
-textheight]{Figure/ch02/matplotlib-exp-1}
+textheight]{Figures/ch02/matplotlib-exp-1}
 \end_layout
 
 \end_inset
@@ -3809,7 +3808,7 @@ textheight]{Figure/ch02/matplotlib-exp-1}
 \series bold
 Maplotlib
 \series default
- の使用例 
+ の使用例
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:Maplotlib-の使用例"
@@ -3830,7 +3829,7 @@ name "fig:Maplotlib-の使用例"
 \end_layout
 
 \begin_layout Standard
-最後のコマンド 
+最後のコマンド
 \begin_inset Flex Code
 status open
 
@@ -3902,7 +3901,7 @@ status open
 \begin_inset Formula $\varepsilon_{t+1}\stackrel{{\scriptscriptstyle \text{i.i.d}}}{\sim}\mathcal{N}(0,1)$
 \end_inset
 
- は，ランダムな撹乱項 
+ は，ランダムな撹乱項
 \begin_inset Formula $\varepsilon_{1},\varepsilon_{2},\dots$
 \end_inset
 
@@ -3914,7 +3913,7 @@ status open
 \end_layout
 
 \begin_layout Itemize
-確率分布は標準正規分布 
+確率分布は標準正規分布
 \begin_inset Formula $\mathcal{N}(0,1)$
 \end_inset
 
@@ -3922,7 +3921,7 @@ status open
 \end_layout
 
 \begin_layout Plain Layout
-という2つの性質を表現している。なお，「ランダム・ウォーク」と言った場合には普通は 
+という2つの性質を表現している。なお，「ランダム・ウォーク」と言った場合には普通は
 \begin_inset Formula $\mathcal{N}(0,1)$
 \end_inset
 
@@ -3932,7 +3931,7 @@ status open
 \end_inset
 
 
-\begin_inset Formula 
+\begin_inset Formula
 \begin{align*}
 x_{t+1} & =x_{t}+\varepsilon_{t+1},\qquad\varepsilon_{t+1}\stackrel{{\scriptscriptstyle \text{i.i.d}}}{\sim}\mathcal{N}(0,1),\quad t=0,1,\dots\\
 x_{0} & =0
@@ -3992,7 +3991,7 @@ centering
 \backslash
 includegraphics[trim = 0mm 10mm 0mm 22mm, clip, height=0.25
 \backslash
-textheight]{Figure/ch02/matplotlib-random-walk-1}
+textheight]{Figures/ch02/matplotlib-random-walk-1}
 \end_layout
 
 \end_inset
@@ -4004,7 +4003,7 @@ textheight]{Figure/ch02/matplotlib-random-walk-1}
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-ランダム・ウォークのシミュレーション 
+ランダム・ウォークのシミュレーション
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:Maplotlib-の使用例-2"
@@ -4432,7 +4431,7 @@ status open
 \end_layout
 
 \begin_layout Standard
-上のようなコードを書くときに，頭の中で元の表を次の形式に置き換えるという操作を実行している。太字にした部分が 
+上のようなコードを書くときに，頭の中で元の表を次の形式に置き換えるという操作を実行している。太字にした部分が
 \begin_inset Flex Code
 status open
 
@@ -4789,7 +4788,6 @@ status open
 
 \begin_layout Plain Layout
 多次元配列の場合は，第1次元のインデックス，第2次元のインデックス，第3次元のインデックス・・・とコンマでつないでいけばよい。なお，このような記法は
- 
 \series bold
 ndarray
 \series default
@@ -4818,7 +4816,7 @@ quantity00
 
 \end_inset
 
- に相当する部分を配列 
+ に相当する部分を配列
 \begin_inset Flex Code
 status open
 
@@ -5402,7 +5400,7 @@ laspeyres[t] = laspeyres[t-1] * (sum(price[t, :] * quantity[t-1, :])
 \end_layout
 
 \begin_layout Standard
-繰り返し処理のための 
+繰り返し処理のための
 \begin_inset Flex Code
 status open
 
@@ -5423,7 +5421,7 @@ for
 \end_layout
 
 \begin_layout Problem
-上の表に対して，パーシェ式の連鎖指数とフィッシャーの連鎖指数を計算しなさい。（ヒント: 平方根は 
+上の表に対して，パーシェ式の連鎖指数とフィッシャーの連鎖指数を計算しなさい。（ヒント: 平方根は
 \begin_inset Flex Code
 status open
 
@@ -5433,7 +5431,7 @@ x ** 0.5
 
 \end_inset
 
- または 
+ または
 \begin_inset Flex Code
 status open
 
@@ -5459,8 +5457,8 @@ status open
 \begin_inset CommandInset bibtex
 LatexCommand bibtex
 btprint "btPrintCited"
-bibfiles "../Bibliography/ref,../Bibliography/software"
-options "Styles/jecon"
+bibfiles "References/ref,References/software"
+options "Include/jecon"
 
 \end_inset
 

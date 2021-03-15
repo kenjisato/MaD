@@ -6,11 +6,11 @@
 \origin unavailable
 \textclass scrbook
 \begin_preamble
-\input{Include/preamble.tex}
+\input{Include/ch-preamble.tex}
 \end_preamble
 \options dvipdfmx,paper=a5,fontsize=9pt,twoside
 \use_default_options true
-\master _main.lyx
+\master all.lyx
 \begin_modules
 knitr
 logicalmkup
@@ -95,19 +95,19 @@ theorems-ams-extended-chap-bytype
 \end_layout
 
 \begin_layout Standard
-経済学ではギリシャ文字を多用する。例えば，価格は英語で price だから 
+経済学ではギリシャ文字を多用する。例えば，価格は英語で price だから
 \begin_inset Formula $p$
 \end_inset
 
- を使うと，利潤 profit に対して 
+ を使うと，利潤 profit に対して
 \begin_inset Formula $p$
 \end_inset
 
- が使えないので代わりに 
+ が使えないので代わりに
 \begin_inset Formula $p$
 \end_inset
 
- に対応するギリシャ文字の 
+ に対応するギリシャ文字の
 \begin_inset Formula $\pi$
 \end_inset
 
@@ -159,7 +159,7 @@ centering
 \begin_inset Formula $A$
 \end_inset
 
- 
+
 \begin_inset Formula $\alpha$
 \end_inset
 
@@ -177,7 +177,7 @@ centering
 \begin_inset Formula $B$
 \end_inset
 
- 
+
 \begin_inset Formula $\beta$
 \end_inset
 
@@ -195,7 +195,7 @@ centering
 \begin_inset Formula $\Gamma$
 \end_inset
 
- 
+
 \begin_inset Formula $\gamma$
 \end_inset
 
@@ -213,7 +213,7 @@ centering
 \begin_inset Formula $\Delta$
 \end_inset
 
- 
+
 \begin_inset Formula $\delta$
 \end_inset
 
@@ -325,7 +325,7 @@ delta
 \begin_inset Formula $E$
 \end_inset
 
- 
+
 \begin_inset Formula $\epsilon$
 \end_inset
 
@@ -347,7 +347,7 @@ delta
 \begin_inset Formula $Z$
 \end_inset
 
- 
+
 \begin_inset Formula $\zeta$
 \end_inset
 
@@ -365,7 +365,7 @@ delta
 \begin_inset Formula $H$
 \end_inset
 
- 
+
 \begin_inset Formula $\eta$
 \end_inset
 
@@ -383,7 +383,7 @@ delta
 \begin_inset Formula $\Theta$
 \end_inset
 
- 
+
 \begin_inset Formula $\theta$
 \end_inset
 
@@ -495,7 +495,7 @@ theta
 \begin_inset Formula $I$
 \end_inset
 
- 
+
 \begin_inset Formula $\iota$
 \end_inset
 
@@ -513,7 +513,7 @@ theta
 \begin_inset Formula $K$
 \end_inset
 
- 
+
 \begin_inset Formula $\kappa$
 \end_inset
 
@@ -531,7 +531,7 @@ theta
 \begin_inset Formula $\Lambda$
 \end_inset
 
- 
+
 \begin_inset Formula $\lambda$
 \end_inset
 
@@ -549,7 +549,7 @@ theta
 \begin_inset Formula $M$
 \end_inset
 
- 
+
 \begin_inset Formula $\mu$
 \end_inset
 
@@ -661,7 +661,7 @@ mu
 \begin_inset Formula $N$
 \end_inset
 
- 
+
 \begin_inset Formula $\nu$
 \end_inset
 
@@ -679,7 +679,7 @@ mu
 \begin_inset Formula $\Xi$
 \end_inset
 
- 
+
 \begin_inset Formula $\xi$
 \end_inset
 
@@ -697,7 +697,7 @@ mu
 \begin_inset Formula $O$
 \end_inset
 
- 
+
 \begin_inset Formula $o$
 \end_inset
 
@@ -715,7 +715,7 @@ mu
 \begin_inset Formula $\Pi$
 \end_inset
 
- 
+
 \begin_inset Formula $\pi$
 \end_inset
 
@@ -827,7 +827,7 @@ pi
 \begin_inset Formula $P$
 \end_inset
 
- 
+
 \begin_inset Formula $\rho$
 \end_inset
 
@@ -845,7 +845,7 @@ pi
 \begin_inset Formula $\Sigma$
 \end_inset
 
- 
+
 \begin_inset Formula $\sigma$
 \end_inset
 
@@ -867,7 +867,7 @@ pi
 \begin_inset Formula $T$
 \end_inset
 
- 
+
 \begin_inset Formula $\tau$
 \end_inset
 
@@ -885,7 +885,7 @@ pi
 \begin_inset Formula $\mathsf{\Upsilon}$
 \end_inset
 
- 
+
 \begin_inset Formula $\upsilon$
 \end_inset
 
@@ -997,7 +997,7 @@ upsilon
 \begin_inset Formula $\Phi$
 \end_inset
 
- 
+
 \begin_inset Formula $\phi$
 \end_inset
 
@@ -1019,7 +1019,7 @@ upsilon
 \begin_inset Formula $X$
 \end_inset
 
- 
+
 \begin_inset Formula $\chi$
 \end_inset
 
@@ -1037,7 +1037,7 @@ upsilon
 \begin_inset Formula $\Psi$
 \end_inset
 
- 
+
 \begin_inset Formula $\psi$
 \end_inset
 
@@ -1055,7 +1055,7 @@ upsilon
 \begin_inset Formula $\Omega$
 \end_inset
 
- 
+
 \begin_inset Formula $\omega$
 \end_inset
 

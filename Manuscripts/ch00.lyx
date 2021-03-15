@@ -6,11 +6,11 @@
 \origin unavailable
 \textclass scrbook
 \begin_preamble
-\input{Include/preamble.tex}
+\input{Include/ch-preamble.tex}
 \end_preamble
 \options dvipdfmx,paper=a5,fontsize=9pt,twoside
 \use_default_options true
-\master _main.lyx
+\master all.lyx
 \begin_modules
 knitr
 theorems-ams-chap-bytype
@@ -99,7 +99,7 @@ status open
 
 \begin_layout Plain Layout
 
-<<setup-00, include=FALSE>>= 
+<<setup-00, include=FALSE>>=
 \end_layout
 
 \begin_layout Plain Layout
@@ -296,15 +296,15 @@ Python 本体ではこのようなことはできないが，
 \series bold
 NumPy
 \series default
-, 
+,
 \series bold
 SciPy
 \series default
-, 
+,
 \series bold
 Matplotlib
 \series default
-, 
+,
 \series bold
 SymPy
 \series default
@@ -560,7 +560,7 @@ Pandas による時系列データ取得，可視化
 \begin_inset Text
 
 \begin_layout Plain Layout
-6 
+6
 \end_layout
 
 \end_inset
@@ -939,7 +939,7 @@ asis
 本文中で紹介した Python およびサードパーティライブラリ（numpy, scipy, matplotlib, pandas）の他にも多くのオープンソースプ
 ロジェクトのお世話になった。\SpecialChar LaTeX2e
  を用いたタイプセットに \SpecialChar LyX
- を使用し，Python コードと実行結果を本文中に埋め込むために R 
+ を使用し，Python コードと実行結果を本文中に埋め込むために R
 \begin_inset CommandInset citation
 LatexCommand citep
 key "Rcore"
@@ -947,11 +947,11 @@ literal "false"
 
 \end_inset
 
-, 
+,
 \series bold
 knitr
 \series default
- 
+
 \begin_inset CommandInset citation
 LatexCommand citep
 key "knitr-book,knitr-man"
@@ -959,11 +959,11 @@ literal "false"
 
 \end_inset
 
- および 
+ および
 \series bold
 reticulate
 \series default
- 
+
 \begin_inset CommandInset citation
 LatexCommand citep
 key "reticulate"
@@ -984,8 +984,8 @@ status open
 \begin_inset CommandInset bibtex
 LatexCommand bibtex
 btprint "btPrintCited"
-bibfiles "../Bibliography/ref,../Bibliography/software"
-options "Styles/jecon"
+bibfiles "References/ref,References/software"
+options "Include/jecon"
 
 \end_inset
 
