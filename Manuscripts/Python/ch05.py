@@ -42,7 +42,7 @@ plt.show()
 
 
 #---- ch05/string-1
-s1 = "Hello, world."
+s1 = "Hello."
 s1
 
 
@@ -62,7 +62,7 @@ list(s2)
 
 
 #---- ch05/string-for
-for i, s in enumerate(s2):
+for i, s in enumerate(s1):
     print(s * (i + 1))
 
 
