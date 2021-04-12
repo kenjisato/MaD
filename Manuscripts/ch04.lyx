@@ -4,11 +4,11 @@
 \begin_header
 \save_transient_properties true
 \origin unavailable
-\textclass scrbook
+\textclass bxjsbook
 \begin_preamble
 \input{Include/ch-preamble.tex}
 \end_preamble
-\options dvipdfmx,paper=a5,fontsize=9pt
+\options a5paper,9pt,openany
 \use_default_options true
 \master all.lyx
 \begin_modules
@@ -16,11 +16,12 @@ knitr
 theorems-ams-chap-bytype
 theorems-ams-extended-chap-bytype
 logicalmkup
+classroom
 \end_modules
 \maintain_unincluded_children false
 \language japanese
 \language_package default
-\inputencoding utf8-platex
+\inputencoding utf8-plain
 \fontencoding global
 \font_roman "default" "default"
 \font_sans "default" "default"
@@ -175,6 +176,19 @@ LatexCommand tableofcontents
 
 \end_layout
 
+\begin_layout Standard
+\begin_inset Flex CLRM/ Mode
+status open
+
+\begin_layout Plain Layout
+student
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Chapter
 時系列データのモデリングと行列計算
 \end_layout
@@ -213,7 +227,7 @@ LatexCommand tableofcontents
 
 \begin_layout Standard
 読者が日本で高校を卒業していれば，文理問わず時系列モデルの原型を学んでいるはずだ。それは「漸化式」と呼ばれる次のような式だ。
-\begin_inset Formula
+\begin_inset Formula 
 \begin{equation}
 a_{n+1}=pa_{n}+q\label{eq:ch04/recursive-1}
 \end{equation}
@@ -232,7 +246,7 @@ reference "eq:ch04/recursive-1"
 \end_inset
 
 ) をどのように解いたかを思い出してみよう。まず「特性方程式」という次の方程式を立てる。
-\begin_inset Formula
+\begin_inset Formula 
 \begin{equation}
 a=pa+q\label{eq:ch04/characteristic-1}
 \end{equation}
@@ -248,7 +262,7 @@ a=pa+q\label{eq:ch04/characteristic-1}
 \end_inset
 
  として，
-\begin_inset Formula
+\begin_inset Formula 
 \[
 a=\frac{q}{1-p}
 \]
@@ -273,7 +287,7 @@ reference "eq:ch04/characteristic-1"
 \end_layout
 
 \begin_layout Standard
-\begin_inset Formula
+\begin_inset Formula 
 \[
 a_{n+1}-a=p\left(a_{n}-a\right)
 \]
@@ -285,7 +299,7 @@ a_{n+1}-a=p\left(a_{n}-a\right)
 \end_inset
 
  という形が繰り返し現れることに注意すると，
-\begin_inset Formula
+\begin_inset Formula 
 \begin{align*}
 a_{n}-a & =p\left(a_{n-1}-a\right)\\
  & =p^{2}\left(a_{n-2}-a\right)\\
@@ -305,7 +319,7 @@ a_{n}-a & =p\left(a_{n-1}-a\right)\\
 \end_inset
 
  について
-\begin_inset Formula
+\begin_inset Formula 
 \begin{align}
 a_{n} & =a+p^{n}\left(a_{0}-a\right)\label{eq:ch04/recursive-solution}
 \end{align}
@@ -325,7 +339,7 @@ a_{n} & =a+p^{n}\left(a_{0}-a\right)\label{eq:ch04/recursive-solution}
 \end_inset
 
  は
-\begin_inset Formula
+\begin_inset Formula 
 \[
 a=\cdots=a_{n+1}=a_{n}=a_{n-1}=\cdots
 \]
@@ -396,7 +410,7 @@ reference "eq:ch04/recursive-solution"
 \end_inset
 
 ) をもう少し変形しておこう。
-\begin_inset Formula
+\begin_inset Formula 
 \begin{align}
 a_{n} & =a+p^{n}\left(a_{0}-a\right)\nonumber \\
  & =p^{n}a_{0}+\left(1-p^{n}\right)a\nonumber \\
@@ -514,7 +528,7 @@ AR(1) 過程
 
 \begin_layout Standard
 時系列分析の文脈では，
-\begin_inset Formula
+\begin_inset Formula 
 \[
 y_{t}=a_{0}+a_{1}y_{t-1}
 \]
@@ -561,7 +575,7 @@ reference "eq:ch04/recursive-1"
 \end_inset
 
 ）を加えたものが時系列分析の基礎モデルである。
-\begin_inset Formula
+\begin_inset Formula 
 \begin{equation}
 y_{t}=a_{0}+a_{1}y_{t-1}+\varepsilon_{t}\label{eq:ch04/ar1}
 \end{equation}
@@ -608,12 +622,11 @@ reference "eq:ch04/ar1"
 \end_inset
 
  にいる分析者は何の情報も持っていない」ことを前提とする。もし情報を持っているならそれはモデルを改善するために使っているはずだからだ。この「時点
-
 \begin_inset Formula $t-1$
 \end_inset
 
  にいる分析者は何の情報も持っていない」ということを，数学的には
-\begin_inset Formula
+\begin_inset Formula 
 \[
 \mathbb{E}_{t-1}\left[\varepsilon_{t}\right]=0
 \]
@@ -653,7 +666,7 @@ reference "eq:ch04/ar1"
 \end_inset
 
 が仮定される（ホワイト・ノイズの仮定）。次のことに注意する。
-\begin_inset Formula
+\begin_inset Formula 
 \[
 \mathbb{E}_{t-1}\left[y_{t-1}\right]=y_{t-1},\quad\mathbb{E}_{t-1}\left[a_{0}\right]=a_{0}
 \]
@@ -698,7 +711,7 @@ status open
 \end_inset
 
 ，
-\begin_inset Formula
+\begin_inset Formula 
 \begin{align*}
 \mathbb{E}_{t-1}\left[y_{t}\right] & =\mathbb{E}_{t-1}\left[a_{0}+a_{1}y_{t-1}+\varepsilon_{t}\right]\\
  & =\mathbb{E}_{t-1}\left[a_{0}\right]+a_{1}\mathbb{E}_{t-1}\left[y_{t-1}\right]+\mathbb{E}_{t-1}\left[\mathbb{\varepsilon}_{t}\right]\\
@@ -728,7 +741,7 @@ AR(1) があれば AR(2) も AR(3) もある。一般に
 \end_inset
 
  モデルと呼ばれる時系列モデルは
-\begin_inset Formula
+\begin_inset Formula 
 \begin{equation}
 y_{t}=a_{0}+a_{1}y_{t-1}+\cdots+a_{p}y_{t-p}+\varepsilon_{t}\label{eq:ch04/arp}
 \end{equation}
@@ -751,7 +764,7 @@ y_{t}=a_{0}+a_{1}y_{t-1}+\cdots+a_{p}y_{t-p}+\varepsilon_{t}\label{eq:ch04/arp}
 \end_layout
 
 \begin_layout Standard
-\begin_inset Formula
+\begin_inset Formula 
 \[
 a_{n+2}=pa_{n+1}+qa_{n}+r
 \]
@@ -763,7 +776,7 @@ a_{n+2}=pa_{n+1}+qa_{n}+r
 \end_inset
 
  が鬱陶しいので，最終的に定常状態に収束したらどうなるかな，と考えて次の方程式を解く。
-\begin_inset Formula
+\begin_inset Formula 
 \[
 a=pa+qa+r\Longrightarrow a=\frac{r}{1-p-q}
 \]
@@ -779,7 +792,7 @@ a=pa+qa+r\Longrightarrow a=\frac{r}{1-p-q}
 \end_inset
 
  として，
-\begin_inset Formula
+\begin_inset Formula 
 \[
 b_{n+2}=pb_{n+1}+qb_{n}
 \]
@@ -787,7 +800,7 @@ b_{n+2}=pb_{n+1}+qb_{n}
 \end_inset
 
 という定数項のない漸化式になる。これを解くときに，誰かが次のような形に変形することを閃いたらしい。
-\begin_inset Formula
+\begin_inset Formula 
 \[
 b_{n+2}-\alpha b_{n+1}=\beta(b_{n+1}-\alpha b_{n})
 \]
@@ -803,7 +816,7 @@ b_{n+2}-\alpha b_{n+1}=\beta(b_{n+1}-\alpha b_{n})
 \end_inset
 
  を見つけ出そうという訳である。少し変形すると，
-\begin_inset Formula
+\begin_inset Formula 
 \[
 b_{n+2}-(\alpha+\beta)b_{n+1}+\alpha\beta b_{n}=0
 \]
@@ -811,7 +824,7 @@ b_{n+2}-(\alpha+\beta)b_{n+1}+\alpha\beta b_{n}=0
 \end_inset
 
 これは
-\begin_inset Formula
+\begin_inset Formula 
 \[
 p=\alpha+\beta,\quad q=\alpha\beta
 \]
@@ -819,7 +832,7 @@ p=\alpha+\beta,\quad q=\alpha\beta
 \end_inset
 
 なのだから，2次方程式
-\begin_inset Formula
+\begin_inset Formula 
 \[
 x^{2}-px+q=0
 \]
@@ -865,7 +878,7 @@ status open
 \end_inset
 
  が既知であれば，
-\begin_inset Formula
+\begin_inset Formula 
 \[
 b_{n+1}=\alpha b_{n}+\beta^{n}(b_{1}-\alpha b_{0})
 \]
@@ -917,7 +930,7 @@ b_{n+1}=\alpha b_{n}+\beta^{n}(b_{1}-\alpha b_{0})
 
 \begin_layout Standard
 上の解法は多次元に一般化することは難しい。より実用的な方法を理解するには線形代数学の知識が必要になる。
-\begin_inset Formula
+\begin_inset Formula 
 \[
 a_{n+2}=pa_{n+1}+qa_{n}+r
 \]
@@ -925,7 +938,7 @@ a_{n+2}=pa_{n+1}+qa_{n}+r
 \end_inset
 
 次の行列型の漸化式に変形する。
-\begin_inset Formula
+\begin_inset Formula 
 \[
 \begin{bmatrix}a_{n+2}\\
 a_{n+1}
@@ -941,7 +954,7 @@ a_{n}
 \end_inset
 
 ここの行列漸化式は次の連立方程式と同等である。
-\begin_inset Formula
+\begin_inset Formula 
 \[
 \left\{ \begin{array}{l}
 a_{n+2}=pa_{n+1}+qa_{n}+r\\
@@ -952,7 +965,7 @@ a_{n+1}=a_{n+1}
 \end_inset
 
 さらに表現を簡略化するために次のような記法を導入する。
-\begin_inset Formula
+\begin_inset Formula 
 \[
 \boldsymbol{a}_{n}=\begin{bmatrix}a_{n+1}\\
 a_{n}
@@ -966,7 +979,7 @@ a_{n}
 \end_inset
 
 すると，
-\begin_inset Formula
+\begin_inset Formula 
 \begin{equation}
 \boldsymbol{a}_{n+1}=\boldsymbol{A}\boldsymbol{a}_{n}+\boldsymbol{c}\label{eq:ch04/companion-form}
 \end{equation}
@@ -985,7 +998,7 @@ reference "eq:ch04/recursive-formula"
 \end_inset
 
  を表現してみよう。
-\begin_inset Formula
+\begin_inset Formula 
 \begin{align}
 \boldsymbol{a}_{n} & =\boldsymbol{A}\boldsymbol{a}_{n-1}+\boldsymbol{c}\nonumber \\
  & =\boldsymbol{A}\left(\boldsymbol{A}\boldsymbol{a}_{n-2}+\boldsymbol{c}\right)+\boldsymbol{c}\nonumber \\
@@ -1017,7 +1030,7 @@ reference "eq:ch04/recursive-formula"
 \end_inset
 
  の極限での振る舞いについて調べる必要があるのだが，これには行列の対角化，ジョルダン標準化という考え方を使う。詳細は省略するが，
-\begin_inset Formula
+\begin_inset Formula 
 \begin{align*}
 \boldsymbol{A} & =\boldsymbol{V}\boldsymbol{D}\boldsymbol{V}^{-1}\\
 \boldsymbol{D} & =\text{対角成分に }\boldsymbol{A}\text{ の固有値が並ぶ上三角行列}\\
@@ -1139,7 +1152,7 @@ name "prop: ch04/an"
 \end_inset
 
  が安定固有値のみをもつとき，
-\begin_inset Formula
+\begin_inset Formula 
 \[
 \lim_{n\to\infty}\boldsymbol{A}^{n}=\boldsymbol{0}
 \]
@@ -1172,7 +1185,7 @@ qed
 \end_inset
 
 )
-\begin_inset Formula
+\begin_inset Formula 
 \[
 \sum_{n=0}^{\infty}\rho^{n}=1+\rho+\rho^{2}+\cdots=\frac{1}{1-\rho}
 \]
@@ -1205,7 +1218,7 @@ name "prop: ch04/i-a"
 \end_inset
 
  は逆行列を持ち，次の式が成り立つ。
-\begin_inset Formula
+\begin_inset Formula 
 \[
 \sum_{n=0}^{\infty}\boldsymbol{A}^{n}=\lim_{n\to\infty}\left(\boldsymbol{A}^{n-1}+\boldsymbol{A}^{n-2}+\cdots+\boldsymbol{A}+\boldsymbol{I}\right)=\left(\boldsymbol{I}-\boldsymbol{A}\right)^{-1}
 \]
@@ -1217,7 +1230,7 @@ name "prop: ch04/i-a"
 
 \begin_layout Proof
 証明するには
-\begin_inset Formula
+\begin_inset Formula 
 \begin{align*}
 \left(\boldsymbol{I}-\boldsymbol{A}\right)\left[\lim_{n\to\infty}\left(\boldsymbol{A}^{n-1}+\boldsymbol{A}^{n-2}+\cdots+\boldsymbol{A}+\boldsymbol{I}\right)\right] & =\boldsymbol{I}\\
 \left[\lim_{n\to\infty}\left(\boldsymbol{A}^{n-1}+\boldsymbol{A}^{n-2}+\cdots+\boldsymbol{A}+\boldsymbol{I}\right)\right]\left(\boldsymbol{I}-\boldsymbol{A}\right) & =\boldsymbol{I}
@@ -1273,7 +1286,7 @@ reference "eq:ch04/an_expansion"
 \end_inset
 
 ) を用いると，
-\begin_inset Formula
+\begin_inset Formula 
 \begin{align*}
 \boldsymbol{a}_{n} & =\boldsymbol{A}^{n}\boldsymbol{a}_{0}+\left(\boldsymbol{A}^{n-1}+\boldsymbol{A}^{n-2}+\cdots+\boldsymbol{A}+\boldsymbol{I}\right)\boldsymbol{c}\\
  & \xrightarrow[n\to\infty]{}\left(\boldsymbol{I}-\boldsymbol{A}\right)^{-1}\boldsymbol{c}
@@ -1317,7 +1330,7 @@ reference "eq:ch04/companion-form"
 \end_inset
 
  次ベクトルの漸化式に書き換えることができるはずだ。やってみよう。
-\begin_inset Formula
+\begin_inset Formula 
 \begin{align*}
 b_{n} & =\alpha_{0}+\alpha_{1}b_{n-1}+\alpha_{2}b_{n-2}+\cdots+\alpha_{n-p}b_{n-p}
 \end{align*}
@@ -1327,18 +1340,12 @@ b_{n} & =\alpha_{0}+\alpha_{1}b_{n-1}+\alpha_{2}b_{n-2}+\cdots+\alpha_{n-p}b_{n-
 
 \end_layout
 
-\begin_deeper
-\begin_layout Standard
-\begin_inset ERT
+\begin_layout AnswerFrame
+\begin_inset Argument 2
 status open
 
 \begin_layout Plain Layout
-
-
-\backslash
-answerbox{6
-\backslash
-baselineskip}
+6
 \end_layout
 
 \end_inset
@@ -1346,7 +1353,6 @@ baselineskip}
 
 \end_layout
 
-\end_deeper
 \begin_layout Standard
 \begin_inset Separator plain
 \end_inset
@@ -1367,7 +1373,7 @@ AR(2) 過程
 \end_layout
 
 \begin_layout Standard
-\begin_inset Formula
+\begin_inset Formula 
 \begin{equation}
 y_{t}=a_{0}+a_{1}y_{t-1}+a_{2}y_{t-2}+\varepsilon_{t}\label{eq:ch02/ar2}
 \end{equation}
@@ -1386,7 +1392,7 @@ y_{t}=a_{0}+a_{1}y_{t-1}+a_{2}y_{t-2}+\varepsilon_{t}\label{eq:ch02/ar2}
 \end_inset
 
  が観測されていれば，
-\begin_inset Formula
+\begin_inset Formula 
 \begin{align*}
 y_{2} & =a_{0}+a_{1}y_{1}+a_{2}y_{0}+\varepsilon_{2}\\
 y_{3} & =a_{0}+a_{1}y_{2}+a_{2}y_{1}+\varepsilon_{3}\\
@@ -1417,7 +1423,7 @@ y_{3} & =a_{0}+a_{1}y_{2}+a_{2}y_{1}+\varepsilon_{3}\\
 
 \begin_layout Standard
 次の行列表現と同じであることを確かめよう。
-\begin_inset Formula
+\begin_inset Formula 
 \begin{align*}
 \boldsymbol{x}_{t} & =\boldsymbol{A}\boldsymbol{x}_{t-1}+\boldsymbol{B}\tilde{\varepsilon}_{t}\\
 y_{t} & =\boldsymbol{C}\boldsymbol{x}_{t},
@@ -1426,7 +1432,7 @@ y_{t} & =\boldsymbol{C}\boldsymbol{x}_{t},
 \end_inset
 
 ただし，
-\begin_inset Formula
+\begin_inset Formula 
 \[
 \boldsymbol{x}_{t}=\begin{bmatrix}y_{t}\\
 y_{t-1}
@@ -1444,7 +1450,6 @@ y_{t-1}
 \end_inset
 
  を導入した。このようなモデル表現を「状態空間表現」というが，今はあまり気にしなくてよい。係数行列の固有値は確率的な変動が入る場合にも役に立つ。行列
-
 \begin_inset Formula $\boldsymbol{A}$
 \end_inset
 
@@ -1474,7 +1479,7 @@ AR過程が 1つ目の性質を持つことは次のようにして分かる。�
 \end_inset
 
  が下のように表現できることを確認する。
-\begin_inset Formula
+\begin_inset Formula 
 \[
 \boldsymbol{x}_{t}=\boldsymbol{A}^{n}\boldsymbol{x}_{t-n}+\sum_{k=0}^{n-1}\boldsymbol{A}^{k}\boldsymbol{B}\tilde{\varepsilon}_{t-k},\quad n=1,2,\dots
 \]
@@ -1486,7 +1491,7 @@ AR過程が 1つ目の性質を持つことは次のようにして分かる。�
 \end_inset
 
  に注意）
-\begin_inset Formula
+\begin_inset Formula 
 \begin{align*}
 \mathbb{E}\left[\boldsymbol{x}_{t}\right] & =\boldsymbol{A}^{n}\mathbb{E}\left[\boldsymbol{x}_{t-n}\right]+\sum_{k=0}^{n-1}\boldsymbol{A}^{k}\boldsymbol{B}\mathbb{E}\left[\tilde{\varepsilon}_{t-k}\right]\\
  & \xrightarrow[n\to\infty]{}\sum_{k=0}^{\infty}\boldsymbol{A}^{k}\boldsymbol{B}a_{0}\\
@@ -1496,7 +1501,7 @@ AR過程が 1つ目の性質を持つことは次のようにして分かる。�
 \end_inset
 
 したがって，
-\begin_inset Formula
+\begin_inset Formula 
 \[
 \mathbb{E}\left[y_{t}\right]=\boldsymbol{C}\left(\boldsymbol{I}-\boldsymbol{A}\right)^{-1}\boldsymbol{B}a_{0}\equiv\mu
 \]
@@ -1507,6 +1512,12 @@ AR過程が 1つ目の性質を持つことは次のようにして分かる。�
 \end_layout
 
 \begin_layout Problem
+\begin_inset CommandInset label
+LatexCommand label
+name "prob:ch04/AR2-mean"
+
+\end_inset
+
 AR(2) 過程 (
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -1521,18 +1532,12 @@ reference "eq:ch02/ar2"
  を計算しなさい。
 \end_layout
 
-\begin_deeper
-\begin_layout Standard
-\begin_inset ERT
+\begin_layout AnswerFrame
+\begin_inset Argument 2
 status open
 
 \begin_layout Plain Layout
-
-
-\backslash
-answerbox{6
-\backslash
-baselineskip}
+6
 \end_layout
 
 \end_inset
@@ -1540,7 +1545,6 @@ baselineskip}
 
 \end_layout
 
-\end_deeper
 \begin_layout Standard
 \begin_inset Separator plain
 \end_inset
@@ -1548,12 +1552,27 @@ baselineskip}
 
 \end_layout
 
-\begin_layout Standard
-\begin_inset Note Note
+\begin_layout SolutionFrame
+\begin_inset Argument 1
 status open
 
 \begin_layout Plain Layout
-\begin_inset Formula
+\begin_inset CommandInset ref
+LatexCommand labelonly
+reference "prob:ch04/AR2-mean"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula 
 \[
 \boldsymbol{I}-\boldsymbol{A}=\begin{bmatrix}1-a_{1} & -a_{2}\\
 -1 & 1
@@ -1565,7 +1584,7 @@ status open
 \end_inset
 
 
-\begin_inset Formula
+\begin_inset Formula 
 \[
 \boldsymbol{C}\left(\boldsymbol{I}-\boldsymbol{A}\right)^{-1}\boldsymbol{B}a_{0}=\frac{1}{1-a_{1}-a_{2}}\begin{bmatrix}1 & 0\end{bmatrix}\begin{bmatrix}1 & a_{2}\\
 1 & 1-a_{1}
@@ -1573,11 +1592,6 @@ status open
 0
 \end{bmatrix}a_{0}=\frac{a_{0}}{1-a_{1}-a_{2}}=\mu.
 \]
-
-\end_inset
-
-
-\end_layout
 
 \end_inset
 
@@ -1605,7 +1619,7 @@ status open
 \end_inset
 
 ）と置くが，これによって一般性を失うことはない。
-\begin_inset Formula
+\begin_inset Formula 
 \begin{align*}
 \mathrm{Var}(y_{t}) & =\boldsymbol{C}\mathbb{E}\left[\boldsymbol{x}_{t}\boldsymbol{x}_{t}^{\top}\right]\boldsymbol{C}^{\top}\\
 \mathbb{E}\left[\boldsymbol{x}_{t}\boldsymbol{x}_{t}^{\top}\right] & =\mathbb{E}\left[\boldsymbol{A}\boldsymbol{x}_{t-1}\boldsymbol{x}_{t-1}^{\top}\boldsymbol{A}^{\top}+(\text{独立性によりゼロになる項})+\boldsymbol{B}\boldsymbol{B}^{\top}\varepsilon_{t}^{2}\right]\\
@@ -1626,7 +1640,7 @@ status open
 \end_inset
 
  で収束して，
-\begin_inset Formula
+\begin_inset Formula 
 \begin{align*}
 \mathbb{E}\left[\boldsymbol{x}_{t}\boldsymbol{x}_{t}^{\top}\right] & =\sum_{n=0}^{\infty}\boldsymbol{A}^{n}\boldsymbol{B}\boldsymbol{B}^{\top}\left(\boldsymbol{A}^{\top}\right)^{n}\sigma^{2}\equiv\boldsymbol{\Sigma},\\
 \mathrm{Var}(y_{t}) & \equiv\boldsymbol{C}\boldsymbol{\Sigma}\boldsymbol{C}^{\top}
@@ -1639,7 +1653,7 @@ status open
 \end_inset
 
  の具体的な値を求めるには，行列方程式
-\begin_inset Formula
+\begin_inset Formula 
 \begin{equation}
 \boldsymbol{\Sigma}=\boldsymbol{A}\boldsymbol{\Sigma}\boldsymbol{A}^{\top}+\boldsymbol{B}\boldsymbol{B}^{\top}\sigma^{2}\label{eq:ch04/lyapunov}
 \end{equation}
@@ -1677,7 +1691,7 @@ reference "eq:ch04/lyapunov"
 \end_inset
 
 を
-\begin_inset Formula
+\begin_inset Formula 
 \[
 \boldsymbol{\Sigma}=\begin{bmatrix}\alpha & \beta\\
 \beta & \gamma
@@ -1687,7 +1701,7 @@ reference "eq:ch04/lyapunov"
 \end_inset
 
 と成分表示する。方程式
-\begin_inset Formula
+\begin_inset Formula 
 \[
 \begin{bmatrix}\alpha & \beta\\
 \beta & \gamma
@@ -1709,7 +1723,7 @@ a_{2} & 0
 \end_inset
 
  について解き，
-\begin_inset Formula
+\begin_inset Formula 
 \[
 \mathrm{Var}(y_{t})=\frac{(1-a_{1}^{2})\sigma^{2}}{1-a_{2}-(a_{1}^{2}+a_{2}^{2})-a_{2}(a_{1}^{2}-a_{2}^{2})}
 \]
@@ -1719,18 +1733,12 @@ a_{2} & 0
 であることを示しなさい。
 \end_layout
 
-\begin_deeper
-\begin_layout Standard
-\begin_inset ERT
+\begin_layout AnswerFrame
+\begin_inset Argument 2
 status open
 
 \begin_layout Plain Layout
-
-
-\backslash
-answerbox{10
-\backslash
-baselineskip}
+10
 \end_layout
 
 \end_inset
@@ -1738,7 +1746,6 @@ baselineskip}
 
 \end_layout
 
-\end_deeper
 \begin_layout Standard
 \begin_inset Separator plain
 \end_inset
@@ -1752,7 +1759,7 @@ baselineskip}
 \end_inset
 
  として一般性を失うことはない。
-\begin_inset Formula
+\begin_inset Formula 
 \begin{align*}
 \mathbb{E}\left[\boldsymbol{x}_{t}\boldsymbol{x}_{t-k}^{\top}\right] & =\mathbb{E}\left[\left(\boldsymbol{A}^{k}\boldsymbol{x}_{t-k}+\sum_{j=0}^{k-1}\boldsymbol{A}^{j}\boldsymbol{B}\varepsilon_{t-j}\right)\boldsymbol{x}_{t-k}^{\top}\right]\\
  & =\boldsymbol{A}^{k}\boldsymbol{\Sigma}+\sum_{j=0}^{k-1}\boldsymbol{A}^{j}\mathbb{E}\left[\boldsymbol{B}\underbrace{\varepsilon_{t-j}}_{t-j>t-k}\boldsymbol{x}_{t-k}^{\top}\right]\\
@@ -1774,7 +1781,7 @@ baselineskip}
 \end_inset
 
  については
-\begin_inset Formula
+\begin_inset Formula 
 \[
 \mathrm{Cov}(y_{t},y_{t-k})=\boldsymbol{C}\boldsymbol{A}^{k}\boldsymbol{\Sigma}\boldsymbol{C}^{\top}
 \]
@@ -1806,7 +1813,7 @@ baselineskip}
 \end_inset
 
  の関数と見て，
-\begin_inset Formula
+\begin_inset Formula 
 \[
 \phi(k)=\mathrm{Cov}(y_{t},y_{t-k})=\boldsymbol{C}\boldsymbol{A}^{k}\boldsymbol{\Sigma}\boldsymbol{C}^{\top}
 \]
@@ -1870,7 +1877,7 @@ baselineskip}
 \end_inset
 
  が安定固有値のみをもつ場合，自己共分散関数
-\begin_inset Formula
+\begin_inset Formula 
 \[
 ACF_{k}=\boldsymbol{C}\boldsymbol{A}^{k}\boldsymbol{\Sigma}\boldsymbol{C}^{\top},\quad k=0,1,2,\dots
 \]
@@ -1887,7 +1894,7 @@ ACF_{k}=\boldsymbol{C}\boldsymbol{A}^{k}\boldsymbol{\Sigma}\boldsymbol{C}^{\top}
 \begin_layout Standard
 さらに，偏自己相関関数（partial autocorrelation function, PACF) という重要な概念があるので，ここで紹介しておこう。AR
  (2) のケースでは，
-\begin_inset Formula
+\begin_inset Formula 
 \begin{align*}
 y_{t} & =a_{1}y_{t-1}+a_{2}y_{t-2}+(*)\\
  & =a_{1}(a_{1}y_{t-2}+(*))+a_{2}y_{t-2}+(*)
@@ -1925,7 +1932,7 @@ y_{t} & =a_{1}y_{t-1}+a_{2}y_{t-2}+(*)\\
 \end_inset
 
  のことろでするどいカットオフが生じる。
-\begin_inset Formula
+\begin_inset Formula 
 \[
 PACF_{1}=a_{1},\quad PACF_{2}=a_{2},\quad PACF_{3}=PACF_{4}=\cdots=0
 \]
@@ -1971,7 +1978,7 @@ literal "false"
 \series bold
 シミュレーション
 \series default
-という。この節ではシミュレーションについて説明し，次節で推定について簡単に紹介する。実データを使った分析例は次節で紹介する。（予定）
+という。この節ではシミュレーションについて説明し，次節で推定について簡単に紹介する。実データを使った分析例は次節で紹介する。（予定。まだない）
 \begin_inset Note Note
 status open
 
@@ -2048,7 +2055,7 @@ reference "chap:物価指数とインフレーション"
 \end_inset
 
  次元ベクトル
-\begin_inset Formula
+\begin_inset Formula 
 \[
 \boldsymbol{x}_{t}=\begin{bmatrix}x_{t,1}\\
 x_{t,2}\\
@@ -2064,7 +2071,7 @@ x_{t,d}
 \end_inset
 
  行列（2次元配列）を用いて，
-\begin_inset Formula
+\begin_inset Formula 
 \[
 \begin{bmatrix}x_{0,1} & x_{0,2} & \cdots & x_{0,d}\\
 x_{1,1} & x_{1,2} & \cdots & x_{1,d}\\
@@ -2087,7 +2094,7 @@ NumPy
 
  期のデータ（行）を取り出す」という操作をするときに，取り出したベクトルには縦横の情報が設定されていない状況（1次元配列）になってしまう。行列とベクトルの計算す
 るときに間違いが起こりやすく，エラーの温床になってしまう。そこで，少し方針を変えて次のような愚直な理解をしよう。
-\begin_inset Formula
+\begin_inset Formula 
 \[
 \text{ベクトル時系列}=T\text{ 個の }d\times1\text{ 行列を並べたもの}
 \]
@@ -2383,7 +2390,7 @@ status open
 
 \begin_layout Standard
 ここでは
-\begin_inset Formula
+\begin_inset Formula 
 \[
 x_{t}=Ax_{t-1},\quad t=1,2
 \]
@@ -2485,7 +2492,17 @@ x.shape = *x.shape, 1
 
 \end_inset
 
- とするのがクリーンだろう。右辺は * でタプルを一旦ばらして，1を追加したタプルを作っている。こういうものだと考えておけばよい。
+ とするのがクリーンだろう。右辺は 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+*
+\end_layout
+
+\end_inset
+
+ でタプルを一旦ばらして，1を追加したタプルを作っている。こういうものだと考えておけばよい。
 \end_layout
 
 \end_inset
@@ -2899,7 +2916,7 @@ reference "prop: ch04/i-a"
 \end_inset
 
 の公式
-\begin_inset Formula
+\begin_inset Formula 
 \[
 \left(\boldsymbol{I}-\boldsymbol{A}\right)^{-1}=\sum_{n=0}^{\infty}\boldsymbol{A}^{n}
 \]
@@ -2911,7 +2928,7 @@ reference "prop: ch04/i-a"
 \end_inset
 
  に対して，
-\begin_inset Formula
+\begin_inset Formula 
 \[
 \left(\boldsymbol{I}-\boldsymbol{A}\right)\left(\sum_{n=0}^{N}\boldsymbol{A}^{n}\right)\approx\boldsymbol{I}
 \]
@@ -2919,7 +2936,7 @@ reference "prop: ch04/i-a"
 \end_inset
 
 が成り立つことを確認しよう。総和の計算には，
-\begin_inset Formula
+\begin_inset Formula 
 \[
 \sum_{n=0}^{N}\boldsymbol{A}^{n}=\boldsymbol{I}+\boldsymbol{A}\left(\sum_{n=0}^{N-1}\boldsymbol{A}^{n}\right)
 \]
@@ -2957,7 +2974,7 @@ AR(2) 過程
 \end_layout
 
 \begin_layout Standard
-\begin_inset Formula
+\begin_inset Formula 
 \begin{equation}
 y_{t}=0.6y_{t-1}+0.3y_{t-2}+\varepsilon_{t}\label{eq:ch02/ar2-1}
 \end{equation}
@@ -2984,7 +3001,7 @@ y_{t}=0.6y_{t-1}+0.3y_{t-2}+\varepsilon_{t}\label{eq:ch02/ar2-1}
 \end_layout
 
 \begin_layout Standard
-\begin_inset Formula
+\begin_inset Formula 
 \begin{align*}
 \boldsymbol{x}_{t} & =\boldsymbol{A}\boldsymbol{x}_{t-1}+\boldsymbol{B}\varepsilon_{t}\\
 y_{t} & =\boldsymbol{C}\boldsymbol{x}_{t},
@@ -2993,7 +3010,7 @@ y_{t} & =\boldsymbol{C}\boldsymbol{x}_{t},
 \end_inset
 
 ただし，
-\begin_inset Formula
+\begin_inset Formula 
 \[
 \boldsymbol{x}_{t}=\begin{bmatrix}y_{t}\\
 y_{t-1}
@@ -3007,7 +3024,7 @@ y_{t-1}
 \end_inset
 
 
-\begin_inset Formula
+\begin_inset Formula 
 \[
 \mathbb{E}\left[\varepsilon_{t}\right]=0.0,\quad\mathrm{Var}(\varepsilon_{t})=1.0
 \]
@@ -3669,7 +3686,7 @@ status open
 LatexCommand bibtex
 btprint "btPrintCited"
 bibfiles "References/ref,References/software"
-options "Include/jecon"
+options "Include/jecon-unicode"
 
 \end_inset
 

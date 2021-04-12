@@ -4,11 +4,11 @@
 \begin_header
 \save_transient_properties true
 \origin unavailable
-\textclass scrbook
+\textclass bxjsbook
 \begin_preamble
 \input{Include/ch-preamble.tex}
 \end_preamble
-\options dvipdfmx,paper=a5,fontsize=9pt
+\options a5paper,9pt,openany
 \use_default_options true
 \master all.lyx
 \begin_modules
@@ -16,11 +16,12 @@ knitr
 theorems-ams-chap-bytype
 theorems-ams-extended-chap-bytype
 logicalmkup
+classroom
 \end_modules
 \maintain_unincluded_children false
 \language japanese
 \language_package default
-\inputencoding utf8-platex
+\inputencoding utf8-plain
 \fontencoding global
 \font_roman "default" "default"
 \font_sans "default" "default"
@@ -158,6 +159,19 @@ LatexCommand tableofcontents
 
 \end_layout
 
+\begin_layout Standard
+\begin_inset Flex CLRM/ Mode
+status open
+
+\begin_layout Plain Layout
+student
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Chapter
 成長と変動
 \end_layout
@@ -237,7 +251,7 @@ Pandas のような進化の早いライブラリは使用法が比較的早く�
 \end_inset
 
  の変化を次のように表現する。
-\begin_inset Formula
+\begin_inset Formula 
 \[
 y_{t}=(1+g_{t})y_{t-1}
 \]
@@ -257,7 +271,7 @@ y_{t}=(1+g_{t})y_{t-1}
 \end_inset
 
 ）であり，時間変化する可能性がある。対数値を取ると，
-\begin_inset Formula
+\begin_inset Formula 
 \begin{align*}
 \log y_{t} & =\log(1+g_{t})+\log y_{t-1}\\
  & =\log(1+g_{t})+\log(1+g_{t-1})+\log y_{t-2}\\
@@ -272,7 +286,7 @@ y_{t}=(1+g_{t})y_{t-1}
 \end_inset
 
  と定数であるとすれば，
-\begin_inset Formula
+\begin_inset Formula 
 \[
 \log y_{t}=t\log(1+g)+\log y_{0}
 \]
@@ -913,7 +927,7 @@ name "fig:ch05-5"
 \end_inset
 
  が手元にあるとしよう。このとき，隣り合う時点間の変化
-\begin_inset Formula
+\begin_inset Formula 
 \[
 \Delta x_{t+1}=x_{t+1}-x_{t}
 \]
@@ -933,7 +947,7 @@ name "fig:ch05-5"
 \end_inset
 
  （例：政治スキャンダルで株価が下がる）によって撹乱されてしまうとする。
-\begin_inset Formula
+\begin_inset Formula 
 \[
 x_{t}=\bar{x}_{t}+\varepsilon_{t}
 \]
@@ -957,7 +971,7 @@ x_{t}=\bar{x}_{t}+\varepsilon_{t}
 \end_inset
 
  と仮定しよう。本来，
-\begin_inset Formula
+\begin_inset Formula 
 \[
 \bar{x}_{t+1}-\bar{x}_{t}
 \]
@@ -969,7 +983,7 @@ x_{t}=\bar{x}_{t}+\varepsilon_{t}
 \end_inset
 
  を使うのだが，
-\begin_inset Formula
+\begin_inset Formula 
 \[
 x_{t+1}-x_{t}=\left(\bar{x}_{t+1}-\bar{x}_{t}\right)+\left(\varepsilon_{t+1}-\varepsilon_{t}\right)
 \]
@@ -977,7 +991,7 @@ x_{t+1}-x_{t}=\left(\bar{x}_{t+1}-\bar{x}_{t}\right)+\left(\varepsilon_{t+1}-\va
 \end_inset
 
 
-\begin_inset Formula
+\begin_inset Formula 
 \[
 \Longrightarrow\mathrm{Var}\left((x_{t+1}-x_{t})-(\bar{x}_{t+1}-\bar{x}_{t})\right)=2\sigma^{2}
 \]
@@ -1040,7 +1054,7 @@ status open
 \end_inset
 
 。
-\begin_inset Formula
+\begin_inset Formula 
 \[
 x_{t}^{(2)}=\frac{x_{t-1}+x_{t}}{2}
 \]
@@ -1048,7 +1062,7 @@ x_{t}^{(2)}=\frac{x_{t-1}+x_{t}}{2}
 \end_inset
 
 分散にどのように影響するかを見てみよう。
-\begin_inset Formula
+\begin_inset Formula 
 \begin{align*}
 x_{t+1}^{(2)}-x_{t}^{(2)} & =\frac{x_{t}+x_{t+1}}{2}-\frac{x_{t-1}+x_{t}}{2}\\
  & =\frac{x_{t+1}-x_{t-1}}{2}\\
@@ -1058,7 +1072,7 @@ x_{t+1}^{(2)}-x_{t}^{(2)} & =\frac{x_{t}+x_{t+1}}{2}-\frac{x_{t-1}+x_{t}}{2}\\
 \end_inset
 
 
-\begin_inset Formula
+\begin_inset Formula 
 \[
 \Longrightarrow\mathrm{Var}\left(\left(x_{t+1}^{(2)}-x_{t}^{(2)}\right)-\left(\frac{\bar{x}_{t+1}-\bar{x}_{t-1}}{2}\right)\right)=\frac{\sigma^{2}}{2}
 \]
@@ -1097,18 +1111,12 @@ x_{t+1}^{(2)}-x_{t}^{(2)} & =\frac{x_{t}+x_{t+1}}{2}-\frac{x_{t-1}+x_{t}}{2}\\
 デパートの売上のデータを毎日取っているとする。どのような周期の循環成分が見られるだろうか。除去するためにはどのような移動平均を取ればよいか。
 \end_layout
 
-\begin_deeper
-\begin_layout Standard
-\begin_inset ERT
+\begin_layout AnswerFrame
+\begin_inset Argument 2
 status open
 
 \begin_layout Plain Layout
-
-
-\backslash
-answerbox{4
-\backslash
-baselineskip}
+4
 \end_layout
 
 \end_inset
@@ -1116,7 +1124,6 @@ baselineskip}
 
 \end_layout
 
-\end_deeper
 \begin_layout Standard
 \begin_inset Separator plain
 \end_inset
@@ -1313,18 +1320,12 @@ status open
 失業者に対して支払われる失業給付金は摩擦的・構造的失業を意図せず高めてしまう可能性がある。理由を検討しなさい。
 \end_layout
 
-\begin_deeper
-\begin_layout Standard
-\begin_inset ERT
+\begin_layout AnswerFrame
+\begin_inset Argument 2
 status open
 
 \begin_layout Plain Layout
-
-
-\backslash
-answerbox{6
-\backslash
-baselineskip}
+6
 \end_layout
 
 \end_inset
@@ -1332,7 +1333,6 @@ baselineskip}
 
 \end_layout
 
-\end_deeper
 \begin_layout Standard
 \begin_inset Separator plain
 \end_inset
@@ -1496,7 +1496,7 @@ reference "fig:ch05-fred-1"
 \end_inset
 
  は GDPギャップを潜在GDPで除した値（GDPギャップ率）
-\begin_inset Formula
+\begin_inset Formula 
 \[
 \text{GDPギャップ率}=\frac{\text{実質GDP}-\text{潜在GDP}}{\text{潜在GDP}}
 \]
@@ -1890,7 +1890,7 @@ name "fig:ch05-fred-2"
 \end_layout
 
 \begin_layout Standard
-\begin_inset Formula
+\begin_inset Formula 
 \[
 \pi_{t}-\mathbb{E}_{t-1}\pi_{t}=\alpha\left(Y_{t}-\bar{Y}_{t}\right),\qquad\alpha>0
 \]
@@ -2131,18 +2131,12 @@ enumerate()
 の使い方を調べて説明しなさい。
 \end_layout
 
-\begin_deeper
-\begin_layout Standard
-\begin_inset ERT
+\begin_layout AnswerFrame
+\begin_inset Argument 2
 status open
 
 \begin_layout Plain Layout
-
-
-\backslash
-answerbox{4
-\backslash
-baselineskip}
+4
 \end_layout
 
 \end_inset
@@ -2150,7 +2144,6 @@ baselineskip}
 
 \end_layout
 
-\end_deeper
 \begin_layout Standard
 \begin_inset Separator plain
 \end_inset
@@ -2343,18 +2336,12 @@ status open
 「リスト」をキーとする辞書を定義しようとすると，どのようなエラーが発生するか。実験して結果を記録しなさい。
 \end_layout
 
-\begin_deeper
-\begin_layout Standard
-\begin_inset ERT
+\begin_layout AnswerFrame
+\begin_inset Argument 2
 status open
 
 \begin_layout Plain Layout
-
-
-\backslash
-answerbox{4
-\backslash
-baselineskip}
+4
 \end_layout
 
 \end_inset
@@ -2362,7 +2349,6 @@ baselineskip}
 
 \end_layout
 
-\end_deeper
 \begin_layout Standard
 \begin_inset Separator plain
 \end_inset
@@ -3903,7 +3889,7 @@ status open
 
 \begin_layout Plain Layout
 
-<<ch05/wb-gdp, cache=TRUE>>=
+<<ch05/wb-gdp>>=
 \end_layout
 
 \begin_layout Plain Layout
@@ -4074,7 +4060,17 @@ name "fig:pdr-wb-density"
 \end_layout
 
 \begin_layout Problem
-1人あたり名目GDPをダウンロードするときに NY.GDP.PCAP.CD というコードを使った。World Bank Open Data
+1人あたり名目GDPをダウンロードするときに 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+NY.GDP.PCAP.CD
+\end_layout
+
+\end_inset
+
+ というコードを使った。World Bank Open Data
 \begin_inset Flex URL
 status open
 
@@ -4092,18 +4088,12 @@ pandas-datareader
  でダウンロードしてみなさい。
 \end_layout
 
-\begin_deeper
-\begin_layout Standard
-\begin_inset ERT
+\begin_layout AnswerFrame
+\begin_inset Argument 2
 status open
 
 \begin_layout Plain Layout
-
-
-\backslash
-answerbox{4
-\backslash
-baselineskip}
+4
 \end_layout
 
 \end_inset
@@ -4111,7 +4101,6 @@ baselineskip}
 
 \end_layout
 
-\end_deeper
 \begin_layout Standard
 \begin_inset Separator plain
 \end_inset
@@ -4129,7 +4118,7 @@ status open
 LatexCommand bibtex
 btprint "btPrintCited"
 bibfiles "References/ref,References/software"
-options "Include/jecon"
+options "Include/jecon-unicode"
 
 \end_inset
 

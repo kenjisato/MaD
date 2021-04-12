@@ -1,9 +1,8 @@
-\usepackage{inconsolata}
 \usepackage{listings}
 \usepackage{caption}
 
-\definecolor{fgcolor}{rgb}{0,0,0}
-\definecolor{shadecolor}{rgb}{1,1,1}
+%\definecolor{fgcolor}{rgb}{0,0,0}
+%\definecolor{shadecolor}{rgb}{1,1,1}
 \definecolor{codecolor}{rgb}{0.97,0.97,0.97}
 
 \lstdefinestyle{Source}{%
@@ -16,24 +15,24 @@
   stringstyle={\small\ttfamily},
   backgroundcolor=\color{codecolor},
   frame={tb},
-  framerule=0.6pt,
+  framerule=0.3pt,
   breaklines=false,
   columns=[l]{fullflexible},%
-  xrightmargin=0zw,%
-  xleftmargin=3zw,%
+  xrightmargin=0\zw,%
+  xleftmargin=3\zw,%
   numberstyle={\scriptsize},%
   numbers=left,%
   stepnumber=5,
   firstnumber=1,
   numbersep=3ex,
-  framesep=2pt,
-  framextopmargin=0.5ex,
+  framesep=1pt,
+  framextopmargin=0pt,
   framexleftmargin=1.5ex,
-  framexbottommargin=0.5ex,
+  framexbottommargin=1pt,
   showstringspaces=false,
   keepspaces=true,
-  aboveskip=8pt,
-  belowskip=2pt
+  aboveskip=6pt,
+  belowskip=0pt
 }
 
 \lstdefinestyle{Result}{%
@@ -41,14 +40,14 @@
   stringstyle={\small\ttfamily},
   showstringspaces=false,
   breaklines=true,
-  xrightmargin=0zw,%
-  xleftmargin=3.5zw,
+  xrightmargin=0\zw,%
+  xleftmargin=4\zw,
   aboveskip=0pt,
-  belowskip=5pt
+  belowskip=4pt
 }
 
 
 % For Code Captions
 \DeclareCaptionFormat{listing}{#1#2#3}
-\captionsetup[lstlisting]{format=listing,singlelinecheck=false, margin=2zw, font={sf},labelsep=quad,labelfont=bf}
+\captionsetup[lstlisting]{format=listing,singlelinecheck=false, margin=2\zw, font={sf},labelsep=quad,labelfont=bf}
 \renewcommand\lstlistingname{Code}

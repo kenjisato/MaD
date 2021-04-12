@@ -4,11 +4,11 @@
 \begin_header
 \save_transient_properties true
 \origin unavailable
-\textclass scrbook
+\textclass bxjsbook
 \begin_preamble
 \input{Include/ch-preamble.tex}
 \end_preamble
-\options dvipdfmx,paper=a5,9pt
+\options a5paper,9pt,openany
 \use_default_options true
 \master all.lyx
 \begin_modules
@@ -16,11 +16,12 @@ knitr
 theorems-ams-chap-bytype
 theorems-ams-extended-chap-bytype
 logicalmkup
+classroom
 \end_modules
 \maintain_unincluded_children false
 \language japanese
 \language_package default
-\inputencoding utf8-platex
+\inputencoding utf8-plain
 \fontencoding global
 \font_roman "default" "default"
 \font_sans "default" "default"
@@ -158,6 +159,19 @@ LatexCommand tableofcontents
 
 \end_layout
 
+\begin_layout Standard
+\begin_inset Flex CLRM/ Mode
+status open
+
+\begin_layout Plain Layout
+student
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Chapter
 成長会計とソロー・モデル
 \begin_inset CommandInset label
@@ -238,7 +252,7 @@ reference "chap:変化率と複利計算"
 \end_inset
 
 章において成長率（変化率）の定義と次の近似公式について説明した。
-\begin_inset Formula
+\begin_inset Formula 
 \[
 \frac{y_{t}-y_{t-1}}{y_{t-1}}\approx\log y_{t}-\log y_{t-1}
 \]
@@ -306,7 +320,7 @@ reference "chap:変化率と複利計算"
 \end_inset
 
  の成長率は
-\begin_inset Formula
+\begin_inset Formula 
 \[
 g_{t}^{xy}=\log x_{t}y_{t}-\log x_{t-1}y_{t-1}=\left(\log x_{t}-\log x_{t-1}\right)+\left(\log y_{t}-\log y_{t-1}\right)=g_{t}^{x}+g_{t}^{y}
 \]
@@ -381,17 +395,13 @@ g_{t}^{xy}=\log x_{t}y_{t}-\log x_{t-1}y_{t-1}=\left(\log x_{t}-\log x_{t-1}\rig
 
 \end_layout
 
-\begin_layout Standard
-\begin_inset ERT
+\end_deeper
+\begin_layout AnswerFrame
+\begin_inset Argument 2
 status open
 
 \begin_layout Plain Layout
-
-
-\backslash
-answerbox{4
-\backslash
-baselineskip}
+5
 \end_layout
 
 \end_inset
@@ -399,7 +409,6 @@ baselineskip}
 
 \end_layout
 
-\end_deeper
 \begin_layout Standard
 \begin_inset Separator plain
 \end_inset
@@ -447,7 +456,7 @@ baselineskip}
 \end_inset
 
  を使って次のように書くことができる。
-\begin_inset Formula
+\begin_inset Formula 
 \[
 Y=F(K,L,A)
 \]
@@ -467,7 +476,7 @@ Y=F(K,L,A)
 コブ=ダグラス型
 \series default
 と呼ばれる次の形式で総生産関数を特定化する。
-\begin_inset Formula
+\begin_inset Formula 
 \[
 Y=AK^{\alpha}L^{1-\alpha}
 \]
@@ -511,7 +520,7 @@ Y=AK^{\alpha}L^{1-\alpha}
 \end_inset
 
  のとき，
-\begin_inset Formula
+\begin_inset Formula 
 \begin{align*}
 Y' & =A\left(cK\right)^{\alpha}\left(cL\right)^{1-\alpha}\\
  & =c^{\alpha+(1-\alpha)}AK^{\alpha}L^{1-\alpha}\\
@@ -529,7 +538,7 @@ Y' & =A\left(cK\right)^{\alpha}\left(cL\right)^{1-\alpha}\\
 
 \begin_layout Standard
 資本の限界生産性（marginal product of capital, MPK) は次のように定義される。
-\begin_inset Formula
+\begin_inset Formula 
 \[
 MPK=\frac{\partial Y}{\partial K}
 \]
@@ -541,7 +550,7 @@ MPK=\frac{\partial Y}{\partial K}
 \end_inset
 
  で定義される。コブ=ダグラス型生産関数を偏微分して，2つの生産性の関係を見てみよう。
-\begin_inset Formula
+\begin_inset Formula 
 \[
 MPK=\frac{\partial Y}{\partial K}=\alpha AK^{\alpha-1}L^{1-\alpha}=\alpha\frac{AK^{\alpha}L^{1-\alpha}}{K}=\alpha\frac{Y}{K}
 \]
@@ -559,18 +568,12 @@ MPK=\frac{\partial Y}{\partial K}=\alpha AK^{\alpha-1}L^{1-\alpha}=\alpha\frac{A
  の関係を調べなさい。
 \end_layout
 
-\begin_deeper
-\begin_layout Standard
-\begin_inset ERT
+\begin_layout AnswerFrame
+\begin_inset Argument 2
 status open
 
 \begin_layout Plain Layout
-
-
-\backslash
-answerbox{4
-\backslash
-baselineskip}
+4
 \end_layout
 
 \end_inset
@@ -578,14 +581,13 @@ baselineskip}
 
 \end_layout
 
-\end_deeper
 \begin_layout Subsubsection*
 ゼロ利潤
 \end_layout
 
 \begin_layout Standard
 企業が次の利潤最大化問題を解いて資本と労働の需要を決定するとしよう。
-\begin_inset Formula
+\begin_inset Formula 
 \[
 \max_{K,L}Y-rK-wL
 \]
@@ -635,7 +637,7 @@ status open
 
 \begin_layout Standard
 利潤最大化のための1階条件は
-\begin_inset Formula
+\begin_inset Formula 
 \[
 MPK=r,\qquad MPL=w
 \]
@@ -643,7 +645,7 @@ MPK=r,\qquad MPL=w
 \end_inset
 
 である。つまり，
-\begin_inset Formula
+\begin_inset Formula 
 \[
 \alpha\frac{Y}{K}=r,\qquad(1-\alpha)\frac{Y}{L}=w
 \]
@@ -651,7 +653,7 @@ MPK=r,\qquad MPL=w
 \end_inset
 
 が成り立つ。もう少し整理すると，
-\begin_inset Formula
+\begin_inset Formula 
 \[
 rK=\alpha Y,\qquad wL=(1-\alpha)Y
 \]
@@ -691,7 +693,7 @@ rK=\alpha Y,\qquad wL=(1-\alpha)Y
 
 \begin_layout Standard
 これらの報酬を合算すると企業の費用になるのだが，企業の売上と一致することに注意しよう。
-\begin_inset Formula
+\begin_inset Formula 
 \[
 rK+wL=\alpha Y+(1-\alpha)Y=Y
 \]
@@ -712,18 +714,12 @@ name "prob:zero-profit"
 るなら，負の利潤も最適になりえない。これらの事実を証明しなさい。
 \end_layout
 
-\begin_deeper
-\begin_layout Standard
-\begin_inset ERT
+\begin_layout AnswerFrame
+\begin_inset Argument 2
 status open
 
 \begin_layout Plain Layout
-
-
-\backslash
-answerbox{6
-\backslash
-baselineskip}
+6
 \end_layout
 
 \end_inset
@@ -731,7 +727,6 @@ baselineskip}
 
 \end_layout
 
-\end_deeper
 \begin_layout Standard
 \begin_inset Separator plain
 \end_inset
@@ -743,18 +738,12 @@ baselineskip}
 上記の数学的事実は，多くの実在する企業が正の利潤を稼いでいることと矛盾するだろうか。説明しなさい。
 \end_layout
 
-\begin_deeper
-\begin_layout Standard
-\begin_inset ERT
+\begin_layout AnswerFrame
+\begin_inset Argument 2
 status open
 
 \begin_layout Plain Layout
-
-
-\backslash
-answerbox{6
-\backslash
-baselineskip}
+6
 \end_layout
 
 \end_inset
@@ -762,7 +751,6 @@ baselineskip}
 
 \end_layout
 
-\end_deeper
 \begin_layout Subsection
 成長会計
 \end_layout
@@ -777,7 +765,7 @@ baselineskip}
 \end_inset
 
  を手に入れたとしよう。
-\begin_inset Formula
+\begin_inset Formula 
 \begin{align*}
 Y_{t} & =A_{t}K_{t}^{\alpha}L_{t}^{1-\alpha}\\
 Y_{t-1} & =A_{t-1}K_{t-1}^{\alpha}L_{t-1}^{1-\alpha}
@@ -798,7 +786,7 @@ Y_{t-1} & =A_{t-1}K_{t-1}^{\alpha}L_{t-1}^{1-\alpha}
 
 \begin_layout Standard
 上式の対数差を取ると，
-\begin_inset Formula
+\begin_inset Formula 
 \begin{multline*}
 \log Y_{t}-\log Y_{t-1}=\left(\log A_{t}-\log A_{t-1}\right)\\
 +\alpha\left(\log K_{t}-\log K_{t-1}\right)+(1-\alpha)\left(\log L_{t}-\log L_{t-1}\right)
@@ -814,7 +802,7 @@ reference "subsec:成長率公式"
 \end_inset
 
  の記法にならえば，
-\begin_inset Formula
+\begin_inset Formula 
 \[
 g_{t}^{Y}=g_{t}^{A}+\alpha g_{t}^{K}+(1-\alpha)g_{t}^{L}
 \]
@@ -867,7 +855,7 @@ g_{t}^{Y}=g_{t}^{A}+\alpha g_{t}^{K}+(1-\alpha)g_{t}^{L}
 \end_inset
 
  の情報はデータから計算可能であるので，観測されない技術の成長率を次のように逆算できる。
-\begin_inset Formula
+\begin_inset Formula 
 \[
 g_{t}^{A}=g_{t}^{Y}-\alpha g_{t}^{K}-(1-\alpha)g_{t}^{L}
 \]
@@ -1614,7 +1602,7 @@ JIP データベースでは産業部門ごとに成長会計を行っている�
 \end_inset
 
  は以下の成長ルールに従う。
-\begin_inset Formula
+\begin_inset Formula 
 \begin{align*}
 L_{t} & =(1+n)L_{t-1}\\
 A_{t} & =(1+g)A_{t-1}
@@ -1643,7 +1631,7 @@ A_{t} & =(1+g)A_{t-1}
 \end_inset
 
  だけ減耗すると仮定すると，次の方程式が得られる。
-\begin_inset Formula
+\begin_inset Formula 
 \begin{equation}
 K_{t}-K_{t-1}=I_{t-1}-\delta K_{t-1}\label{eq:CA}
 \end{equation}
@@ -1671,7 +1659,7 @@ K_{t}-K_{t-1}=I_{t-1}-\delta K_{t-1}\label{eq:CA}
 \end_inset
 
  は一致するので，
-\begin_inset Formula
+\begin_inset Formula 
 \[
 I_{t}=sY_{t}=sF(K_{t},L_{t},A_{t})
 \]
@@ -1711,7 +1699,7 @@ I_{t}=sY_{t}=sF(K_{t},L_{t},A_{t})
 \end_inset
 
  期の変数とパラメータのみで表現されていることから分かる。
-\begin_inset Formula
+\begin_inset Formula 
 \begin{align}
 K_{t} & =sF(K_{t-1},L_{t-1},A_{t-1})+(1-\delta)K_{t-1}\label{eq:K}\\
 L_{t} & =(1+n)L_{t-1}\label{eq:L}\\
@@ -1740,7 +1728,7 @@ A_{t} & =(1+g)A_{t-1}\label{eq:A}
 \end_inset
 
  は次の形式を持つとする。
-\begin_inset Formula
+\begin_inset Formula 
 \[
 Y=F(K,AL)
 \]
@@ -1768,7 +1756,7 @@ Y=F(K,AL)
 \end_inset
 
  は規模に関して収穫一定である。つまり，
-\begin_inset Formula
+\begin_inset Formula 
 \[
 F(cK,cAL)=cF(K,AL),\qquad c>0.
 \]
@@ -1776,7 +1764,7 @@ F(cK,cAL)=cF(K,AL),\qquad c>0.
 \end_inset
 
 収穫一定なので，次のように変形できる。
-\begin_inset Formula
+\begin_inset Formula 
 \[
 Y=F(K,AL)=AL\cdot F\left(\frac{K}{AL},1\right)
 \]
@@ -1788,7 +1776,7 @@ Y=F(K,AL)=AL\cdot F\left(\frac{K}{AL},1\right)
 \end_inset
 
  で割って，
-\begin_inset Formula
+\begin_inset Formula 
 \[
 \frac{Y}{AL}=F\left(\frac{K}{AL},1\right)
 \]
@@ -1804,7 +1792,7 @@ Y=F(K,AL)=AL\cdot F\left(\frac{K}{AL},1\right)
 \end_inset
 
  には，
-\begin_inset Formula
+\begin_inset Formula 
 \[
 y=F(k,1)=f(k)
 \]
@@ -1904,7 +1892,7 @@ name "prop:fprime"
 \end_inset
 
  のとき，
-\begin_inset Formula
+\begin_inset Formula 
 \[
 f'(k)=\frac{\partial F}{\partial K}
 \]
@@ -1916,7 +1904,7 @@ f'(k)=\frac{\partial F}{\partial K}
 
 \begin_layout Proof
 定義に忠実に計算すればよい。
-\begin_inset Formula
+\begin_inset Formula 
 \begin{align*}
 \frac{\partial F}{\partial K} & =\lim_{\Delta K\to0}\frac{F(K+\Delta K,AL)-F(K,AL)}{\Delta K}\\
  & =\lim_{\Delta K\to0}\frac{F\left(\frac{K}{AL}+\frac{\Delta K}{AL},1\right)-F\left(\frac{K}{AL},1\right)}{\frac{\Delta K}{AL}}\\
@@ -1945,7 +1933,7 @@ reference "eq:CA"
 \end_inset
 
 ) を効率労働当たりの変数を用いて書き直そう。
-\begin_inset Formula
+\begin_inset Formula 
 \[
 K_{t+1}=sF(K_{t},A_{t}L_{t})+(1-\delta)K_{t}
 \]
@@ -1957,7 +1945,7 @@ K_{t+1}=sF(K_{t},A_{t}L_{t})+(1-\delta)K_{t}
 \end_inset
 
  で割ると，
-\begin_inset Formula
+\begin_inset Formula 
 \[
 \frac{K_{t+1}}{A_{t}L_{t}}=s\frac{F(K_{t},A_{t}L_{t})}{A_{t}L_{t}}+(1-\delta)\frac{K_{t}}{A_{t}L_{t}}
 \]
@@ -1965,7 +1953,7 @@ K_{t+1}=sF(K_{t},A_{t}L_{t})+(1-\delta)K_{t}
 \end_inset
 
 
-\begin_inset Formula
+\begin_inset Formula 
 \[
 \frac{A_{t+1}L_{t+1}}{A_{t}L_{t}}\frac{K_{t+1}}{A_{t+1}L_{t+1}}=sf\left(k_{t}\right)+\left(1-\delta\right)k_{t}
 \]
@@ -1977,7 +1965,7 @@ K_{t+1}=sF(K_{t},A_{t}L_{t})+(1-\delta)K_{t}
 \end_inset
 
  の変化を表現する次の差分方程式を得る。
-\begin_inset Formula
+\begin_inset Formula 
 \[
 k_{t+1}=\frac{sf\left(k_{t}\right)+\left(1-\delta\right)k_{t}}{\left(1+g\right)\left(1+n\right)}
 \]
@@ -1993,7 +1981,7 @@ k_{t+1}=\frac{sf\left(k_{t}\right)+\left(1-\delta\right)k_{t}}{\left(1+g\right)\
 \end_inset
 
  は差分方程式
-\begin_inset Formula
+\begin_inset Formula 
 \begin{equation}
 k_{t}=\frac{sf\left(k_{t-1}\right)+\left(1-\delta\right)k_{t-1}}{\left(1+g\right)\left(1+n\right)},\qquad t=1,2,\dots\label{eq:ch06/solow}
 \end{equation}
@@ -2001,7 +1989,7 @@ k_{t}=\frac{sf\left(k_{t-1}\right)+\left(1-\delta\right)k_{t-1}}{\left(1+g\right
 \end_inset
 
 に従って変化する。ただし，
-\begin_inset Formula
+\begin_inset Formula 
 \[
 k_{0}=\frac{K_{0}}{A_{0}L_{0}}
 \]
@@ -2023,7 +2011,7 @@ k_{0}=\frac{K_{0}}{A_{0}L_{0}}
 \end_layout
 
 \begin_layout Standard
-\begin_inset Formula
+\begin_inset Formula 
 \[
 G(k)=\frac{sf\left(k\right)+\left(1-\delta\right)k}{\left(1+g\right)\left(1+n\right)}
 \]
@@ -2046,7 +2034,7 @@ reference "eq:ch06/solow"
 \end_inset
 
  のグラフは単調増加になる。
-\begin_inset Formula
+\begin_inset Formula 
 \[
 G'\left(k\right)=\frac{sf'\left(k\right)+\left(1-\delta\right)}{\left(1+g\right)\left(1+n\right)}>0
 \]
@@ -2154,7 +2142,7 @@ reference "fig:ch06/graph-g"
 \end_inset
 
  では，
-\begin_inset Formula
+\begin_inset Formula 
 \begin{align*}
 k_{t} & =G(k_{t-1})\\
 k_{t} & =k_{t-1}
@@ -2233,7 +2221,7 @@ reference "assu:ch06/f"
 \end_inset
 
  を調べるとよい。
-\begin_inset Formula
+\begin_inset Formula 
 \begin{align*}
 k_{t+1}-k_{t} & =\frac{sf(k_{t})+(1-\delta)k_{t}-(1+g)(1+n)k_{t}}{(1+g)(1+n)}\\
  & =\frac{sf(k_{t})-(\delta+g+n+gn)k_{t}}{(1+g)(1+n)}
@@ -2242,7 +2230,7 @@ k_{t+1}-k_{t} & =\frac{sf(k_{t})+(1-\delta)k_{t}-(1+g)(1+n)k_{t}}{(1+g)(1+n)}\\
 \end_inset
 
 したがって，
-\begin_inset Formula
+\begin_inset Formula 
 \[
 k_{t+1}>k_{t}\Longleftrightarrow sf(k_{t})>(\delta+g+n+gn)k_{t}
 \]
@@ -2250,7 +2238,7 @@ k_{t+1}>k_{t}\Longleftrightarrow sf(k_{t})>(\delta+g+n+gn)k_{t}
 \end_inset
 
 
-\begin_inset Formula
+\begin_inset Formula 
 \[
 k_{t+1}<k_{t}\Longleftrightarrow sf(k_{t})<(\delta+g+n+gn)k_{t}
 \]
@@ -2258,7 +2246,7 @@ k_{t+1}<k_{t}\Longleftrightarrow sf(k_{t})<(\delta+g+n+gn)k_{t}
 \end_inset
 
 
-\begin_inset Formula
+\begin_inset Formula 
 \[
 k_{t+1}=k_{t}\Longleftrightarrow sf(k_{t})=(\delta+g+n+gn)k_{t}
 \]
@@ -2286,7 +2274,7 @@ k_{t+1}=k_{t}\Longleftrightarrow sf(k_{t})=(\delta+g+n+gn)k_{t}
 \end_inset
 
 が
-\begin_inset Formula
+\begin_inset Formula 
 \[
 sf(k^{*})=(\delta+g+n+gn)k^{*}
 \]
@@ -2306,7 +2294,7 @@ sf(k^{*})=(\delta+g+n+gn)k^{*}
 定常状態
 \series default
 （steady state）と呼ばれる。
-\begin_inset Formula
+\begin_inset Formula 
 \[
 \left[\left(1+g\right)\left(1+n\right)-(1-\delta)\right]k^{*}=sf(k^{*})
 \]
@@ -2314,7 +2302,7 @@ sf(k^{*})=(\delta+g+n+gn)k^{*}
 \end_inset
 
 
-\begin_inset Formula
+\begin_inset Formula 
 \[
 \left(g+n+\delta+gn\right)k^{*}=sf(k^{*})
 \]
@@ -2350,7 +2338,7 @@ sf(k^{*})=(\delta+g+n+gn)k^{*}
 \end_inset
 
  によっても変化する）。
-\begin_inset Formula
+\begin_inset Formula 
 \[
 k^{*}=k^{*}\left(\delta,g,n,s\right)
 \]
@@ -2358,7 +2346,7 @@ k^{*}=k^{*}\left(\delta,g,n,s\right)
 \end_inset
 
 と書くとすれば，
-\begin_inset Formula
+\begin_inset Formula 
 \[
 \frac{\partial k^{*}}{\partial\delta}<0,\quad\frac{\partial k^{*}}{\partial g}<0,\quad\frac{\partial k^{*}}{\partial n}<0,\quad\frac{\partial k^{*}}{\partial s}>0
 \]
@@ -2372,18 +2360,12 @@ k^{*}=k^{*}\left(\delta,g,n,s\right)
 上の不等式を確認しなさい。
 \end_layout
 
-\begin_deeper
-\begin_layout Standard
-\begin_inset ERT
+\begin_layout AnswerFrame
+\begin_inset Argument 2
 status open
 
 \begin_layout Plain Layout
-
-
-\backslash
-answerbox{4
-\backslash
-baselineskip}
+4
 \end_layout
 
 \end_inset
@@ -2391,7 +2373,6 @@ baselineskip}
 
 \end_layout
 
-\end_deeper
 \begin_layout Standard
 \begin_inset Separator plain
 \end_inset
@@ -2477,7 +2458,7 @@ baselineskip}
 \end_inset
 
  の情報は簡単に復元できる。
-\begin_inset Formula
+\begin_inset Formula 
 \begin{align*}
 Y_{t} & =A_{t}L_{t}y^{*}=A_{t}L_{t}f(k^{*})\\
 \frac{Y_{t}}{L_{t}} & =A_{t}f(k^{*})
@@ -2498,7 +2479,7 @@ Y_{t} & =A_{t}L_{t}y^{*}=A_{t}L_{t}f(k^{*})\\
 \end_inset
 
  の成長率を計算することができる。
-\begin_inset Formula
+\begin_inset Formula 
 \[
 \frac{Y_{t}-Y_{t-1}}{Y_{t-1}}=\frac{A_{t}L_{t}f(k^{*})-A_{t-1}L_{t-1}f(k^{*})}{A_{t-1}L_{t-1}f(k^{*})}=g+n+gn
 \]
@@ -2506,7 +2487,7 @@ Y_{t} & =A_{t}L_{t}y^{*}=A_{t}L_{t}f(k^{*})\\
 \end_inset
 
 
-\begin_inset Formula
+\begin_inset Formula 
 \[
 \frac{\left(Y_{t}/L_{t}\right)-\left(Y_{t-1}/L_{t-1}\right)}{\left(Y_{t-1}/L_{t-1}\right)}=\frac{A_{t}f(k^{*})-A_{t-1}f(k^{*})}{A_{t-1}f(k^{*})}=g
 \]
@@ -2584,18 +2565,12 @@ reference "prop:ch06/bgp"
 を証明しなさい。
 \end_layout
 
-\begin_deeper
-\begin_layout Standard
-\begin_inset ERT
+\begin_layout AnswerFrame
+\begin_inset Argument 2
 status open
 
 \begin_layout Plain Layout
-
-
-\backslash
-answerbox{6
-\backslash
-baselineskip}
+6
 \end_layout
 
 \end_inset
@@ -2603,7 +2578,6 @@ baselineskip}
 
 \end_layout
 
-\end_deeper
 \begin_layout Standard
 \begin_inset Separator plain
 \end_inset
@@ -2645,7 +2619,7 @@ reference "prop:ch06/bgp"
 
 \begin_layout Standard
 マクロ経済には代表的な企業が一社あって，その企業が利潤最大化問題を解いていると考える。市場は完全競争的である。
-\begin_inset Formula
+\begin_inset Formula 
 \[
 \max_{K,L}F\left(K,AL\right)-\left(r+\delta\right)K-wL
 \]
@@ -2674,7 +2648,7 @@ status open
 \end_inset
 
  は原状回復のためのコストである。ゼロ利潤条件は
-\begin_inset Formula
+\begin_inset Formula 
 \[
 Y=wL+rK+\delta K
 \]
@@ -2691,7 +2665,7 @@ Y=wL+rK+\delta K
 \end_inset
 
 。利潤最大化のための1階条件は
-\begin_inset Formula
+\begin_inset Formula 
 \[
 \frac{\partial F}{\partial K}=r+\delta,\qquad\frac{\partial F}{\partial L}=w
 \]
@@ -2710,7 +2684,7 @@ reference "prop:fprime"
 \end_inset
 
  なので，均整成長経路上では
-\begin_inset Formula
+\begin_inset Formula 
 \[
 r=f'(k^{*})-\delta
 \]
@@ -2725,7 +2699,7 @@ reference "prob:zero-profit"
 \end_inset
 
 ），労働所得について，
-\begin_inset Formula
+\begin_inset Formula 
 \[
 wL=Y-(r+\delta)K
 \]
@@ -2737,7 +2711,7 @@ wL=Y-(r+\delta)K
 \end_inset
 
  で割ってやると，
-\begin_inset Formula
+\begin_inset Formula 
 \begin{align*}
 w & =A\left[y-(r+\delta)k\right]\\
  & =A\left[f(k)-f'(k)k\right]
@@ -2746,7 +2720,7 @@ w & =A\left[y-(r+\delta)k\right]\\
 \end_inset
 
 均整成長経路上では，
-\begin_inset Formula
+\begin_inset Formula 
 \[
 w=A\left[f(k^{*})-f'(k^{*})k^{*}\right]
 \]
@@ -2834,7 +2808,7 @@ w=A\left[f(k^{*})-f'(k^{*})k^{*}\right]
 \end_inset
 
  の上昇にともなって，定常状態の効率労働あたり資本ストックは減少する。
-\begin_inset Formula
+\begin_inset Formula 
 \[
 k_{2}^{*}<k_{1}^{*}
 \]
@@ -3103,7 +3077,7 @@ reference "sec:growth-accounting"
 \end_layout
 
 \begin_layout Standard
-\begin_inset Formula
+\begin_inset Formula 
 \begin{align*}
 Y & =AK^{\alpha}L^{1-\alpha}\\
  & =K^{\alpha}\left(A^{\frac{1}{1-\alpha}}L\right)^{1-\alpha}
@@ -3116,7 +3090,7 @@ Y & =AK^{\alpha}L^{1-\alpha}\\
 \end_inset
 
 という変数変換をすれば，
-\begin_inset Formula
+\begin_inset Formula 
 \[
 Y=K^{\alpha}\left(BL\right)^{1-\alpha}
 \]
@@ -3166,7 +3140,7 @@ reference "tab:日本経済の成長会計（ソース：JIPデータベース-2
 \end_inset
 
  （よく使われる資本分配率の近似値）とおくと
-\begin_inset Formula
+\begin_inset Formula 
 \[
 g^{B}=\frac{0.58}{1-(1/3)}\approx0.87
 \]
@@ -3536,17 +3510,13 @@ status open
 
 \end_layout
 
-\begin_layout Standard
-\begin_inset ERT
+\end_deeper
+\begin_layout AnswerFrame
+\begin_inset Argument 2
 status open
 
 \begin_layout Plain Layout
-
-
-\backslash
-answerbox{4
-\backslash
-baselineskip}
+4
 \end_layout
 
 \end_inset
@@ -3554,7 +3524,6 @@ baselineskip}
 
 \end_layout
 
-\end_deeper
 \begin_layout Standard
 \begin_inset Separator plain
 \end_inset
@@ -4436,18 +4405,12 @@ status open
 上のコードを実行するとどのような結果になるか。確認せよ。
 \end_layout
 
-\begin_deeper
-\begin_layout Standard
-\begin_inset ERT
+\begin_layout AnswerFrame
+\begin_inset Argument 2
 status open
 
 \begin_layout Plain Layout
-
-
-\backslash
-answerbox{4
-\backslash
-baselineskip}
+4
 \end_layout
 
 \end_inset
@@ -4455,7 +4418,6 @@ baselineskip}
 
 \end_layout
 
-\end_deeper
 \begin_layout Standard
 \begin_inset Separator plain
 \end_inset
@@ -4894,7 +4856,7 @@ apply()
 
 \begin_layout Standard
 ソロー・モデルで用いたコブ=ダグラス型生産関数　
-\begin_inset Formula
+\begin_inset Formula 
 \[
 F(K,L,A)=K^{\alpha}(AL)^{1-\alpha}
 \]
@@ -4953,7 +4915,7 @@ status open
 
 \begin_layout Standard
 漸化式
-\begin_inset Formula
+\begin_inset Formula 
 \[
 y_{t}=ay_{t-1}+b,\qquad t=1,2,\dots,T-1
 \]
@@ -4965,7 +4927,7 @@ y_{t}=ay_{t-1}+b,\qquad t=1,2,\dots,T-1
 
 \begin_layout Standard
 まず，次のように書き換えると，漸化式の右辺（更新ルール）が高階関数（関数を返す関数）であることが分かる。
-\begin_inset Formula
+\begin_inset Formula 
 \begin{align*}
 y_{t} & =G(y_{t-1}),\qquad G(y)=ay+b
 \end{align*}
@@ -4973,7 +4935,7 @@ y_{t} & =G(y_{t-1}),\qquad G(y)=ay+b
 \end_inset
 
 すなわち，
-\begin_inset Formula
+\begin_inset Formula 
 \[
 (a,b)\mapsto G
 \]
@@ -5027,7 +4989,7 @@ status open
 \end_inset
 
  を返す高階関数（関数を引数とする関数）として理解できる。
-\begin_inset Formula
+\begin_inset Formula 
 \[
 (G,y_{0},T)\mapsto(y_{0},y_{1},y_{2},\dots,y_{T-1})
 \]
@@ -5153,7 +5115,7 @@ status open
 \end_layout
 
 \begin_layout Standard
-\begin_inset Formula
+\begin_inset Formula 
 \begin{align*}
 G(y) & =ay+b\\
  & \downarrow\\
@@ -5895,7 +5857,7 @@ status open
 LatexCommand bibtex
 btprint "btPrintCited"
 bibfiles "References/ref,References/software"
-options "Include/jecon"
+options "Include/jecon-unicode"
 
 \end_inset
 

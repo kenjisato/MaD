@@ -4,22 +4,21 @@
 \begin_header
 \save_transient_properties true
 \origin unavailable
-\textclass scrbook
+\textclass bxjsbook
 \begin_preamble
 \input{Include/ch-preamble.tex}
 \end_preamble
-\options dvipdfmx,paper=a5,fontsize=9pt,twoside
+\options a5paper,9pt
 \use_default_options true
 \master all.lyx
 \begin_modules
 knitr
 theorems-ams-chap-bytype
-theorems-ams-extended-chap-bytype
 \end_modules
 \maintain_unincluded_children false
 \language japanese
 \language_package default
-\inputencoding utf8-platex
+\inputencoding utf8-plain
 \fontencoding global
 \font_roman "default" "default"
 \font_sans "default" "default"
@@ -33,7 +32,7 @@ theorems-ams-extended-chap-bytype
 \font_tt_scale 100 100
 \use_microtype false
 \use_dash_ligatures true
-\graphics default
+\graphics none
 \default_output_format default
 \output_sync 0
 \bibtex_command default
@@ -122,7 +121,7 @@ knitr::read_chunk('Python/ch00.py')
 
 \end_layout
 
-\begin_layout Addchap
+\begin_layout Chapter*
 はじめに
 \end_layout
 
@@ -931,7 +930,7 @@ asis
 
 \end_layout
 
-\begin_layout Addchap
+\begin_layout Chapter*
 謝辞
 \end_layout
 
@@ -985,7 +984,7 @@ status open
 LatexCommand bibtex
 btprint "btPrintCited"
 bibfiles "References/ref,References/software"
-options "Include/jecon"
+options "Include/jecon-unicode"
 
 \end_inset
 

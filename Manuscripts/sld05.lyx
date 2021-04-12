@@ -23,7 +23,7 @@ logicalmkup
 \maintain_unincluded_children false
 \language japanese
 \language_package default
-\inputencoding utf8-platex
+\inputencoding utf8-plain
 \fontencoding global
 \font_roman "default" "default"
 \font_sans "default" "default"

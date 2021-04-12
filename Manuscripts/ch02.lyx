@@ -4,11 +4,11 @@
 \begin_header
 \save_transient_properties true
 \origin unavailable
-\textclass scrbook
+\textclass bxjsbook
 \begin_preamble
 \input{Include/ch-preamble.tex}
 \end_preamble
-\options dvipdfmx,a5paper,9pt
+\options a5paper,9pt,openany
 \use_default_options true
 \master all.lyx
 \begin_modules
@@ -16,11 +16,12 @@ knitr
 theorems-ams-chap-bytype
 theorems-ams-extended-chap-bytype
 logicalmkup
+classroom
 \end_modules
 \maintain_unincluded_children false
 \language japanese
 \language_package default
-\inputencoding utf8-platex
+\inputencoding utf8-plain
 \fontencoding global
 \font_roman "default" "default"
 \font_sans "default" "default"
@@ -158,6 +159,19 @@ LatexCommand tableofcontents
 
 \end_layout
 
+\begin_layout Standard
+\begin_inset Flex CLRM/ Mode
+status open
+
+\begin_layout Plain Layout
+student
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Chapter
 物価指数とインフレーション
 \begin_inset CommandInset label
@@ -250,7 +264,7 @@ Matplotlib
 \end_inset
 
  を考える。ひとまず，ベクトルとは一定の個数分だけ数字を並べたものと考えておこう。
-\begin_inset Formula
+\begin_inset Formula 
 \[
 \begin{bmatrix}x_{1}\\
 x_{2}\\
@@ -266,7 +280,7 @@ x_{d}
 \end_inset
 
  は並べた数字の個数を表す。これは状況に応じて必要な数を固定する。縦に並べると余白が増えてしまうので，横に並べて省スペース化できる方が便利である。
-\begin_inset Formula
+\begin_inset Formula 
 \[
 \boldsymbol{x}=(x_{1},x_{2},\dots,x_{d}).
 \]
@@ -283,7 +297,7 @@ x_{d}
 \end_inset
 
  の行列）」を書く必要があるときには，
-\begin_inset Formula
+\begin_inset Formula 
 \[
 \begin{bmatrix}x_{1} & x_{2} & \cdots & x_{n}\end{bmatrix}
 \]
@@ -351,7 +365,7 @@ x_{d}
 \end_inset
 
  に対して，
-\begin_inset Formula
+\begin_inset Formula 
 \[
 \alpha\boldsymbol{x}+\beta\boldsymbol{y}=\alpha\begin{bmatrix}x_{1}\\
 x_{2}\\
@@ -390,7 +404,7 @@ y_{d}
 \end_inset
 
  としよう。
-\begin_inset Formula
+\begin_inset Formula 
 \[
 \boldsymbol{x}=\begin{bmatrix}1\\
 3\\
@@ -404,7 +418,7 @@ y_{d}
 \end_inset
 
 に対して，
-\begin_inset Formula
+\begin_inset Formula 
 \[
 \boldsymbol{x}+\boldsymbol{y}=\begin{bmatrix}3\\
 3\\
@@ -419,7 +433,7 @@ y_{d}
 \end_inset
 
  であれば，
-\begin_inset Formula
+\begin_inset Formula 
 \[
 \alpha\boldsymbol{x}=\begin{bmatrix}-1\\
 -3\\
@@ -441,7 +455,7 @@ y_{d}
 
 \begin_layout Standard
 ベクトル同士の引き算は，和とスカラー倍を組み合わせて，
-\begin_inset Formula
+\begin_inset Formula 
 \[
 \boldsymbol{x}-\boldsymbol{y}=\boldsymbol{x}+(-1)\boldsymbol{y}
 \]
@@ -465,7 +479,7 @@ y_{d}
 \end_inset
 
  に対して，
-\begin_inset Formula
+\begin_inset Formula 
 \[
 \boldsymbol{x}\cdot\boldsymbol{y}=x_{1}y_{1}+x_{2}y_{2}+\cdots+x_{d}y_{d}=\sum_{i=1}^{d}x_{i}y_{i}
 \]
@@ -511,7 +525,7 @@ status open
 \end_inset
 
  とする。このとき，取引総額は
-\begin_inset Formula
+\begin_inset Formula 
 \[
 \boldsymbol{p}\cdot\boldsymbol{x}=p_{1}x_{1}+p_{2}x_{2}+p_{3}x_{3}
 \]
@@ -624,7 +638,7 @@ status open
 \end_inset
 
  時点からの価格の粗変化率は
-\begin_inset Formula
+\begin_inset Formula 
 \[
 \frac{p_{t,i}}{p_{0,i}}
 \]
@@ -637,7 +651,7 @@ status open
 \begin_layout Standard
 複数の財が存在する経済で，マクロ経済の価格を代表する「物価」，あるいはその変化，をどのように定義すればよいだろうか。ベクトルとベクトルの割り算は定義していないの
 で，
-\begin_inset Formula
+\begin_inset Formula 
 \begin{align*}
  & \frac{\boldsymbol{p}_{t}}{\boldsymbol{p}_{0}} & (\text{誤り！})
 \end{align*}
@@ -645,7 +659,7 @@ status open
 \end_inset
 
 とする訳にはいかないし，単純に算術平均
-\begin_inset Formula
+\begin_inset Formula 
 \begin{align*}
  & \frac{1}{N}\sum_{i=1}^{N}\frac{p_{t,i}}{p_{0,i}} & (\text{一般的には正しくない！})
 \end{align*}
@@ -662,7 +676,7 @@ status open
 \end_inset
 
  をかけていることが問題なので，マーケットの大きさに応じた重みを掛ければよい。つまり，
-\begin_inset Formula
+\begin_inset Formula 
 \[
 \sum_{i=1}^{N}w_{i}\frac{p_{t,i}}{p_{0,i}}
 \]
@@ -678,7 +692,7 @@ status open
 \end_inset
 
 , は次の性質を満たす。
-\begin_inset Formula
+\begin_inset Formula 
 \[
 \sum_{i=1}^{N}w_{i}=1.
 \]
@@ -722,7 +736,7 @@ status open
 \end_inset
 
  だった。すべての財について価値を合計したものは，内積を用いて次のように書くことができる。
-\begin_inset Formula
+\begin_inset Formula 
 \[
 \sum_{j=1}^{N}p_{0,j}x_{0,j}=\boldsymbol{p}_{0}\cdot\boldsymbol{x}_{0}
 \]
@@ -747,7 +761,7 @@ status open
 \end_inset
 
  としよう。すなわち，
-\begin_inset Formula
+\begin_inset Formula 
 \[
 w_{i}^{L}=\frac{p_{0,i}x_{0,i}}{\sum_{j=1}^{N}p_{0,j}x_{0,j}}=\frac{p_{0,i}x_{0,i}}{\boldsymbol{p}_{0}\cdot\boldsymbol{x}_{0}}
 \]
@@ -764,7 +778,7 @@ w_{i}^{L}=\frac{p_{0,i}x_{0,i}}{\sum_{j=1}^{N}p_{0,j}x_{0,j}}=\frac{p_{0,i}x_{0,
 \end_inset
 
  は「重み」が持つべき性質を持っている。なぜなら，
-\begin_inset Formula
+\begin_inset Formula 
 \[
 \sum_{i=1}^{N}w_{i}^{L}=\sum_{i=1}^{N}\left(\frac{p_{0,i}x_{0,i}}{\boldsymbol{p}_{0}\cdot\boldsymbol{x}_{0}}\right)=\frac{\boldsymbol{p}_{0}\cdot\boldsymbol{x}_{0}}{\boldsymbol{p}_{0}\cdot\boldsymbol{x}_{0}}=1.
 \]
@@ -795,7 +809,7 @@ status open
 \end_inset
 
  (Laspeyres index) と呼ぶ。
-\begin_inset Formula
+\begin_inset Formula 
 \begin{align}
 (\text{ラスパイレス指数}) & =\sum_{i=1}^{N}w_{i}^{L}\frac{p_{t,i}}{p_{0,i}}\nonumber \\
  & =\sum_{i=1}^{N}\left(\frac{p_{0,i}x_{0,i}}{\boldsymbol{p}_{0}\cdot\boldsymbol{x}_{0}}\right)\frac{p_{t,i}}{p_{0,i}}\nonumber \\
@@ -844,7 +858,7 @@ name "subsec:パーシェ指数"
 \end_inset
 
  とする。 次に考える重みは次のようなものである。
-\begin_inset Formula
+\begin_inset Formula 
 \[
 w_{i}^{P}=\frac{p_{0,i}x_{t,i}}{\sum_{j=1}^{N}p_{0,j}x_{t,j}}=\frac{p_{0,i}x_{t,i}}{\boldsymbol{p}_{0}\cdot\boldsymbol{x}_{t}}.
 \]
@@ -860,7 +874,7 @@ w_{i}^{P}=\frac{p_{0,i}x_{t,i}}{\sum_{j=1}^{N}p_{0,j}x_{t,j}}=\frac{p_{0,i}x_{t,
 \end_inset
 
  は「重み」が持つべき性質を持っている。すなわち，
-\begin_inset Formula
+\begin_inset Formula 
 \[
 \sum_{i=1}^{N}w_{i}^{P}=\sum_{i=1}^{N}\left(\frac{p_{0,i}x_{t,i}}{\boldsymbol{p}_{0}\cdot\boldsymbol{x}_{t}}\right)=\frac{\boldsymbol{p}_{0}\cdot\boldsymbol{x}_{t}}{\boldsymbol{p}_{0}\cdot\boldsymbol{x}_{t}}=1.
 \]
@@ -889,7 +903,7 @@ status open
 \end_layout
 
 \begin_layout Standard
-\begin_inset Formula
+\begin_inset Formula 
 \begin{align}
 (\text{パーシェ指数}) & =\sum_{i=1}^{N}w_{i}^{P}\frac{p_{t,i}}{p_{0,i}}\nonumber \\
  & =\sum_{i=1}^{N}\left(\frac{p_{0,i}x_{t,i}}{\boldsymbol{p}_{0}\cdot\boldsymbol{x}_{t}}\right)\frac{p_{t,i}}{p_{0,i}}\nonumber \\
@@ -914,7 +928,7 @@ status open
 \end_layout
 
 \begin_layout Standard
-\begin_inset Formula
+\begin_inset Formula 
 \[
 \text{物価変化率}=\frac{\boldsymbol{p}_{t}\cdot\text{\fbox{\ensuremath{\phantom{\boldsymbol{x}_{t}}}}}}{\boldsymbol{p}_{0}\cdot\fbox{\ensuremath{\phantom{\boldsymbol{x}_{t}}}}}
 \]
@@ -1097,18 +1111,12 @@ ong time ago （昔）の数量を使う
 ラスパイレス式の物価指数はパーシェ式の物価指数よりも物価の変化を迅速に捉えることができる。これは，なぜか。情報収集のコストの観点から説明しなさい。
 \end_layout
 
-\begin_deeper
-\begin_layout Standard
-\begin_inset ERT
+\begin_layout AnswerFrame
+\begin_inset Argument 2
 status open
 
 \begin_layout Plain Layout
-
-
-\backslash
-answerbox{5
-\backslash
-baselineskip}
+5
 \end_layout
 
 \end_inset
@@ -1116,7 +1124,6 @@ baselineskip}
 
 \end_layout
 
-\end_deeper
 \begin_layout Standard
 \begin_inset Separator plain
 \end_inset
@@ -1140,7 +1147,7 @@ baselineskip}
 \end_inset
 
  が急激に値上がりしたとして，その財から別の財への代替が進んだとする。ラスパイレス指数の重み
-\begin_inset Formula
+\begin_inset Formula 
 \[
 w_{i}^{L}=\frac{p_{0,i}x_{0,i}}{\boldsymbol{p}_{0}\cdot\boldsymbol{x}_{0}}
 \]
@@ -1152,7 +1159,7 @@ w_{i}^{L}=\frac{p_{0,i}x_{0,i}}{\boldsymbol{p}_{0}\cdot\boldsymbol{x}_{0}}
 \end_inset
 
  の影響が大きく残る。一方，パーシェ指数の重み
-\begin_inset Formula
+\begin_inset Formula 
 \[
 w_{i}^{P}=\frac{p_{0,i}x_{t,i}}{\boldsymbol{p}_{0}\cdot\boldsymbol{x}_{t}}
 \]
@@ -1202,7 +1209,7 @@ status open
 \end_inset
 
 はパーシェ式とラスパイレス式の相乗平均を用いて，次のように定義される。
-\begin_inset Formula
+\begin_inset Formula 
 \[
 (\text{フィッシャー指数})=\sqrt{\underbrace{\frac{\boldsymbol{p}_{t}\cdot\boldsymbol{x}_{t}}{\boldsymbol{p}_{0}\cdot\boldsymbol{x}_{t}}}_{\text{パーシェ}}\times\underbrace{\frac{\boldsymbol{p}_{t}\cdot\boldsymbol{x}_{0}}{\boldsymbol{p}_{0}\cdot\boldsymbol{x}_{0}}}_{\text{ラスパイレス}}}.
 \]
@@ -1238,7 +1245,7 @@ status open
 \end_inset
 
  と書こう。
-\begin_inset Formula
+\begin_inset Formula 
 \[
 P_{t}=\frac{\boldsymbol{p}_{t}\cdot\boldsymbol{x}_{*}}{\boldsymbol{p}_{0}\cdot\boldsymbol{x}_{*}}
 \]
@@ -1246,7 +1253,7 @@ P_{t}=\frac{\boldsymbol{p}_{t}\cdot\boldsymbol{x}_{*}}{\boldsymbol{p}_{0}\cdot\b
 \end_inset
 
 このようにすれば，平均物価の変遷を表す時系列を作ることが出来る。
-\begin_inset Formula
+\begin_inset Formula 
 \[
 P_{0}=1,\quad P_{1},\quad P_{2},\quad\cdots,\quad P_{t},\quad\cdots
 \]
@@ -1304,7 +1311,7 @@ status open
 \end_inset
 
 ）
-\begin_inset Formula
+\begin_inset Formula 
 \[
 \frac{\Delta P_{t}}{P_{t-1}}=\frac{P_{t}-P_{t-1}}{P_{t-1}}=\frac{P_{t}}{P_{t-1}}-1
 \]
@@ -1338,7 +1345,7 @@ status open
 \end_inset
 
  が大きくなるにつれて，経済活動の実態に合わなくなってくる。例えば，ラスパイレス指数の場合，
-\begin_inset Formula
+\begin_inset Formula 
 \[
 P_{t}^{\text{Laspeyres}}=\frac{\boldsymbol{p}_{t}\cdot\boldsymbol{x}_{0}}{\boldsymbol{p}_{0}\cdot\boldsymbol{x}_{0}}
 \]
@@ -1358,7 +1365,7 @@ P_{t}^{\text{Laspeyres}}=\frac{\boldsymbol{p}_{t}\cdot\boldsymbol{x}_{0}}{\bolds
 \end_inset
 
  を使ってしまっているかもしれない。パーシェ指数の場合にも，
-\begin_inset Formula
+\begin_inset Formula 
 \[
 P_{t}^{\text{Paasche}}=\frac{\boldsymbol{p}_{t}\cdot\boldsymbol{x}_{t}}{\boldsymbol{p}_{0}\cdot\boldsymbol{x}_{t}}
 \]
@@ -1416,7 +1423,7 @@ status open
 \end_inset
 
 と呼ばれる算式が用いられることもある。連鎖方式の指数は，前年度の連鎖指数に前年度基準の価格指数を掛けることで計算される。つまり，
-\begin_inset Formula
+\begin_inset Formula 
 \begin{align*}
 \text{ラスパイレス式連鎖指数}_{t} & =\text{ラスパイレス式連鎖指数}_{t-1}\times\frac{\boldsymbol{p}_{t}\cdot\boldsymbol{x}_{t-1}}{\boldsymbol{p}_{t-1}\cdot\boldsymbol{x}_{t-1}}\\
 \text{パーシェ式連鎖指数}_{t} & =\text{パーシェ式連鎖指数}_{t-1}\times\frac{\boldsymbol{p}_{t}\cdot\boldsymbol{x}_{t}}{\boldsymbol{p}_{t-1}\cdot\boldsymbol{x}_{t}}\\
@@ -1435,7 +1442,7 @@ GDPデフレーターはパーシェ式の連鎖指数である。なお，連�
 \end_inset
 
  の値）は 1 と設定する（指数を100で基準化する場合は 100）。
-\begin_inset Formula
+\begin_inset Formula 
 \[
 \text{連鎖指数}_{0}=1
 \]
@@ -1561,26 +1568,6 @@ status open
 リスト同士の和，リストと自然数の積は Python ではどのように定義されているか。色々な入力を試して実験し，自分の言葉で説明しなさい。
 \end_layout
 
-\begin_deeper
-\begin_layout Standard
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-answerbox{4
-\backslash
-baselineskip}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_deeper
 \begin_layout Standard
 \begin_inset Separator plain
 \end_inset
@@ -1622,17 +1609,13 @@ status open
 
 \end_layout
 
-\begin_layout Standard
-\begin_inset ERT
+\end_deeper
+\begin_layout AnswerFrame
+\begin_inset Argument 2
 status open
 
 \begin_layout Plain Layout
-
-
-\backslash
-answerbox{4
-\backslash
-baselineskip}
+4
 \end_layout
 
 \end_inset
@@ -1640,7 +1623,6 @@ baselineskip}
 
 \end_layout
 
-\end_deeper
 \begin_layout Standard
 \begin_inset Separator plain
 \end_inset
@@ -2091,17 +2073,13 @@ status open
 
 \end_layout
 
-\begin_layout Standard
-\begin_inset ERT
+\end_deeper
+\begin_layout AnswerFrame
+\begin_inset Argument 2
 status open
 
 \begin_layout Plain Layout
-
-
-\backslash
-answerbox{4
-\backslash
-baselineskip}
+4
 \end_layout
 
 \end_inset
@@ -2109,7 +2087,6 @@ baselineskip}
 
 \end_layout
 
-\end_deeper
 \begin_layout Standard
 数値計算だけに限定すれば，タプルを自分で作らなければならない状況というのは少ないかもしれない
 \begin_inset Foot
@@ -2453,17 +2430,13 @@ status open
 
 \end_layout
 
-\begin_layout Standard
-\begin_inset ERT
+\end_deeper
+\begin_layout AnswerFrame
+\begin_inset Argument 2
 status open
 
 \begin_layout Plain Layout
-
-
-\backslash
-answerbox{4
-\backslash
-baselineskip}
+4
 \end_layout
 
 \end_inset
@@ -2471,7 +2444,6 @@ baselineskip}
 
 \end_layout
 
-\end_deeper
 \begin_layout Standard
 \begin_inset Separator plain
 \end_inset
@@ -2851,18 +2823,12 @@ dot()
  を使わずに内積を計算する方法を説明しなさい。
 \end_layout
 
-\begin_deeper
-\begin_layout Standard
-\begin_inset ERT
+\begin_layout AnswerFrame
+\begin_inset Argument 2
 status open
 
 \begin_layout Plain Layout
-
-
-\backslash
-answerbox{4
-\backslash
-baselineskip}
+4
 \end_layout
 
 \end_inset
@@ -2870,7 +2836,6 @@ baselineskip}
 
 \end_layout
 
-\end_deeper
 \begin_layout Subsubsection*
 配列を生成する関数
 \end_layout
@@ -3026,17 +2991,13 @@ np.empty_like?
 
 \end_layout
 
-\begin_layout Standard
-\begin_inset ERT
+\end_deeper
+\begin_layout AnswerFrame
+\begin_inset Argument 2
 status open
 
 \begin_layout Plain Layout
-
-
-\backslash
-answerbox{8
-\backslash
-baselineskip}
+8
 \end_layout
 
 \end_inset
@@ -3044,7 +3005,6 @@ baselineskip}
 
 \end_layout
 
-\end_deeper
 \begin_layout Standard
 \begin_inset Separator plain
 \end_inset
@@ -3593,7 +3553,7 @@ squeeze()
 \end_inset
 
  は多用される（私が多用する）ので，覚えておいてほしい。以下の例は，3つのベクトル時系列
-\begin_inset Formula
+\begin_inset Formula 
 \[
 b_{1}=\begin{bmatrix}0\\
 1
@@ -3931,7 +3891,7 @@ status open
 \end_inset
 
 
-\begin_inset Formula
+\begin_inset Formula 
 \begin{align*}
 x_{t+1} & =x_{t}+\varepsilon_{t+1},\qquad\varepsilon_{t+1}\stackrel{{\scriptscriptstyle \text{i.i.d}}}{\sim}\mathcal{N}(0,1),\quad t=0,1,\dots\\
 x_{0} & =0
@@ -4086,21 +4046,6 @@ status open
 
 \begin_deeper
 \begin_layout Standard
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-vspace{-1
-\backslash
-baselineskip}
-\end_layout
-
-\end_inset
-
-
 \begin_inset Float table
 placement H
 wide false
@@ -4336,24 +4281,6 @@ B財
 
 \end_layout
 
-\begin_layout Plain Layout
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-vspace{-1
-\backslash
-baselineskip}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
 \end_inset
 
 
@@ -4442,24 +4369,6 @@ quantity00
 \end_inset
 
  に対応する。
-\end_layout
-
-\begin_layout Standard
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-vspace{-1
-\backslash
-baselineskip}
-\end_layout
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Standard
@@ -4716,24 +4625,6 @@ B財
 \end_layout
 
 \begin_layout Standard
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-vspace{-1
-\backslash
-baselineskip}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
 上のコードを書いたときの気持ちは，各表の行（年）ごとに変数を作れば内積計算ができるだろうというものだった。非常に愚直に考えてコードを書いた訳だが，これではデータ
 の年数が増えたときに大変困ったことになる。10年分のデータがあると変数が20個になる。これでは管理が大変だ。そこで，この2つの表をそのままコードに変換してみよう
 。表形式のデータを行列と見なして，次のように書ける。
@@ -4936,24 +4827,6 @@ status open
 
 \begin_layout Standard
 連鎖指数が意味を持つには3年以上の期間が必要なので，さきほどのデータを次のように拡張する。
-\end_layout
-
-\begin_layout Standard
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-vspace{-1
-\backslash
-baselineskip}
-\end_layout
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Standard
@@ -5322,24 +5195,6 @@ B財
 \end_layout
 
 \begin_layout Standard
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-vspace{-1
-\backslash
-baselineskip}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
 ラスパイレス式の連鎖指数（参照年 = 2000年）を計算するには次のようにすればよい。
 \end_layout
 
@@ -5374,10 +5229,12 @@ status open
 \end_layout
 
 \begin_layout Verbatim
+
 laspeyres[t] = laspeyres[t-1] * (sum(price[t, :] * quantity[t-1, :])
 \end_layout
 
 \begin_layout Verbatim
+
                                  / sum(price[t-1, :] * quantity[t-1, :]))
 \end_layout
 
@@ -5458,7 +5315,7 @@ status open
 LatexCommand bibtex
 btprint "btPrintCited"
 bibfiles "References/ref,References/software"
-options "Include/jecon"
+options "Include/jecon-unicode"
 
 \end_inset
 

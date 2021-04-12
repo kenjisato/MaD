@@ -4,11 +4,11 @@
 \begin_header
 \save_transient_properties true
 \origin unavailable
-\textclass scrbook
+\textclass bxjsbook
 \begin_preamble
 \input{Include/ch-preamble.tex}
 \end_preamble
-\options dvipdfmx,paper=a5,base=9pt, twoside, openany
+\options a5paper,9pt,openany
 \use_default_options true
 \master all.lyx
 \begin_modules
@@ -16,11 +16,12 @@ knitr
 theorems-ams-chap-bytype
 theorems-ams-extended-chap-bytype
 logicalmkup
+classroom
 \end_modules
 \maintain_unincluded_children false
 \language japanese
 \language_package default
-\inputencoding utf8-platex
+\inputencoding utf8-plain
 \fontencoding global
 \font_roman "default" "default"
 \font_sans "default" "default"
@@ -158,6 +159,19 @@ LatexCommand tableofcontents
 
 \end_layout
 
+\begin_layout Standard
+\begin_inset Flex CLRM/ Mode
+status open
+
+\begin_layout Plain Layout
+student
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Chapter
 GDP の成長と格差
 \begin_inset CommandInset label
@@ -219,7 +233,7 @@ GDP は生産された価値の合計であるから，合計する前の GDP �
 加価値生産額 1兆円の小さな産業である。補助金の投入によって産業の成長率を 10% → 11% に加速することができたとして，GDP 全体の成長に対する貢献がど
 の程度になるかを計算してみよう。補助金を投入しなければ 1.1兆円を次年度に生産していたところ，補助金の投入によって 1.11兆円に生産額が増える。増分は
  0.01 兆円であるから，現在の GDP 全体に占める増分の比率は
-\begin_inset Formula
+\begin_inset Formula 
 \[
 0.01\text{兆円}/500\text{兆円}=0.002\%
 \]
@@ -332,7 +346,7 @@ if-elif-else
 \begin_layout Standard
 GDP（Gross Domestic Product, 国内総生産）は，ある期間において（通常は，1年または四半期），各生産者が生産した付加価値をすべて合計した
 ものである。付加価値とは，
-\begin_inset Formula
+\begin_inset Formula 
 \[
 \text{付加価値}=\text{生産物の価値}-\text{投入中間財の価値}
 \]
@@ -430,7 +444,7 @@ status open
 
 \begin_layout Standard
 純輸出は
-\begin_inset Formula
+\begin_inset Formula 
 \[
 \text{純輸出}=\text{輸出（Export）}-\text{輸入（Import）}
 \]
@@ -475,7 +489,7 @@ status open
 \end_layout
 
 \begin_layout Standard
-\begin_inset Formula
+\begin_inset Formula 
 \[
 Y=C+I+G+NX
 \]
@@ -498,7 +512,7 @@ Y=C+I+G+NX
 \end_layout
 
 \begin_layout Standard
-\begin_inset Formula
+\begin_inset Formula 
 \[
 Y=C+I+G+EX-IM
 \]
@@ -558,7 +572,7 @@ Y=C+I+G+EX-IM
 
 \begin_layout Standard
 経済の生産規模を測る GDP ではあるが，米 800万トンと自動車 70万台を単純に足すことはできないので，貨幣の単位で測った価値を用いて生産規模を計算する。
-\begin_inset Formula
+\begin_inset Formula 
 \[
 \text{価値}=\text{価格}\times\text{数量}
 \]
@@ -599,7 +613,7 @@ nominal GDP
 
 \begin_layout Standard
 名目 GDP の計算の基礎となる価値の式に，時間のインデックスを付記しておこう。
-\begin_inset Formula
+\begin_inset Formula 
 \begin{align*}
 \text{価値}_{t} & =\text{価格}_{t}\times\text{数量}_{t}\\
 \text{価値}_{t+1} & =\text{価格}_{t+1}\times\text{数量}_{t+1}
@@ -608,7 +622,7 @@ nominal GDP
 \end_inset
 
 特定の財について，生産物の価値の上昇は 2つの原因によって起こる。つまり，価格が上昇するか，生産数量が拡大するかだ。
-\begin_inset Formula
+\begin_inset Formula 
 \begin{align*}
 (\text{価値の粗変化率}) & =\frac{\text{価値}_{t+1}}{\text{価値}_{t}}=\frac{\text{価格}_{t+1}}{\text{価格}_{t}}\times\frac{\text{数量}_{t+1}}{\text{数量}_{t}}\\
  & =(\text{価格の粗変化率})\times(\text{数量の粗変化率})
@@ -634,7 +648,7 @@ status open
 
 \begin_layout Standard
 そこで，豊かさを測る指標として，成長率
-\begin_inset Formula
+\begin_inset Formula 
 \[
 \frac{\text{数量}_{t+1}}{\text{数量}_{t}}=\frac{\text{価値}_{t+1}/\text{価値}_{t}}{\text{価格}_{t+1}/\text{価格}_{t}}
 \]
@@ -706,7 +720,7 @@ reference "chap:物価指数とインフレーション"
 \end_inset
 
 , は
-\begin_inset Formula
+\begin_inset Formula 
 \[
 Y_{t}=\text{名目GDP}_{t}=\boldsymbol{p}_{t}\cdot\boldsymbol{x}_{t}
 \]
@@ -726,7 +740,7 @@ Y_{t}=\text{名目GDP}_{t}=\boldsymbol{p}_{t}\cdot\boldsymbol{x}_{t}
 \end_inset
 
  は
-\begin_inset Formula
+\begin_inset Formula 
 \[
 \text{（粗）経済成長率}_{t}=1+g_{t}=\frac{\boldsymbol{p}_{t-1}\cdot\boldsymbol{x}_{t}}{\boldsymbol{p}_{t-1}\cdot\boldsymbol{x}_{t-1}}
 \]
@@ -746,7 +760,7 @@ Y_{t}=\text{名目GDP}_{t}=\boldsymbol{p}_{t}\cdot\boldsymbol{x}_{t}
 
 \begin_layout Standard
 参照年を 0期とする。0 期においては
-\begin_inset Formula
+\begin_inset Formula 
 \[
 \text{実質GDP}_{0}=\text{名目GDP}_{0}\qquad\text{あるいは}\qquad y_{0}=Y_{0}
 \]
@@ -762,7 +776,7 @@ Y_{t}=\text{名目GDP}_{t}=\boldsymbol{p}_{t}\cdot\boldsymbol{x}_{t}
 実質GDP
 \series default
 （連鎖方式）は次のように定義される。
-\begin_inset Formula
+\begin_inset Formula 
 \begin{align}
 y_{t} & =\prod_{i=1}^{t}\left(1+g_{i}\right)\times y_{0}\nonumber \\
  & =\left(1+g_{t}\right)\left(1+g_{t-1}\right)\times\cdots\times\left(1+g_{1}\right)\times y_{0}\nonumber \\
@@ -787,7 +801,7 @@ reference "eq:laspeyres-quantity-gdp"
 \end_inset
 
  であることに注意すれば，異なる表現が得られる。
-\begin_inset Formula
+\begin_inset Formula 
 \begin{align*}
 y_{t} & =\frac{\boldsymbol{p}_{t-1}\cdot\boldsymbol{x}_{t}}{\boldsymbol{p}_{t-1}\cdot\boldsymbol{x}_{t-1}}\times\frac{\boldsymbol{p}_{t-2}\cdot\boldsymbol{x}_{t-1}}{\boldsymbol{p}_{t-2}\cdot\boldsymbol{x}_{t-2}}\times\cdots\times\frac{\boldsymbol{p}_{0}\cdot\boldsymbol{x}_{1}}{\boldsymbol{p}_{0}\cdot\boldsymbol{x}_{0}}\times\boldsymbol{p}_{0}\cdot\boldsymbol{x}_{0}\\
  & =\boldsymbol{p}_{t}\cdot\boldsymbol{x}_{t}\times\frac{\boldsymbol{p}_{t-1}\cdot\boldsymbol{x}_{t}}{\boldsymbol{p}_{t}\cdot\boldsymbol{x}_{t}}\times\frac{\boldsymbol{p}_{t-2}\cdot\boldsymbol{x}_{t-1}}{\boldsymbol{p}_{t-1}\cdot\boldsymbol{x}_{t-1}}\times\cdots\times\frac{\boldsymbol{p}_{0}\cdot\boldsymbol{x}_{1}}{\boldsymbol{p}_{1}\cdot\boldsymbol{x}_{1}}
@@ -804,7 +818,7 @@ y_{t} & =\frac{\boldsymbol{p}_{t-1}\cdot\boldsymbol{x}_{t}}{\boldsymbol{p}_{t-1}
 \end_inset
 
  を消去した。分母を1つずつずらしていることにも注意しよう。これは，さらに
-\begin_inset Formula
+\begin_inset Formula 
 \[
 y_{t}=\frac{\boldsymbol{p}_{t}\cdot\boldsymbol{x}_{t}}{\frac{\boldsymbol{p}_{t}\cdot\boldsymbol{x}_{t}}{\boldsymbol{p}_{t-1}\cdot\boldsymbol{x}_{t}}\times\frac{\boldsymbol{p}_{t-1}\cdot\boldsymbol{x}_{t-1}}{\boldsymbol{p}_{t-2}\cdot\boldsymbol{x}_{t-1}}\times\cdots\times\frac{\boldsymbol{p}_{1}\cdot\boldsymbol{x}_{1}}{\boldsymbol{p}_{0}\cdot\boldsymbol{x}_{1}}}
 \]
@@ -812,7 +826,7 @@ y_{t}=\frac{\boldsymbol{p}_{t}\cdot\boldsymbol{x}_{t}}{\frac{\boldsymbol{p}_{t}\
 \end_inset
 
 と書き直すことができる。分母がパーシェ式連鎖指数となっていることに注意する。すなわち，
-\begin_inset Formula
+\begin_inset Formula 
 \begin{align}
 \text{DFL}_{0} & =1\nonumber \\
 \text{DFL}_{i} & =\frac{\boldsymbol{p}_{i}\cdot\boldsymbol{x}_{i}}{\boldsymbol{p}_{i-1}\cdot\boldsymbol{x}_{i}}\times\text{DFL}_{i-1},\quad i=1,2,\dots,t\label{eq:ch03-dfl}
@@ -821,7 +835,7 @@ y_{t}=\frac{\boldsymbol{p}_{t}\cdot\boldsymbol{x}_{t}}{\frac{\boldsymbol{p}_{t}\
 \end_inset
 
 と定義すれば，
-\begin_inset Formula
+\begin_inset Formula 
 \[
 y_{t}=\frac{\boldsymbol{p}_{t}\cdot\boldsymbol{x}_{t}}{\text{DFL}_{t}}
 \]
@@ -870,7 +884,7 @@ reference "eq:laspeyres-quantity-gdp"
 \end_inset
 
 ) で実質GDPを計算してからデフレーターを計算することもできる。実務上は，実質GDP を先に計算しているようだ。
-\begin_inset Formula
+\begin_inset Formula 
 \[
 \text{デフレーター}=\frac{\text{名目値}}{\text{実質値}}
 \]
@@ -886,7 +900,7 @@ reference "eq:laspeyres-quantity-gdp"
 \end_layout
 
 \begin_layout Standard
-\begin_inset Formula
+\begin_inset Formula 
 \[
 \text{実質GDP}=\frac{\text{名目GDP}}{\text{GDP デフレータ}}
 \]
@@ -901,18 +915,19 @@ reference "eq:laspeyres-quantity-gdp"
 。計算しなさい。
 \end_layout
 
-\begin_deeper
 \begin_layout Standard
-\begin_inset ERT
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout AnswerFrame
+\begin_inset Argument 2
 status open
 
 \begin_layout Plain Layout
-
-
-\backslash
-answerbox{4
-\backslash
-baselineskip}
+4
 \end_layout
 
 \end_inset
@@ -920,7 +935,6 @@ baselineskip}
 
 \end_layout
 
-\end_deeper
 \begin_layout Subsection
 寄与度と寄与率
 \end_layout
@@ -982,7 +996,7 @@ status open
 \end_inset
 
 。経済成長率は GDP の変化率
-\begin_inset Formula
+\begin_inset Formula 
 \[
 \frac{\Delta Y_{t+1}}{Y_{t}}=\frac{Y_{t+1}-Y_{t}}{Y_{t}}=\frac{Y_{t+1}}{Y_{t}}-1
 \]
@@ -1001,7 +1015,7 @@ status open
 \end_layout
 
 \begin_layout Standard
-\begin_inset Formula
+\begin_inset Formula 
 \begin{align*}
 Y_{t} & =C_{t}+I_{t}+G_{t}+NX_{t}\\
 Y_{t+1} & =C_{t+1}+I_{t+1}+G_{t+1}+NX_{t+1}
@@ -1037,7 +1051,7 @@ GDP が成長するためには
 \end_layout
 
 \begin_layout Standard
-\begin_inset Formula
+\begin_inset Formula 
 \begin{align*}
 \frac{\Delta Y_{t+1}}{Y_{t}} & =\frac{Y_{t+1}-Y_{t}}{Y_{t}}\\
  & =\frac{\left(C_{t+1}+I_{t+1}+G_{t+1}+NX_{t+1}\right)-\left(C_{t}+I_{t}+G_{t}+NX_{t}\right)}{Y_{t}}\\
@@ -1057,7 +1071,7 @@ GDP が成長するためには
 
 \begin_layout Standard
 GDP に限らず加法的に分解できる指標であれば同様の公式で寄与度を計算出来る。例えば，
-\begin_inset Formula
+\begin_inset Formula 
 \[
 X_{t}=X_{t,1}+X_{t,2}+\cdots+X_{t,N-1}+X_{t,N}=\sum_{n=1}^{N}X_{t,n}
 \]
@@ -1065,7 +1079,7 @@ X_{t}=X_{t,1}+X_{t,2}+\cdots+X_{t,N-1}+X_{t,N}=\sum_{n=1}^{N}X_{t,n}
 \end_inset
 
 とすれば，
-\begin_inset Formula
+\begin_inset Formula 
 \[
 \frac{\Delta X_{t+1}}{X_{t}}=\sum_{n=1}^{N}\frac{\Delta X_{t+1,n}}{X_{t}}\Longrightarrow\text{項目}n\text{ の寄与度}=\frac{\Delta X_{t+1,n}}{X_{t}}
 \]
@@ -1108,24 +1122,6 @@ placement H
 wide false
 sideways false
 status open
-
-\begin_layout Plain Layout
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-vspace{-1
-\backslash
-baselineskip}
-\end_layout
-
-\end_inset
-
-
-\end_layout
 
 \begin_layout Plain Layout
 \begin_inset ERT
@@ -1290,48 +1286,25 @@ arraystretch}{1.3}
 
 \end_layout
 
-\begin_layout Plain Layout
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-vspace{
-\backslash
-baselineskip}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-answerbox{4
-\backslash
-baselineskip}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
 \end_inset
 
 
 \end_layout
 
 \end_deeper
+\begin_layout AnswerFrame
+\begin_inset Argument 2
+status open
+
+\begin_layout Plain Layout
+4
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Standard
 \begin_inset Separator plain
 \end_inset
@@ -1341,7 +1314,7 @@ baselineskip}
 
 \begin_layout Standard
 加法分解に控除項目が入る場合には，控除項目を負数として扱えばよい。
-\begin_inset Formula
+\begin_inset Formula 
 \begin{align*}
 Y_{t} & =C_{t}+I_{t}+G_{t}+EX_{t}-IM_{t}\\
  & =C_{t}+I_{t}+G_{t}+EX_{t}+\left(-IM_{t}\right)
@@ -1350,7 +1323,7 @@ Y_{t} & =C_{t}+I_{t}+G_{t}+EX_{t}-IM_{t}\\
 \end_inset
 
 
-\begin_inset Formula
+\begin_inset Formula 
 \[
 \frac{\Delta Y_{t+1}}{Y_{t}}=\frac{\Delta C_{t+1}}{Y_{t}}+\frac{\Delta I_{t+1}}{Y_{t}}+\frac{\Delta G_{t+1}}{Y_{t}}+\frac{\Delta EX_{t+1}}{Y_{t}}+\frac{\Delta\left(-IM_{t+1}\right)}{Y_{t}}.
 \]
@@ -1377,24 +1350,6 @@ placement H
 wide false
 sideways false
 status open
-
-\begin_layout Plain Layout
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-vspace{-1
-\backslash
-baselineskip}
-\end_layout
-
-\end_inset
-
-
-\end_layout
 
 \begin_layout Plain Layout
 \begin_inset ERT
@@ -1621,55 +1576,32 @@ arraystretch}{1.3}
 
 \end_layout
 
-\begin_layout Plain Layout
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-vspace{
-\backslash
-baselineskip}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-answerbox{4
-\backslash
-baselineskip}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
 \end_inset
 
 
 \end_layout
 
 \end_deeper
+\begin_layout AnswerFrame
+\begin_inset Argument 2
+status open
+
+\begin_layout Plain Layout
+5
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Subsubsection*
 寄与率
 \end_layout
 
 \begin_layout Standard
 GDP 成長率を 1 （100%）に基準化したときの寄与度の大きさが寄与率である。例えば，GDP の支出面の分解であれば，寄与度の計算式
-\begin_inset Formula
+\begin_inset Formula 
 \[
 \frac{\Delta Y_{t+1}}{Y_{t}}=\frac{\Delta C_{t+1}}{Y_{t}}+\frac{\Delta I_{t+1}}{Y_{t}}+\frac{\Delta G_{t+1}}{Y_{t}}+\frac{\Delta NX_{t+1}}{Y_{t}}
 \]
@@ -1684,7 +1616,7 @@ GDP 成長率を 1 （100%）に基準化したときの寄与度の大きさが
 \end_layout
 
 \begin_layout Standard
-\begin_inset Formula
+\begin_inset Formula 
 \begin{align*}
 1 & =\frac{\left(\Delta C_{t+1}/Y_{t}\right)+\left(\Delta I_{t+1}/Y_{t}\right)+\left(\Delta G_{t+1}/Y_{t}\right)+\left(\Delta NX_{t+1}/Y_{t}\right)}{\left(\Delta Y_{t+1}/Y_{t}\right)}\\
  & =\frac{\Delta C_{t+1}}{\Delta Y_{t+1}}+\frac{\Delta I_{t+1}}{\Delta Y_{t+1}}+\frac{\Delta G_{t+1}}{\Delta Y_{t+1}}+\frac{\Delta NX_{t+1}}{\Delta Y_{t+1}}
@@ -1713,18 +1645,12 @@ reference "prob:寄与度2"
 について，各項目の寄与率を計算しなさい。
 \end_layout
 
-\begin_deeper
-\begin_layout Standard
-\begin_inset ERT
+\begin_layout AnswerFrame
+\begin_inset Argument 2
 status open
 
 \begin_layout Plain Layout
-
-
-\backslash
-answerbox{6
-\backslash
-baselineskip}
+5
 \end_layout
 
 \end_inset
@@ -1732,7 +1658,6 @@ baselineskip}
 
 \end_layout
 
-\end_deeper
 \begin_layout Standard
 \begin_inset Separator plain
 \end_inset
@@ -1777,7 +1702,7 @@ status open
 \end_layout
 
 \begin_layout Standard
-\begin_inset Formula
+\begin_inset Formula 
 \[
 x_{1},x_{2},x_{3},\dots,x_{n}
 \]
@@ -1785,7 +1710,7 @@ x_{1},x_{2},x_{3},\dots,x_{n}
 \end_inset
 
 を小さい順に並べ替える。新しい記号を導入したくないので，下付き添字に括弧を付けて順位を表すものとする。すなわち，
-\begin_inset Formula
+\begin_inset Formula 
 \begin{align*}
 x_{(1)} & =\text{1番目に小さいデータ}\text{　}\\
 x_{(2)} & =\text{2番目に小さいデータ}\\
@@ -1824,7 +1749,7 @@ x_{(n)} & =n\text{番目に小さいデータ}
 \end_inset
 
 , の作り方から，次の不等式が成り立つ。
-\begin_inset Formula
+\begin_inset Formula 
 \[
 x_{(1)}\le x_{(2)}\le\cdots\le x_{(n-1)}\le x_{(n)}
 \]
@@ -1880,7 +1805,7 @@ x_{(1)}\le x_{(2)}\le\cdots\le x_{(n-1)}\le x_{(n)}
 median
 \series default
 ） を次のように定義する。
-\begin_inset Formula
+\begin_inset Formula 
 \[
 \mathop{\text{med}}(\{x_{1},\dots,x_{n}\})=\begin{cases}
 x_{(\frac{n+1}{2})} & n\text{ が奇数のとき}\\
@@ -1943,7 +1868,7 @@ status open
 \end_inset
 
  は次のように定義される。
-\begin_inset Formula
+\begin_inset Formula 
 \[
 \frac{x_{(i)}\le Q_{q}\text{ を満たす }i\text{ の数}}{n}=q
 \]
@@ -2016,7 +1941,7 @@ status open
 \end_inset
 
 を以下のように計算する。
-\begin_inset Formula
+\begin_inset Formula 
 \[
 \text{個人の等価可処分所得}=\frac{\text{属する世帯の可処分所得の総額}}{\sqrt{\text{属する世帯の人員数}}}
 \]
@@ -2573,7 +2498,7 @@ status open
 \end_inset
 
 と定義する。上の例には7人の個人がいるので，大きい順にならべて4番目にあたる所得が中央値である。
-\begin_inset Formula
+\begin_inset Formula 
 \[
 \text{上の例の中央値}=404.1452
 \]
@@ -2581,7 +2506,7 @@ status open
 \end_inset
 
 さらにこれを半分にしたものが相対的貧困線である。
-\begin_inset Formula
+\begin_inset Formula 
 \[
 \text{相対的貧困線 }\text{RPL}=\frac{404.1452}{2}=202.0726
 \]
@@ -2971,7 +2896,7 @@ True
 
 \begin_layout Standard
 True となる個人の割合が相対的貧困率である。
-\begin_inset Formula
+\begin_inset Formula 
 \[
 \text{相対的貧困率}=\frac{\text{等価可処分所得が中位点所得の半分未満である人の数}}{\text{総人口数}}
 \]
@@ -2989,18 +2914,12 @@ True となる個人の割合が相対的貧困率である。
 高所得グループと低所得グループとで二極化している場合には，相対的貧困率が高くなる傾向がある。このことを適当な数値例を構築して確認しなさい。
 \end_layout
 
-\begin_deeper
-\begin_layout Standard
-\begin_inset ERT
+\begin_layout AnswerFrame
+\begin_inset Argument 2
 status open
 
 \begin_layout Plain Layout
-
-
-\backslash
-answerbox{6
-\backslash
-baselineskip}
+5
 \end_layout
 
 \end_inset
@@ -3008,7 +2927,6 @@ baselineskip}
 
 \end_layout
 
-\end_deeper
 \begin_layout Standard
 \begin_inset Separator plain
 \end_inset
@@ -3035,18 +2953,12 @@ baselineskip}
 絶対的貧困の定義を調べて，調べたことを簡潔にまとめなさい。
 \end_layout
 
-\begin_deeper
-\begin_layout Standard
-\begin_inset ERT
+\begin_layout AnswerFrame
+\begin_inset Argument 2
 status open
 
 \begin_layout Plain Layout
-
-
-\backslash
-answerbox{4
-\backslash
-baselineskip}
+5
 \end_layout
 
 \end_inset
@@ -3054,7 +2966,6 @@ baselineskip}
 
 \end_layout
 
-\end_deeper
 \begin_layout Subsection
 ジニ係数
 \end_layout
@@ -3079,7 +2990,7 @@ status open
 \end_inset
 
  を個人の所得（等価可処分所得）であるとしよう。各個人の所得を小さい順に並び替えた
-\begin_inset Formula
+\begin_inset Formula 
 \[
 y_{(1)},y_{(2)},\dots,y_{(n-1)},y_{(n)}
 \]
@@ -3091,7 +3002,7 @@ y_{(1)},y_{(2)},\dots,y_{(n-1)},y_{(n)}
 \end_inset
 
  番目の個人までの所得の合計を
-\begin_inset Formula
+\begin_inset Formula 
 \[
 \hat{y}_{i}=y_{(1)}+y_{(2)}+\cdots+y_{(i)}
 \]
@@ -3103,7 +3014,7 @@ y_{(1)},y_{(2)},\dots,y_{(n-1)},y_{(n)}
 \end_inset
 
 とする。国民の総所得は
-\begin_inset Formula
+\begin_inset Formula 
 \[
 \hat{y}=\hat{y}_{n}=y_{(1)}+y_{(2)}+\cdots+y_{(n)}
 \]
@@ -3127,7 +3038,7 @@ y_{(1)},y_{(2)},\dots,y_{(n-1)},y_{(n)}
 \end_inset
 
  のベクトル
-\begin_inset Formula
+\begin_inset Formula 
 \begin{align*}
 \boldsymbol{Y} & =\left(Y_{0},Y_{1},\dots,Y_{n-1},Y_{n}\right)\\
  & =\left(\frac{\hat{y}_{0}}{\hat{y}},\frac{\hat{y}_{1}}{\hat{y}},\dots,\frac{\hat{y}_{n-1}}{\hat{y}},\frac{\hat{y}_{n}}{\hat{y}}\right)\\
@@ -3149,7 +3060,7 @@ y_{(1)},y_{(2)},\dots,y_{(n-1)},y_{(n)}
 \end_inset
 
  を並べたベクトルも構築する。
-\begin_inset Formula
+\begin_inset Formula 
 \[
 \boldsymbol{X}=\left(0,\frac{1}{n},\frac{2}{n},\frac{3}{n},\dots,\frac{n-1}{n},1\right).
 \]
@@ -3195,18 +3106,12 @@ name "prob:lorenz-equality"
  で示される直線になる。この事実を示しなさい。
 \end_layout
 
-\begin_deeper
-\begin_layout Standard
-\begin_inset ERT
+\begin_layout AnswerFrame
+\begin_inset Argument 2
 status open
 
 \begin_layout Plain Layout
-
-
-\backslash
-answerbox{4
-\backslash
-baselineskip}
+5
 \end_layout
 
 \end_inset
@@ -3214,7 +3119,6 @@ baselineskip}
 
 \end_layout
 
-\end_deeper
 \begin_layout Standard
 \begin_inset Separator plain
 \end_inset
@@ -3252,7 +3156,7 @@ status open
 \end_inset
 
 。
-\begin_inset Formula
+\begin_inset Formula 
 \[
 G=\text{ジニ係数}=2\times\left(\text{ローレンツ曲線と完全平等線を囲む領域の面積}\right)
 \]
@@ -3338,7 +3242,7 @@ name "fig:ローレンツ曲線"
 
 \begin_layout Standard
 定義より次の関係が成り立つ。
-\begin_inset Formula
+\begin_inset Formula 
 \[
 0\le G<1
 \]
@@ -3372,7 +3276,7 @@ name "prob:lorenz-inequality"
 \end_inset
 
  を稼ぐ個人を除いて所得がゼロであるとする。すなわち，
-\begin_inset Formula
+\begin_inset Formula 
 \[
 0=y_{(1)}=y_{(2)}=\cdots=y_{(n-1)}<y_{(n)}
 \]
@@ -3386,18 +3290,12 @@ name "prob:lorenz-inequality"
  の極限でジニ係数が 1 となることを示しなさい。
 \end_layout
 
-\begin_deeper
-\begin_layout Standard
-\begin_inset ERT
+\begin_layout AnswerFrame
+\begin_inset Argument 2
 status open
 
 \begin_layout Plain Layout
-
-
-\backslash
-answerbox{6
-\backslash
-baselineskip}
+5
 \end_layout
 
 \end_inset
@@ -3405,7 +3303,6 @@ baselineskip}
 
 \end_layout
 
-\end_deeper
 \begin_layout Standard
 \begin_inset Separator plain
 \end_inset
@@ -3459,7 +3356,7 @@ literal "false"
 \end_inset
 
  個の台形の面積を足し上げればよいので，
-\begin_inset Formula
+\begin_inset Formula 
 \[
 \text{ローレンツ曲線の下側の面積}=\sum_{i=1}^{n}\left[\sum_{j=1}^{i}\frac{Y_{j-1}+Y_{j}}{2n}\right]
 \]
@@ -3467,7 +3364,7 @@ literal "false"
 \end_inset
 
 となる。したがって，ジニ係数は
-\begin_inset Formula
+\begin_inset Formula 
 \begin{align}
 G & =1-\sum_{i=1}^{n}\sum_{j=1}^{i}\frac{Y_{j-1}+Y_{j}}{n}\nonumber \\
  & =1-\frac{\sum_{i=1}^{n}Y_{j-1}+\sum_{j=1}Y_{j}}{n}\nonumber \\
@@ -3482,7 +3379,7 @@ G & =1-\sum_{i=1}^{n}\sum_{j=1}^{i}\frac{Y_{j-1}+Y_{j}}{n}\nonumber \\
 \end_inset
 
  の部分は
-\begin_inset Formula
+\begin_inset Formula 
 \[
 \sum_{j=1}^{n}Y_{j}=\sum_{j=1}^{n}\left(\frac{y_{(1)}+y_{(2)}+\cdots+y_{(j)}}{y_{(1)}+y_{(2)}+\cdots+y_{(j)}+y_{(j+1)}+\cdots+y_{(n)}}\right)
 \]
@@ -3516,7 +3413,7 @@ top percentile income share
 
 \begin_layout Standard
 上位 1% は下位 99% と同じなので，0.99-分位点以上の所得を合計すればよい。すなわち，
-\begin_inset Formula
+\begin_inset Formula 
 \[
 (\text{Top percentile income share})=\frac{\sum_{i:y_{i}\ge Q_{0.99}}y_{i}}{\sum_{i}y_{i}}
 \]
@@ -3528,20 +3425,18 @@ top percentile income share
 
 \begin_layout Problem
 それぞれの定義に基づいて，ジニ係数とトップ 1% 所得シェアの類似性と相違点を説明しなさい。
+\begin_inset Separator plain
+\end_inset
+
+
 \end_layout
 
-\begin_deeper
-\begin_layout Standard
-\begin_inset ERT
+\begin_layout AnswerFrame
+\begin_inset Argument 2
 status open
 
 \begin_layout Plain Layout
-
-
-\backslash
-answerbox{6
-\backslash
-baselineskip}
+5
 \end_layout
 
 \end_inset
@@ -3549,7 +3444,6 @@ baselineskip}
 
 \end_layout
 
-\end_deeper
 \begin_layout Section
 プログラミング: 基礎
 \end_layout
@@ -3697,7 +3591,7 @@ status open
 \series bold
 制御フロー構文
 \series default
-という。この節では，
+という。この節では， 
 \end_layout
 
 \begin_layout Itemize
@@ -3763,12 +3657,19 @@ f()
 \end_layout
 
 \begin_layout Standard
+
+\backslash
+
 \begin_inset ERT
 status open
 
 \begin_layout Plain Layout
 
-<<ch03/no-loop/dnr, caption='実行したい処理', fig.lp='code:'>>=
+<<ch03/no-loop/dnr, caption=実行したい処理
+\begin_inset Quotes jrd
+\end_inset
+
+, fig.lp='code:'>>=
 \end_layout
 
 \begin_layout Plain Layout
@@ -4073,18 +3974,12 @@ for
  ループを使わないコードに書き換えなさい。
 \end_layout
 
-\begin_deeper
-\begin_layout Standard
-\begin_inset ERT
+\begin_layout AnswerFrame
+\begin_inset Argument 2
 status open
 
 \begin_layout Plain Layout
-
-
-\backslash
-answerbox{6
-\backslash
-baselineskip}
+5
 \end_layout
 
 \end_inset
@@ -4092,7 +3987,6 @@ baselineskip}
 
 \end_layout
 
-\end_deeper
 \begin_layout Standard
 \begin_inset Separator plain
 \end_inset
@@ -4291,18 +4185,12 @@ for
  を表示するコードを書きなさい。
 \end_layout
 
-\begin_deeper
-\begin_layout Standard
-\begin_inset ERT
+\begin_layout AnswerFrame
+\begin_inset Argument 2
 status open
 
 \begin_layout Plain Layout
-
-
-\backslash
-answerbox{6
-\backslash
-baselineskip}
+5
 \end_layout
 
 \end_inset
@@ -4310,7 +4198,6 @@ baselineskip}
 
 \end_layout
 
-\end_deeper
 \begin_layout Standard
 \begin_inset Separator plain
 \end_inset
@@ -4339,18 +4226,12 @@ range(m,n)
 はどのような数列を表しているか。
 \end_layout
 
-\begin_deeper
-\begin_layout Standard
-\begin_inset ERT
+\begin_layout AnswerFrame
+\begin_inset Argument 2
 status open
 
 \begin_layout Plain Layout
-
-
-\backslash
-answerbox{4
-\backslash
-baselineskip}
+2
 \end_layout
 
 \end_inset
@@ -4358,7 +4239,6 @@ baselineskip}
 
 \end_layout
 
-\end_deeper
 \begin_layout Standard
 \begin_inset Separator plain
 \end_inset
@@ -4526,18 +4406,12 @@ FALSE
  と入力するとどのような結果になるか。また，それは何故か。
 \end_layout
 
-\begin_deeper
-\begin_layout Standard
-\begin_inset ERT
+\begin_layout AnswerFrame
+\begin_inset Argument 2
 status open
 
 \begin_layout Plain Layout
-
-
-\backslash
-answerbox{4
-\backslash
-baselineskip}
+4
 \end_layout
 
 \end_inset
@@ -4545,7 +4419,6 @@ baselineskip}
 
 \end_layout
 
-\end_deeper
 \begin_layout Standard
 \begin_inset Separator plain
 \end_inset
@@ -5018,17 +4891,13 @@ status open
 
 \end_layout
 
-\begin_layout Standard
-\begin_inset ERT
+\end_deeper
+\begin_layout AnswerFrame
+\begin_inset Argument 2
 status open
 
 \begin_layout Plain Layout
-
-
-\backslash
-answerbox{4
-\backslash
-baselineskip}
+4
 \end_layout
 
 \end_inset
@@ -5036,7 +4905,6 @@ baselineskip}
 
 \end_layout
 
-\end_deeper
 \begin_layout Standard
 \begin_inset Separator plain
 \end_inset
@@ -5195,7 +5063,17 @@ rtol=1e-15
 \end_inset
 
  とあるのは，この基準よりも小さい誤差はゼロとみなすということ。
-\begin_inset Formula $\mathtt{1e-15}=1\times10^{-15}$
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+1e-15
+\end_layout
+
+\end_inset
+
+ は 
+\begin_inset Formula $1\times10^{-15}$
 \end_inset
 
  という意味である。
@@ -5415,17 +5293,13 @@ status open
 
 \end_layout
 
-\begin_layout Standard
-\begin_inset ERT
+\end_deeper
+\begin_layout AnswerFrame
+\begin_inset Argument 2
 status open
 
 \begin_layout Plain Layout
-
-
-\backslash
-answerbox{4
-\backslash
-baselineskip}
+4
 \end_layout
 
 \end_inset
@@ -5433,7 +5307,6 @@ baselineskip}
 
 \end_layout
 
-\end_deeper
 \begin_layout Standard
 \begin_inset Separator plain
 \end_inset
@@ -5603,40 +5476,7 @@ status open
 
 \begin_layout Plain Layout
 
-
-\backslash
-newcommand{
-\backslash
-mycaption}{
-\end_layout
-
-\end_inset
-
-奇数の合計
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-<<ch03/if-odds-total, caption='
-\backslash
-
-\backslash
-mycaption', fig.lp='code:'>>=
+<<ch03/if-odds-total, caption='奇数の合計', fig.lp='code:'>>=
 \end_layout
 
 \begin_layout Plain Layout
@@ -5710,18 +5550,12 @@ qed
 1 から 1000 の間に含まれる偶数の合計を計算するコードを書きなさい。
 \end_layout
 
-\begin_deeper
-\begin_layout Standard
-\begin_inset ERT
+\begin_layout AnswerFrame
+\begin_inset Argument 2
 status open
 
 \begin_layout Plain Layout
-
-
-\backslash
-answerbox{5
-\backslash
-baselineskip}
+4
 \end_layout
 
 \end_inset
@@ -5729,7 +5563,6 @@ baselineskip}
 
 \end_layout
 
-\end_deeper
 \begin_layout Standard
 \begin_inset Separator plain
 \end_inset
@@ -6531,7 +6364,6 @@ reference "eq:ch03-dfl"
 \end_inset
 
 ) に基づいてデフレータを計算するのが次のコードだ。前章で学んだコード（連鎖方式のラスパイレス指数を計算したことを思い出そう）とこの章で学んだ
-
 \begin_inset Flex Code
 status open
 
@@ -6603,7 +6435,6 @@ reference "tab:実質GDPの計算例"
 \end_inset
 
 の例を使って計算しよう。ここでは，名目価値の成長要因を分析する。実質変数の場合も，各項目の実質値の推計が手に入れば同じように実行できる。使うデータは
-
 \begin_inset Flex Code
 status open
 
@@ -7423,16 +7254,19 @@ reference "subsec:相対的貧困率"
 
 \begin_deeper
 \begin_layout Standard
-\begin_inset ERT
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout AnswerFrame
+\begin_inset Argument 2
 status open
 
 \begin_layout Plain Layout
-
-
-\backslash
-answerbox{5
-\backslash
-baselineskip}
+5
 \end_layout
 
 \end_inset
@@ -7440,7 +7274,6 @@ baselineskip}
 
 \end_layout
 
-\end_deeper
 \begin_layout Subsubsection*
 ジニ係数
 \end_layout
@@ -7622,7 +7455,7 @@ q
 \end_inset
 
 の数字である。トップ 1% の所得水準以上の所得というのは，
-\begin_inset Formula
+\begin_inset Formula 
 \[
 \text{所得}\ge Q_{0.99}
 \]
@@ -7684,7 +7517,7 @@ status open
 LatexCommand bibtex
 btprint "btPrintCited"
 bibfiles "References/ref,References/software"
-options "Include/jecon"
+options "Include/jecon-unicode"
 
 \end_inset
 

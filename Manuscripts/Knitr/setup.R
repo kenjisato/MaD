@@ -1,11 +1,13 @@
+library(reticulate)
+
+Sys.setlocale("LC_ALL", "ja_JP.UTF-8")
+
 if (Sys.info()["sysname"] %in% c("Darwin")) {
   reticulate_python = "~/.pyenv/versions/anaconda3-2020.11/bin/python"
 } else {
-  reticulate_python = conda_python
+  reticulate_python = conda_python()
 }
 Sys.setenv(RETICULATE_PYTHON = reticulate_python)
-
-library(reticulate)
 
 ## Default Configurations ----
 knitr_config <- list(
@@ -66,7 +68,10 @@ knitr::knit_hooks$set(
 
         lst_opts <- "style=Source"
         if (!is.null(options$caption)) {
-            lst_opts <- paste0(lst_opts, ",caption=", options$caption)
+            caption_str <- 
+              stringi::stri_unescape_unicode(gsub("<U\\+(....)>", 
+                                                  "\\\\u\\1", options$caption))
+            lst_opts <- paste0(lst_opts, ",caption=", caption_str)
             lst_opts <- paste0(lst_opts, ",label=", options$fig.lp, options$label)
         }
 

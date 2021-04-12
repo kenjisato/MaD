@@ -4,7 +4,7 @@
 % Maintainer: Shiro Takeda (武田史郎)
 % Copyright (C) 2002-2018 Shiro Takeda
 % First-written: <2002/11/03>
-% Time-stamp: <2021-01-22 21:19:13 st>
+% Time-stamp: <2021-01-22 20:42:04 st>
 % Version 6.2.1
 % Keywords: TeX, BibTeX, bst 
 % URL: https://github.com/ShiroTakeda/jecon-bst
@@ -89,8 +89,8 @@ ENTRY
 %
 FUNCTION {bst.use.bysame}
 % { #0 }    % Not use \bysame
-{ #1 }	  % -> Use \bysame (default)
-% { #2 }    % -> Use \bysame of alternative style.
+% { #1 }    % -> Use \bysame (default)
+{ #2 }	  % -> Use \bysame of alternative style.
 
 % \bysame の定義。\bysame を使ったときの横棒の形式を変えるには以下の定義を修正
 % する。
@@ -249,8 +249,8 @@ FUNCTION {bst.number.index.bibhang.hund}
 % 非ゼロにする。使い方については「jecon_unicode_lualatex.pdf」を見てください。
 %
 FUNCTION {bst.use.unicode}
-{ #0 }	  % Not use unicode font (default)
-% { #1 }    % Use unicode font
+% { #0 }    % Not use unicode font (default)
+{ #1 }	  % Use unicode font
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 

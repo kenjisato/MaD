@@ -4,23 +4,23 @@
 \begin_header
 \save_transient_properties true
 \origin unavailable
-\textclass scrbook
+\textclass bxjsbook
 \begin_preamble
 \input{Include/ch-preamble.tex}
 \end_preamble
-\options dvipdfmx,paper=a5,9pt
+\options a5paper,9pt,openany
 \use_default_options true
 \master all.lyx
 \begin_modules
 knitr
 logicalmkup
 theorems-ams-chap-bytype
-theorems-ams-extended-chap-bytype
+classroom
 \end_modules
 \maintain_unincluded_children false
 \language japanese
 \language_package default
-\inputencoding utf8-platex
+\inputencoding utf8
 \fontencoding global
 \font_roman "default" "default"
 \font_sans "default" "default"
@@ -34,7 +34,7 @@ theorems-ams-extended-chap-bytype
 \font_tt_scale 100 100
 \use_microtype false
 \use_dash_ligatures true
-\graphics default
+\graphics none
 \default_output_format default
 \output_sync 0
 \bibtex_command default
@@ -147,7 +147,21 @@ knitr::read_chunk('Python/ch01.py')
 
 \end_layout
 
+\begin_layout Standard
+\begin_inset Flex CLRM/ Mode
+status open
+
+\begin_layout Plain Layout
+student
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Chapter
+\paragraph_spacing single
 変化率と複利計算
 \begin_inset CommandInset label
 LatexCommand label
@@ -238,7 +252,7 @@ reference "chap:GDPの成長と格差"
 \end_inset
 
 。2017年から2018年にかけての GDP の成長は
-\begin_inset Formula
+\begin_inset Formula 
 \[
 \frac{510-500}{500}=\frac{10}{500}=0.02
 \]
@@ -247,7 +261,7 @@ reference "chap:GDPの成長と格差"
 
 によって計算できる。少し視点を変えてみよう。2017年の 500兆円と，2018年の前年度からの成長率が 2% であることが分かっていれば，2018年のGDPは
 次のようにして計算できる。
-\begin_inset Formula
+\begin_inset Formula 
 \[
 500\times(1+0.02)=510
 \]
@@ -267,7 +281,7 @@ reference "chap:GDPの成長と格差"
 \end_inset
 
  と書くことにする。
-\begin_inset Formula
+\begin_inset Formula 
 \begin{align*}
 \text{GDP}_{17} & =500,\qquad\text{GDP}_{18}=510
 \end{align*}
@@ -293,7 +307,7 @@ status open
 \end_inset
 
  と書くと，
-\begin_inset Formula
+\begin_inset Formula 
 \[
 g_{18/17}=\frac{\text{GDP}_{18}-\text{GDP}_{17}}{\text{GDP}_{17}}=\frac{\text{GDP}_{18}}{\text{GDP}_{17}}-1
 \]
@@ -301,7 +315,7 @@ g_{18/17}=\frac{\text{GDP}_{18}-\text{GDP}_{17}}{\text{GDP}_{17}}=\frac{\text{GD
 \end_inset
 
 および
-\begin_inset Formula
+\begin_inset Formula 
 \[
 \text{GDP}_{18}=\left(1+g_{18/17}\right)\text{GDP}_{17}
 \]
@@ -335,7 +349,7 @@ g_{18/17}=\frac{\text{GDP}_{18}-\text{GDP}_{17}}{\text{GDP}_{17}}=\frac{\text{GD
 \end_inset
 
  と数字が増えるにつれて特定の定まった間隔で時間が進行する。例えば，2010年を分析の起点として，1年毎の観測をもとに分析を進めるとすれば，
-\begin_inset Formula
+\begin_inset Formula 
 \[
 t=0\Leftrightarrow\text{2010年},\quad t=1\Leftrightarrow\text{2011年},\quad\cdots
 \]
@@ -373,7 +387,7 @@ GDP に対して記号
 \end_inset
 
 は 2011年の GDP のように理解される。この記法を用いれば，前述の数値例は
-\begin_inset Formula
+\begin_inset Formula 
 \begin{align*}
 y_{7} & =500,\qquad y_{8}=510
 \end{align*}
@@ -512,17 +526,13 @@ status open
  を用いた公式を導きなさい。
 \end_layout
 
-\begin_layout Standard
-\begin_inset ERT
+\end_deeper
+\begin_layout AnswerFrame
+\begin_inset Argument 2
 status open
 
 \begin_layout Plain Layout
-
-
-\backslash
-answerbox{4
-\backslash
-baselineskip}
+4
 \end_layout
 
 \end_inset
@@ -530,7 +540,6 @@ baselineskip}
 
 \end_layout
 
-\end_deeper
 \begin_layout Remark
 分析の開始期を
 \begin_inset Formula $t=0$
@@ -608,18 +617,7 @@ name "prob:quarter-gdp"
 
 \end_inset
 
-1年間のGDPではなく四半期GDPを分析したいとしよう。2000年の第1四半期（1
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
---
-\end_layout
-
-\end_inset
-
-3 月期）を分析の起点
+1年間のGDPではなく四半期GDPを分析したいとしよう。2000年の第1四半期（1−3 月期）を分析の起点
 \begin_inset Formula $t=0$
 \end_inset
 
@@ -861,17 +859,13 @@ status open
  はそれぞれ何年の第何四半期にあたるか？
 \end_layout
 
-\begin_layout Standard
-\begin_inset ERT
+\end_deeper
+\begin_layout AnswerFrame
+\begin_inset Argument 2
 status open
 
 \begin_layout Plain Layout
-
-
-\backslash
-answerbox{3
-\backslash
-baselineskip}
+3
 \end_layout
 
 \end_inset
@@ -879,7 +873,6 @@ baselineskip}
 
 \end_layout
 
-\end_deeper
 \begin_layout Standard
 \begin_inset Separator plain
 \end_inset
@@ -896,29 +889,8 @@ reference "prob:quarter-gdp"
 \end_inset
 
 では暦年について4つの四半期を考えた。1月始まりでない一般の会計年度を用いる場合には，例えば，「2019年度第3四半期」が表しているものが何かをきちんと意識する
-必要がある。会計年度の始まりが 4月であれば，日本で育った人にとっての標準的な理解は「2019年の 10
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
---
-\end_layout
-
-\end_inset
-
-12月期」ということになるだろう。しかし，2018年の 10
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
---
-\end_layout
-
-\end_inset
-
-12月期と表すということがあるらしい。というよりむしろ後者が国際的なスタンダードのようだ。つまり，「2019年度」というのは「その会計年度の終了月が
+必要がある。会計年度の始まりが 4月であれば，日本で育った人にとっての標準的な理解は「2019年の 10−12月期」ということになるだろう。しかし，2018年の
+ 10−12月期と表すということがあるらしい。というよりむしろ後者が国際的なスタンダードのようだ。つまり，「2019年度」というのは「その会計年度の終了月が
  2019年にある」ということになる。
 \begin_inset ERT
 status open
@@ -977,7 +949,7 @@ difference
 \end_inset
 
 ) を取ることである。
-\begin_inset Formula
+\begin_inset Formula 
 \[
 \Delta y_{t+1}=y_{t+1}-y_{t}.
 \]
@@ -1033,7 +1005,7 @@ status open
 \end_inset
 
  と書くことにしよう。これは，
-\begin_inset Formula
+\begin_inset Formula 
 \[
 g_{t+1}=\frac{\Delta y_{t+1}}{y_{t}}=\frac{y_{t+1}-y_{t}}{y_{t}}=\frac{y_{t+1}}{y_{t}}-1
 \]
@@ -1041,7 +1013,7 @@ g_{t+1}=\frac{\Delta y_{t+1}}{y_{t}}=\frac{y_{t+1}-y_{t}}{y_{t}}=\frac{y_{t+1}}{
 \end_inset
 
 と定義される。もちろん，
-\begin_inset Formula
+\begin_inset Formula 
 \[
 y_{t+1}=(1+g_{t+1})y_{t}
 \]
@@ -1053,7 +1025,7 @@ y_{t+1}=(1+g_{t+1})y_{t}
 \end_inset
 
  が前節のGDPを表すとすれば，
-\begin_inset Formula
+\begin_inset Formula 
 \[
 g_{8}=0.02
 \]
@@ -1065,7 +1037,7 @@ g_{8}=0.02
 \end_inset
 
  は 8期のGDP の前年度からの成長率と解釈される。なお，
-\begin_inset Formula
+\begin_inset Formula 
 \[
 1+g_{t+1}=\frac{y_{t+1}}{y_{t}}
 \]
@@ -1101,7 +1073,7 @@ gross growth rate
 
 \begin_layout Remark
 記号の定義は毎回必ずチェックする必要があることに注意しよう。例えば，
-\begin_inset Formula
+\begin_inset Formula 
 \[
 g_{t}=\frac{y_{t+1}-y_{t}}{y_{t}}
 \]
@@ -1142,7 +1114,6 @@ status open
 
 \begin_layout Remark
 ただし，定義しさえすればどんな記号を使ってもよいという訳ではない。慣例的に使われている記号から逸脱することは避けたほうがよい。例えば，GDP を
-
 \begin_inset Formula $g$
 \end_inset
 
@@ -1173,7 +1144,7 @@ status open
 \end_inset
 
 。この2期間に渡って「成長率」
-\begin_inset Formula
+\begin_inset Formula 
 \[
 \frac{y_{t+1}-y_{t}}{y_{t}}
 \]
@@ -1183,18 +1154,12 @@ status open
 を計算することの問題点を指摘しなさい。（ヒント：購買行動の季節変化を考える）
 \end_layout
 
-\begin_deeper
-\begin_layout Standard
-\begin_inset ERT
+\begin_layout AnswerFrame
+\begin_inset Argument 2
 status open
 
 \begin_layout Plain Layout
-
-
-\backslash
-answerbox{4
-\backslash
-baselineskip}
+4
 \end_layout
 
 \end_inset
@@ -1202,7 +1167,6 @@ baselineskip}
 
 \end_layout
 
-\end_deeper
 \begin_layout Standard
 \begin_inset Separator plain
 \end_inset
@@ -1261,7 +1225,7 @@ literal "false"
 \end_inset
 
  期間の成長は次のように計算される。
-\begin_inset Formula
+\begin_inset Formula 
 \[
 \frac{y_{t+n}-y_{t}}{y_{t}}=\frac{y_{t+n}}{y_{t}}-1
 \]
@@ -1310,7 +1274,7 @@ status open
 \end_inset
 
 , は次のように計算できる。
-\begin_inset Formula
+\begin_inset Formula 
 \[
 y_{t+1}=1.02y_{t},\quad y_{t+2}=1.02y_{t+1},\quad y_{t+3}=1.02y_{t+2}
 \]
@@ -1318,7 +1282,7 @@ y_{t+1}=1.02y_{t},\quad y_{t+2}=1.02y_{t+1},\quad y_{t+3}=1.02y_{t+2}
 \end_inset
 
 だから，
-\begin_inset Formula
+\begin_inset Formula 
 \[
 y_{t+3}=1.02^{3}y_{t}\approx1.061y_{t}
 \]
@@ -1362,7 +1326,7 @@ qed
 \end_inset
 
 ）のとき，年率換算した GDP 成長率は次のように計算される。
-\begin_inset Formula
+\begin_inset Formula 
 \[
 \text{四半期GDP成長率（季節調整済み前期比）の年率換算値}=(1+g)^{4}-1
 \]
@@ -1428,7 +1392,7 @@ qed
 \end_inset
 
  を次のように書き換える。
-\begin_inset Formula
+\begin_inset Formula 
 \begin{align*}
 \frac{y_{t+n}}{y_{t}} & =\frac{y_{t+n}}{y_{t+n-1}}\times\frac{y_{t+n-1}}{y_{t+n-2}}\times\cdots\times\frac{y_{t+2}}{y_{t+1}}\times\frac{y_{t+1}}{y_{t}}\\
  & =\underbrace{\left(1+g_{t+n}\right)\times\left(1+g_{t+n-1}\right)\times\cdots\times\left(1+g_{t+2}\right)\times\left(1+g_{t+1}\right)}_{n\text{ 個}}.
@@ -1489,7 +1453,7 @@ status open
 \end_inset
 
  は次の性質を持つ。
-\begin_inset Formula
+\begin_inset Formula 
 \[
 \frac{y_{t+n}}{y_{t}}=\underbrace{\left(1+\bar{g}\right)\times\left(1+\bar{g}\right)\times\cdots\times\left(1+\bar{g}\right)\times\left(1+\bar{g}\right)}_{n\text{ 個}}=\left(1+\bar{g}\right)^{n}.
 \]
@@ -1501,7 +1465,7 @@ status open
 \end_inset
 
  は次のように計算できる。
-\begin_inset Formula
+\begin_inset Formula 
 \begin{align*}
 \bar{g} & =\left(\frac{y_{t+n}}{y_{t}}\right)^{\frac{1}{n}}-1
 \end{align*}
@@ -1513,7 +1477,7 @@ status open
 \end_inset
 
 を用いると，
-\begin_inset Formula
+\begin_inset Formula 
 \begin{equation}
 \bar{g}=\left\{ \left(1+g_{t+n}\right)\left(1+g_{t+n-1}\right)\cdots\left(1+g_{t+2}\right)\left(1+g_{t+1}\right)\right\} ^{\frac{1}{n}}-1.\label{eq:avg-growth-rate}
 \end{equation}
@@ -1540,7 +1504,7 @@ status open
 \end_inset
 
  を使って次のように書く。
-\begin_inset Formula
+\begin_inset Formula 
 \[
 \sum_{i=1}^{n}x_{i}=x_{1}+x_{2}+\cdots+x_{n}.
 \]
@@ -1548,7 +1512,7 @@ status open
 \end_inset
 
 この記法を使った次の等式を示しなさい。
-\begin_inset Formula
+\begin_inset Formula 
 \[
 y_{t+n}-y_{t}=\sum_{i=1}^{n}\Delta y_{t+i}.
 \]
@@ -1558,18 +1522,12 @@ y_{t+n}-y_{t}=\sum_{i=1}^{n}\Delta y_{t+i}.
 
 \end_layout
 
-\begin_deeper
-\begin_layout Standard
-\begin_inset ERT
+\begin_layout AnswerFrame
+\begin_inset Argument 2
 status open
 
 \begin_layout Plain Layout
-
-
-\backslash
-answerbox{3
-\backslash
-baselineskip}
+3
 \end_layout
 
 \end_inset
@@ -1577,7 +1535,6 @@ baselineskip}
 
 \end_layout
 
-\end_deeper
 \begin_layout Standard
 \begin_inset Separator plain
 \end_inset
@@ -1595,7 +1552,7 @@ baselineskip}
 \end_inset
 
  である。この記号は指定されたすべての数の積を表す。
-\begin_inset Formula
+\begin_inset Formula 
 \[
 \prod_{i=1}^{n}x_{i}=x_{1}x_{2}\times\cdots\times x_{n}.
 \]
@@ -1612,18 +1569,12 @@ reference "eq:avg-growth-rate"
 ) の公式を書き直しなさい。
 \end_layout
 
-\begin_deeper
-\begin_layout Standard
-\begin_inset ERT
+\begin_layout AnswerFrame
+\begin_inset Argument 2
 status open
 
 \begin_layout Plain Layout
-
-
-\backslash
-answerbox{3
-\backslash
-baselineskip}
+3
 \end_layout
 
 \end_inset
@@ -1631,7 +1582,6 @@ baselineskip}
 
 \end_layout
 
-\end_deeper
 \begin_layout Subsection
 成長率と対数関数
 \end_layout
@@ -1671,7 +1621,7 @@ status open
 \end_inset
 
  について，
-\begin_inset Formula
+\begin_inset Formula 
 \[
 \log_{b}xy=\log_{b}x+\log_{b}y,\qquad\log_{b}\frac{x}{y}=\log_{b}x-\log_{b}y
 \]
@@ -1751,7 +1701,7 @@ status open
 \end_inset
 
  に対して，
-\begin_inset Formula
+\begin_inset Formula 
 \[
 \log_{b}x=\log_{b}c\times\log_{c}x.
 \]
@@ -1763,7 +1713,7 @@ status open
 
 \begin_layout Proof
 これを示すには，
-\begin_inset Formula
+\begin_inset Formula 
 \[
 b^{\log_{b}x}=b^{\log_{b}c\times\log_{c}x}
 \]
@@ -1779,7 +1729,7 @@ b^{\log_{b}x}=b^{\log_{b}c\times\log_{c}x}
 \end_inset
 
  と一致することを次のようにして確認できる。
-\begin_inset Formula
+\begin_inset Formula 
 \[
 b^{\log_{b}c\times\log_{c}x}=\left(b^{\log_{b}c}\right)^{\log_{c}x}=c^{\log_{c}x}=x.
 \]
@@ -1825,7 +1775,7 @@ status open
 \end_inset
 
  を取った値は 1だけ大きくなる。なぜなら，
-\begin_inset Formula
+\begin_inset Formula 
 \[
 \log_{2}2x=\log_{2}2+\log_{2}x=1+\log_{2}x.
 \]
@@ -1918,7 +1868,7 @@ status open
 \end_inset
 
 と呼ばれ，次のように定義される。
-\begin_inset Formula
+\begin_inset Formula 
 \begin{equation}
 e=\lim_{n\to+\infty}\left(1+\frac{1}{n}\right)^{n}.\label{eq:napier}
 \end{equation}
@@ -1950,7 +1900,7 @@ e=\lim_{n\to+\infty}\left(1+\frac{1}{n}\right)^{n}.\label{eq:napier}
 
 \begin_layout Standard
 自然対数の微分
-\begin_inset Formula
+\begin_inset Formula 
 \[
 \left(\log x\right)'=\frac{1}{x}
 \]
@@ -1972,7 +1922,7 @@ status open
 \end_inset
 
  の自然対数の微分もよく使われるので，覚えておこう。
-\begin_inset Formula
+\begin_inset Formula 
 \[
 \left(\log f(x)\right)'=\frac{f'(x)}{f(x)}.
 \]
@@ -2016,7 +1966,7 @@ status open
 \end_inset
 
 。
-\begin_inset Formula
+\begin_inset Formula 
 \[
 \log\left(1+x\right)\approx x
 \]
@@ -2033,22 +1983,23 @@ status open
 
 \end_layout
 
-\begin_layout Proof
-テイラー展開を使って証明してみよう。
+\begin_layout Problem
+命題
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "prop:log(1+x)-approx"
+
+\end_inset
+
+をテイラー展開を使って証明せよ。
 \end_layout
 
-\begin_deeper
-\begin_layout Standard
-\begin_inset ERT
+\begin_layout AnswerFrame
+\begin_inset Argument 2
 status open
 
 \begin_layout Plain Layout
-
-
-\backslash
-answerbox{10
-\backslash
-baselineskip}
+6
 \end_layout
 
 \end_inset
@@ -2056,7 +2007,6 @@ baselineskip}
 
 \end_layout
 
-\end_deeper
 \begin_layout Standard
 \begin_inset Separator plain
 \end_inset
@@ -2200,7 +2150,7 @@ name "prop:log-approx"
 \end_inset
 
  が十分近ければ，次の近似公式が成り立つ。
-\begin_inset Formula
+\begin_inset Formula 
 \[
 \Delta\log y_{t+1}=\log y_{t+1}-\log y_{t}\approx\frac{\Delta y_{t+1}}{y_{t}}
 \]
@@ -2212,7 +2162,7 @@ name "prop:log-approx"
 
 \begin_layout Proof
 対数の差が商の対数になることに注意すると，
-\begin_inset Formula
+\begin_inset Formula 
 \begin{align*}
 \Delta\log y_{t+1} & =\log y_{t+1}-\log y_{t}\\
  & =\log\frac{y_{t+1}}{y_{t}}\\
@@ -2245,7 +2195,6 @@ Rule of 70
 \end_inset
 
  年である。これは 「Rule of 70」 と呼ばれる近似公式である。例えば，年率 2% で成長している変数は，35年で2倍になる。証明を与えておこう。当初
-
 \begin_inset Formula $y$
 \end_inset
 
@@ -2262,7 +2211,7 @@ Rule of 70
 \end_inset
 
  について次の式が成り立つ。
-\begin_inset Formula
+\begin_inset Formula 
 \[
 \left(1+\frac{x}{100}\right)^{T}y=2y
 \]
@@ -2270,7 +2219,7 @@ Rule of 70
 \end_inset
 
 両辺の対数を取ると，
-\begin_inset Formula
+\begin_inset Formula 
 \[
 T\log\left(1+\frac{x}{100}\right)+\log y=\log2+\log y
 \]
@@ -2278,7 +2227,7 @@ T\log\left(1+\frac{x}{100}\right)+\log y=\log2+\log y
 \end_inset
 
 したがって，
-\begin_inset Formula
+\begin_inset Formula 
 \[
 T=\frac{\log2}{\log\left(1+\frac{x}{100}\right)}\approx\frac{\log2}{x/100},
 \]
@@ -2297,7 +2246,7 @@ reference "prop:log-approx"
 \end_inset
 
  なので，
-\begin_inset Formula
+\begin_inset Formula 
 \[
 T\approx\frac{69.3}{x}
 \]
@@ -2518,7 +2467,7 @@ GDP 成長率の国際比較をするときに見かけ上は小さな差（例�
 
 \begin_layout Standard
 各回の利息を計算するための基本の計算式は
-\begin_inset Formula
+\begin_inset Formula 
 \[
 \text{各回の利率}=\text{年率}\div\text{年間の受取回数}
 \]
@@ -2554,7 +2503,7 @@ GDP 成長率の国際比較をするときに見かけ上は小さな差（例�
 \end_inset
 
  とすれば 1年後の資産残高は
-\begin_inset Formula
+\begin_inset Formula 
 \[
 \left(1+\frac{r}{N}\right)^{N}S_{0}
 \]
@@ -2566,7 +2515,7 @@ GDP 成長率の国際比較をするときに見かけ上は小さな差（例�
 \end_inset
 
  にかかる式を次のように変形する。
-\begin_inset Formula
+\begin_inset Formula 
 \[
 \left(1+\frac{r}{N}\right)^{N}=\left(1+\frac{1}{N/r}\right)^{N}=\left[\left(1+\frac{1}{N/r}\right)^{N/r}\right]^{r}
 \]
@@ -2585,7 +2534,7 @@ reference "eq:napier"
 \end_inset
 
 ) と同じ形であることに注意してほしい：
-\begin_inset Formula
+\begin_inset Formula 
 \begin{align*}
 n & \longleftrightarrow\frac{N}{r}\\
 \left(1+\frac{1}{n}\right)^{n} & \longleftrightarrow\left(1+\frac{1}{N/r}\right)^{N/r}
@@ -2598,7 +2547,7 @@ n & \longleftrightarrow\frac{N}{r}\\
 \end_inset
 
  だから，
-\begin_inset Formula
+\begin_inset Formula 
 \[
 \lim_{N\to\infty}\left(1+\frac{r}{N}\right)^{N}=\lim_{N/r\to\infty}\left[\left(1+\frac{1}{N/r}\right)^{N/r}\right]^{r}=e^{r}
 \]
@@ -2618,7 +2567,7 @@ n & \longleftrightarrow\frac{N}{r}\\
 \end_inset
 
  倍になることに注意しよう。なお，この1年間の変化
-\begin_inset Formula
+\begin_inset Formula 
 \[
 S_{0}\longrightarrow S_{0}e^{r}
 \]
@@ -2626,7 +2575,7 @@ S_{0}\longrightarrow S_{0}e^{r}
 \end_inset
 
 について，対数差分を用いて変化率を求めると，
-\begin_inset Formula
+\begin_inset Formula 
 \begin{align*}
 \log\left(S_{0}e^{r}\right)-\log S_{0} & =\log S_{0}+\log e^{r}-\log S_{0}\\
  & =\log e^{r}\\
@@ -2675,7 +2624,7 @@ status open
 \end_inset
 
  への変化率を
-\begin_inset Formula
+\begin_inset Formula 
 \[
 \log y_{t+1}-\log y_{t}
 \]
@@ -2691,7 +2640,7 @@ status open
 \end_inset
 
  が十分小さいときには，連続時間モデルと離散時間モデルの違いは無視できるほどに小さくなる。なぜなら，
-\begin_inset Formula
+\begin_inset Formula 
 \[
 e^{r}=\sum_{n=0}^{\infty}\frac{r^{n}}{n!}=1+r+\frac{r^{2}}{2!}+\frac{r^{3}}{3!}+\cdots\approx1+r
 \]
@@ -2777,7 +2726,7 @@ e^{r}=\sum_{n=0}^{\infty}\frac{r^{n}}{n!}=1+r+\frac{r^{2}}{2!}+\frac{r^{3}}{3!}+
 \end_inset
 
  とすると，
-\begin_inset Formula
+\begin_inset Formula 
 \[
 \frac{x_{t+1}y_{t+1}-x_{t}y_{t}}{x_{t}y_{t}}=r_{x}+r_{y}+r_{x}r_{y}
 \]
@@ -2836,17 +2785,13 @@ qed
 \end_layout
 
 \begin_layout Standard
-Anaconda Prompt を開いて次のコマンドを入力しよう。なお，コマンドの最初に書かれた 「
-\begin_inset Flex Code
-status open
-
-\begin_layout Plain Layout
->
+Windows を使っている人はスタートメニューから Anaconda PowerShell Prompt を探して開こう。Mac や Linux
+ を使っている人はターミナル（端末）のアプリを開く。
 \end_layout
 
-\end_inset
-
-」 は「プロンプト」と呼ばれる入力待ち状態を意味する記号である。読者はその後から入力すればよい。
+\begin_layout Standard
+Anaconda PowerShell Prompt を開くと次のような表示がでる。Mac や Linux の場合，Anaconda のインストール方法によって
+は同じような見た目にならないかもしれない。
 \end_layout
 
 \begin_layout Standard
@@ -2860,7 +2805,11 @@ status open
 
 \begin_layout Plain Layout
 
-ipython
+(base) C:
+\backslash
+Users
+\backslash
+Kenji>
 \end_layout
 
 \begin_layout Plain Layout
@@ -2874,27 +2823,47 @@ ipython
 \end_layout
 
 \begin_layout Standard
-次のような表示が見えれば成功だ。IPython のプロンプトは
+「
 \begin_inset Flex Code
 status open
 
 \begin_layout Plain Layout
-In [n]:
+>
 \end_layout
 
 \end_inset
 
- という形式になっている。本書ではIPython のプロンプトを省略している。
+」 （あるいは 
 \begin_inset Flex Code
 status open
 
 \begin_layout Plain Layout
-In [n]:
+%
 \end_layout
 
 \end_inset
 
- の後にコードを入力して，「Enter」あるいは「Return」と書かれたキーを押せばコードが実行される。
+ や 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+$
+\end_layout
+
+\end_inset
+
+ やもっと他の記号かもしれない）のような記号で終わるテキストは「プロンプト」と呼ばれ，入力待ち状態を意味している。次のようにコマンド（
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+ipython
+\end_layout
+
+\end_inset
+
+）を入力しよう。
 \end_layout
 
 \begin_layout Standard
@@ -2903,28 +2872,16 @@ status open
 
 \begin_layout Plain Layout
 
-<<eval=FALSE>>=
+<<bash2, eval=FALSE>>=
 \end_layout
 
 \begin_layout Plain Layout
 
-Python 3.7.5 (default, Nov  1 2019, 02:16:23)  Type 'copyright',
-\end_layout
-
-\begin_layout Plain Layout
-
-'credits' or 'license' for more information IPython 7.11.0 --
-\end_layout
-
-\begin_layout Plain Layout
-
-An enhanced Interactive Python.
- Type '?' for help.
-\end_layout
-
-\begin_layout Plain Layout
-
-In [1]:
+(base) C:
+\backslash
+Users
+\backslash
+Kenji> ipython
 \end_layout
 
 \begin_layout Plain Layout
@@ -2935,6 +2892,59 @@ In [1]:
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
+入力が終わったら「Enter」あるいは「Return」と書かれたキーを押す。次のような表示が見えれば成功だ。
+\end_layout
+
+\begin_layout Verbatim
+
+Python 3.7.5 (default, Nov  1 2019, 02:16:23)  Type 'copyright',
+\end_layout
+
+\begin_layout Verbatim
+
+'credits' or 'license' for more information IPython 7.11.0 --
+\end_layout
+
+\begin_layout Verbatim
+
+An enhanced Interactive Python.
+ Type '?' for help.
+\end_layout
+
+\begin_layout Verbatim
+
+In [1]:
+\end_layout
+
+\begin_layout Standard
+IPython というインタラクティブに Python を使うためのアプリケーションが立ち上がった。IPython の入力待ち状態（プロンプト）は
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+In [n]:
+\end_layout
+
+\end_inset
+
+ という形式で表されている。
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+In [n]:
+\end_layout
+
+\end_inset
+
+ の後にコードを入力して，「Enter」あるいは「Return」と書かれたキーを押せばコードが実行され，表示すべき結果があれば即座に表示される。
+\end_layout
+
+\begin_layout Standard
+以下，本書ではIPython のプロンプトを省略する。
 \end_layout
 
 \begin_layout Subsection
@@ -3301,7 +3311,7 @@ status open
 
 \end_inset
 
- は，優先順位が高い順に並んでいる。したがって，次の2つのコードは同じ意味である。
+ はこの順序で優先される。つまり，べきは負符号より先に計算され，積は和よりも先に計算される。したがって，次の2つのコードは同じ意味である。
 \end_layout
 
 \begin_layout Standard
@@ -3626,7 +3636,7 @@ status open
 
 \begin_layout Standard
 分析開始時点の GDP が500で，毎年 2% ずつ成長する経済を考えよう。3年後のGDPを計算したい。
-\begin_inset Formula
+\begin_inset Formula 
 \[
 g=0.02,\quad y_{0}=500,\quad t=3
 \]
@@ -3634,7 +3644,7 @@ g=0.02,\quad y_{0}=500,\quad t=3
 \end_inset
 
 として，
-\begin_inset Formula
+\begin_inset Formula 
 \[
 y_{t}=(1+g)^{t}y_{0}
 \]
@@ -3850,7 +3860,7 @@ https://docs.python.org/ja/3/reference/lexical_analysis.html#keywords
 
 \begin_layout Problem
 ネイピア数の定義
-\begin_inset Formula
+\begin_inset Formula 
 \[
 e=\lim_{n\to\infty}\left(1+\frac{1}{n}\right)^{n}
 \]
@@ -3876,18 +3886,12 @@ e=\lim_{n\to\infty}\left(1+\frac{1}{n}\right)^{n}
  はどのような数字に近づいていくか。
 \end_layout
 
-\begin_deeper
-\begin_layout Standard
-\begin_inset ERT
+\begin_layout AnswerFrame
+\begin_inset Argument 2
 status open
 
 \begin_layout Plain Layout
-
-
-\backslash
-answerbox{4
-\backslash
-baselineskip}
+4
 \end_layout
 
 \end_inset
@@ -3895,7 +3899,6 @@ baselineskip}
 
 \end_layout
 
-\end_deeper
 \begin_layout Subsection
 エラー
 \end_layout
@@ -3905,6 +3908,7 @@ Python はエラーが発生するとコードの実行を停止し，
 \end_layout
 
 \begin_layout Verbatim
+
 　　　
 \begin_inset Flex Code
 status open
@@ -3918,6 +3922,7 @@ status open
 
 \end_layout
 
+\begin_deeper
 \begin_layout Standard
 のような形式でユーザーにエラーに関する情報提供をするようになっている。「〇〇Error」 はエラーの種類ごとに付けられた名前である。例えば，未定義の名前を参照し
 ようとすると，
@@ -3933,6 +3938,7 @@ NameError
  が発生する。
 \end_layout
 
+\end_deeper
 \begin_layout Standard
 \begin_inset ERT
 status open
@@ -4215,17 +4221,13 @@ status open
 
 \end_layout
 
-\begin_layout Standard
-\begin_inset ERT
+\end_deeper
+\begin_layout AnswerFrame
+\begin_inset Argument 2
 status open
 
 \begin_layout Plain Layout
-
-
-\backslash
-answerbox{10
-\backslash
-baselineskip}
+10
 \end_layout
 
 \end_inset
@@ -4233,7 +4235,6 @@ baselineskip}
 
 \end_layout
 
-\end_deeper
 \begin_layout Subsection
 関数
 \end_layout
@@ -4264,6 +4265,7 @@ obj
 
 \begin_deeper
 \begin_layout Verbatim
+
 \begin_inset Flex Code
 status open
 
@@ -4293,6 +4295,7 @@ other_obj
 
 \begin_deeper
 \begin_layout Verbatim
+
 \begin_inset Flex Code
 status open
 
@@ -4307,8 +4310,8 @@ obj.function_name(other_obj)
 
 \end_deeper
 \begin_layout Standard
-「オブジェクトとは何か」というような質問に対する正確な回答を本書には期待しないでほしいのだけれど，おおざっぱに言えば
-\begin_inset Formula
+「オブジェクトとは何か」というような質問に対する正確な回答を本書には期待しないでほしいのだけれど，1つにはコンピュータおおざっぱに言えば
+\begin_inset Formula 
 \[
 \text{「オブジェクト」}=\text{「データ」}+\text{「データに定義された動作」}
 \]
@@ -4582,7 +4585,7 @@ reference "prop:log-approx"
 \end_inset
 
 ）を確認してみよう。ここでは，
-\begin_inset Formula
+\begin_inset Formula 
 \[
 y_{0}=300,\quad y_{1}=306
 \]
@@ -4646,18 +4649,19 @@ reference "prop:log-approx"
 の近似公式は実用上使えそうか。
 \end_layout
 
-\begin_deeper
 \begin_layout Standard
-\begin_inset ERT
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout AnswerFrame
+\begin_inset Argument 2
 status open
 
 \begin_layout Plain Layout
-
-
-\backslash
-answerbox{5
-\backslash
-baselineskip}
+5
 \end_layout
 
 \end_inset
@@ -4665,7 +4669,6 @@ baselineskip}
 
 \end_layout
 
-\end_deeper
 \begin_layout Standard
 \begin_inset Branch childonly
 inverted 0

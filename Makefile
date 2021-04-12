@@ -65,7 +65,7 @@ lyxapp := $(shell if type lyx >/dev/null 2>&1; then echo lyx; fi)
 ifeq ($(lyxapp),)
 	lyxapp := /Applications/LyX.app/Contents/MacOS/lyx
 endif
-lyxapp.opts := --export-to pdf3
+lyxapp.opts := --export-to pdf5
 
 # draw.io app
 drawio := $(shell if type drawio >/dev/null 2>&1; then echo drawio; fi)
