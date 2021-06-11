@@ -1332,7 +1332,7 @@ reference "eq:ch04/companion-form"
  次ベクトルの漸化式に書き換えることができるはずだ。やってみよう。
 \begin_inset Formula 
 \begin{align*}
-b_{n} & =\alpha_{0}+\alpha_{1}b_{n-1}+\alpha_{2}b_{n-2}+\cdots+\alpha_{n-p}b_{n-p}
+b_{n} & =\alpha_{0}+\alpha_{1}b_{n-1}+\alpha_{2}b_{n-2}+\cdots+\alpha_{p}b_{n-p}
 \end{align*}
 
 \end_inset

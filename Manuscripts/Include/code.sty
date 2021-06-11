@@ -1,13 +1,22 @@
 \usepackage{listings}
 \usepackage{caption}
 
-%\definecolor{fgcolor}{rgb}{0,0,0}
+\makeatletter
+\gdef\lst@frameExit{%
+    \lst@frameSpreadV\lst@framexbottommargin
+    \lst@frameH B\lst@framebshape
+    \ifvoid\z@\else
+        \everypar{}\par\nobreak\lst@parshape\nointerlineskip\noindent\box\z@
+    \fi}
+\makeatother
+
+\definecolor{fgcolor}{rgb}{0,0,0}
 %\definecolor{shadecolor}{rgb}{1,1,1}
 \definecolor{codecolor}{rgb}{0.97,0.97,0.97}
 
 \lstdefinestyle{Source}{%
   language={Python},
-  basicstyle={\small\ttfamily},%
+  basicstyle={\linespread{1.0}\small\ttfamily},%
   identifierstyle={\small},%
   commentstyle={\small\itshape},%
   keywordstyle={\small\bfseries},%
@@ -25,7 +34,7 @@
   stepnumber=5,
   firstnumber=1,
   numbersep=3ex,
-  framesep=1pt,
+  framesep=3pt,
   framextopmargin=0pt,
   framexleftmargin=1.5ex,
   framexbottommargin=1pt,
@@ -36,14 +45,14 @@
 }
 
 \lstdefinestyle{Result}{%
-  basicstyle={\small\ttfamily},%
+  basicstyle={\linespread{1.0}\small\ttfamily},%
   stringstyle={\small\ttfamily},
   showstringspaces=false,
   breaklines=true,
   xrightmargin=0\zw,%
   xleftmargin=4\zw,
-  aboveskip=0pt,
-  belowskip=4pt
+  aboveskip=1pt,
+  belowskip=2pt
 }
 
 

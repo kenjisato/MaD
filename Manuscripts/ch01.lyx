@@ -2899,23 +2899,19 @@ Kenji> ipython
 \end_layout
 
 \begin_layout Verbatim
-
 Python 3.7.5 (default, Nov  1 2019, 02:16:23)  Type 'copyright',
 \end_layout
 
 \begin_layout Verbatim
-
 'credits' or 'license' for more information IPython 7.11.0 --
 \end_layout
 
 \begin_layout Verbatim
-
 An enhanced Interactive Python.
  Type '?' for help.
 \end_layout
 
 \begin_layout Verbatim
-
 In [1]:
 \end_layout
 
@@ -3908,7 +3904,6 @@ Python はエラーが発生するとコードの実行を停止し，
 \end_layout
 
 \begin_layout Verbatim
-
 　　　
 \begin_inset Flex Code
 status open
@@ -4265,7 +4260,6 @@ obj
 
 \begin_deeper
 \begin_layout Verbatim
-
 \begin_inset Flex Code
 status open
 
@@ -4295,7 +4289,6 @@ other_obj
 
 \begin_deeper
 \begin_layout Verbatim
-
 \begin_inset Flex Code
 status open
 
@@ -4680,17 +4673,6 @@ LatexCommand bibtex
 btprint "btPrintCited"
 bibfiles "References/ref,References/software"
 options "Include/jecon"
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset CommandInset index_print
-LatexCommand printindex
-type "idx"
-name "Index"
 
 \end_inset
 

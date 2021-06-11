@@ -10,11 +10,8 @@ x
 x + x
 3 * x
 
-
 #---- ch02/list-times-float-error
 3.5 * x
-
-
 #---- ch02/list-not-number
 y = [10, 4.3, "Hello", [1, 2, 3]]
 y
@@ -64,11 +61,8 @@ u[2]
 ()
 (1,)
 
-
 #---- ch02/tuple-assign-error/dnr
 u[0] = 0
-
-
 #---- ch02/numpy-import
 import numpy as np
 
@@ -100,11 +94,8 @@ A = np.array([[0.1, 0.2, 0.3],
 A
 x + A
 
-
 #---- ch02/numpy-addition-error/dnr
 np.array([1, 2, 3.]) + np.array([1, 2, 3., 4])
-
-
 #---- ch02/numpy-multiplication
 x * y
 x / y
@@ -158,16 +149,16 @@ np.zeros((2, 3))
 np.empty((2, 3))
 
 
-#---- ch02/numpy-fix-seed/noinc
-np.random.seed(100)
+#---- ch02/numpy-fix-seed
+rng = np.random.default_rng(100)
 
 
 #---- ch02/numpy-random
-np.random.random((3, 2, 2))
+rng.random((3, 2, 2))
 
 
 #---- ch02/numpy-random-normal
-np.random.standard_normal((3, 2))
+rng.standard_normal((3, 2))
 
 
 #---- ch02/numpy-create-eye

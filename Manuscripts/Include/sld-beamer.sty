@@ -5,9 +5,10 @@
 \setbeamersize{text margin left=10mm, text margin right=30mm}
 
 %Beamerフォント設定
-\usepackage[deluxe]{otf}
-\renewcommand{\familydefault}{\sfdefault}
+\usepackage{luatexja}%
+\usepackage[haranoaji]{luatexja-preset}% 
 \renewcommand{\kanjifamilydefault}{\gtdefault}
+\renewcommand{\familydefault}{\sfdefault}
 \usefonttheme{structurebold}
 \setbeamerfont{alerted text}{series=\bfseries}
 \setbeamerfont{section in toc}{series=\mdseries}
@@ -100,4 +101,4 @@
 \newcommand{\mathcolor}[2]{\textcolor{#1}{#2}}
 \usepackage{pgfpages}
 \usepackage{ifdraft}
-\usepackage{plext}
+

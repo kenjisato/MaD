@@ -1236,7 +1236,7 @@ status open
 \begin_inset Formula $\boldsymbol{x}_{*}=\boldsymbol{x}_{0}$
 \end_inset
 
- or
+ or 
 \begin_inset Formula $\boldsymbol{x}_{t}$
 \end_inset
 
@@ -2351,6 +2351,24 @@ status open
 \end_layout
 
 \begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+vspace{
+\backslash
+baselineskip}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 スカラーとの演算もうまく定義されている。
 \end_layout
 
@@ -3022,6 +3040,47 @@ status open
 numpy.random
 \series default
  というモジュールで定義された関数を使うことができる。
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+np.random.default_rng()
+\end_layout
+
+\end_inset
+
+ という関数を使って，乱数生成器を初期化し，
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+rng
+\end_layout
+
+\end_inset
+
+ という名前をつける
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+「乱数」というのは，コンピュータ上で確率変数の実現値を擬似的に計算したものである。あたかもランダムに見える数列というくらいに考えておけばよい。なお，プログラムの
+開発中にはランダムさが邪魔になる場合がある。
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+np.random.default_rng(100)
+\end_layout
+
+\end_inset
+
+ のように数値を設定したのは，数列の初期値を固定するためである。数字を変えたり，数字を消したりして色々な乱数を生成してみてほしい。
+\end_layout
+
+\end_inset
+
+。
 \end_layout
 
 \begin_layout Standard
@@ -3030,7 +3089,7 @@ status open
 
 \begin_layout Plain Layout
 
-<<ch02/numpy-fix-seed/noinc>>=
+<<ch02/numpy-fix-seed>>=
 \end_layout
 
 \begin_layout Plain Layout
@@ -3047,48 +3106,27 @@ status open
 \begin_inset Formula $[0,1)$
 \end_inset
 
- の一様乱数を生成するには，
+ の一様乱数を生成するには，上で作った 
 \begin_inset Flex Code
 status open
 
 \begin_layout Plain Layout
-np.random.random()
+rng
 \end_layout
 
 \end_inset
 
- を用いる
-\begin_inset Foot
-status open
-
-\begin_layout Plain Layout
-「乱数」というのは，コンピュータ上で確率変数の実現値を擬似的に計算したものである。あたかもランダムに見える数列というくらいに考えておけばよい。なお，プログラムの
-開発中にはランダムさが邪魔になる場合がある。
+ オブジェクトのメソッド 
 \begin_inset Flex Code
 status open
 
 \begin_layout Plain Layout
-np.random.seed()
+rng.random()
 \end_layout
 
 \end_inset
 
- という関数を呼び出せば乱数の種（数列の初期値，パラメータ）が固定される。本書では，
-\begin_inset Flex Code
-status open
-
-\begin_layout Plain Layout
-np.random.seed(1000)
-\end_layout
-
-\end_inset
-
- を実行した後に，続く乱数生成のコードが順次実行されている。
-\end_layout
-
-\end_inset
-
-。
+ を用いる。
 \end_layout
 
 \begin_layout Standard
@@ -3116,7 +3154,7 @@ status open
 status open
 
 \begin_layout Plain Layout
-np.random.standard_normal()
+rng.standard_normal()
 \end_layout
 
 \end_inset
@@ -5228,14 +5266,33 @@ status open
 上のコードには
 \end_layout
 
-\begin_layout Verbatim
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<eval=FALSE>>=
+\end_layout
+
+\begin_layout Plain Layout
 
 laspeyres[t] = laspeyres[t-1] * (sum(price[t, :] * quantity[t-1, :])
 \end_layout
 
-\begin_layout Verbatim
+\begin_layout Plain Layout
 
                                  / sum(price[t-1, :] * quantity[t-1, :]))
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
